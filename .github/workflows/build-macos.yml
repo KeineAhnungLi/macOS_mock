@@ -57,17 +57,12 @@ jobs:
               echo "build-app.log was not created." >> "$GITHUB_STEP_SUMMARY"
             fi
             echo '```' >> "$GITHUB_STEP_SUMMARY"
-            python3 - <<'PY'
-from pathlib import Path
-
-path = Path("release/macos/build-app.log")
-if path.exists():
-    lines = [line.strip() for line in path.read_text(encoding="utf-8", errors="replace").splitlines()[-20:] if line.strip()]
-    message = " | ".join(lines)[:8000]
-else:
-    message = "build-app.log was not created."
-print(f"::error::{message}")
-PY
+            if [ -f release/macos/build-app.log ]; then
+              message="$(tail -n 20 release/macos/build-app.log | tr '\r\n' '  ' | sed 's/  */ /g' | cut -c1-8000)"
+            else
+              message="build-app.log was not created."
+            fi
+            echo "::error::$message"
             exit "$status"
           fi
 
