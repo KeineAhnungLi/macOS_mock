@@ -15,7 +15,14 @@ PKG_ROOT="${ROOT_DIR}/release/macos/pkgroot"
 PKG_SCRIPTS="${ROOT_DIR}/packaging/macos/scripts"
 PKG_PATH="${ROOT_DIR}/release/macos/${APP_NAME}-macOS.pkg"
 
-"$ROOT_DIR/build_macos_app.sh"
+if [[ ! -d "$APP_PATH" ]]; then
+  "$ROOT_DIR/build_macos_app.sh"
+fi
+
+if [[ ! -d "$APP_PATH" ]]; then
+  echo "App bundle not found: $APP_PATH"
+  exit 1
+fi
 
 rm -rf "$PKG_ROOT" "$PKG_PATH"
 mkdir -p "$PKG_ROOT/Applications"

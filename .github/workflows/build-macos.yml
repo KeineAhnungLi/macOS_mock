@@ -27,19 +27,31 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: "3.12"
+
+      - name: Environment info
+        run: |
+          sw_vers
+          python3 --version
+          xcode-select -p
+          pkgbuild --version
 
       - name: Prepare build scripts
         run: chmod +x build_macos_app.sh build_macos_pkg.sh build_macos_all.sh packaging/macos/scripts/preinstall packaging/macos/scripts/postinstall
 
       - name: Build macOS app
-        run: ./build_macos_app.sh
+        run: |
+          mkdir -p release/macos
+          set -o pipefail
+          ./build_macos_app.sh 2>&1 | tee release/macos/build-app.log
 
       - name: Run self-check
-        run: ./release/macos/dist/TEM8Practice.app/Contents/MacOS/TEM8Practice --self-check-json > ./release/macos/self-check.json
+        run: ./release/macos/dist/TEM8Practice.app/Contents/MacOS/TEM8Practice --self-check-json | tee ./release/macos/self-check.json
 
       - name: Build macOS pkg
-        run: ./build_macos_pkg.sh
+        run: |
+          set -o pipefail
+          ./build_macos_pkg.sh 2>&1 | tee release/macos/build-pkg.log
 
       - name: Pack artifacts
         run: |
@@ -47,6 +59,17 @@ jobs:
           ditto -c -k --sequesterRsrc --keepParent "release/macos/dist/TEM8Practice.app" "release/macos/artifacts/TEM8Practice.app.zip"
           cp "release/macos/TEM8Practice-macOS.pkg" "release/macos/artifacts/"
           cp "release/macos/self-check.json" "release/macos/artifacts/"
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TEM8Practice-macos-diagnostics
+          path: |
+            release/macos/build-app.log
+            release/macos/build-pkg.log
+            release/macos/self-check.json
+          if-no-files-found: warn
 
       - name: Upload macOS artifacts
         uses: actions/upload-artifact@v4

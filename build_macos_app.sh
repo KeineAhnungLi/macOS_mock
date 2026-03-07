@@ -24,7 +24,10 @@ if [[ ! -d "$BUILD_VENV" ]]; then
 fi
 
 source "$BUILD_VENV/bin/activate"
-python -m pip install --upgrade pip pyinstaller
+python --version
+uname -a
+python -m pip install --upgrade pip setuptools wheel pyinstaller
+pyinstaller --version
 
 rm -rf "$DIST_DIR" "$BUILD_DIR" "$SPEC_DIR"
 mkdir -p "$DIST_DIR" "$BUILD_DIR" "$SPEC_DIR"
@@ -45,8 +48,17 @@ pyinstaller \
   --add-data "data/user_progress.json:data" \
   gateway.py
 
+if [[ ! -d "$APP_PATH" ]]; then
+  echo "Expected app bundle was not created: $APP_PATH"
+  exit 1
+fi
+
+ls -la "$DIST_DIR"
+
 if command -v codesign >/dev/null 2>&1; then
-  codesign --force --deep --sign - "$APP_PATH"
+  if ! codesign --force --deep --sign - "$APP_PATH"; then
+    echo "Warning: ad-hoc codesign failed, continuing with unsigned app."
+  fi
 fi
 
 echo "Built app: $APP_PATH"
