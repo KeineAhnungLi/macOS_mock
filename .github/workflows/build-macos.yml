@@ -42,8 +42,34 @@ jobs:
       - name: Build macOS app
         run: |
           mkdir -p release/macos
-          set -o pipefail
-          ./build_macos_app.sh 2>&1 | tee release/macos/build-app.log
+          set +e
+          ./build_macos_app.sh > release/macos/build-app.log 2>&1
+          status=$?
+          if [ -f release/macos/build-app.log ]; then
+            cat release/macos/build-app.log
+          fi
+          if [ "$status" -ne 0 ]; then
+            echo "### Build macOS app failed" >> "$GITHUB_STEP_SUMMARY"
+            echo '```text' >> "$GITHUB_STEP_SUMMARY"
+            if [ -f release/macos/build-app.log ]; then
+              tail -n 120 release/macos/build-app.log >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "build-app.log was not created." >> "$GITHUB_STEP_SUMMARY"
+            fi
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            python3 - <<'PY'
+from pathlib import Path
+
+path = Path("release/macos/build-app.log")
+if path.exists():
+    lines = [line.strip() for line in path.read_text(encoding="utf-8", errors="replace").splitlines()[-20:] if line.strip()]
+    message = " | ".join(lines)[:8000]
+else:
+    message = "build-app.log was not created."
+print(f"::error::{message}")
+PY
+            exit "$status"
+          fi
 
       - name: Run self-check
         run: ./release/macos/dist/TEM8Practice.app/Contents/MacOS/TEM8Practice --self-check-json | tee ./release/macos/self-check.json
