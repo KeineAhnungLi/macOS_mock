@@ -16,6 +16,11 @@ DIST_DIR="${ROOT_DIR}/release/macos/dist"
 BUILD_DIR="${ROOT_DIR}/release/macos/build"
 SPEC_DIR="${ROOT_DIR}/release/macos/spec"
 APP_PATH="${DIST_DIR}/${APP_NAME}.app"
+STATIC_SRC="${ROOT_DIR}/app/static"
+QUESTIONS_SRC="${ROOT_DIR}/data/questions.json"
+ANSWER_KEY_SRC="${ROOT_DIR}/data/answer_key.json"
+ANSWER_KEY_TEMPLATE_SRC="${ROOT_DIR}/data/answer_key.template.json"
+PROGRESS_SRC="${ROOT_DIR}/data/user_progress.json"
 
 "$PYTHON_BIN" -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 'Python 3.10+ is required.')"
 
@@ -41,11 +46,11 @@ pyinstaller \
   --workpath "$BUILD_DIR" \
   --specpath "$SPEC_DIR" \
   --osx-bundle-identifier "com.hw.tem8practice" \
-  --add-data "app/static:app/static" \
-  --add-data "data/questions.json:data" \
-  --add-data "data/answer_key.json:data" \
-  --add-data "data/answer_key.template.json:data" \
-  --add-data "data/user_progress.json:data" \
+  --add-data "${STATIC_SRC}:app/static" \
+  --add-data "${QUESTIONS_SRC}:data" \
+  --add-data "${ANSWER_KEY_SRC}:data" \
+  --add-data "${ANSWER_KEY_TEMPLATE_SRC}:data" \
+  --add-data "${PROGRESS_SRC}:data" \
   gateway.py
 
 if [[ ! -d "$APP_PATH" ]]; then
