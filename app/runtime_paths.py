@@ -35,7 +35,6 @@ SEED_DATA_FILES = (
     "questions.json",
     "answer_key.json",
     "answer_key.template.json",
-    "user_progress.json",
 )
 
 

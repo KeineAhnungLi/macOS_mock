@@ -20,7 +20,6 @@ STATIC_SRC="${ROOT_DIR}/app/static"
 QUESTIONS_SRC="${ROOT_DIR}/data/questions.json"
 ANSWER_KEY_SRC="${ROOT_DIR}/data/answer_key.json"
 ANSWER_KEY_TEMPLATE_SRC="${ROOT_DIR}/data/answer_key.template.json"
-PROGRESS_SRC="${ROOT_DIR}/data/user_progress.json"
 
 "$PYTHON_BIN" -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 'Python 3.10+ is required.')"
 
@@ -50,7 +49,6 @@ pyinstaller \
   --add-data "${QUESTIONS_SRC}:data" \
   --add-data "${ANSWER_KEY_SRC}:data" \
   --add-data "${ANSWER_KEY_TEMPLATE_SRC}:data" \
-  --add-data "${PROGRESS_SRC}:data" \
   gateway.py
 
 if [[ ! -d "$APP_PATH" ]]; then
