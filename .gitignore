@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Build outputs
+build/
+dist/
+setup/
+release/
+*.spec
+
+# Logs and runtime state
+logs/
+data/user_progress.json
+data/ocr_debug/
+
+# Local packaging/handoff artifacts
+handoff/
+handoff.zip
+_external/
+
+# Temp files
+tmp_inspect/
+tmp-*.png
+tmp-*.js
+
+# Local environments
+.venv/
+.venv-*/
+venv/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+
+# Large/local-only source material
+*.pdf

@@ -1,0 +1,52 @@
+#!/bin/bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT_DIR"
+
+if [[ "$(uname -s)" != "Darwin" ]]; then
+  echo "This script must be run on macOS."
+  exit 1
+fi
+
+PYTHON_BIN="${PYTHON_BIN:-python3}"
+APP_NAME="${APP_NAME:-TEM8Practice}"
+BUILD_VENV="${ROOT_DIR}/.venv-macos-build"
+DIST_DIR="${ROOT_DIR}/release/macos/dist"
+BUILD_DIR="${ROOT_DIR}/release/macos/build"
+SPEC_DIR="${ROOT_DIR}/release/macos/spec"
+APP_PATH="${DIST_DIR}/${APP_NAME}.app"
+
+"$PYTHON_BIN" -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 10) else 'Python 3.10+ is required.')"
+
+if [[ ! -d "$BUILD_VENV" ]]; then
+  "$PYTHON_BIN" -m venv "$BUILD_VENV"
+fi
+
+source "$BUILD_VENV/bin/activate"
+python -m pip install --upgrade pip pyinstaller
+
+rm -rf "$DIST_DIR" "$BUILD_DIR" "$SPEC_DIR"
+mkdir -p "$DIST_DIR" "$BUILD_DIR" "$SPEC_DIR"
+
+pyinstaller \
+  --noconfirm \
+  --clean \
+  --windowed \
+  --name "$APP_NAME" \
+  --distpath "$DIST_DIR" \
+  --workpath "$BUILD_DIR" \
+  --specpath "$SPEC_DIR" \
+  --osx-bundle-identifier "com.hw.tem8practice" \
+  --add-data "app/static:app/static" \
+  --add-data "data/questions.json:data" \
+  --add-data "data/answer_key.json:data" \
+  --add-data "data/answer_key.template.json:data" \
+  --add-data "data/user_progress.json:data" \
+  gateway.py
+
+if command -v codesign >/dev/null 2>&1; then
+  codesign --force --deep --sign - "$APP_PATH"
+fi
+
+echo "Built app: $APP_PATH"

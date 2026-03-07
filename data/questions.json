@@ -1,0 +1,2711 @@
+{
+  "meta": {
+    "generated_at": "2026-03-07T10:00:00.000000+00:00",
+    "source_pdf": "德语专业八级真题2019-2022.pdf",
+    "section": "Wortschatz und Grammatik",
+    "available_years": [
+      2019,
+      2021,
+      2022
+    ],
+    "notes": [
+      "当前 PDF 中可识别到 2019、2021、2022 三套题。",
+      "答案与解析暂未录入，可后续通过 data/answer_key.json 补充。"
+    ]
+  },
+  "years": [
+    {
+      "year": 2019,
+      "pages": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "question_count": 40,
+      "groups": [
+        {
+          "id": "2019-w-a",
+          "subsection": "Wortschatz",
+          "label": "A",
+          "instruction": "Ergänzen Sie das passende Wort im Funktionsverbgefüge!",
+          "ui_type": "standard",
+          "question_numbers": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2019-w-b",
+          "subsection": "Wortschatz",
+          "label": "B",
+          "instruction": "Was ist richtig?",
+          "ui_type": "standard",
+          "question_numbers": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2019-w-c",
+          "subsection": "Wortschatz",
+          "label": "C",
+          "instruction": "Bilden Sie die jeweils richtige Redewendung!",
+          "ui_type": "standard",
+          "question_numbers": [
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2019-w-d",
+          "subsection": "Wortschatz",
+          "label": "D",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "ui_type": "shared-passage",
+          "question_numbers": [
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55
+          ],
+          "shared_context": "Im kleinen Staat Bhutan, eingeklemmt im Himalaya zwischen China und Indien, (46) _____ der König das Glück der Bewohner schon vor langer Zeit zum Staatsziel und ordnete (47) _____, weniger nach Wachstum und mehr nach Lebensqualität zu (48) _____. So weit ist man in Deutschland noch nicht, doch auch hierzulande sollen Lebensqualität und Fortschritt künftig nicht mehr, wie weltweit bisher üblich, (49) _____ von Wirtschaftsdaten wie dem Bruttoinlandsprodukt (BIP) gemessen werden. Denn was keinen Marktwert hat, (50) _____ dabei außen vor, wie beispielsweise Umweltschäden oder das subjektive Wohlbefinden der Menschen. Bei Wissenschaftlern sowie Politikern (51) _____ mittlerweile weitgehend Einigkeit, dass ein unbegrenzt (52) _____ Wachstum von Wirtschaft und Wohlstand nach den heute (53) _____ Maßstäben in absehbarer Zeit die Lebensgrundlagen der Menschheit gefährden wird. Es geht also um die existentielle Frage, wie Wohlstand weltweit (54) _____ kann, ohne dass dabei die Ressourcen und die (55) _____ des Lebensraums unserer Erde überstrapaziert werden. Glück und Lebensqualität als Maßstab für gutes Wachstum gilt dabei als zukunftsweisend."
+        },
+        {
+          "id": "2019-g-a",
+          "subsection": "Grammatik",
+          "label": "A",
+          "instruction": "Welche Lösung entspricht dem Inhalt des Aufgabensatzes?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            56,
+            57,
+            58
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2019-g-b",
+          "subsection": "Grammatik",
+          "label": "B",
+          "instruction": "Formen Sie bitte die markierten Linksattribute in Relativsätze um!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            59,
+            60
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2019-g-c",
+          "subsection": "Grammatik",
+          "label": "C",
+          "instruction": "Verbinden Sie bitte die folgenden zwei Sätze!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            61
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2019-g-d",
+          "subsection": "Grammatik",
+          "label": "D",
+          "instruction": "Formulieren Sie bitte den jeweils unterstrichenen Satzteil zu einem Nebensatz um!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            62,
+            63
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2019-g-e",
+          "subsection": "Grammatik",
+          "label": "E",
+          "instruction": "Wählen Sie die jeweils passende Umformung!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            64,
+            65
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2019-g-f",
+          "subsection": "Grammatik",
+          "label": "F",
+          "instruction": "Formen Sie bitte den Satz ins Passiv um!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            66
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2019-g-g",
+          "subsection": "Grammatik",
+          "label": "G",
+          "instruction": "Welche Lösung enthält eine korrekte Form für die indirekte Rede?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            67
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2019-g-h",
+          "subsection": "Grammatik",
+          "label": "H",
+          "instruction": "Füllen Sie bitte die Lücken aus!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            68,
+            69,
+            70
+          ],
+          "shared_context": null
+        }
+      ],
+      "questions": [
+        {
+          "id": "2019-31",
+          "year": 2019,
+          "number": 31,
+          "page": 6,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Wort im Funktionsverbgefüge!",
+          "stem": "Der Facharbeiter nahm die Maschine nach der Reparatur wieder in _____.",
+          "options": {
+            "A": "Funktion",
+            "B": "Stand",
+            "C": "Betrieb",
+            "D": "Nutzung"
+          }
+        },
+        {
+          "id": "2019-32",
+          "year": 2019,
+          "number": 32,
+          "page": 6,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Wort im Funktionsverbgefüge!",
+          "stem": "Die Regierung _____ Maßnahmen, um die Inflation zu stoppen.",
+          "options": {
+            "A": "vergreift",
+            "B": "ergreift",
+            "C": "erteilt",
+            "D": "erzielt"
+          }
+        },
+        {
+          "id": "2019-33",
+          "year": 2019,
+          "number": 33,
+          "page": 6,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Wort im Funktionsverbgefüge!",
+          "stem": "Der Mitarbeiter sagt: „Ich stehe Ihnen jederzeit gerne zur _____.“",
+          "options": {
+            "A": "Verfügung",
+            "B": "Hilfe",
+            "C": "Unterstützung",
+            "D": "Beachtung"
+          }
+        },
+        {
+          "id": "2019-34",
+          "year": 2019,
+          "number": 34,
+          "page": 6,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Wort im Funktionsverbgefüge!",
+          "stem": "Die Straßenkünstlerin _____ mit ihrer Vorstellung alle Aufmerksamkeit der Passanten auf sich.",
+          "options": {
+            "A": "lenkt",
+            "B": "steuert",
+            "C": "treibt",
+            "D": "holt"
+          }
+        },
+        {
+          "id": "2019-35",
+          "year": 2019,
+          "number": 35,
+          "page": 6,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Wort im Funktionsverbgefüge!",
+          "stem": "Man muss die Theorie in die Tat _____.",
+          "options": {
+            "A": "setzen",
+            "B": "versetzen",
+            "C": "aussetzen",
+            "D": "umsetzen"
+          }
+        },
+        {
+          "id": "2019-36",
+          "year": 2019,
+          "number": 36,
+          "page": 6,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Was ist richtig?",
+          "stem": "In der frisch umgegrabenen Erde _____ es von Insekten.",
+          "options": {
+            "A": "kriecht",
+            "B": "krabbelt",
+            "C": "wimmelt",
+            "D": "schleicht"
+          }
+        },
+        {
+          "id": "2019-37",
+          "year": 2019,
+          "number": 37,
+          "page": 6,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Was ist richtig?",
+          "stem": "Unter _____ aller Kräfte gelang es ihm, das Kind zu retten.",
+          "options": {
+            "A": "Ansatz",
+            "B": "Einsatz",
+            "C": "Ersatz",
+            "D": "Aussatz"
+          }
+        },
+        {
+          "id": "2019-38",
+          "year": 2019,
+          "number": 38,
+          "page": 6,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Was ist richtig?",
+          "stem": "Viele Syrer _____ illegal die Grenze, um vor der Kriegskatastrophe nach Europa zu fliehen.",
+          "options": {
+            "A": "überschreiten",
+            "B": "durchschreiten",
+            "C": "überlaufen",
+            "D": "durchlaufen"
+          }
+        },
+        {
+          "id": "2019-39",
+          "year": 2019,
+          "number": 39,
+          "page": 6,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Was ist richtig?",
+          "stem": "Im Bürgerkrieg seines Heimatlandes wurde die gesamte Familie des Flüchtlings _____.",
+          "options": {
+            "A": "erlöst",
+            "B": "ausgelöst",
+            "C": "erlischt",
+            "D": "ausgelöscht"
+          }
+        },
+        {
+          "id": "2019-40",
+          "year": 2019,
+          "number": 40,
+          "page": 7,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Was ist richtig?",
+          "stem": "Viele _____ ihn um seinen Reichtum.",
+          "options": {
+            "A": "verleiden",
+            "B": "vergönnen",
+            "C": "beneiden",
+            "D": "erdulden"
+          }
+        },
+        {
+          "id": "2019-41",
+          "year": 2019,
+          "number": 41,
+          "page": 7,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Bilden Sie die jeweils richtige Redewendung!",
+          "stem": "Von _____ an lernte Mozart bereits Klavier spielen.",
+          "options": {
+            "A": "Kindesarmen",
+            "B": "Kindeshanden",
+            "C": "Kindesfüßen",
+            "D": "Kindesbeinen"
+          }
+        },
+        {
+          "id": "2019-42",
+          "year": 2019,
+          "number": 42,
+          "page": 7,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Bilden Sie die jeweils richtige Redewendung!",
+          "stem": "Viele Jugendliche haben heutzutage keinen _____ auf die Politik.",
+          "options": {
+            "A": "Bock",
+            "B": "Hammel",
+            "C": "Stier",
+            "D": "Wolf"
+          }
+        },
+        {
+          "id": "2019-43",
+          "year": 2019,
+          "number": 43,
+          "page": 7,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Bilden Sie die jeweils richtige Redewendung!",
+          "stem": "Die alte Frau hatte sich von einem Betrüger übers _____ hauen lassen.",
+          "options": {
+            "A": "Knie",
+            "B": "Bein",
+            "C": "Ohr",
+            "D": "Kinn"
+          }
+        },
+        {
+          "id": "2019-44",
+          "year": 2019,
+          "number": 44,
+          "page": 7,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Bilden Sie die jeweils richtige Redewendung!",
+          "stem": "Der Bewerber war mit Pauken und _____ in der Prüfung durchgefallen.",
+          "options": {
+            "A": "Trompeten",
+            "B": "Trommeln",
+            "C": "Blitzen",
+            "D": "Donnern"
+          }
+        },
+        {
+          "id": "2019-45",
+          "year": 2019,
+          "number": 45,
+          "page": 7,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Bilden Sie die jeweils richtige Redewendung!",
+          "stem": "Sie ist schon dreißig und hat es eilig, unter die _____ zu kommen.",
+          "options": {
+            "A": "Mütze",
+            "B": "Haube",
+            "C": "Kappe",
+            "D": "Kapuze"
+          }
+        },
+        {
+          "id": "2019-46",
+          "year": 2019,
+          "number": 46,
+          "page": 8,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "stem": "Lücke (46)",
+          "options": {
+            "A": "erhob",
+            "B": "erlegte",
+            "C": "erhöhte",
+            "D": "ersetzte"
+          }
+        },
+        {
+          "id": "2019-47",
+          "year": 2019,
+          "number": 47,
+          "page": 8,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "stem": "Lücke (47)",
+          "options": {
+            "A": "auf",
+            "B": "unter",
+            "C": "zu",
+            "D": "an"
+          }
+        },
+        {
+          "id": "2019-48",
+          "year": 2019,
+          "number": 48,
+          "page": 8,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "stem": "Lücke (48)",
+          "options": {
+            "A": "zielen",
+            "B": "streben",
+            "C": "richten",
+            "D": "steuern"
+          }
+        },
+        {
+          "id": "2019-49",
+          "year": 2019,
+          "number": 49,
+          "page": 8,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "stem": "Lücke (49)",
+          "options": {
+            "A": "anhand",
+            "B": "vonseiten",
+            "C": "abgesehen",
+            "D": "zwecks"
+          }
+        },
+        {
+          "id": "2019-50",
+          "year": 2019,
+          "number": 50,
+          "page": 8,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "stem": "Lücke (50)",
+          "options": {
+            "A": "steht",
+            "B": "bleibt",
+            "C": "geht",
+            "D": "hält"
+          }
+        },
+        {
+          "id": "2019-51",
+          "year": 2019,
+          "number": 51,
+          "page": 8,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "stem": "Lücke (51)",
+          "options": {
+            "A": "dominiert",
+            "B": "regiert",
+            "C": "herrscht",
+            "D": "waltet"
+          }
+        },
+        {
+          "id": "2019-52",
+          "year": 2019,
+          "number": 52,
+          "page": 8,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "stem": "Lücke (52)",
+          "options": {
+            "A": "fortgestelltes",
+            "B": "fortgesetztes",
+            "C": "durchgemachtes",
+            "D": "durchgeführtes"
+          }
+        },
+        {
+          "id": "2019-53",
+          "year": 2019,
+          "number": 53,
+          "page": 8,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "stem": "Lücke (53)",
+          "options": {
+            "A": "anstelligen",
+            "B": "anhängigen",
+            "C": "läufigen",
+            "D": "gängigen"
+          }
+        },
+        {
+          "id": "2019-54",
+          "year": 2019,
+          "number": 54,
+          "page": 8,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "stem": "Lücke (54)",
+          "options": {
+            "A": "steigern",
+            "B": "zunehmen",
+            "C": "erhöhen",
+            "D": "zuwachsen"
+          }
+        },
+        {
+          "id": "2019-55",
+          "year": 2019,
+          "number": 55,
+          "page": 8,
+          "subsection": "Wortschatz",
+          "group_id": "2019-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Entscheiden Sie, welches Wort in die jeweilige Lücke passt!",
+          "stem": "Lücke (55)",
+          "options": {
+            "A": "Festigkeit",
+            "B": "Nachhaltigkeit",
+            "C": "Tragfähigkeit",
+            "D": "Haltbarkeit"
+          }
+        },
+        {
+          "id": "2019-56",
+          "year": 2019,
+          "number": 56,
+          "page": 8,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-a",
+          "group_label": "A",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Lösung entspricht dem Inhalt des Aufgabensatzes?",
+          "stem": "Er kann bereits einen Ausweg gefunden haben.",
+          "options": {
+            "A": "Er behauptet, einen Ausweg gefunden zu haben",
+            "B": "Er hat bereits einen Ausweg gefunden",
+            "C": "Er ist in der Lage, einen Ausweg zu finden",
+            "D": "Es ist möglich, dass er bereits einen Ausweg gefunden hat"
+          }
+        },
+        {
+          "id": "2019-57",
+          "year": 2019,
+          "number": 57,
+          "page": 8,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-a",
+          "group_label": "A",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Lösung entspricht dem Inhalt des Aufgabensatzes?",
+          "stem": "Die Polizei musste eingesetzt werden, sonst hätte es Tote gegeben.",
+          "options": {
+            "A": "Die Polizei wurde gezwungenermaßen eingesetzt, trotzdem hat es Tote gegeben",
+            "B": "Die Polizei wurde gezwungenermaßen eingesetzt, deshalb hat es keine Tote gegeben",
+            "C": "Wenn die Polizei eingesetzt worden wäre, hätte es keine Tote gegeben",
+            "D": "Es ist möglich, dass die Polizei eingesetzt wurde, weil es keine Tote gegeben hat"
+          }
+        },
+        {
+          "id": "2019-58",
+          "year": 2019,
+          "number": 58,
+          "page": 9,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-a",
+          "group_label": "A",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Lösung entspricht dem Inhalt des Aufgabensatzes?",
+          "stem": "Zu meinem Erstaunen wurden die Bilder von Monet nicht ausgestellt.",
+          "options": {
+            "A": "Um mich zu erstaunen, wurden die Bilder von Monet nicht ausgestellt",
+            "B": "Es erstaunte mich, solange die Bilder von Monet nicht ausgestellt wurden",
+            "C": "Entsprechend meinem Erstaunen wurden die Bilder von Monet nicht ausgestellt",
+            "D": "Es hat mich erstaunt, dass die Bilder von Monet nicht ausgestellt wurden"
+          }
+        },
+        {
+          "id": "2019-59",
+          "year": 2019,
+          "number": 59,
+          "page": 9,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-b",
+          "group_label": "B",
+          "ui_type": "sentence-task",
+          "instruction": "Formen Sie bitte die markierten Linksattribute in Relativsätze um!",
+          "stem": "Die von dem Vorstandsvorsitzenden signalisierte Gesprächsbereitschaft wurde leider nicht ernst genommen.",
+          "options": {
+            "A": "Die Gesprächsbereitschaft, die von dem Vorstandsvorsitzenden signalisiert wurde, wurde leider nicht ernst genommen",
+            "B": "Die Gesprächsbereitschaft, die von dem Vorstandsvorsitzenden signalisiert werde, wurde leider nicht ernst genommen",
+            "C": "Die Gesprächsbereitschaft, die von dem Vorstandsvorsitzenden signalisiert wird, wurde leider nicht ernst genommen",
+            "D": "Die Gesprächsbereitschaft, die von dem Vorstandsvorsitzenden signalisiert gewesen war, wurde leider nicht ernst genommen"
+          }
+        },
+        {
+          "id": "2019-60",
+          "year": 2019,
+          "number": 60,
+          "page": 10,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-b",
+          "group_label": "B",
+          "ui_type": "sentence-task",
+          "instruction": "Formen Sie bitte die markierten Linksattribute in Relativsätze um!",
+          "stem": "Unterdessen wurde der bei Fulda mit einer Schafherde zusammengeprallte ICE aus dem Tunnel geborgen.",
+          "options": {
+            "A": "Unterdessen wurde der ICE geborgen, der bei Fulda mit einer Schafherde zusammenprallt",
+            "B": "Unterdessen wurde der ICE geborgen, der bei Fulda mit einer Schafherde zusammengeprallt ist",
+            "C": "Unterdessen wurde der ICE geborgen, der bei Fulda mit einer Schafherde zusammengeprallt hat",
+            "D": "Unterdessen wurde der ICE geborgen, der bei Fulda mit einer Schafherde zusammengeprallt wurde"
+          }
+        },
+        {
+          "id": "2019-61",
+          "year": 2019,
+          "number": 61,
+          "page": 10,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-c",
+          "group_label": "C",
+          "ui_type": "sentence-task",
+          "instruction": "Verbinden Sie bitte die folgenden zwei Sätze!",
+          "stem": "Ich konnte deine Gedanken nicht lesen. Deshalb habe ich dich nicht gut verstanden.",
+          "options": {
+            "A": "Wenn ich deine Gedanken lesen könnte, hätte ich dich gut verstanden",
+            "B": "Wenn ich deine Gedanken gelesen hatte, hätte ich dich gut verstanden",
+            "C": "Wenn ich deine Gedanken hatte lesen können, hätte ich dich gut verstanden",
+            "D": "Wenn ich deine Gedanken hatte gelesen können, hätte ich dich gut verstanden"
+          }
+        },
+        {
+          "id": "2019-62",
+          "year": 2019,
+          "number": 62,
+          "page": 10,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-d",
+          "group_label": "D",
+          "ui_type": "sentence-task",
+          "instruction": "Formulieren Sie bitte den jeweils unterstrichenen Satzteil zu einem Nebensatz um!",
+          "stem": "Im Falle einer humanitären Katastrophe ist Deutschland bereit, sein Engagement zu verstärken.",
+          "options": {
+            "A": "Deutschland ist bereit, sein Engagement zu verstärken, wenn es zu einer humanitären Katastrophe kommt",
+            "B": "Deutschland ist bereit, sein Engagement zu verstärken, weil es zu einer humanitären Katastrophe kommt",
+            "C": "Deutschland ist bereit, sein Engagement zu verstärken, solange es zu einer humanitären Katastrophe kommt",
+            "D": "Deutschland ist bereit, sein Engagement zu verstärken, auch wenn es zu einer humanitären Katastrophe kommt"
+          }
+        },
+        {
+          "id": "2019-63",
+          "year": 2019,
+          "number": 63,
+          "page": 11,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-d",
+          "group_label": "D",
+          "ui_type": "sentence-task",
+          "instruction": "Formulieren Sie bitte den jeweils unterstrichenen Satzteil zu einem Nebensatz um!",
+          "stem": "Erst nach dem Erledigen der Hausaufgaben darf das Kind mit seinen Freunden draußen spielen.",
+          "options": {
+            "A": "Solange die Hausaufgaben erledigt sind, darf das Kind mit seinen Freunden draußen spielen",
+            "B": "Seitdem die Hausaufgaben erledigt sind, darf das Kind mit seinen Freunden draußen spielen",
+            "C": "Ehe die Hausaufgaben erledigt sind, darf das Kind mit seinen Freunden draußen spielen",
+            "D": "Sobald die Hausaufgaben erledigt sind, darf das Kind mit seinen Freunden draußen spielen"
+          }
+        },
+        {
+          "id": "2019-64",
+          "year": 2019,
+          "number": 64,
+          "page": 11,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-e",
+          "group_label": "E",
+          "ui_type": "sentence-task",
+          "instruction": "Wählen Sie die jeweils passende Umformung!",
+          "stem": "Zu einer Großoffensive könnte es kommen. Die Folge dieser Offensive würde alles bisher Geschehene in Syrien in den Schatten stellen.",
+          "options": {
+            "A": "Zu einer Großoffensive könnte es kommen, die alles bisher Geschehene in Syrien in den Schatten stellen würde",
+            "B": "Zu einer Großoffensive könnte es kommen, dessen Folge alles bisher Geschehene in Syrien in den Schatten stellen würde",
+            "C": "Zu einer Großoffensive könnte es kommen, deren Folge alles bisher Geschehene in Syrien in den Schatten stellen würde",
+            "D": "Zu einer Großoffensive könnte es kommen, von denen die Folge alles bisher Geschehene in Syrien in den Schatten stellen würde"
+          }
+        },
+        {
+          "id": "2019-65",
+          "year": 2019,
+          "number": 65,
+          "page": 12,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-e",
+          "group_label": "E",
+          "ui_type": "sentence-task",
+          "instruction": "Wählen Sie die jeweils passende Umformung!",
+          "stem": "Vor zehn Jahren ging die Investmentbank Lehman Brothers bankrott. Infolgedessen brach weltweit die Kreditversorgung zusammen.",
+          "options": {
+            "A": "Insoweit weltweit die Kreditversorgung zusammenbrach, ging vor zehn Jahren die Investmentbank Lehman Brothers bankrott",
+            "B": "Vor zehn Jahren ging die Investmentbank Lehman Brothers bankrott, wodurch weltweit die Kreditversorgung zusammenbrach",
+            "C": "Seitdem vor zehn Jahren die Investmentbank Lehman Brothers bankrott ging, brach weltweit die Kreditversorgung zusammen",
+            "D": "Weltweit brach die Kreditversorgung zusammen, wozu vor zehn Jahren die Investmentbank Lehman Brothers bankrott ging."
+          }
+        },
+        {
+          "id": "2019-66",
+          "year": 2019,
+          "number": 66,
+          "page": 12,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-f",
+          "group_label": "F",
+          "ui_type": "sentence-task",
+          "instruction": "Formen Sie bitte den Satz ins Passiv um!",
+          "stem": "Es besteht kein Zweifel, dass ein Gefängnisausbruch unter Strafe steht.",
+          "options": {
+            "A": "Es besteht kein Zweifel, dass ein Gefängnisausbruch strafbar wird",
+            "B": "Es besteht kein Zweifel, dass ein Gefängnisausbruch bestraft werden muss",
+            "C": "Es besteht kein Zweifel, dass ein Gefängnisausbruch bestraft wird",
+            "D": "Es besteht kein Zweifel, dass ein Gefängnisausbruch bestraft worden ist"
+          }
+        },
+        {
+          "id": "2019-67",
+          "year": 2019,
+          "number": 67,
+          "page": 12,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-g",
+          "group_label": "G",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Lösung enthält eine korrekte Form für die indirekte Rede?",
+          "stem": "Der Mitarbeiter sagt: „Wegen des schlechten Wetters konnte ich nicht kommen.“\nDer Mitarbeiter sagt, _____.",
+          "options": {
+            "A": "wegen des schlechten Wetters könne er nicht kommen",
+            "B": "wegen des schlechten Wetters kann er nicht kommen",
+            "C": "wegen des schlechten Wetters hätte er nicht kommen können",
+            "D": "wegen des schlechten Wetters habe er nicht kommen können"
+          }
+        },
+        {
+          "id": "2019-68",
+          "year": 2019,
+          "number": 68,
+          "page": 13,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-h",
+          "group_label": "H",
+          "ui_type": "sentence-task",
+          "instruction": "Füllen Sie bitte die Lücken aus!",
+          "stem": "Vieles von dem, was _____ begegnet, ist eine Resonanz auf das, was man aussendet.",
+          "options": {
+            "A": "einem",
+            "B": "man",
+            "C": "einen",
+            "D": "einer"
+          }
+        },
+        {
+          "id": "2019-69",
+          "year": 2019,
+          "number": 69,
+          "page": 13,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-h",
+          "group_label": "H",
+          "ui_type": "sentence-task",
+          "instruction": "Füllen Sie bitte die Lücken aus!",
+          "stem": "Die Kindergärtnerin sagt zu den Kindern: „_____ euch die Hände!“",
+          "options": {
+            "A": "Wascht",
+            "B": "Wasch",
+            "C": "Waschen",
+            "D": "Wasche"
+          }
+        },
+        {
+          "id": "2019-70",
+          "year": 2019,
+          "number": 70,
+          "page": 13,
+          "subsection": "Grammatik",
+          "group_id": "2019-g-h",
+          "group_label": "H",
+          "ui_type": "sentence-task",
+          "instruction": "Füllen Sie bitte die Lücken aus!",
+          "stem": "Der Erfolg dieser Maßnahme _____.",
+          "options": {
+            "A": "steht abzuwarten",
+            "B": "bleibt abzuwarten",
+            "C": "hat abzuwarten",
+            "D": "braucht abzuwarten"
+          }
+        }
+      ]
+    },
+    {
+      "year": 2021,
+      "pages": [
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      "question_count": 40,
+      "groups": [
+        {
+          "id": "2021-w-a",
+          "subsection": "Wortschatz",
+          "label": "A",
+          "instruction": "Was ist richtig?",
+          "ui_type": "standard",
+          "question_numbers": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2021-w-b",
+          "subsection": "Wortschatz",
+          "label": "B",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "ui_type": "standard",
+          "question_numbers": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2021-w-c",
+          "subsection": "Wortschatz",
+          "label": "C",
+          "instruction": "Ergänzen Sie den fehlenden Ausdruck in den Redewendungen!",
+          "ui_type": "standard",
+          "question_numbers": [
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2021-w-d",
+          "subsection": "Wortschatz",
+          "label": "D",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "ui_type": "shared-passage",
+          "question_numbers": [
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55
+          ],
+          "shared_context": "Goethe und Schiller (46) _____ ihre Freundschaft als ein seltenes, wunderliches Gewächs an, als ein Glück, als ein Geschenk. Es kam ihnen (47) _____ vor, was ihnen da gelungen oder zugestoßen war, und sie gerieten in dankbares (48) _____ darüber. Als Schiller starb, wusste Goethe, dass für ihn eine (49) _____ seines Lebens zu Ende ging. So (50) _____ war das Verhältnis der beiden geworden, dass Goethe nach Schillers Tod bekannte: „Ich dachte, mich selbst zu verlieren, und verliere nun einen Freund und in demselben die Hälfte meines (51) _____.“ Goethe nannte die Freundschaft ein „glückliches Ereignis“. Ein solches (52) _____ es für uns auch heute noch, denn man wird in der Geschichte des Geistes lange suchen müssen, um etwas (53) _____ zu finden - dass zwei (54) _____ Menschen höchsten Ranges sich über Gegensätze hinweg verbinden zu wechselseitiger (55) _____ und sogar zu gemeinsamem Werk."
+        },
+        {
+          "id": "2021-g-a",
+          "subsection": "Grammatik",
+          "label": "A",
+          "instruction": "Welche Lösung enthält die passende Ersatzform des unterstrichenen Satzteils?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            56,
+            57
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2021-g-b",
+          "subsection": "Grammatik",
+          "label": "B",
+          "instruction": "Formen Sie bitte die markierten Linksattribute in Relativsätze um!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            58,
+            59
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2021-g-c",
+          "subsection": "Grammatik",
+          "label": "C",
+          "instruction": "Welche Lösung entspricht dem Inhalt des Aufgabensatzes?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            60
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2021-g-d",
+          "subsection": "Grammatik",
+          "label": "D",
+          "instruction": "Welche Umwandlung trifft zu?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            61,
+            62,
+            63
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2021-g-e",
+          "subsection": "Grammatik",
+          "label": "E",
+          "instruction": "Bilden Sie Sätze mit Konjunktionen!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            64,
+            65
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2021-g-f",
+          "subsection": "Grammatik",
+          "label": "F",
+          "instruction": "Formen Sie den folgenden Satz ins Passiv um!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            66
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2021-g-g",
+          "subsection": "Grammatik",
+          "label": "G",
+          "instruction": "Welche Lösung enthält eine korrekte Form für die indirekte Rede?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            67
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2021-g-h",
+          "subsection": "Grammatik",
+          "label": "H",
+          "instruction": "Füllen Sie die Lücken!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            68,
+            69,
+            70
+          ],
+          "shared_context": null
+        }
+      ],
+      "questions": [
+        {
+          "id": "2021-31",
+          "year": 2021,
+          "number": 31,
+          "page": 32,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Was ist richtig?",
+          "stem": "Der Vortrag des Gastprofessors war sehr _____, die Studierenden haben viel Neues gelernt.",
+          "options": {
+            "A": "aufgeschlossen",
+            "B": "aufschlussreich",
+            "C": "wissentlich",
+            "D": "wissbegierig"
+          }
+        },
+        {
+          "id": "2021-32",
+          "year": 2021,
+          "number": 32,
+          "page": 32,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Was ist richtig?",
+          "stem": "Er sitzt im Gefängnis, weil er _____ hinterzogen hat.",
+          "options": {
+            "A": "Steuern",
+            "B": "Gebühren",
+            "C": "Einkommen",
+            "D": "Lohn"
+          }
+        },
+        {
+          "id": "2021-33",
+          "year": 2021,
+          "number": 33,
+          "page": 32,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Was ist richtig?",
+          "stem": "Ob er kommt, ist _____.",
+          "options": {
+            "A": "fragend",
+            "B": "fragwürdig",
+            "C": "gefragt",
+            "D": "fraglich"
+          }
+        },
+        {
+          "id": "2021-34",
+          "year": 2021,
+          "number": 34,
+          "page": 32,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Was ist richtig?",
+          "stem": "„Es war sehr _____ von dir, mich zu begleiten.“",
+          "options": {
+            "A": "gereizt",
+            "B": "reizbar",
+            "C": "reizend",
+            "D": "reizvoll"
+          }
+        },
+        {
+          "id": "2021-35",
+          "year": 2021,
+          "number": 35,
+          "page": 32,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Was ist richtig?",
+          "stem": "Die Sorge der Verwandten um die kranke Großmutter war _____.",
+          "options": {
+            "A": "rührig",
+            "B": "gerührt",
+            "C": "berührt",
+            "D": "rührend"
+          }
+        },
+        {
+          "id": "2021-36",
+          "year": 2021,
+          "number": 36,
+          "page": 33,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "stem": "Die Verletzung _____ sehr weh.",
+          "options": {
+            "A": "schlägt",
+            "B": "stößt",
+            "C": "tut",
+            "D": "macht"
+          }
+        },
+        {
+          "id": "2021-37",
+          "year": 2021,
+          "number": 37,
+          "page": 33,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "stem": "Man muss den Plan _____.",
+          "options": {
+            "A": "anfüllen",
+            "B": "erfüllen",
+            "C": "einfüllen",
+            "D": "abfüllen"
+          }
+        },
+        {
+          "id": "2021-38",
+          "year": 2021,
+          "number": 38,
+          "page": 33,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "stem": "Darüber ist kein Wort zu _____.",
+          "options": {
+            "A": "lassen",
+            "B": "legen",
+            "C": "verlieren",
+            "D": "verstehen"
+          }
+        },
+        {
+          "id": "2021-39",
+          "year": 2021,
+          "number": 39,
+          "page": 33,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "stem": "Der Zug _____ sich in Bewegung.",
+          "options": {
+            "A": "setzt",
+            "B": "macht",
+            "C": "begibt",
+            "D": "zieht"
+          }
+        },
+        {
+          "id": "2021-40",
+          "year": 2021,
+          "number": 40,
+          "page": 33,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "stem": "„Darf ich dir eine Tasse Tee _____?“",
+          "options": {
+            "A": "einreichen",
+            "B": "ausreichen",
+            "C": "erreichen",
+            "D": "reichen"
+          }
+        },
+        {
+          "id": "2021-41",
+          "year": 2021,
+          "number": 41,
+          "page": 33,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie den fehlenden Ausdruck in den Redewendungen!",
+          "stem": "Kommt Zeit, kommt _____.",
+          "options": {
+            "A": "Glück",
+            "B": "Rat",
+            "C": "Gesundheit",
+            "D": "Gelegenheit"
+          }
+        },
+        {
+          "id": "2021-42",
+          "year": 2021,
+          "number": 42,
+          "page": 33,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie den fehlenden Ausdruck in den Redewendungen!",
+          "stem": "Bauern müssen auch bei _____ und Wetter aufs Feld.",
+          "options": {
+            "A": "Wolken",
+            "B": "Sturm",
+            "C": "Regen",
+            "D": "Wind"
+          }
+        },
+        {
+          "id": "2021-43",
+          "year": 2021,
+          "number": 43,
+          "page": 33,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie den fehlenden Ausdruck in den Redewendungen!",
+          "stem": "Wer gerne reist, will _____ und Leute kennenlernen.",
+          "options": {
+            "A": "Ortschaften",
+            "B": "Landschaften",
+            "C": "Land",
+            "D": "Städte"
+          }
+        },
+        {
+          "id": "2021-44",
+          "year": 2021,
+          "number": 44,
+          "page": 33,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie den fehlenden Ausdruck in den Redewendungen!",
+          "stem": "Nach der misslungenen Prüfung stand er mit dem Rücken zur _____.",
+          "options": {
+            "A": "Gasse",
+            "B": "Wand",
+            "C": "Tür",
+            "D": "Mauer"
+          }
+        },
+        {
+          "id": "2021-45",
+          "year": 2021,
+          "number": 45,
+          "page": 33,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie den fehlenden Ausdruck in den Redewendungen!",
+          "stem": "In der Kürze liegt die _____.",
+          "options": {
+            "A": "Weisheit",
+            "B": "Klarheit",
+            "C": "Größe",
+            "D": "Würze"
+          }
+        },
+        {
+          "id": "2021-46",
+          "year": 2021,
+          "number": 46,
+          "page": 34,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (46)",
+          "options": {
+            "A": "sahen",
+            "B": "schauten",
+            "C": "hielten",
+            "D": "stellten"
+          }
+        },
+        {
+          "id": "2021-47",
+          "year": 2021,
+          "number": 47,
+          "page": 34,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (47)",
+          "options": {
+            "A": "denkbar",
+            "B": "bedenklich",
+            "C": "unglaubwürdig",
+            "D": "unglaublich"
+          }
+        },
+        {
+          "id": "2021-48",
+          "year": 2021,
+          "number": 48,
+          "page": 34,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (48)",
+          "options": {
+            "A": "Raunen",
+            "B": "Wähnen",
+            "C": "Staunen",
+            "D": "Ahnen"
+          }
+        },
+        {
+          "id": "2021-49",
+          "year": 2021,
+          "number": 49,
+          "page": 34,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (49)",
+          "options": {
+            "A": "Chronik",
+            "B": "Dynastie",
+            "C": "Epoche",
+            "D": "Zäsur"
+          }
+        },
+        {
+          "id": "2021-50",
+          "year": 2021,
+          "number": 50,
+          "page": 34,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (50)",
+          "options": {
+            "A": "behutsam",
+            "B": "innig",
+            "C": "benommen",
+            "D": "versonnen"
+          }
+        },
+        {
+          "id": "2021-51",
+          "year": 2021,
+          "number": 51,
+          "page": 34,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (51)",
+          "options": {
+            "A": "Daseins",
+            "B": "Fortseins",
+            "C": "Beisammenseins",
+            "D": "Beiseins"
+          }
+        },
+        {
+          "id": "2021-52",
+          "year": 2021,
+          "number": 52,
+          "page": 34,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (52)",
+          "options": {
+            "A": "bewahrt",
+            "B": "bekommt",
+            "C": "bleibt",
+            "D": "steht"
+          }
+        },
+        {
+          "id": "2021-53",
+          "year": 2021,
+          "number": 53,
+          "page": 34,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (53)",
+          "options": {
+            "A": "Auffindbares",
+            "B": "Vergleichbares",
+            "C": "Veränderliches",
+            "D": "Beständiges"
+          }
+        },
+        {
+          "id": "2021-54",
+          "year": 2021,
+          "number": 54,
+          "page": 34,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (54)",
+          "options": {
+            "A": "erschütterte",
+            "B": "erschöpfte",
+            "C": "schüttere",
+            "D": "schöpferische"
+          }
+        },
+        {
+          "id": "2021-55",
+          "year": 2021,
+          "number": 55,
+          "page": 34,
+          "subsection": "Wortschatz",
+          "group_id": "2021-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (55)",
+          "options": {
+            "A": "Entsagung",
+            "B": "Verlockung",
+            "C": "Anregung",
+            "D": "Fügung"
+          }
+        },
+        {
+          "id": "2021-56",
+          "year": 2021,
+          "number": 56,
+          "page": 34,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-a",
+          "group_label": "A",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Lösung enthält die passende Ersatzform des unterstrichenen Satzteils?",
+          "stem": "Aufgrund ihres fleißigen Lernens erhöhte sich Sarahs Sprachniveau stetig.",
+          "options": {
+            "A": "Sarahs Sprachniveau erhöhte sich stetig, dadurch dass sie fleißig lernte",
+            "B": "Sarahs Sprachniveau erhöhte sich stetig, infolge dessen sie fleißig lernte",
+            "C": "Sarahs Sprachniveau erhöhte sich stetig, wodurch sie fleißig lernte",
+            "D": "Sarahs Sprachniveau erhöhte sich stetig, weswegen sie fleißig lernte"
+          }
+        },
+        {
+          "id": "2021-57",
+          "year": 2021,
+          "number": 57,
+          "page": 35,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-a",
+          "group_label": "A",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Lösung enthält die passende Ersatzform des unterstrichenen Satzteils?",
+          "stem": "Zehn Jahre nachdem Familie Schneider das Unternehmen übernommen hat, ist die Geduld der Familie zu Ende.",
+          "options": {
+            "A": "Zehn Jahre nach der Übernahme des Unternehmens durch Familie Schneider ist die Geduld der Familie zu Ende",
+            "B": "Nach der Übernahme des Unternehmens durch Familie Schneider in zehn Jahren ist die Geduld der Familie zu Ende",
+            "C": "Zehn Jahre mit der Übernahme des Unternehmens durch Familie Schneider ist die Geduld der Familie zu Ende",
+            "D": "Mit der Übernahme des Unternehmens durch Familie Schneider zehn Jahre später ist die Geduld der Familie zu Ende"
+          }
+        },
+        {
+          "id": "2021-58",
+          "year": 2021,
+          "number": 58,
+          "page": 35,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-b",
+          "group_label": "B",
+          "ui_type": "sentence-task",
+          "instruction": "Formen Sie bitte die markierten Linksattribute in Relativsätze um!",
+          "stem": "Was steht bei dem gefürchteten und von dem Premier angesteuerten No-Deal-Brexit für die beiderseitigen Beziehungen auf dem Spiel?",
+          "options": {
+            "A": "Was steht bei dem No-Deal-Brexit, bei dem gefürchtet und von dem Premier angesteuert ist, für die beiderseitigen Beziehungen auf dem Spiel?",
+            "B": "Was steht bei dem No-Deal-Brexit, der gefürchtet und von dem Premier angesteuert ist, für die beiderseitigen Beziehungen auf dem Spiel?",
+            "C": "Was steht bei dem No-Deal-Brexit, der gefürchtet ist und von dem Premier angesteuert werden soll, für die beiderseitigen Beziehungen auf dem Spiel?",
+            "D": "Was steht bei dem No-Deal-Brexit, den der Premier fürchtet und ansteuert, für die beiderseitigen Beziehungen auf dem Spiel?"
+          }
+        },
+        {
+          "id": "2021-59",
+          "year": 2021,
+          "number": 59,
+          "page": 36,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-b",
+          "group_label": "B",
+          "ui_type": "sentence-task",
+          "instruction": "Formen Sie bitte die markierten Linksattribute in Relativsätze um!",
+          "stem": "Hinter diesem Problem stand eine schweigende Mehrheit.",
+          "options": {
+            "A": "Hinter diesem Problem stand eine Mehrheit, die schweigt",
+            "B": "Hinter diesem Problem stand eine Mehrheit, die schwieg",
+            "C": "Hinter diesem Problem stand eine Mehrheit, die geschwiegen hatte",
+            "D": "Hinter diesem Problem stand eine Mehrheit, die schweigen will"
+          }
+        },
+        {
+          "id": "2021-60",
+          "year": 2021,
+          "number": 60,
+          "page": 36,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-c",
+          "group_label": "C",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Lösung entspricht dem Inhalt des Aufgabensatzes?",
+          "stem": "Das Baby kann jeden Moment auf die Welt kommen.",
+          "options": {
+            "A": "Jemand behauptet, dass das Baby jeden Moment auf die Welt kommt",
+            "B": "Das Baby kommt mit Sicherheit jeden Moment auf die Welt",
+            "C": "Es ist möglich, dass das Baby jeden Moment auf die Welt kommt",
+            "D": "Das Baby ist in der Lage, jeden Moment auf die Welt zu kommen"
+          }
+        },
+        {
+          "id": "2021-61",
+          "year": 2021,
+          "number": 61,
+          "page": 36,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-d",
+          "group_label": "D",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Umwandlung trifft zu?",
+          "stem": "DHV-Präsident Bernhard Kempen zufolge verändert sich das Klima an Hochschulen.",
+          "options": {
+            "A": "Wenn man dem DHV-Präsidenten Bernhard Kempen folgt, verändert sich das Klima an Hochschulen",
+            "B": "Die Folge ist nach Meinung von DHV-Präsidenten Bernhard Kempen, dass sich das Klima an Hochschulen verändert",
+            "C": "Wie DHV-Präsident Bernhard Kempen sagte, verändert sich das Klima an Hochschulen",
+            "D": "Dass sich das Klima an Hochschulen verändert, gab DHV-Präsident Bernhard Kempen zu"
+          }
+        },
+        {
+          "id": "2021-62",
+          "year": 2021,
+          "number": 62,
+          "page": 36,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-d",
+          "group_label": "D",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Umwandlung trifft zu?",
+          "stem": "Sie können ein einzelnes Objekt in einem Bild hervorheben, indem Sie seine Ränder schärfen.",
+          "options": {
+            "A": "Bei der Schärfung seiner Ränder können Sie ein einzelnes Objekt in einem Bild hervorheben",
+            "B": "Infolge der Schärfung seiner Ränder können Sie ein einzelnes Objekt in einem Bild hervorheben",
+            "C": "Trotz der Schärfung seiner Ränder können Sie ein einzelnes Objekt in einem Bild hervorheben",
+            "D": "Durch die Schärfung seiner Ränder können Sie ein einzelnes Objekt in einem Bild hervorheben"
+          }
+        },
+        {
+          "id": "2021-63",
+          "year": 2021,
+          "number": 63,
+          "page": 37,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-d",
+          "group_label": "D",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Umwandlung trifft zu?",
+          "stem": "Im Konflikt mit dem Iran verlegen die USA nach den Angriffen auf saudische Ölanlagen weitere Truppen in den Nahen Osten.",
+          "options": {
+            "A": "Im Konflikt mit dem Iran verlegen die USA weitere Truppen in den Nahen Osten, seitdem saudische Ölanlagen angegriffen werden",
+            "B": "Im Konflikt mit dem Iran verlegen die USA weitere Truppen in den Nahen Osten, seitdem saudische Ölanlagen angegriffen worden sind",
+            "C": "Im Konflikt mit dem Iran verlegen die USA weitere Truppen in den Nahen Osten, nachdem saudische Ölanlagen angegriffen werden",
+            "D": "Im Konflikt mit dem Iran verlegen die USA weitere Truppen in den Nahen Osten, nachdem saudische Ölanlagen angegriffen worden sind"
+          }
+        },
+        {
+          "id": "2021-64",
+          "year": 2021,
+          "number": 64,
+          "page": 37,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-e",
+          "group_label": "E",
+          "ui_type": "sentence-task",
+          "instruction": "Bilden Sie Sätze mit Konjunktionen!",
+          "stem": "Die Bundesregierung hat sich auf ein Klimapaket geeinigt. Wir sind damit zufrieden.",
+          "options": {
+            "A": "Die Bundesregierung hat sich auf ein Klimapaket geeinigt, womit wir zufrieden sind",
+            "B": "Die Bundesregierung hat sich auf ein Klimapaket geeinigt, mit dem wir zufrieden sind",
+            "C": "Die Bundesregierung hat sich auf ein Klimapaket geeinigt, damit wir zufrieden sind",
+            "D": "Die Bundesregierung hat sich auf ein Klimapaket geeinigt, wodurch wir zufrieden sind"
+          }
+        },
+        {
+          "id": "2021-65",
+          "year": 2021,
+          "number": 65,
+          "page": 38,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-e",
+          "group_label": "E",
+          "ui_type": "sentence-task",
+          "instruction": "Bilden Sie Sätze mit Konjunktionen!",
+          "stem": "Mit PayPal habe ich auch oft Probleme. Aus diesem Grund nutze ich den Anbieter so gut wie kaum noch.",
+          "options": {
+            "A": "Mit PayPal habe ich auch oft Probleme, weswegen ich den Anbieter so gut wie kaum noch nutze",
+            "B": "Mit PayPal habe ich auch oft Probleme, warum ich den Anbieter so gut wie kaum noch nutze",
+            "C": "Mit PayPal habe ich auch oft Probleme, deswegen ich den Anbieter so gut wie kaum noch nutze",
+            "D": "Mit PayPal habe ich auch oft Probleme, dass ich den Anbieter so gut wie kaum noch nutze"
+          }
+        },
+        {
+          "id": "2021-66",
+          "year": 2021,
+          "number": 66,
+          "page": 38,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-f",
+          "group_label": "F",
+          "ui_type": "sentence-task",
+          "instruction": "Formen Sie den folgenden Satz ins Passiv um!",
+          "stem": "Man plant, am Stadtrand einen öffentlichen Freizeitpark zu errichten.",
+          "options": {
+            "A": "Am Stadtrand ist ein öffentlicher Freizeitpark zu errichten",
+            "B": "Am Stadtrand soll ein öffentlicher Freizeitpark einzurichten sein",
+            "C": "Am Stadtrand will ein öffentlicher Freizeitpark errichtet werden",
+            "D": "Am Stadtrand soll ein öffentlicher Freizeitpark errichtet werden"
+          }
+        },
+        {
+          "id": "2021-67",
+          "year": 2021,
+          "number": 67,
+          "page": 38,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-g",
+          "group_label": "G",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Lösung enthält eine korrekte Form für die indirekte Rede?",
+          "stem": "Der Politiker stellte fest: „Die CO₂-Preise sind lächerlich gering und werden niemanden veranlassen, seine Konsumgewohnheiten zu verändern.“\nDer Politiker stellte fest, _____.",
+          "options": {
+            "A": "die CO₂-Preise seien lächerlich gering gewesen und würden niemanden veranlassen, seine Konsumgewohnheiten zu verändern",
+            "B": "dass die CO₂-Preise lächerlich gering sind und niemanden veranlassen werden, seine Konsumgewohnheiten zu verändern",
+            "C": "die CO₂-Preise seien lächerlich gering und würden niemanden veranlassen, seine Konsumgewohnheiten zu verändern",
+            "D": "die CO₂-Preise waren lächerlich gering und veranlassten niemanden, seine Konsumgewohnheiten zu verändern"
+          }
+        },
+        {
+          "id": "2021-68",
+          "year": 2021,
+          "number": 68,
+          "page": 39,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-h",
+          "group_label": "H",
+          "ui_type": "sentence-task",
+          "instruction": "Füllen Sie die Lücken!",
+          "stem": "Sie tut so, _____.",
+          "options": {
+            "A": "als hätte sie alles unter Kontrolle",
+            "B": "als ob sie alles unter Kontrolle habe",
+            "C": "als dass sie alles unter Kontrolle hatte",
+            "D": "als ob sie alles unter Kontrolle hat"
+          }
+        },
+        {
+          "id": "2021-69",
+          "year": 2021,
+          "number": 69,
+          "page": 39,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-h",
+          "group_label": "H",
+          "ui_type": "sentence-task",
+          "instruction": "Füllen Sie die Lücken!",
+          "stem": "Ohne Hilfe der Polizei _____ der Rettungsdienst auf dem Weg zur Unfallstelle im Stau _____.",
+          "options": {
+            "A": "ist... stecken geblieben",
+            "B": "wäre ... stecken geblieben",
+            "C": "hatte ... stecken geblieben",
+            "D": "würde ... stecken geblieben"
+          }
+        },
+        {
+          "id": "2021-70",
+          "year": 2021,
+          "number": 70,
+          "page": 39,
+          "subsection": "Grammatik",
+          "group_id": "2021-g-h",
+          "group_label": "H",
+          "ui_type": "sentence-task",
+          "instruction": "Füllen Sie die Lücken!",
+          "stem": "_____ sind Fahrräder in überfüllten Waggons unzulässig.",
+          "options": {
+            "A": "Ungeachtet allen anderen Vorschriften",
+            "B": "Ungeachtet von allen anderen Vorschriften",
+            "C": "Ungeachtet mit allen anderen Vorschriften",
+            "D": "Ungeachtet aller anderen Vorschriften"
+          }
+        }
+      ]
+    },
+    {
+      "year": 2022,
+      "pages": [
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65
+      ],
+      "question_count": 40,
+      "groups": [
+        {
+          "id": "2022-w-a",
+          "subsection": "Wortschatz",
+          "label": "A",
+          "instruction": "Ergänzen Sie das passende Nomen!",
+          "ui_type": "standard",
+          "question_numbers": [
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2022-w-b",
+          "subsection": "Wortschatz",
+          "label": "B",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "ui_type": "standard",
+          "question_numbers": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2022-w-c",
+          "subsection": "Wortschatz",
+          "label": "C",
+          "instruction": "Ergänzen Sie das Fehlende in den Redewendungen!",
+          "ui_type": "standard",
+          "question_numbers": [
+            41,
+            42,
+            43,
+            44,
+            45
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2022-w-d",
+          "subsection": "Wortschatz",
+          "label": "D",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "ui_type": "shared-passage",
+          "question_numbers": [
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55
+          ],
+          "shared_context": "Um die (46) _____ befand sich das Römische Reich noch auf dem Gipfel seiner Macht. Seine Grenzen waren durch die Überwältigung vieler Völker zu einem Weltreich (47) _____ worden, aber Germanien stand nicht vollständig unter römischer Kontrolle. Auch die Eroberung des sog. freien Germaniens schien nur noch eine (48) _____ der Zeit zu sein. Denn die militärisch bestens (49) _____ Armeen der Römer waren nach erfolgreichen Feldzügen im heutigen Süddeutschland bis zur Elbe weit ins Innere Germaniens (50) _____. Der Kommandeur des römischen Heeres in Germanien, Publius Quinctilius Varus, (51) _____ so, als wären die Gebiete zwischen Rhein und Elbe schon eine römische Provinz. Im Jahre 9 n. Chr. gab es (52) _____ Streitigkeiten zwischen germanischen Stämmen westlich des Rheins, weshalb Varus zu einer militärischen Strafexpedition ins Quellgebiet der Flüsse Lippe und Ems, Siedlungsgebiet des germanischen Stammes der Cherusker, marschierte. Dort schlug Varus sein Lager (53) _____, (54) _____ zunächst die verfeindeten Germanen, gründete neue Siedlungen, zog Steuern ein und hielt Gerichtstage ab; er verhielt sich also so, als ob er der Herr im (55) _____ wäre."
+        },
+        {
+          "id": "2022-g-a",
+          "subsection": "Grammatik",
+          "label": "A",
+          "instruction": "Welche Präposition passt?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            56,
+            57
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2022-g-b",
+          "subsection": "Grammatik",
+          "label": "B",
+          "instruction": "Welche Umformulierung passt?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            58,
+            59
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2022-g-c",
+          "subsection": "Grammatik",
+          "label": "C",
+          "instruction": "Setzen Sie passende Pronominaladverbien mit wo- ein!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            60,
+            61
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2022-g-d",
+          "subsection": "Grammatik",
+          "label": "D",
+          "instruction": "Ergänzen Sie das richtige Partizip II!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            62
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2022-g-e",
+          "subsection": "Grammatik",
+          "label": "E",
+          "instruction": "Setzen Sie die passenden Endungen ein!",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            63,
+            64
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2022-g-f",
+          "subsection": "Grammatik",
+          "label": "F",
+          "instruction": "Welcher Nebensatz entspricht der Bedeutung der unterstrichenen Nominalisierung?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            65,
+            66,
+            67
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2022-g-g",
+          "subsection": "Grammatik",
+          "label": "G",
+          "instruction": "Direkte Rede in indirekte Rede umwandeln: Welche Form ist richtig?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            68,
+            69
+          ],
+          "shared_context": null
+        },
+        {
+          "id": "2022-g-h",
+          "subsection": "Grammatik",
+          "label": "H",
+          "instruction": "Welche Umschreibung gibt den Inhalt des dass-Satzes wieder?",
+          "ui_type": "sentence-task",
+          "question_numbers": [
+            70
+          ],
+          "shared_context": null
+        }
+      ],
+      "questions": [
+        {
+          "id": "2022-31",
+          "year": 2022,
+          "number": 31,
+          "page": 59,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Nomen!",
+          "stem": "Der junge Mann machte in der Straßenbahn einer alten Frau _____.",
+          "options": {
+            "A": "Stelle",
+            "B": "Platz",
+            "C": "Raum",
+            "D": "Sitz"
+          }
+        },
+        {
+          "id": "2022-32",
+          "year": 2022,
+          "number": 32,
+          "page": 59,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Nomen!",
+          "stem": "Der Chef bat den Auszubildenden, eine _____ für ihn zu machen.",
+          "options": {
+            "A": "Umsorgung",
+            "B": "Versorgung",
+            "C": "Besorgung",
+            "D": "Besorgnis"
+          }
+        },
+        {
+          "id": "2022-33",
+          "year": 2022,
+          "number": 33,
+          "page": 59,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Nomen!",
+          "stem": "Die _____ der zweitägigen Tagung verlangte von den Organisatoren viel Einsatz.",
+          "options": {
+            "A": "Vollführung",
+            "B": "Abführung",
+            "C": "Vorführung",
+            "D": "Durchführung"
+          }
+        },
+        {
+          "id": "2022-34",
+          "year": 2022,
+          "number": 34,
+          "page": 59,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Nomen!",
+          "stem": "Der Arzt leistete dem Verunglückten nach dem Unfall erste _____.",
+          "options": {
+            "A": "Beihilfe",
+            "B": "Hilfe",
+            "C": "Verpflegung",
+            "D": "Pflege"
+          }
+        },
+        {
+          "id": "2022-35",
+          "year": 2022,
+          "number": 35,
+          "page": 59,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-a",
+          "group_label": "A",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Nomen!",
+          "stem": "Es ist eine der wichtigsten Aufgaben eines Richters, _____ zu sprechen.",
+          "options": {
+            "A": "Recht",
+            "B": "Richtigkeit",
+            "C": "Gesetz",
+            "D": "Gerechtigkeit"
+          }
+        },
+        {
+          "id": "2022-36",
+          "year": 2022,
+          "number": 36,
+          "page": 59,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "stem": "Die Bedeutung von Goethes Drama „Faust“ lässt sich an der Vielzahl der Interpretationen _____.",
+          "options": {
+            "A": "ablesen",
+            "B": "anlesen",
+            "C": "auslesen",
+            "D": "erlesen"
+          }
+        },
+        {
+          "id": "2022-37",
+          "year": 2022,
+          "number": 37,
+          "page": 59,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "stem": "Das Theaterstück wurde für die Freilichtbühne neu _____.",
+          "options": {
+            "A": "bearbeitet",
+            "B": "verarbeitet",
+            "C": "eingearbeitet",
+            "D": "abgearbeitet"
+          }
+        },
+        {
+          "id": "2022-38",
+          "year": 2022,
+          "number": 38,
+          "page": 59,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "stem": "Der Verlag will die Biographie von Goethe 2021 neu _____.",
+          "options": {
+            "A": "anlegen",
+            "B": "ablegen",
+            "C": "auflegen",
+            "D": "auslegen"
+          }
+        },
+        {
+          "id": "2022-39",
+          "year": 2022,
+          "number": 39,
+          "page": 59,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "stem": "Das Unternehmen musste wegen Insolvenz alle Gehaltszahlungen an die Mitarbeiter _____.",
+          "options": {
+            "A": "absetzen",
+            "B": "einsetzen",
+            "C": "ausstellen",
+            "D": "einstellen"
+          }
+        },
+        {
+          "id": "2022-40",
+          "year": 2022,
+          "number": 40,
+          "page": 59,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-b",
+          "group_label": "B",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das passende Verb!",
+          "stem": "Mit der Erfindung des Computers ist ein neues Zeitalter _____.",
+          "options": {
+            "A": "eingebrochen",
+            "B": "ausgebrochen",
+            "C": "aufgebrochen",
+            "D": "angebrochen"
+          }
+        },
+        {
+          "id": "2022-41",
+          "year": 2022,
+          "number": 41,
+          "page": 60,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das Fehlende in den Redewendungen!",
+          "stem": "Als er wieder einmal zu spät kam, hat ihm seine Freundin ordentlich _____ gewaschen.",
+          "options": {
+            "A": "den Hals",
+            "B": "den Kopf",
+            "C": "die Haare",
+            "D": "die Ohren"
+          }
+        },
+        {
+          "id": "2022-42",
+          "year": 2022,
+          "number": 42,
+          "page": 60,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das Fehlende in den Redewendungen!",
+          "stem": "Ihr Charakter ist einfach so. Immer findet sie ein Haar in der _____.",
+          "options": {
+            "A": "in der Soße",
+            "B": "im Wasser",
+            "C": "im Saft",
+            "D": "in der Suppe"
+          }
+        },
+        {
+          "id": "2022-43",
+          "year": 2022,
+          "number": 43,
+          "page": 60,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das Fehlende in den Redewendungen!",
+          "stem": "Wieder einmal hatte er sich durch seine voreilige Antwort _____ verbrannt.",
+          "options": {
+            "A": "den Mund",
+            "B": "die Lunge",
+            "C": "die Lippen",
+            "D": "die Wange"
+          }
+        },
+        {
+          "id": "2022-44",
+          "year": 2022,
+          "number": 44,
+          "page": 60,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das Fehlende in den Redewendungen!",
+          "stem": "Der neue Mitarbeiter zeigte seinem unfreundlichen Vorgesetzten nach vielen Monaten endlich einmal _____.",
+          "options": {
+            "A": "den Finger",
+            "B": "die Faust",
+            "C": "die Zähne",
+            "D": "die Zunge"
+          }
+        },
+        {
+          "id": "2022-45",
+          "year": 2022,
+          "number": 45,
+          "page": 60,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-c",
+          "group_label": "C",
+          "ui_type": "standard",
+          "instruction": "Ergänzen Sie das Fehlende in den Redewendungen!",
+          "stem": "Der Ehemann fiel aus allen _____, als sich seine Frau von ihm scheiden lassen wollte.",
+          "options": {
+            "A": "Himmeln",
+            "B": "Wolken",
+            "C": "Träumen",
+            "D": "Tatsachen"
+          }
+        },
+        {
+          "id": "2022-46",
+          "year": 2022,
+          "number": 46,
+          "page": 61,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (46)",
+          "options": {
+            "A": "Zeitrechnung",
+            "B": "Zeitepoche",
+            "C": "Zeitenfolge",
+            "D": "Zeitenwende"
+          }
+        },
+        {
+          "id": "2022-47",
+          "year": 2022,
+          "number": 47,
+          "page": 61,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (47)",
+          "options": {
+            "A": "ausgebreitet",
+            "B": "ausgeweitet",
+            "C": "gedehnt",
+            "D": "geweitet"
+          }
+        },
+        {
+          "id": "2022-48",
+          "year": 2022,
+          "number": 48,
+          "page": 61,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (48)",
+          "options": {
+            "A": "Suche",
+            "B": "Gelegenheit",
+            "C": "Frage",
+            "D": "Antwort"
+          }
+        },
+        {
+          "id": "2022-49",
+          "year": 2022,
+          "number": 49,
+          "page": 61,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (49)",
+          "options": {
+            "A": "erzogenen",
+            "B": "gebildeten",
+            "C": "abgerichteten",
+            "D": "ausgebildeten"
+          }
+        },
+        {
+          "id": "2022-50",
+          "year": 2022,
+          "number": 50,
+          "page": 61,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (50)",
+          "options": {
+            "A": "vorgedrungen",
+            "B": "vorgedringt",
+            "C": "vorgedrangelt",
+            "D": "vorangetrieben"
+          }
+        },
+        {
+          "id": "2022-51",
+          "year": 2022,
+          "number": 51,
+          "page": 61,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (51)",
+          "options": {
+            "A": "regte",
+            "B": "wandelte",
+            "C": "handelte",
+            "D": "hantierte"
+          }
+        },
+        {
+          "id": "2022-52",
+          "year": 2022,
+          "number": 52,
+          "page": 61,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (52)",
+          "options": {
+            "A": "zwar",
+            "B": "allerdings",
+            "C": "keineswegs",
+            "D": "insofern"
+          }
+        },
+        {
+          "id": "2022-53",
+          "year": 2022,
+          "number": 53,
+          "page": 61,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (53)",
+          "options": {
+            "A": "auf",
+            "B": "hin",
+            "C": "zu",
+            "D": "an"
+          }
+        },
+        {
+          "id": "2022-54",
+          "year": 2022,
+          "number": 54,
+          "page": 61,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (54)",
+          "options": {
+            "A": "befriedigte",
+            "B": "befriedete",
+            "C": "besetzte",
+            "D": "belegte"
+          }
+        },
+        {
+          "id": "2022-55",
+          "year": 2022,
+          "number": 55,
+          "page": 61,
+          "subsection": "Wortschatz",
+          "group_id": "2022-w-d",
+          "group_label": "D",
+          "ui_type": "shared-passage",
+          "instruction": "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+          "stem": "Lücke (55)",
+          "options": {
+            "A": "Gebiet",
+            "B": "Gelände",
+            "C": "Land",
+            "D": "Haus"
+          }
+        },
+        {
+          "id": "2022-56",
+          "year": 2022,
+          "number": 56,
+          "page": 61,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-a",
+          "group_label": "A",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Präposition passt?",
+          "stem": "Der Radfahrer hatte Glück, denn der Polizist sah _____ einer Strafe ab.",
+          "options": {
+            "A": "vor",
+            "B": "von",
+            "C": "ab",
+            "D": "nach"
+          }
+        },
+        {
+          "id": "2022-57",
+          "year": 2022,
+          "number": 57,
+          "page": 61,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-a",
+          "group_label": "A",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Präposition passt?",
+          "stem": "Mit ihrer Bemerkung wollte sie _____ den Vorfall vor drei Jahren anspielen.",
+          "options": {
+            "A": "an",
+            "B": "über",
+            "C": "auf",
+            "D": "um"
+          }
+        },
+        {
+          "id": "2022-58",
+          "year": 2022,
+          "number": 58,
+          "page": 62,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-b",
+          "group_label": "B",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Umformulierung passt?",
+          "stem": "Du bist noch zu klein. Du kannst nicht alleine mit der U-Bahn fahren.\nEntscheiden Sie zwischen „zwar..., aber...“ oder „zu..., als dass...“.",
+          "options": {
+            "A": "Du bist zwar noch zu klein, aber du könntest nicht alleine mit der U-Bahn fahren",
+            "B": "Du bist zwar noch zu klein, aber du kannst alleine mit der U-Bahn fahren",
+            "C": "Du bist noch zu klein, als dass du mit der U-Bahn fahren kannst",
+            "D": "Du bist noch zu klein, als dass du mit der U-Bahn fahren könntest"
+          }
+        },
+        {
+          "id": "2022-59",
+          "year": 2022,
+          "number": 59,
+          "page": 62,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-b",
+          "group_label": "B",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Umformulierung passt?",
+          "stem": "Die beiden Schwestern ähneln sich sehr. Die eine hat längere Haare.\nEntscheiden Sie zwischen „nur dass...“ oder „es sei denn...“.",
+          "options": {
+            "A": "Die beiden Schwestern ähneln sich sehr, es sei denn, dass die eine längere Haare hat",
+            "B": "Die beiden Schwestern ähneln sich sehr, es sei denn, dass die eine längere Haare hatte",
+            "C": "Die beiden Schwestern ähneln sich sehr, nur dass die eine längere Haare hat",
+            "D": "Die beiden Schwestern ähneln sich sehr, nur dass die eine längere Haare hatte"
+          }
+        },
+        {
+          "id": "2022-60",
+          "year": 2022,
+          "number": 60,
+          "page": 62,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-c",
+          "group_label": "C",
+          "ui_type": "sentence-task",
+          "instruction": "Setzen Sie passende Pronominaladverbien mit wo- ein!",
+          "stem": "Er ist nicht so schwer verletzt, _____ es anfänglich aussah.",
+          "options": {
+            "A": "wonach",
+            "B": "wofür",
+            "C": "wovor",
+            "D": "woran"
+          }
+        },
+        {
+          "id": "2022-61",
+          "year": 2022,
+          "number": 61,
+          "page": 62,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-c",
+          "group_label": "C",
+          "ui_type": "sentence-task",
+          "instruction": "Setzen Sie passende Pronominaladverbien mit wo- ein!",
+          "stem": "Die Nachbarn haben während der Nacht laute Musik gehört, _____ wir uns belästigt gefühlt haben.",
+          "options": {
+            "A": "womit",
+            "B": "woran",
+            "C": "worin",
+            "D": "wodurch"
+          }
+        },
+        {
+          "id": "2022-62",
+          "year": 2022,
+          "number": 62,
+          "page": 63,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-d",
+          "group_label": "D",
+          "ui_type": "sentence-task",
+          "instruction": "Ergänzen Sie das richtige Partizip II!",
+          "stem": "Sie hatte diese Information aus dem Zeitungsartikel _____. (schlussfolgern)",
+          "options": {
+            "A": "geschlussfolgert",
+            "B": "schluss gefolgert",
+            "C": "schlussgefolgert",
+            "D": "schlussfolgert"
+          }
+        },
+        {
+          "id": "2022-63",
+          "year": 2022,
+          "number": 63,
+          "page": 63,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-e",
+          "group_label": "E",
+          "ui_type": "sentence-task",
+          "instruction": "Setzen Sie die passenden Endungen ein!",
+          "stem": "Über einig__ alt__ Kulturen berichten.",
+          "options": {
+            "A": "einigen / alten",
+            "B": "einigen / alte",
+            "C": "einige / alten",
+            "D": "einige / alte"
+          }
+        },
+        {
+          "id": "2022-64",
+          "year": 2022,
+          "number": 64,
+          "page": 63,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-e",
+          "group_label": "E",
+          "ui_type": "sentence-task",
+          "instruction": "Setzen Sie die passenden Endungen ein!",
+          "stem": "Von unser__ freundlich__ Nachbarin erzählen.",
+          "options": {
+            "A": "unser / freundlichen",
+            "B": "unserer / freundlichen",
+            "C": "unser / freundlicher",
+            "D": "unserer / freundlicher"
+          }
+        },
+        {
+          "id": "2022-65",
+          "year": 2022,
+          "number": 65,
+          "page": 63,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-f",
+          "group_label": "F",
+          "ui_type": "sentence-task",
+          "instruction": "Welcher Nebensatz entspricht der Bedeutung der unterstrichenen Nominalisierung?",
+          "stem": "Ungeachtet der heftigen Regenfälle waren viele Autos auf den Straßen unterwegs.\nViele Autos waren auf den Straßen unterwegs, _____.",
+          "options": {
+            "A": "obgleich es heftig regnete",
+            "B": "da es heftig regnete",
+            "C": "nachdem es heftig geregnet hatte",
+            "D": "seit es heftig geregnet hatte"
+          }
+        },
+        {
+          "id": "2022-66",
+          "year": 2022,
+          "number": 66,
+          "page": 63,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-f",
+          "group_label": "F",
+          "ui_type": "sentence-task",
+          "instruction": "Welcher Nebensatz entspricht der Bedeutung der unterstrichenen Nominalisierung?",
+          "stem": "Bei weiterhin steigenden Infektionszahlen werden umgehend Beschränkungen verhängt.\nEs werden umgehend Beschränkungen verhängt, _____.",
+          "options": {
+            "A": "solange die Infektionszahlen weiterhin steigen",
+            "B": "obschon die Infektionszahlen weiterhin steigen",
+            "C": "falls die Infektionszahlen weiterhin steigen",
+            "D": "während die Infektionszahlen weiterhin steigen"
+          }
+        },
+        {
+          "id": "2022-67",
+          "year": 2022,
+          "number": 67,
+          "page": 64,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-f",
+          "group_label": "F",
+          "ui_type": "sentence-task",
+          "instruction": "Welcher Nebensatz entspricht der Bedeutung der unterstrichenen Nominalisierung?",
+          "stem": "Anlässlich der Veröffentlichung von Martin Walsers neuem Roman wurden landesweit viele Lesungen veranstaltet.\nLandesweit wurden viele Lesungen veranstaltet, _____.",
+          "options": {
+            "A": "nachdem Martin Walsers neuer Roman veröffentlicht wurde",
+            "B": "als Martin Walsers neuer Roman veröffentlicht worden war",
+            "C": "dadurch dass Martin Walsers neuer Roman veröffentlicht wurde",
+            "D": "da Martin Walsers neuer Roman veröffentlicht wurde"
+          }
+        },
+        {
+          "id": "2022-68",
+          "year": 2022,
+          "number": 68,
+          "page": 64,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-g",
+          "group_label": "G",
+          "ui_type": "sentence-task",
+          "instruction": "Direkte Rede in indirekte Rede umwandeln: Welche Form ist richtig?",
+          "stem": "„Stefanie musste sich einen Anwalt nehmen.“\nDer Freund erzählte, _____.",
+          "options": {
+            "A": "Stefanie müsste sich einen Anwalt nehmen",
+            "B": "Stefanie müsse sich einen Anwalt genommen haben",
+            "C": "Stefanie habe sich einen Anwalt nehmen müssen",
+            "D": "Stefanie hatte sich einen Anwalt nehmen müssen"
+          }
+        },
+        {
+          "id": "2022-69",
+          "year": 2022,
+          "number": 69,
+          "page": 64,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-g",
+          "group_label": "G",
+          "ui_type": "sentence-task",
+          "instruction": "Direkte Rede in indirekte Rede umwandeln: Welche Form ist richtig?",
+          "stem": "„Die Verhandlungen wurden erfolgreich abgeschlossen.“\nDer Politiker berichtete, _____.",
+          "options": {
+            "A": "die Verhandlungen seien erfolgreich abgeschlossen worden",
+            "B": "die Verhandlungen waren erfolgreich abgeschlossen worden",
+            "C": "die Verhandlungen würden erfolgreich abgeschlossen worden sein",
+            "D": "man hatte die Verhandlungen erfolgreich abgeschlossen"
+          }
+        },
+        {
+          "id": "2022-70",
+          "year": 2022,
+          "number": 70,
+          "page": 64,
+          "subsection": "Grammatik",
+          "group_id": "2022-g-h",
+          "group_label": "H",
+          "ui_type": "sentence-task",
+          "instruction": "Welche Umschreibung gibt den Inhalt des dass-Satzes wieder?",
+          "stem": "Es war inzwischen allen klar geworden, dass sich diese Katastrophe nie hatte ereignen dürfen.\nEs war inzwischen allen klar geworden, _____.",
+          "options": {
+            "A": "dass diese Katastrophe unbedingt zu vermeiden gewesen sei",
+            "B": "dass diese Katastrophe unbedingt hatte vermieden werden müssen",
+            "C": "dass das Ereignis dieser Katastrophe auf jeden Fall hatte verboten werden sollen",
+            "D": "dass das Ereignis dieser Katastrophe zwar unerwartet, aber ursprünglich erlaubt war"
+          }
+        }
+      ]
+    }
+  ]
+}

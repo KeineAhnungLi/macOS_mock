@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+PRODUCT_VERSION="$(sw_vers -productVersion)"
+MAJOR_VERSION="${PRODUCT_VERSION%%.*}"
+
+if [[ "$MAJOR_VERSION" -lt 12 ]]; then
+  echo "[TEM8Practice] macOS 12 or later is required. Current version: $PRODUCT_VERSION"
+  exit 1
+fi
+
+echo "[TEM8Practice] preinstall check passed on macOS $PRODUCT_VERSION"
+exit 0

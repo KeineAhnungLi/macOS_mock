@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>德语专八刷题站</title>
+    <link rel="stylesheet" href="/assets/styles.css?v=20260307-11" />
+    <script src="/assets/app.js?v=20260307-11" defer></script>
+  </head>
+  <body>
+    <div class="background-glow background-glow-left"></div>
+    <div class="background-glow background-glow-right"></div>
+    <div id="page-shell" class="page-shell">
+      <aside class="sidebar">
+        <div class="brand-card">
+          <p class="brand-kicker">TEM-8 DEUTSCH</p>
+          <h1>Wortschatz<br />und Grammatik</h1>
+          <p class="brand-copy">
+            OCR 题库、单题练习、模考、错题本和日志都集中在这个本地站点里。
+          </p>
+        </div>
+        <section class="panel">
+          <div class="panel-head">
+            <h2>年份</h2>
+            <span id="answer-status" class="badge badge-muted">答案未加载</span>
+          </div>
+          <div id="year-nav" class="year-nav"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head">
+            <h2>数据状态</h2>
+          </div>
+          <div id="status-card" class="status-stack"></div>
+        </section>
+      </aside>
+      <main class="main-panel">
+        <header class="hero panel">
+          <div>
+            <p class="hero-kicker">本地练习控制台</p>
+            <h2 id="hero-title">加载中</h2>
+            <p id="hero-subtitle" class="hero-subtitle"></p>
+          </div>
+          <div class="top-actions">
+            <div class="mode-tabs" id="mode-tabs"></div>
+            <div class="utility-actions" id="utility-actions"></div>
+          </div>
+        </header>
+        <section id="app-content" class="content-area"></section>
+      </main>
+    </div>
+  </body>
+</html>

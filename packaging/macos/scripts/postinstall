@@ -1,0 +1,18 @@
+#!/bin/bash
+set -euo pipefail
+
+APP_BINARY="/Applications/TEM8Practice.app/Contents/MacOS/TEM8Practice"
+
+echo "[TEM8Practice] postinstall checks starting"
+
+if [[ -d "/Applications/Google Chrome.app" ]]; then
+  echo "[TEM8Practice] Google Chrome detected."
+else
+  echo "[TEM8Practice] Google Chrome not found. The app will fall back to the default browser."
+fi
+
+if [[ -x "$APP_BINARY" ]]; then
+  "$APP_BINARY" --self-check || true
+fi
+
+exit 0
