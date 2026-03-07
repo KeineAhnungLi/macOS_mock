@@ -1,0 +1,196 @@
+name: Release macOS Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag, for example v2026.03.08
+        required: true
+        type: string
+      title:
+        description: Release title, defaults to the tag
+        required: false
+        type: string
+      notes:
+        description: Optional release notes
+        required: false
+        type: string
+      draft:
+        description: Create the GitHub release as a draft
+        required: false
+        type: boolean
+        default: false
+      prerelease:
+        description: Mark the GitHub release as a prerelease
+        required: false
+        type: boolean
+        default: false
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release-macos:
+    runs-on: macos-14
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve release metadata
+        id: meta
+        shell: bash
+        env:
+          INPUT_RELEASE_NOTES: ${{ github.event.inputs.notes }}
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            tag="${{ github.event.inputs.tag }}"
+            title="${{ github.event.inputs.title }}"
+            draft="${{ github.event.inputs.draft }}"
+            prerelease="${{ github.event.inputs.prerelease }}"
+            notes_file="$RUNNER_TEMP/release-notes.txt"
+            printf '%s\n' "$INPUT_RELEASE_NOTES" > "$notes_file"
+          else
+            tag="${GITHUB_REF_NAME}"
+            title="${GITHUB_REF_NAME}"
+            draft="false"
+            prerelease="false"
+            notes_file="$RUNNER_TEMP/release-notes.txt"
+            {
+              echo "Automated macOS release for ${tag}."
+              echo
+              echo "Assets:"
+              echo "- TEM8Practice.app.zip"
+              echo "- TEM8Practice-macOS.pkg"
+              echo "- self-check.json"
+            } > "$notes_file"
+          fi
+
+          if [[ -z "$tag" ]]; then
+            echo "Release tag is required."
+            exit 1
+          fi
+
+          if [[ -z "$title" ]]; then
+            title="$tag"
+          fi
+
+          if [[ ! -s "$notes_file" ]]; then
+            echo "macOS release ${tag}" > "$notes_file"
+          fi
+
+          {
+            echo "tag=$tag"
+            echo "title=$title"
+            echo "draft=$draft"
+            echo "prerelease=$prerelease"
+            echo "notes_file=$notes_file"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Environment info
+        run: |
+          sw_vers
+          python3 --version
+          xcode-select -p
+          command -v pkgbuild
+          command -v gh
+
+      - name: Prepare build scripts
+        run: chmod +x build_macos_app.sh build_macos_pkg.sh build_macos_all.sh packaging/macos/scripts/preinstall packaging/macos/scripts/postinstall
+
+      - name: Build macOS app
+        run: |
+          mkdir -p release/macos
+          set +e
+          ./build_macos_app.sh > release/macos/build-app.log 2>&1
+          status=$?
+          if [ -f release/macos/build-app.log ]; then
+            cat release/macos/build-app.log
+          fi
+          if [ "$status" -ne 0 ]; then
+            echo "### Build macOS app failed" >> "$GITHUB_STEP_SUMMARY"
+            echo '```text' >> "$GITHUB_STEP_SUMMARY"
+            if [ -f release/macos/build-app.log ]; then
+              tail -n 120 release/macos/build-app.log >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "build-app.log was not created." >> "$GITHUB_STEP_SUMMARY"
+            fi
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            if [ -f release/macos/build-app.log ]; then
+              message="$(tail -n 20 release/macos/build-app.log | tr '\r\n' '  ' | sed 's/  */ /g' | cut -c1-8000)"
+            else
+              message="build-app.log was not created."
+            fi
+            echo "::error::$message"
+            exit "$status"
+          fi
+
+      - name: Run self-check
+        run: ./release/macos/dist/TEM8Practice.app/Contents/MacOS/TEM8Practice --self-check-json | tee ./release/macos/self-check.json
+
+      - name: Build macOS pkg
+        run: |
+          set -o pipefail
+          ./build_macos_pkg.sh 2>&1 | tee release/macos/build-pkg.log
+
+      - name: Pack release assets
+        run: |
+          mkdir -p release/macos/artifacts
+          ditto -c -k --sequesterRsrc --keepParent "release/macos/dist/TEM8Practice.app" "release/macos/artifacts/TEM8Practice.app.zip"
+          cp "release/macos/TEM8Practice-macOS.pkg" "release/macos/artifacts/"
+          cp "release/macos/self-check.json" "release/macos/artifacts/"
+
+      - name: Upload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TEM8Practice-macos-diagnostics
+          path: |
+            release/macos/build-app.log
+            release/macos/build-pkg.log
+            release/macos/self-check.json
+          if-no-files-found: warn
+
+      - name: Upload release artifact bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: TEM8Practice-macos-release
+          path: release/macos/artifacts/*
+          if-no-files-found: error
+
+      - name: Create or update GitHub release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.meta.outputs.tag }}
+          RELEASE_TITLE: ${{ steps.meta.outputs.title }}
+          RELEASE_NOTES_FILE: ${{ steps.meta.outputs.notes_file }}
+          RELEASE_DRAFT: ${{ steps.meta.outputs.draft }}
+          RELEASE_PRERELEASE: ${{ steps.meta.outputs.prerelease }}
+        shell: bash
+        run: |
+          args=()
+          if [[ "$RELEASE_DRAFT" == "true" ]]; then
+            args+=(--draft)
+          fi
+          if [[ "$RELEASE_PRERELEASE" == "true" ]]; then
+            args+=(--prerelease)
+          fi
+
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" release/macos/artifacts/* --clobber
+          else
+            gh release create "$RELEASE_TAG" \
+              release/macos/artifacts/* \
+              --title "$RELEASE_TITLE" \
+              --notes-file "$RELEASE_NOTES_FILE" \
+              --target "$GITHUB_SHA" \
+              "${args[@]}"
+          fi
