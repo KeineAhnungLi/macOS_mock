@@ -337,6 +337,16 @@ body {
   border: 1px solid rgba(31, 47, 40, 0.1);
 }
 
+.danger-button {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: rgba(141, 47, 47, 0.18);
+}
+
+.danger-button:hover {
+  box-shadow: 0 10px 22px rgba(141, 47, 47, 0.12);
+}
+
 .badge,
 .source-badge {
   display: inline-flex;

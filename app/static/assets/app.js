@@ -242,6 +242,23 @@ async function persistProgress() {
   }
 }
 
+async function resetProgress() {
+  const confirmed = window.confirm("将清空当前所有学习进度、错题记录和模考记录。确定继续吗？");
+  if (!confirmed) {
+    return;
+  }
+
+  clearPracticeAdvanceTimer();
+  state.progress = defaultProgress();
+  state.mock = null;
+  state.wrongbookDrafts = {};
+  initializePracticeQuestion(true);
+  initializeWrongbookQuestion(true);
+  await persistProgress();
+  await logEvent("progress_reset", { local_only: LOCAL_PROGRESS_ONLY });
+  renderApp();
+}
+
 function getQuestionSource(question) {
   return `${question.year} · ${question.subsection} ${question.group_label} · 第 ${question.number} 题 · PDF 第 ${question.page} 页`;
 }
@@ -494,6 +511,9 @@ function renderModeTabs() {
 
 function renderUtilityActions() {
   document.getElementById("utility-actions").innerHTML = `
+    <button class="ghost-button danger-button" onclick="appActions.resetProgress()">
+      清空进度
+    </button>
     <button class="focus-button ${state.focusMode ? "active" : ""}" onclick="appActions.toggleFocusMode()">
       ${state.focusMode ? "退出全屏" : "全屏做题"}
     </button>
@@ -1447,6 +1467,7 @@ window.appActions = {
   selectYear,
   selectGroup,
   switchView,
+  resetProgress,
   toggleFocusMode,
   selectPracticeOption,
   submitPracticeQuestion,
