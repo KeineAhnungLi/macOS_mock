@@ -1,5 +1,10 @@
 const STORAGE_KEY = "tem8_practice_progress_v2";
-const LOCAL_PROGRESS_ONLY = new URLSearchParams(window.location.search).get("progress") === "local";
+const CLIENT_ID_STORAGE_KEY = "tem8_practice_client_id";
+const SEARCH_PARAMS = new URLSearchParams(window.location.search);
+const LOCAL_PROGRESS_ONLY = SEARCH_PARAMS.get("progress") === "local";
+const TEM8_CONFIG = window.TEM8_CONFIG || {};
+const API_BASE_URL = normalizeApiBase(SEARCH_PARAMS.get("api") || TEM8_CONFIG.apiBaseUrl || "");
+const CLIENT_ID = resolveClientId(SEARCH_PARAMS.get("client") || TEM8_CONFIG.clientId || "");
 
 const state = {
   dataset: null,
@@ -18,6 +23,47 @@ const state = {
 };
 
 let adaptiveLayoutBound = false;
+
+function normalizeApiBase(value) {
+  const text = String(value || "").trim();
+  return text ? text.replace(/\/+$/, "") : "";
+}
+
+function generateClientId() {
+  if (window.crypto?.randomUUID) {
+    return window.crypto.randomUUID();
+  }
+  return `client-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function resolveClientId(explicitValue) {
+  const explicit = String(explicitValue || "").trim();
+  if (explicit) {
+    localStorage.setItem(CLIENT_ID_STORAGE_KEY, explicit);
+    return explicit;
+  }
+
+  const stored = localStorage.getItem(CLIENT_ID_STORAGE_KEY);
+  if (stored) {
+    return stored;
+  }
+
+  const next = generateClientId();
+  localStorage.setItem(CLIENT_ID_STORAGE_KEY, next);
+  return next;
+}
+
+function buildApiUrl(path) {
+  return API_BASE_URL ? `${API_BASE_URL}${path}` : path;
+}
+
+function buildApiHeaders(extraHeaders = {}) {
+  const headers = { ...extraHeaders };
+  if (API_BASE_URL && CLIENT_ID) {
+    headers["X-TEM8-Client-ID"] = CLIENT_ID;
+  }
+  return headers;
+}
 
 function defaultProgress() {
   return {
@@ -196,21 +242,25 @@ function mergeProgress(localProgress, remoteProgress) {
 }
 
 async function apiGet(url) {
-  const response = await fetch(url);
+  const target = buildApiUrl(url);
+  const response = await fetch(target, {
+    headers: buildApiHeaders(),
+  });
   if (!response.ok) {
-    throw new Error(`GET ${url} failed`);
+    throw new Error(`GET ${target} failed`);
   }
   return response.json();
 }
 
 async function apiPost(url, payload) {
-  const response = await fetch(url, {
+  const target = buildApiUrl(url);
+  const response = await fetch(target, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: buildApiHeaders({ "Content-Type": "application/json" }),
     body: JSON.stringify(payload),
   });
   if (!response.ok) {
-    throw new Error(`POST ${url} failed`);
+    throw new Error(`POST ${target} failed`);
   }
   return response.json();
 }
