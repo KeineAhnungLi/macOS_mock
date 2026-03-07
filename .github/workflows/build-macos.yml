@@ -34,7 +34,7 @@ jobs:
           sw_vers
           python3 --version
           xcode-select -p
-          pkgbuild --version
+          command -v pkgbuild
 
       - name: Prepare build scripts
         run: chmod +x build_macos_app.sh build_macos_pkg.sh build_macos_all.sh packaging/macos/scripts/preinstall packaging/macos/scripts/postinstall
