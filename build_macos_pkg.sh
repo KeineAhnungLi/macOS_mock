@@ -10,10 +10,11 @@ if [[ "$(uname -s)" != "Darwin" ]]; then
 fi
 
 APP_NAME="${APP_NAME:-TEM8Practice}"
-APP_PATH="${ROOT_DIR}/release/macos/dist/${APP_NAME}.app"
-PKG_ROOT="${ROOT_DIR}/release/macos/pkgroot"
+TARGET_ARCH="${TARGET_ARCH:-$(uname -m)}"
+APP_PATH="${ROOT_DIR}/release/macos/${TARGET_ARCH}/dist/${APP_NAME}.app"
+PKG_ROOT="${ROOT_DIR}/release/macos/${TARGET_ARCH}/pkgroot"
 PKG_SCRIPTS="${ROOT_DIR}/packaging/macos/scripts"
-PKG_PATH="${ROOT_DIR}/release/macos/${APP_NAME}-macOS.pkg"
+PKG_PATH="${ROOT_DIR}/release/macos/${APP_NAME}-macOS-${TARGET_ARCH}.pkg"
 
 if [[ ! -d "$APP_PATH" ]]; then
   "$ROOT_DIR/build_macos_app.sh"
@@ -37,4 +38,4 @@ pkgbuild \
   --scripts "$PKG_SCRIPTS" \
   "$PKG_PATH"
 
-echo "Built package: $PKG_PATH"
+echo "Built package ($TARGET_ARCH): $PKG_PATH"

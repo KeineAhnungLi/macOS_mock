@@ -11,10 +11,11 @@ fi
 
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 APP_NAME="${APP_NAME:-TEM8Practice}"
+TARGET_ARCH="${TARGET_ARCH:-$(uname -m)}"
 BUILD_VENV="${ROOT_DIR}/.venv-macos-build"
-DIST_DIR="${ROOT_DIR}/release/macos/dist"
-BUILD_DIR="${ROOT_DIR}/release/macos/build"
-SPEC_DIR="${ROOT_DIR}/release/macos/spec"
+DIST_DIR="${ROOT_DIR}/release/macos/${TARGET_ARCH}/dist"
+BUILD_DIR="${ROOT_DIR}/release/macos/${TARGET_ARCH}/build"
+SPEC_DIR="${ROOT_DIR}/release/macos/${TARGET_ARCH}/spec"
 APP_PATH="${DIST_DIR}/${APP_NAME}.app"
 STATIC_SRC="${ROOT_DIR}/app/static"
 QUESTIONS_SRC="${ROOT_DIR}/data/questions.json"
@@ -41,6 +42,7 @@ pyinstaller \
   --clean \
   --windowed \
   --name "$APP_NAME" \
+  --target-arch "$TARGET_ARCH" \
   --distpath "$DIST_DIR" \
   --workpath "$BUILD_DIR" \
   --specpath "$SPEC_DIR" \
@@ -64,4 +66,4 @@ if command -v codesign >/dev/null 2>&1; then
   fi
 fi
 
-echo "Built app: $APP_PATH"
+echo "Built app ($TARGET_ARCH): $APP_PATH"

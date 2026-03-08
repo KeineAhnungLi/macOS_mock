@@ -33,8 +33,17 @@ permissions:
   contents: write
 
 jobs:
-  release-macos:
-    runs-on: macos-14
+  build-macos:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target_arch: arm64
+            runner: macos-14
+          - target_arch: x86_64
+            runner: macos-13
+
+    runs-on: ${{ matrix.runner }}
 
     steps:
       - name: Check out repository
@@ -45,68 +54,21 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Resolve release metadata
-        id: meta
-        shell: bash
-        env:
-          INPUT_RELEASE_NOTES: ${{ github.event.inputs.notes }}
-        run: |
-          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
-            tag="${{ github.event.inputs.tag }}"
-            title="${{ github.event.inputs.title }}"
-            draft="${{ github.event.inputs.draft }}"
-            prerelease="${{ github.event.inputs.prerelease }}"
-            notes_file="$RUNNER_TEMP/release-notes.txt"
-            printf '%s\n' "$INPUT_RELEASE_NOTES" > "$notes_file"
-          else
-            tag="${GITHUB_REF_NAME}"
-            title="${GITHUB_REF_NAME}"
-            draft="false"
-            prerelease="false"
-            notes_file="$RUNNER_TEMP/release-notes.txt"
-            {
-              echo "Automated macOS release for ${tag}."
-              echo
-              echo "Assets:"
-              echo "- TEM8Practice.app.zip"
-              echo "- TEM8Practice-macOS.pkg"
-              echo "- self-check.json"
-            } > "$notes_file"
-          fi
-
-          if [[ -z "$tag" ]]; then
-            echo "Release tag is required."
-            exit 1
-          fi
-
-          if [[ -z "$title" ]]; then
-            title="$tag"
-          fi
-
-          if [[ ! -s "$notes_file" ]]; then
-            echo "macOS release ${tag}" > "$notes_file"
-          fi
-
-          {
-            echo "tag=$tag"
-            echo "title=$title"
-            echo "draft=$draft"
-            echo "prerelease=$prerelease"
-            echo "notes_file=$notes_file"
-          } >> "$GITHUB_OUTPUT"
-
       - name: Environment info
         run: |
+          echo "Target arch: ${{ matrix.target_arch }}"
           sw_vers
+          uname -m
           python3 --version
           xcode-select -p
           command -v pkgbuild
-          command -v gh
 
       - name: Prepare build scripts
         run: chmod +x build_macos_app.sh build_macos_pkg.sh build_macos_all.sh packaging/macos/scripts/preinstall packaging/macos/scripts/postinstall
 
       - name: Build macOS app
+        env:
+          TARGET_ARCH: ${{ matrix.target_arch }}
         run: |
           mkdir -p release/macos
           set +e
@@ -134,37 +96,111 @@ jobs:
           fi
 
       - name: Run self-check
-        run: ./release/macos/dist/TEM8Practice.app/Contents/MacOS/TEM8Practice --self-check-json | tee ./release/macos/self-check.json
+        env:
+          TARGET_ARCH: ${{ matrix.target_arch }}
+        run: ./release/macos/${TARGET_ARCH}/dist/TEM8Practice.app/Contents/MacOS/TEM8Practice --self-check-json | tee ./release/macos/self-check-${TARGET_ARCH}.json
 
       - name: Build macOS pkg
+        env:
+          TARGET_ARCH: ${{ matrix.target_arch }}
         run: |
           set -o pipefail
           ./build_macos_pkg.sh 2>&1 | tee release/macos/build-pkg.log
 
       - name: Pack release assets
+        env:
+          TARGET_ARCH: ${{ matrix.target_arch }}
         run: |
-          mkdir -p release/macos/artifacts
-          ditto -c -k --sequesterRsrc --keepParent "release/macos/dist/TEM8Practice.app" "release/macos/artifacts/TEM8Practice.app.zip"
-          cp "release/macos/TEM8Practice-macOS.pkg" "release/macos/artifacts/"
-          cp "release/macos/self-check.json" "release/macos/artifacts/"
+          mkdir -p release/macos/${TARGET_ARCH}/artifacts
+          ditto -c -k --sequesterRsrc --keepParent "release/macos/${TARGET_ARCH}/dist/TEM8Practice.app" "release/macos/${TARGET_ARCH}/artifacts/TEM8Practice-${TARGET_ARCH}.app.zip"
+          cp "release/macos/TEM8Practice-macOS-${TARGET_ARCH}.pkg" "release/macos/${TARGET_ARCH}/artifacts/"
+          cp "release/macos/self-check-${TARGET_ARCH}.json" "release/macos/${TARGET_ARCH}/artifacts/"
 
       - name: Upload diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: TEM8Practice-macos-diagnostics
+          name: TEM8Practice-macos-diagnostics-${{ matrix.target_arch }}
           path: |
             release/macos/build-app.log
             release/macos/build-pkg.log
-            release/macos/self-check.json
+            release/macos/self-check-${{ matrix.target_arch }}.json
           if-no-files-found: warn
 
       - name: Upload release artifact bundle
         uses: actions/upload-artifact@v4
         with:
-          name: TEM8Practice-macos-release
-          path: release/macos/artifacts/*
+          name: TEM8Practice-macos-release-${{ matrix.target_arch }}
+          path: release/macos/${{ matrix.target_arch }}/artifacts/*
           if-no-files-found: error
+
+  release-macos:
+    needs: build-macos
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Resolve release metadata
+        id: meta
+        shell: bash
+        env:
+          INPUT_RELEASE_NOTES: ${{ github.event.inputs.notes }}
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            tag="${{ github.event.inputs.tag }}"
+            title="${{ github.event.inputs.title }}"
+            draft="${{ github.event.inputs.draft }}"
+            prerelease="${{ github.event.inputs.prerelease }}"
+            notes_file="$RUNNER_TEMP/release-notes.txt"
+            printf '%s\n' "$INPUT_RELEASE_NOTES" > "$notes_file"
+          else
+            tag="${GITHUB_REF_NAME}"
+            title="${GITHUB_REF_NAME}"
+            draft="false"
+            prerelease="false"
+            notes_file="$RUNNER_TEMP/release-notes.txt"
+            {
+              echo "Automated macOS release for ${tag}."
+              echo
+              echo "Assets:"
+              echo "- TEM8Practice-arm64.app.zip"
+              echo "- TEM8Practice-macOS-arm64.pkg"
+              echo "- self-check-arm64.json"
+              echo "- TEM8Practice-x86_64.app.zip"
+              echo "- TEM8Practice-macOS-x86_64.pkg"
+              echo "- self-check-x86_64.json"
+            } > "$notes_file"
+          fi
+
+          if [[ -z "$tag" ]]; then
+            echo "Release tag is required."
+            exit 1
+          fi
+
+          if [[ -z "$title" ]]; then
+            title="$tag"
+          fi
+
+          if [[ ! -s "$notes_file" ]]; then
+            echo "macOS release ${tag}" > "$notes_file"
+          fi
+
+          {
+            echo "tag=$tag"
+            echo "title=$title"
+            echo "draft=$draft"
+            echo "prerelease=$prerelease"
+            echo "notes_file=$notes_file"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Download release artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: TEM8Practice-macos-release-*
+          path: release-assets
+          merge-multiple: true
+
+      - name: Show release assets
+        run: ls -la release-assets
 
       - name: Create or update GitHub release
         env:
@@ -185,10 +221,10 @@ jobs:
           fi
 
           if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
-            gh release upload "$RELEASE_TAG" release/macos/artifacts/* --clobber
+            gh release upload "$RELEASE_TAG" release-assets/* --clobber
           else
             gh release create "$RELEASE_TAG" \
-              release/macos/artifacts/* \
+              release-assets/* \
               --title "$RELEASE_TITLE" \
               --notes-file "$RELEASE_NOTES_FILE" \
               --target "$GITHUB_SHA" \

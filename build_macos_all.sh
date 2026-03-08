@@ -31,11 +31,13 @@ fi
 
 chmod +x build_macos_app.sh build_macos_pkg.sh packaging/macos/scripts/preinstall packaging/macos/scripts/postinstall
 
+TARGET_ARCH="${TARGET_ARCH:-$(uname -m)}"
 ./build_macos_app.sh
-./release/macos/dist/TEM8Practice.app/Contents/MacOS/TEM8Practice --self-check-json
+./release/macos/"$TARGET_ARCH"/dist/TEM8Practice.app/Contents/MacOS/TEM8Practice --self-check-json
 ./build_macos_pkg.sh
 
 echo
 echo "Build finished."
-echo "App: $ROOT_DIR/release/macos/dist/TEM8Practice.app"
-echo "Pkg: $ROOT_DIR/release/macos/TEM8Practice-macOS.pkg"
+echo "Arch: $TARGET_ARCH"
+echo "App: $ROOT_DIR/release/macos/$TARGET_ARCH/dist/TEM8Practice.app"
+echo "Pkg: $ROOT_DIR/release/macos/TEM8Practice-macOS-$TARGET_ARCH.pkg"
