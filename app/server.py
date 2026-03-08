@@ -93,18 +93,28 @@ def load_dataset() -> dict:
     merged = deepcopy(dataset)
     answer_count = 0
 
-    for year_entry in merged.get("years", []):
-        for question in year_entry.get("questions", []):
-            answer_entry = answer_key.get(question["id"], {})
-            question["correct_option"] = answer_entry.get("correct_option")
-            question["explanation"] = answer_entry.get("explanation", "")
-            if question["correct_option"]:
-                answer_count += 1
+    for bucket_name in ("years", "library", "exercise_sets"):
+        for entry in merged.get(bucket_name, []):
+            for question in entry.get("questions", []):
+                answer_entry = answer_key.get(question["id"], {})
+                question["correct_option"] = answer_entry.get("correct_option")
+                question["explanation"] = answer_entry.get("explanation", "")
+                question["accepted_answers"] = answer_entry.get("accepted_answers", [])
+                question["display_answer"] = answer_entry.get("display_answer", "")
+                if question["correct_option"] or question["accepted_answers"] or question["display_answer"]:
+                    answer_count += 1
 
     merged.setdefault("meta", {})
     merged["meta"]["answer_count"] = answer_count
     merged["meta"]["answer_key_loaded"] = ANSWER_KEY_PATH.exists()
     return merged
+
+
+def dataset_question_count(dataset: dict) -> int:
+    total = 0
+    for bucket_name in ("years", "library", "exercise_sets"):
+        total += sum(len(entry.get("questions", [])) for entry in dataset.get(bucket_name, []))
+    return total
 
 
 def default_progress() -> dict:
@@ -183,7 +193,9 @@ class PracticeHandler(SimpleHTTPRequestHandler):
                 "answer_key_loaded": dataset["meta"].get("answer_key_loaded", False),
                 "answer_count": dataset["meta"].get("answer_count", 0),
                 "year_count": len(dataset.get("years", [])),
-                "question_count": sum(len(year_entry.get("questions", [])) for year_entry in dataset.get("years", [])),
+                "library_set_count": len(dataset.get("library", [])),
+                "exercise_set_count": len(dataset.get("exercise_sets", [])),
+                "question_count": dataset_question_count(dataset),
                 "progress_updated_at": progress.get("updated_at"),
             }
             self.respond_json(payload)

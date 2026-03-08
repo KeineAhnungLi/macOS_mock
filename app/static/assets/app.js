@@ -12,6 +12,10 @@ const state = {
   bleedMarkers: [],
   selectedYear: null,
   selectedGroupId: null,
+  materialsBucket: "library",
+  selectedMaterialSetId: null,
+  selectedMaterialGroupId: null,
+  materialQuestionId: null,
   view: "practice",
   focusMode: false,
   practiceQuestionId: null,
@@ -57,6 +61,17 @@ function buildApiUrl(path) {
   return API_BASE_URL ? `${API_BASE_URL}${path}` : path;
 }
 
+function buildStaticUrl(path) {
+  const text = String(path || "").trim();
+  if (!text) {
+    return "";
+  }
+  if (/^https?:\/\//i.test(text)) {
+    return text;
+  }
+  return text.startsWith("/") ? text : `/${text}`;
+}
+
 function buildApiHeaders(extraHeaders = {}) {
   const headers = { ...extraHeaders };
   if (API_BASE_URL && CLIENT_ID) {
@@ -78,6 +93,7 @@ function defaultProgress() {
 function normalizeAnswerRecord(record = {}) {
   return {
     selected: record.selected ?? null,
+    response_text: record.response_text ?? "",
     checked_at: record.checked_at ?? null,
     is_correct: typeof record.is_correct === "boolean" ? record.is_correct : null,
     attempt_count: record.attempt_count ?? (record.checked_at ? 1 : 0),
@@ -179,6 +195,25 @@ function formatInline(value) {
   return formatDisplayText(value, true);
 }
 
+function getQuestionType(question) {
+  if (question?.question_type) {
+    return question.question_type;
+  }
+  return "single-choice";
+}
+
+function getBucketEntries(bucketName) {
+  return state.dataset?.[bucketName] || [];
+}
+
+function getLibraryEntries() {
+  return getBucketEntries("library");
+}
+
+function getExerciseEntries() {
+  return getBucketEntries("exercise_sets");
+}
+
 function getYearEntries() {
   return state.dataset?.years || [];
 }
@@ -195,14 +230,197 @@ function getGroupsForYear(year) {
   return getYearEntry(year)?.groups || [];
 }
 
+function getAllQuestionContainers() {
+  return [
+    ...getYearEntries().map((entry) => ({ bucket: "years", entry })),
+    ...getLibraryEntries().map((entry) => ({ bucket: "library", entry })),
+    ...getExerciseEntries().map((entry) => ({ bucket: "exercise_sets", entry })),
+  ];
+}
+
+function datasetQuestionCount() {
+  return getAllQuestionContainers().reduce((sum, { entry }) => sum + (entry.questions?.length || 0), 0);
+}
+
 function getQuestionById(questionId) {
-  for (const yearEntry of getYearEntries()) {
-    const question = yearEntry.questions.find((item) => item.id === questionId);
+  for (const { entry } of getAllQuestionContainers()) {
+    const question = entry.questions.find((item) => item.id === questionId);
     if (question) {
       return question;
     }
   }
   return null;
+}
+
+function getQuestionContainerById(questionId) {
+  for (const container of getAllQuestionContainers()) {
+    if (container.entry.questions.some((item) => item.id === questionId)) {
+      return container;
+    }
+  }
+  return null;
+}
+
+function getResolvedOptions(question) {
+  const rawOptions = Object.entries(question?.options || {}).filter(([, value]) => value != null && String(value).trim());
+  if (!rawOptions.length) {
+    if (getQuestionType(question) === "true-false") {
+      return [
+        ["R", "Richtig"],
+        ["F", "Falsch"],
+      ];
+    }
+    return [];
+  }
+
+  const needsRepair = rawOptions.some(([, value]) => /\b[B-HRFT]\s*[.:：]/.test(String(value)));
+  if (!needsRepair) {
+    return rawOptions;
+  }
+
+  const mergedText = rawOptions
+    .map(([key, value]) => {
+      const text = String(value || "").trim();
+      if (new RegExp(`^${key}\\s*[.:：]`).test(text)) {
+        return text;
+      }
+      return `${key}. ${text}`;
+    })
+    .join(" ")
+    .replace(/\s+/g, " ");
+
+  const repaired = [];
+  const pattern = /([A-HRFT])\s*[.:：]\s*/g;
+  const matches = Array.from(mergedText.matchAll(pattern));
+  if (matches.length < 2) {
+    return rawOptions;
+  }
+
+  matches.forEach((match, index) => {
+    const label = match[1];
+    const start = match.index + match[0].length;
+    const end = index + 1 < matches.length ? matches[index + 1].index : mergedText.length;
+    const text = mergedText.slice(start, end).trim();
+    if (text) {
+      repaired.push([label, text]);
+    }
+  });
+
+  return repaired.length ? repaired : rawOptions;
+}
+
+function isChoiceQuestion(question) {
+  const options = getResolvedOptions(question);
+  if (getQuestionType(question) === "true-false") {
+    return options.length > 0;
+  }
+  return options.length >= 2;
+}
+
+function isPromptQuestion(question) {
+  return getQuestionType(question) === "prompt" && !isChoiceQuestion(question);
+}
+
+function isTextInputQuestion(question) {
+  return !isChoiceQuestion(question) && !isPromptQuestion(question);
+}
+
+function normalizeAnswerText(value) {
+  return String(value || "")
+    .normalize("NFKC")
+    .trim()
+    .toLowerCase()
+    .replace(/[，。、“”‘’！？；：,.!?;:()[\]{}"'`]/g, " ")
+    .replace(/\s+/g, " ");
+}
+
+function getSubmittedValue(question, record) {
+  return isChoiceQuestion(question) ? record.selected : record.response_text;
+}
+
+function getExpectedAnswers(question) {
+  const accepted = Array.isArray(question.accepted_answers) ? question.accepted_answers : [];
+  if (accepted.length) {
+    return accepted;
+  }
+  if (question.display_answer) {
+    return [question.display_answer];
+  }
+  return [];
+}
+
+function evaluateQuestionResponse(question, record) {
+  if (isChoiceQuestion(question)) {
+    if (!question.correct_option) {
+      return null;
+    }
+    return record.selected === question.correct_option;
+  }
+
+  const expected = getExpectedAnswers(question).map(normalizeAnswerText).filter(Boolean);
+  if (!expected.length) {
+    return null;
+  }
+  const response = normalizeAnswerText(record.response_text);
+  if (!response) {
+    return null;
+  }
+  return expected.includes(response);
+}
+
+function getCorrectAnswerMarkup(question) {
+  if (isChoiceQuestion(question) && question.correct_option) {
+    const optionText = Object.fromEntries(getResolvedOptions(question))[question.correct_option];
+    if (optionText) {
+      return `${question.correct_option}. ${formatInline(optionText)}`;
+    }
+    return escapeHtml(question.correct_option);
+  }
+
+  if (question.display_answer) {
+    return formatInline(question.display_answer);
+  }
+
+  const accepted = getExpectedAnswers(question);
+  if (accepted.length) {
+    return escapeHtml(accepted[0]);
+  }
+
+  return "未录入";
+}
+
+function isYearMockCompatible(year) {
+  return getQuestionsForYear(year).every((question) => isChoiceQuestion(question));
+}
+
+function getMaterialEntries(bucketName = state.materialsBucket) {
+  return bucketName === "exercise_sets" ? getExerciseEntries() : getLibraryEntries();
+}
+
+function getMaterialEntry(entryId = state.selectedMaterialSetId, bucketName = state.materialsBucket) {
+  return getMaterialEntries(bucketName).find((entry) => entry.id === entryId) || null;
+}
+
+function getMaterialGroups(entry = getMaterialEntry()) {
+  return entry?.groups || [];
+}
+
+function getMaterialQuestions(entry = getMaterialEntry()) {
+  return entry?.questions || [];
+}
+
+function getMaterialGroup(entry = getMaterialEntry(), groupId = state.selectedMaterialGroupId) {
+  return getMaterialGroups(entry).find((group) => group.id === groupId) || null;
+}
+
+function getMaterialQuestionListForGroup(entry = getMaterialEntry(), groupId = state.selectedMaterialGroupId) {
+  const group = getMaterialGroup(entry, groupId);
+  if (!entry || !group) {
+    return [];
+  }
+  return group.question_numbers
+    .map((number) => entry.questions.find((item) => item.number === number))
+    .filter(Boolean);
 }
 
 function getGroupById(year, groupId) {
@@ -303,6 +521,7 @@ async function resetProgress() {
   state.mock = null;
   state.wrongbookDrafts = {};
   initializePracticeQuestion(true);
+  initializeMaterialQuestion(true);
   initializeWrongbookQuestion(true);
   await persistProgress();
   await logEvent("progress_reset", { local_only: LOCAL_PROGRESS_ONLY });
@@ -310,7 +529,18 @@ async function resetProgress() {
 }
 
 function getQuestionSource(question) {
-  return `${question.year} · ${question.subsection} ${question.group_label} · 第 ${question.number} 题 · PDF 第 ${question.page} 页`;
+  const container = getQuestionContainerById(question.id);
+  const entry = container?.entry || null;
+  const yearPart = question.year || entry?.year || "资料";
+  const sectionPart = question.subsection || entry?.title || entry?.section || question.group_label || "题组";
+  let pagePart = "";
+  if (question.page != null) {
+    pagePart = ` · PDF 第 ${question.page} 页`;
+  } else if (question.source_page_start != null) {
+    const end = question.source_page_end && question.source_page_end !== question.source_page_start ? `-${question.source_page_end}` : "";
+    pagePart = ` · PDF 第 ${question.source_page_start}${end} 页`;
+  }
+  return `${yearPart} · ${sectionPart} · 第 ${question.number} 题${pagePart}`;
 }
 
 function wrongBookIds() {
@@ -352,6 +582,24 @@ function groupProgress(year, groupId) {
     checked,
     wrong,
   };
+}
+
+function materialGroupProgress(entry, groupId) {
+  const questions = getMaterialQuestionListForGroup(entry, groupId);
+  const checked = questions.filter((question) => getRecord(question.id).checked_at).length;
+  const correct = questions.filter((question) => getRecord(question.id).is_correct === true).length;
+  return {
+    total: questions.length,
+    checked,
+    correct,
+  };
+}
+
+function canSubmitRecord(question, record) {
+  if (isChoiceQuestion(question)) {
+    return Boolean(record.selected);
+  }
+  return Boolean(String(record.response_text || "").trim());
 }
 
 function clearPracticeAdvanceTimer() {
@@ -403,6 +651,37 @@ function initializePracticeQuestion(force = false) {
     questions[0].id;
 }
 
+function initializeMaterialQuestion(force = false) {
+  const entry = getMaterialEntry();
+  if (!entry) {
+    state.selectedMaterialGroupId = null;
+    state.materialQuestionId = null;
+    return;
+  }
+
+  const groupId = state.selectedMaterialGroupId || getMaterialGroups(entry)[0]?.id;
+  if (!groupId) {
+    state.selectedMaterialGroupId = null;
+    state.materialQuestionId = null;
+    return;
+  }
+
+  state.selectedMaterialGroupId = groupId;
+  const questions = getMaterialQuestionListForGroup(entry, groupId);
+  if (!questions.length) {
+    state.materialQuestionId = null;
+    return;
+  }
+
+  if (!force && questions.some((question) => question.id === state.materialQuestionId)) {
+    return;
+  }
+
+  state.materialQuestionId =
+    questions.find((question) => !getRecord(question.id).checked_at)?.id ||
+    questions[0].id;
+}
+
 function initializeWrongbookQuestion(force = false) {
   const questions = wrongBookQuestionsForYear(state.selectedYear);
   if (!questions.length) {
@@ -418,21 +697,35 @@ function initializeWrongbookQuestion(force = false) {
 function getWrongbookDraft(questionId) {
   state.wrongbookDrafts[questionId] ||= {
     selected: null,
+    response_text: "",
     checked: false,
     is_correct: null,
   };
   return state.wrongbookDrafts[questionId];
 }
 
-function buildFeedback(question, selected, checked, isCorrect, autoNext = false) {
+function buildSubmittedAnswerText(question, record) {
+  const submittedValue = getSubmittedValue(question, record);
+  if (!submittedValue) {
+    return "未作答";
+  }
+  if (isChoiceQuestion(question)) {
+    const optionText = Object.fromEntries(getResolvedOptions(question))[submittedValue];
+    return optionText ? `${submittedValue}. ${optionText}` : submittedValue;
+  }
+  return submittedValue;
+}
+
+function buildFeedback(question, record, checked, isCorrect, autoNext = false) {
   if (!checked) {
     return "";
   }
 
-  if (!hasAnswerKey() || !question.correct_option) {
+  const hasSpecificAnswer = Boolean(question.correct_option || getExpectedAnswers(question).length);
+  if (!hasAnswerKey() || !hasSpecificAnswer) {
     return `
       <div class="feedback pending">
-        题目已提交，当前题库还没有答案键。系统已记录你的选择：${escapeHtml(selected || "未作答")}。
+        题目已提交，当前题库还没有答案键。系统已记录你的作答：${escapeHtml(buildSubmittedAnswerText(question, record))}。
       </div>
     `;
   }
@@ -442,14 +735,14 @@ function buildFeedback(question, selected, checked, isCorrect, autoNext = false)
   if (isCorrect) {
     return `
       <div class="feedback correct">
-        回答正确。正确答案：${question.correct_option}${explanation}${suffix}
+        回答正确。正确答案：${getCorrectAnswerMarkup(question)}${explanation}${suffix}
       </div>
     `;
   }
 
   return `
     <div class="feedback wrong">
-      回答错误。正确答案：${question.correct_option}${explanation}${suffix}
+      回答错误。正确答案：${getCorrectAnswerMarkup(question)}${explanation}${suffix}
     </div>
   `;
 }
@@ -475,6 +768,86 @@ function renderOptionButton({ question, optionKey, optionText, selected, checked
     >
       <strong>${optionKey}.</strong> ${formatInline(optionText)}
     </button>
+  `;
+}
+
+function renderTextEntryControl({ question, value, disabled, onInput, multiline = false }) {
+  const placeholder = multiline ? "请输入你的作答" : "请输入答案";
+  const rows = question.subprompts?.length ? Math.max(6, question.subprompts.length * 2 + 4) : 8;
+  if (multiline) {
+    return `
+      <label class="text-response-shell">
+        <span class="chip">Long Response</span>
+        <textarea
+          class="text-response-input multiline"
+          rows="${rows}"
+          placeholder="${placeholder}"
+          ${disabled ? "disabled" : ""}
+          oninput="${disabled ? "" : onInput}"
+        >${escapeHtml(value || "")}</textarea>
+      </label>
+    `;
+  }
+
+  return `
+    <label class="text-response-shell">
+      <span class="chip">Text Answer</span>
+      <input
+        class="text-response-input"
+        type="text"
+        placeholder="${placeholder}"
+        value="${escapeHtml(value || "")}"
+        ${disabled ? "disabled" : ""}
+        oninput="${disabled ? "" : onInput}"
+      />
+    </label>
+  `;
+}
+
+function renderQuestionSubprompts(question) {
+  if (!Array.isArray(question.subprompts) || !question.subprompts.length) {
+    return "";
+  }
+  return `
+    <div class="subprompt-list">
+      ${question.subprompts.map((item) => `<div class="subprompt-item">${formatText(item)}</div>`).join("")}
+    </div>
+  `;
+}
+
+function renderQuestionAnswerArea({ question, record, checked, isCorrect, revealCorrectness, disabled, onSelect, onInput }) {
+  if (isChoiceQuestion(question)) {
+    return `
+      <div class="option-grid">
+        ${getResolvedOptions(question)
+          .map(([optionKey, optionText]) =>
+            renderOptionButton({
+              question,
+              optionKey,
+              optionText,
+              selected: record.selected,
+              checked,
+              isCorrect,
+              revealCorrectness,
+              disabled,
+              onClick: `${onSelect}('${question.id}', '${optionKey}')`,
+            }),
+          )
+          .join("")}
+      </div>
+    `;
+  }
+
+  return `
+    ${question.prompt_text ? `<div class="prompt-block">${formatText(question.prompt_text)}</div>` : ""}
+    ${renderQuestionSubprompts(question)}
+    ${renderTextEntryControl({
+      question,
+      value: record.response_text,
+      disabled,
+      multiline: isPromptQuestion(question),
+      onInput: `${onInput}('${question.id}', this.value)`,
+    })}
   `;
 }
 
@@ -515,7 +888,7 @@ function renderYearNav() {
 }
 
 function renderStatusCard() {
-  const totalQuestions = getYearEntries().reduce((sum, yearEntry) => sum + yearEntry.questions.length, 0);
+  const totalQuestions = datasetQuestionCount();
   const checked = Object.values(state.progress.answers).filter((record) => record.checked_at).length;
   const wrong = wrongBookIds().length;
   const latestMock = state.progress.mock_sessions?.[0];
@@ -534,6 +907,10 @@ function renderStatusCard() {
         <span class="chip">错题</span>
         <strong>${wrong}</strong>
       </div>
+      <div class="stat-tile">
+        <span class="chip">资料</span>
+        <strong>${getLibraryEntries().length + getExerciseEntries().length}</strong>
+      </div>
     </div>
     <p class="status-note">${answerCoverageText()}</p>
     <p class="status-note">${latestMock ? `最近一次模考：${latestMock.year} · ${latestMock.display_score}` : "还没有模考记录。"}</p>
@@ -545,13 +922,18 @@ function renderStatusCard() {
 function renderModeTabs() {
   const modes = [
     { id: "practice", label: "题目练习" },
+    { id: "materials", label: "资料题型" },
     { id: "mock", label: "模考" },
     { id: "wrongbook", label: "错题本" },
   ];
   document.getElementById("mode-tabs").innerHTML = modes
     .map(
       (mode) => `
-        <button class="mode-tab ${mode.id === state.view ? "active" : ""}" onclick="appActions.switchView('${mode.id}')">
+        <button
+          class="mode-tab ${mode.id === state.view ? "active" : ""}"
+          ${mode.id === "mock" && !isYearMockCompatible(state.selectedYear) ? "disabled" : ""}
+          onclick="${mode.id === "mock" && !isYearMockCompatible(state.selectedYear) ? "" : `appActions.switchView('${mode.id}')`}"
+        >
           ${mode.label}
         </button>
       `,
@@ -580,6 +962,15 @@ function renderHero() {
   const titleNode = document.getElementById("hero-title");
   const subtitleNode = document.getElementById("hero-subtitle");
 
+  if (state.view === "materials") {
+    const entry = getMaterialEntry();
+    titleNode.textContent = entry ? entry.title : "资料题型";
+    subtitleNode.textContent = entry
+      ? `${state.materialsBucket === "library" ? "真题资料" : "练习题库"} · ${entry.question_count} 题${entry.audio_file ? " · 含音频" : ""}`
+      : "浏览听力、阅读、写作、翻译、国情与 exercise 资料。";
+    return;
+  }
+
   if (state.view === "practice") {
     const currentGroup = getCurrentPracticeGroup();
     titleNode.textContent = `${state.selectedYear} 年单题练习`;
@@ -591,7 +982,9 @@ function renderHero() {
 
   if (state.view === "mock") {
     titleNode.textContent = `${state.selectedYear} 年模考`;
-    subtitleNode.textContent = state.mock
+    subtitleNode.textContent = !isYearMockCompatible(state.selectedYear)
+      ? "当前年份含文本题，模考暂只支持纯选择题年份。"
+      : state.mock
       ? `已作答 ${Object.values(state.mock.answers).filter(Boolean).length}/${getQuestionsForYear(state.mock.year).length}。答案会在整套提交后统一显示。`
       : "整套 40 题，提交后统一判分并显示解析。";
     return;
@@ -661,12 +1054,13 @@ function renderPassagePane(group) {
   if (!group?.shared_context) {
     return "";
   }
+  const title = [group.subsection, group.label].filter(Boolean).join(" ") || group.instruction || "共享材料";
   return `
     <article class="pane-card">
       <div class="pane-card-head">
         <div>
           <div class="question-type">共享材料</div>
-          <strong>${group.subsection} ${group.label}</strong>
+          <strong>${title}</strong>
         </div>
         <span class="source-badge">左右分栏</span>
       </div>
@@ -687,7 +1081,7 @@ function renderPracticeQuestionCard(question, group) {
   const classes = getQuestionCardClasses(submitted, record.is_correct);
   const sourceText = getQuestionSource(question);
   const progress = groupProgress(question.year, group.id);
-  const submitDisabled = !submitted && !record.selected;
+  const submitDisabled = !submitted && !canSubmitRecord(question, record);
 
   return `
     <article class="${classes}">
@@ -700,24 +1094,17 @@ function renderPracticeQuestionCard(question, group) {
         <span class="source-badge">${sourceText}</span>
       </div>
       <p class="question-stem">${formatText(question.stem)}</p>
-      <div class="option-grid">
-        ${Object.entries(question.options)
-          .map(([optionKey, optionText]) =>
-            renderOptionButton({
-              question,
-              optionKey,
-              optionText,
-              selected: record.selected,
-              checked: submitted,
-              isCorrect: record.is_correct,
-              revealCorrectness: submitted,
-              disabled: submitted,
-              onClick: `appActions.selectPracticeOption('${question.id}', '${optionKey}')`,
-            }),
-          )
-          .join("")}
-      </div>
-      ${buildFeedback(question, record.selected, submitted, record.is_correct, autoNext)}
+      ${renderQuestionAnswerArea({
+        question,
+        record,
+        checked: submitted,
+        isCorrect: record.is_correct,
+        revealCorrectness: submitted,
+        disabled: submitted,
+        onSelect: "appActions.selectPracticeOption",
+        onInput: "appActions.updatePracticeResponse",
+      })}
+      ${buildFeedback(question, record, submitted, record.is_correct, autoNext)}
       <div class="question-stage-foot">
         <div class="summary-actions">
           <button
@@ -844,7 +1231,8 @@ function renderMockQuestionCard(question, group) {
       </div>
       <p class="question-stem">${formatText(question.stem)}</p>
       <div class="option-grid">
-        ${Object.entries(question.options)
+        ${getResolvedOptions(question)
+          .filter(([optionKey]) => optionKey)
           .map(([optionKey, optionText]) =>
             renderOptionButton({
               question,
@@ -860,12 +1248,31 @@ function renderMockQuestionCard(question, group) {
           )
           .join("")}
       </div>
-      ${checked ? buildFeedback(question, selected, true, isCorrect, false) : ""}
+      ${checked ? buildFeedback(question, { selected, response_text: "" }, true, isCorrect, false) : ""}
     </article>
   `;
 }
 
 function renderMockView() {
+  if (!isYearMockCompatible(state.selectedYear)) {
+    return `
+      <div class="screen-layout">
+        <section class="summary-card screen-workspace">
+          <div class="summary-topbar">
+            <div>
+              <div class="question-type">Mock Locked</div>
+              <h3>${state.selectedYear} 年暂不支持模考</h3>
+            </div>
+          </div>
+          <p class="summary-copy">当前年份的词汇语法中包含文本作答题。模考模式暂只支持纯选择题年份，资料题型请在“资料题型”里完成。</p>
+          <div class="summary-actions">
+            <button class="action-button" onclick="appActions.switchView('practice')">返回题目练习</button>
+          </div>
+        </section>
+      </div>
+    `;
+  }
+
   const sessions = state.progress.mock_sessions || [];
   if (!state.mock) {
     return `
@@ -941,10 +1348,9 @@ function renderWrongbookQuestionCard(question) {
   const baseRecord = getRecord(question.id);
   const draft = getWrongbookDraft(question.id);
   const checked = draft.checked;
-  const selected = draft.selected;
   const classes = getQuestionCardClasses(checked, draft.is_correct);
   const removable = draft.is_correct === true || baseRecord.is_correct === true;
-  const submitDisabled = !checked && !selected;
+  const submitDisabled = !checked && !canSubmitRecord(question, draft);
 
   return `
     <article class="${classes}">
@@ -960,24 +1366,17 @@ function renderWrongbookQuestionCard(question) {
         </div>
       </div>
       <p class="question-stem">${formatText(question.stem)}</p>
-      <div class="option-grid">
-        ${Object.entries(question.options)
-          .map(([optionKey, optionText]) =>
-            renderOptionButton({
-              question,
-              optionKey,
-              optionText,
-              selected,
-              checked,
-              isCorrect: draft.is_correct,
-              revealCorrectness: checked,
-              disabled: checked,
-              onClick: `appActions.selectWrongbookOption('${question.id}', '${optionKey}')`,
-            }),
-          )
-          .join("")}
-      </div>
-      ${buildFeedback(question, selected, checked, draft.is_correct, false)}
+      ${renderQuestionAnswerArea({
+        question,
+        record: draft,
+        checked,
+        isCorrect: draft.is_correct,
+        revealCorrectness: checked,
+        disabled: checked,
+        onSelect: "appActions.selectWrongbookOption",
+        onInput: "appActions.updateWrongbookResponse",
+      })}
+      ${buildFeedback(question, draft, checked, draft.is_correct, false)}
       <div class="question-stage-foot">
         <div class="summary-actions">
           <button
@@ -1043,6 +1442,169 @@ function renderWrongbookView() {
   `;
 }
 
+function renderMaterialAudio(entry) {
+  if (!entry?.audio_file) {
+    return "";
+  }
+  return `
+    <div class="audio-player-card">
+      <div>
+        <div class="question-type">Listening Audio</div>
+        <strong>${entry.title}</strong>
+      </div>
+      <audio controls preload="none" src="${buildStaticUrl(entry.audio_file)}"></audio>
+    </div>
+  `;
+}
+
+function renderMaterialQuestionCard(entry, question, group) {
+  const record = getRecord(question.id);
+  const questions = getMaterialQuestionListForGroup(entry, group.id);
+  const index = questions.findIndex((item) => item.id === question.id);
+  const nextQuestion = questions[index + 1] || null;
+  const submitted = Boolean(record.checked_at);
+  const submitDisabled = !submitted && !canSubmitRecord(question, record);
+  const progress = materialGroupProgress(entry, group.id);
+  const classes = getQuestionCardClasses(submitted, record.is_correct);
+
+  return `
+    <article class="${classes}">
+      <div class="question-stage-head">
+        <div>
+          <div class="question-type">${state.materialsBucket === "library" ? "资料题型" : "Exercise"}</div>
+          <h3 class="question-number">第 ${question.number} 题</h3>
+          <div class="meta-line">${group.label || group.instruction || entry.title} · 组内 ${index + 1}/${questions.length} · 已完成 ${progress.checked}/${progress.total}</div>
+        </div>
+        <span class="source-badge">${getQuestionSource(question)}</span>
+      </div>
+      <p class="question-stem">${formatText(question.stem)}</p>
+      ${renderQuestionAnswerArea({
+        question,
+        record,
+        checked: submitted,
+        isCorrect: record.is_correct,
+        revealCorrectness: submitted,
+        disabled: submitted,
+        onSelect: "appActions.selectMaterialOption",
+        onInput: "appActions.updateMaterialResponse",
+      })}
+      ${buildFeedback(question, record, submitted, record.is_correct, false)}
+      <div class="question-stage-foot">
+        <div class="summary-actions">
+          <button
+            class="action-button"
+            ${submitDisabled ? "disabled" : ""}
+            onclick="${submitDisabled ? "" : submitted ? "appActions.goToNextMaterialQuestion()" : `appActions.submitMaterialQuestion('${question.id}')`}"
+          >
+            ${submitted ? (nextQuestion ? "下一题" : "完成本组") : "确定提交"}
+          </button>
+        </div>
+        <div class="meta-line">${submitted ? "已保存本题作答与结果。" : "支持选择题、判断题、填空题和开放题。先作答，再提交。"}</div>
+      </div>
+    </article>
+  `;
+}
+
+function renderMaterialsView() {
+  const entries = getMaterialEntries();
+  const entry = getMaterialEntry();
+  if (!entries.length || !entry) {
+    return `
+      <section class="empty-card">
+        <div class="question-type">Materials</div>
+        <h3>暂无资料</h3>
+        <p class="muted">当前 bucket 下还没有可显示的题集。</p>
+      </section>
+    `;
+  }
+
+  const groups = getMaterialGroups(entry);
+  const currentGroup = getMaterialGroup(entry) || groups[0];
+  const groupQuestions = getMaterialQuestionListForGroup(entry, currentGroup?.id);
+  const currentQuestion = entry.questions.find((item) => item.id === state.materialQuestionId) || groupQuestions[0] || null;
+  const progress = currentGroup ? materialGroupProgress(entry, currentGroup.id) : { checked: 0, total: 0, correct: 0 };
+  const layoutClass = currentGroup?.shared_context ? "split-layout" : "solo-layout";
+
+  const toolbar = `
+    <section class="panel screen-toolbar">
+      <div class="workspace-head">
+        <div>
+          <div class="question-type">资料导航</div>
+          <h3 class="workspace-title">${entry.title}</h3>
+          <p class="muted">${entry.instruction || `${state.materialsBucket === "library" ? "真题资料" : "练习题库"} · ${entry.question_count} 题`}</p>
+        </div>
+        <span class="badge badge-muted">${progress.checked}/${progress.total}</span>
+      </div>
+      <div class="group-tabs bucket-tabs">
+        <button class="group-pill ${state.materialsBucket === "library" ? "active" : ""}" onclick="appActions.selectMaterialsBucket('library')">真题资料</button>
+        <button class="group-pill ${state.materialsBucket === "exercise_sets" ? "active" : ""}" onclick="appActions.selectMaterialsBucket('exercise_sets')">Exercise</button>
+      </div>
+      <div class="group-tabs material-set-tabs">
+        ${entries
+          .map(
+            (item) => `
+              <button class="group-pill ${item.id === entry.id ? "active" : ""}" onclick="appActions.selectMaterialSet('${item.id}')">
+                ${item.title}
+              </button>
+            `,
+          )
+          .join("")}
+      </div>
+      ${renderMaterialAudio(entry)}
+      ${
+        groups.length
+          ? `
+            <div class="group-tabs">
+              ${groups
+                .map(
+                  (group) => `
+                    <button class="group-pill ${group.id === currentGroup?.id ? "active" : ""}" onclick="appActions.selectMaterialGroup('${group.id}')">
+                      ${group.label || group.instruction || "题组"}
+                    </button>
+                  `,
+                )
+                .join("")}
+            </div>
+          `
+          : ""
+      }
+      ${renderQuestionPalette(
+        groupQuestions,
+        currentQuestion?.id,
+        "appActions.jumpMaterialQuestion",
+        (question) => {
+          const record = getRecord(question.id);
+          if (record.is_correct === false) return "wrong";
+          if (record.is_correct === true) return "done";
+          return record.checked_at ? "done" : "pending";
+        },
+      )}
+    </section>
+  `;
+
+  if (!currentQuestion || !currentGroup) {
+    return `
+      <div class="screen-layout">
+        ${toolbar}
+        <section class="empty-card">
+          <div class="question-type">Empty Group</div>
+          <h3>当前题组暂无可显示题目</h3>
+        </section>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="screen-layout">
+      ${toolbar}
+      <section class="workspace-card screen-workspace ${layoutClass}">
+        ${currentGroup.shared_context ? renderPassagePane(currentGroup) : ""}
+        ${renderMaterialQuestionCard(entry, currentQuestion, currentGroup)}
+      </section>
+    </div>
+  `;
+}
+
 function renderContent() {
   const content = document.getElementById("app-content");
   if (!state.dataset) {
@@ -1052,6 +1614,10 @@ function renderContent() {
 
   if (state.view === "practice") {
     content.innerHTML = renderPracticeView();
+    return;
+  }
+  if (state.view === "materials") {
+    content.innerHTML = renderMaterialsView();
     return;
   }
   if (state.view === "mock") {
@@ -1200,7 +1766,17 @@ async function selectPracticeOption(questionId, optionKey) {
   clearPracticeAdvanceTimer();
   const record = getRecord(questionId);
   record.selected = optionKey;
+  record.response_text = "";
   await logEvent("practice_option_selected", { question_id: questionId, option: optionKey });
+  await persistProgress();
+  renderApp();
+}
+
+async function updatePracticeResponse(questionId, value) {
+  clearPracticeAdvanceTimer();
+  const record = getRecord(questionId);
+  record.response_text = value;
+  record.selected = null;
   await persistProgress();
   renderApp();
 }
@@ -1209,25 +1785,22 @@ async function submitPracticeQuestion(questionId) {
   clearPracticeAdvanceTimer();
   const question = getQuestionById(questionId);
   const record = getRecord(questionId);
-  if (!record.selected) {
+  if (!canSubmitRecord(question, record)) {
     return;
   }
 
   record.checked_at = new Date().toISOString();
   record.attempt_count += 1;
-  if (question.correct_option) {
-    record.is_correct = record.selected === question.correct_option;
-    if (record.is_correct === false) {
-      record.wrong_count += 1;
-      state.progress.manual_wrong_book[questionId] = true;
-    }
-  } else {
-    record.is_correct = null;
+  record.is_correct = evaluateQuestionResponse(question, record);
+  if (record.is_correct === false) {
+    record.wrong_count += 1;
+    state.progress.manual_wrong_book[questionId] = true;
   }
 
   await logEvent("practice_submitted", {
     question_id: questionId,
     selected: record.selected,
+    response_text: record.response_text,
     is_correct: record.is_correct,
   });
   await persistProgress();
@@ -1280,6 +1853,7 @@ async function restartCurrentGroup() {
   for (const question of getQuestionListForGroup(state.selectedYear, currentGroup.id)) {
     const record = getRecord(question.id);
     record.selected = null;
+    record.response_text = "";
     record.checked_at = null;
     record.is_correct = null;
   }
@@ -1300,6 +1874,16 @@ async function toggleWrongBook(questionId) {
 async function selectWrongbookOption(questionId, optionKey) {
   const draft = getWrongbookDraft(questionId);
   draft.selected = optionKey;
+  draft.response_text = "";
+  draft.checked = false;
+  draft.is_correct = null;
+  renderApp();
+}
+
+async function updateWrongbookResponse(questionId, value) {
+  const draft = getWrongbookDraft(questionId);
+  draft.response_text = value;
+  draft.selected = null;
   draft.checked = false;
   draft.is_correct = null;
   renderApp();
@@ -1308,15 +1892,16 @@ async function selectWrongbookOption(questionId, optionKey) {
 async function submitWrongbookQuestion(questionId) {
   const question = getQuestionById(questionId);
   const draft = getWrongbookDraft(questionId);
-  if (!draft.selected) {
+  if (!canSubmitRecord(question, draft)) {
     return;
   }
 
   draft.checked = true;
-  draft.is_correct = question.correct_option ? draft.selected === question.correct_option : null;
+  draft.is_correct = evaluateQuestionResponse(question, draft);
 
   const record = getRecord(questionId);
   record.selected = draft.selected;
+  record.response_text = draft.response_text || "";
   record.checked_at = new Date().toISOString();
   record.attempt_count += 1;
   record.is_correct = draft.is_correct;
@@ -1328,6 +1913,7 @@ async function submitWrongbookQuestion(questionId) {
   await logEvent("wrongbook_submitted", {
     question_id: questionId,
     selected: draft.selected,
+    response_text: draft.response_text,
     is_correct: draft.is_correct,
   });
   await persistProgress();
@@ -1362,6 +1948,85 @@ async function removeFromWrongbook(questionId) {
   await logEvent("wrongbook_removed", { question_id: questionId });
   await persistProgress();
   initializeWrongbookQuestion(true);
+  renderApp();
+}
+
+function selectMaterialsBucket(bucketName) {
+  state.materialsBucket = bucketName;
+  state.selectedMaterialSetId = getMaterialEntries(bucketName)[0]?.id || null;
+  state.selectedMaterialGroupId = null;
+  state.materialQuestionId = null;
+  initializeMaterialQuestion(true);
+  renderApp();
+}
+
+function selectMaterialSet(setId) {
+  state.selectedMaterialSetId = setId;
+  state.selectedMaterialGroupId = null;
+  state.materialQuestionId = null;
+  initializeMaterialQuestion(true);
+  renderApp();
+}
+
+function selectMaterialGroup(groupId) {
+  state.selectedMaterialGroupId = groupId;
+  state.materialQuestionId = null;
+  initializeMaterialQuestion(true);
+  renderApp();
+}
+
+async function selectMaterialOption(questionId, optionKey) {
+  const record = getRecord(questionId);
+  record.selected = optionKey;
+  record.response_text = "";
+  await persistProgress();
+  renderApp();
+}
+
+async function updateMaterialResponse(questionId, value) {
+  const record = getRecord(questionId);
+  record.response_text = value;
+  record.selected = null;
+  await persistProgress();
+  renderApp();
+}
+
+async function submitMaterialQuestion(questionId) {
+  const question = getQuestionById(questionId);
+  const record = getRecord(questionId);
+  if (!question || !canSubmitRecord(question, record)) {
+    return;
+  }
+
+  record.checked_at = new Date().toISOString();
+  record.attempt_count += 1;
+  record.is_correct = evaluateQuestionResponse(question, record);
+
+  await logEvent("material_submitted", {
+    question_id: questionId,
+    bucket: state.materialsBucket,
+    selected: record.selected,
+    response_text: record.response_text,
+    is_correct: record.is_correct,
+  });
+  await persistProgress();
+  renderApp();
+}
+
+function jumpMaterialQuestion(questionId) {
+  state.materialQuestionId = questionId;
+  renderApp();
+}
+
+function goToNextMaterialQuestion() {
+  const entry = getMaterialEntry();
+  const group = getMaterialGroup(entry);
+  if (!entry || !group) {
+    return;
+  }
+  const questions = getMaterialQuestionListForGroup(entry, group.id);
+  const index = questions.findIndex((question) => question.id === state.materialQuestionId);
+  state.materialQuestionId = index >= 0 ? questions[index + 1]?.id || null : questions[0]?.id || null;
   renderApp();
 }
 
@@ -1414,6 +2079,10 @@ async function submitMock() {
 }
 
 function startMock() {
+  if (!isYearMockCompatible(state.selectedYear)) {
+    renderApp();
+    return;
+  }
   const questions = getQuestionsForYear(state.selectedYear);
   state.view = "mock";
   state.mock = {
@@ -1446,6 +2115,9 @@ function selectYear(year) {
   clearPracticeAdvanceTimer();
   state.selectedYear = year;
   state.selectedGroupId = getGroupsForYear(year)[0]?.id || null;
+  if (state.view === "mock" && !isYearMockCompatible(year)) {
+    state.view = "practice";
+  }
   state.mock = null;
   state.wrongbookDrafts = {};
   initializePracticeQuestion(true);
@@ -1465,6 +2137,12 @@ function switchView(view) {
   state.view = view;
   if (view === "practice") {
     initializePracticeQuestion();
+  }
+  if (view === "materials") {
+    if (!state.selectedMaterialSetId) {
+      state.selectedMaterialSetId = getMaterialEntries()[0]?.id || null;
+    }
+    initializeMaterialQuestion();
   }
   if (view === "wrongbook") {
     initializeWrongbookQuestion();
@@ -1495,7 +2173,10 @@ async function bootstrap() {
     state.progress = mergeProgress(localProgress, remoteProgress);
     state.selectedYear = dataset.meta.available_years[0];
     state.selectedGroupId = getGroupsForYear(state.selectedYear)[0]?.id || null;
+    state.selectedMaterialSetId = getMaterialEntries("library")[0]?.id || null;
+    state.selectedMaterialGroupId = getMaterialGroups(getMaterialEntry(state.selectedMaterialSetId, "library"))[0]?.id || null;
     initializePracticeQuestion(true);
+    initializeMaterialQuestion(true);
     initializeWrongbookQuestion(true);
     setupWheelFallback();
     setupAdaptiveLayout();
@@ -1531,11 +2212,21 @@ window.appActions = {
   jumpWrongbookQuestion,
   goToNextWrongbookQuestion,
   removeFromWrongbook,
+  selectMaterialsBucket,
+  selectMaterialSet,
+  selectMaterialGroup,
+  selectMaterialOption,
+  updateMaterialResponse,
+  submitMaterialQuestion,
+  jumpMaterialQuestion,
+  goToNextMaterialQuestion,
   startMock,
   resetMock,
   selectMockOption,
   submitMock,
   jumpMockQuestion,
+  updatePracticeResponse,
+  updateWrongbookResponse,
 };
 
 window.addEventListener("beforeunload", clearPracticeAdvanceTimer);

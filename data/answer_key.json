@@ -120,7 +120,7 @@
     "explanation": "关系从句，动词 \"zusammenprallen\" 用 sein 完成时，\"der ... zusammengeprallt ist\"。"
   },
   "2019-61": {
-    "correct_option": "A",
+    "correct_option": "C",
     "explanation": "虚拟式表示与过去事实相反，\"Wenn ... könnte, hätte ...\" 正确。"
   },
   "2019-62": {
@@ -292,7 +292,7 @@
     "explanation": "\"nach den Angriffen\" 表示时间先后，对应 \"nachdem ... angegriffen worden sind\"。"
   },
   "2021-64": {
-    "correct_option": "B",
+    "correct_option": "A",
     "explanation": "关系代词 \"mit dem\" 指代 \"Klimapaket\"。"
   },
   "2021-65": {
@@ -444,7 +444,7 @@
     "explanation": "\"wodurch\" 表示通过什么，引导结果从句。"
   },
   "2022-62": {
-    "correct_option": "C",
+    "correct_option": "A",
     "explanation": "可分动词 \"schlussfolgern\" 的过去分词为 \"schlussgefolgert\"。"
   },
   "2022-63": {
@@ -478,5 +478,1400 @@
   "2022-70": {
     "correct_option": "B",
     "explanation": "原句 \"nie hatte ereignen dürfen\" 意为本不该发生，对应 \"hatte vermieden werden müssen\"。"
+  },
+  "2016-31": {
+    "display_answer": "erstarkt",
+    "accepted_answers": [
+      "erstarkt"
+    ]
+  },
+  "2016-32": {
+    "display_answer": "Makler",
+    "accepted_answers": [
+      "makler"
+    ]
+  },
+  "2016-33": {
+    "display_answer": "tiefsinnig",
+    "accepted_answers": [
+      "tiefsinnig"
+    ]
+  },
+  "2016-34": {
+    "display_answer": "verschlieBen",
+    "accepted_answers": [
+      "verschlieben"
+    ]
+  },
+  "2016-38": {
+    "display_answer": "Auflage",
+    "accepted_answers": [
+      "auflage"
+    ]
+  },
+  "2016-39": {
+    "display_answer": "gebieten",
+    "accepted_answers": [
+      "gebieten"
+    ]
+  },
+  "2016-40": {
+    "display_answer": "bediichtig",
+    "accepted_answers": [
+      "bediichtig"
+    ]
+  },
+  "2016-42": {
+    "display_answer": "Flinte",
+    "accepted_answers": [
+      "flinte"
+    ]
+  },
+  "2016-61": {
+    "correct_option": "A"
+  },
+  "2016-62": {
+    "correct_option": "A"
+  },
+  "2016-63": {
+    "correct_option": "A"
+  },
+  "2016-64": {
+    "correct_option": "A"
+  },
+  "2016-65": {
+    "correct_option": "A"
+  },
+  "2016-66": {
+    "correct_option": "B"
+  },
+  "2016-67": {
+    "correct_option": "D"
+  },
+  "2016-68": {
+    "correct_option": "A"
+  },
+  "2016-69": {
+    "correct_option": "A"
+  },
+  "2016-70": {
+    "correct_option": "B"
+  },
+  "2016-71": {
+    "correct_option": "A"
+  },
+  "2016-72": {
+    "correct_option": "A"
+  },
+  "2016-73": {
+    "correct_option": "B"
+  },
+  "2017-31": {
+    "correct_option": "B"
+  },
+  "2017-32": {
+    "correct_option": "D"
+  },
+  "2017-33": {
+    "correct_option": "B"
+  },
+  "2017-34": {
+    "correct_option": "C"
+  },
+  "2017-35": {
+    "correct_option": "B"
+  },
+  "2017-36": {
+    "correct_option": "B"
+  },
+  "2017-37": {
+    "correct_option": "A"
+  },
+  "2017-38": {
+    "correct_option": "D"
+  },
+  "2017-39": {
+    "correct_option": "A"
+  },
+  "2017-40": {
+    "correct_option": "C"
+  },
+  "2017-41": {
+    "correct_option": "A"
+  },
+  "2017-42": {
+    "correct_option": "D"
+  },
+  "2017-43": {
+    "correct_option": "D"
+  },
+  "2017-44": {
+    "correct_option": "A"
+  },
+  "2017-45": {
+    "correct_option": "D"
+  },
+  "2017-46": {
+    "correct_option": "D"
+  },
+  "2017-47": {
+    "correct_option": "D"
+  },
+  "2017-48": {
+    "correct_option": "D"
+  },
+  "2017-49": {
+    "correct_option": "D"
+  },
+  "2017-50": {
+    "correct_option": "D"
+  },
+  "2017-51": {
+    "correct_option": "D"
+  },
+  "2017-52": {
+    "correct_option": "D"
+  },
+  "2017-53": {
+    "correct_option": "D"
+  },
+  "2017-54": {
+    "correct_option": "D"
+  },
+  "2017-55": {
+    "correct_option": "D"
+  },
+  "2017-56": {
+    "correct_option": "A"
+  },
+  "2017-57": {
+    "correct_option": "A"
+  },
+  "2017-58": {
+    "correct_option": "B"
+  },
+  "2017-59": {
+    "correct_option": "A"
+  },
+  "2017-60": {
+    "correct_option": "D"
+  },
+  "2017-61": {
+    "correct_option": "A"
+  },
+  "2017-62": {
+    "correct_option": "B"
+  },
+  "2017-63": {
+    "correct_option": "D"
+  },
+  "2017-64": {
+    "correct_option": "D"
+  },
+  "2017-65": {
+    "correct_option": "B"
+  },
+  "2017-66": {
+    "correct_option": "A"
+  },
+  "2017-67": {
+    "correct_option": "D"
+  },
+  "2017-68": {
+    "correct_option": "B"
+  },
+  "2017-69": {
+    "correct_option": "C"
+  },
+  "2017-70": {
+    "correct_option": "C"
+  },
+  "2018-31": {
+    "correct_option": "B"
+  },
+  "2018-32": {
+    "correct_option": "A"
+  },
+  "2018-33": {
+    "correct_option": "A"
+  },
+  "2018-34": {
+    "correct_option": "B"
+  },
+  "2018-35": {
+    "correct_option": "B"
+  },
+  "2018-36": {
+    "correct_option": "D"
+  },
+  "2018-37": {
+    "correct_option": "C"
+  },
+  "2018-38": {
+    "correct_option": "A"
+  },
+  "2018-39": {
+    "correct_option": "D"
+  },
+  "2018-40": {
+    "correct_option": "B"
+  },
+  "2018-42": {
+    "correct_option": "C"
+  },
+  "2018-43": {
+    "correct_option": "A"
+  },
+  "2018-44": {
+    "correct_option": "D"
+  },
+  "2018-45": {
+    "correct_option": "D"
+  },
+  "2018-46": {
+    "correct_option": "A"
+  },
+  "2018-47": {
+    "correct_option": "C"
+  },
+  "2018-48": {
+    "correct_option": "D"
+  },
+  "2018-49": {
+    "correct_option": "C"
+  },
+  "2018-50": {
+    "correct_option": "D"
+  },
+  "2018-51": {
+    "correct_option": "D"
+  },
+  "2018-52": {
+    "correct_option": "D"
+  },
+  "2018-53": {
+    "correct_option": "A"
+  },
+  "2018-54": {
+    "correct_option": "C"
+  },
+  "2018-55": {
+    "correct_option": "D"
+  },
+  "2018-56": {
+    "correct_option": "B"
+  },
+  "2018-57": {
+    "correct_option": "C"
+  },
+  "2018-58": {
+    "correct_option": "B"
+  },
+  "2018-59": {
+    "correct_option": "A"
+  },
+  "2018-60": {
+    "correct_option": "B"
+  },
+  "2018-61": {
+    "correct_option": "C"
+  },
+  "2018-62": {
+    "correct_option": "A"
+  },
+  "2018-63": {
+    "correct_option": "D"
+  },
+  "2018-64": {
+    "correct_option": "A"
+  },
+  "2018-65": {
+    "correct_option": "C"
+  },
+  "2018-66": {
+    "correct_option": "A"
+  },
+  "2018-67": {
+    "correct_option": "A"
+  },
+  "2018-68": {
+    "correct_option": "C"
+  },
+  "2018-69": {
+    "correct_option": "A"
+  },
+  "2018-70": {
+    "correct_option": "A"
+  },
+  "2025-31": {
+    "correct_option": "D"
+  },
+  "2025-32": {
+    "correct_option": "B"
+  },
+  "2025-33": {
+    "correct_option": "A"
+  },
+  "2025-34": {
+    "correct_option": "B"
+  },
+  "2025-35": {
+    "correct_option": "C"
+  },
+  "2025-36": {
+    "correct_option": "A"
+  },
+  "2025-37": {
+    "correct_option": "B"
+  },
+  "2025-38": {
+    "correct_option": "D"
+  },
+  "2025-40": {
+    "correct_option": "C"
+  },
+  "2025-41": {
+    "correct_option": "C"
+  },
+  "2025-42": {
+    "correct_option": "A"
+  },
+  "2025-43": {
+    "correct_option": "C"
+  },
+  "2025-44": {
+    "correct_option": "C"
+  },
+  "2025-45": {
+    "correct_option": "D"
+  },
+  "2025-46": {
+    "correct_option": "A"
+  },
+  "2025-47": {
+    "correct_option": "D"
+  },
+  "2025-48": {
+    "correct_option": "C"
+  },
+  "2025-49": {
+    "correct_option": "B"
+  },
+  "2025-50": {
+    "correct_option": "B"
+  },
+  "2025-51": {
+    "correct_option": "A"
+  },
+  "2025-52": {
+    "correct_option": "C"
+  },
+  "2025-53": {
+    "correct_option": "D"
+  },
+  "2025-54": {
+    "correct_option": "B"
+  },
+  "2025-55": {
+    "correct_option": "A"
+  },
+  "2025-57": {
+    "correct_option": "A"
+  },
+  "2025-58": {
+    "correct_option": "A"
+  },
+  "2025-59": {
+    "correct_option": "C"
+  },
+  "2025-60": {
+    "correct_option": "B"
+  },
+  "2025-61": {
+    "correct_option": "A"
+  },
+  "2025-62": {
+    "correct_option": "B"
+  },
+  "2025-63": {
+    "correct_option": "C"
+  },
+  "2025-64": {
+    "correct_option": "B"
+  },
+  "2025-65": {
+    "correct_option": "C"
+  },
+  "2025-67": {
+    "correct_option": "A"
+  },
+  "2025-68": {
+    "correct_option": "D"
+  },
+  "2025-69": {
+    "correct_option": "C"
+  },
+  "2025-70": {
+    "correct_option": "B"
+  },
+  "2018-reading-71": {
+    "correct_option": "B"
+  },
+  "2018-reading-72": {
+    "correct_option": "D"
+  },
+  "2018-reading-73": {
+    "correct_option": "B"
+  },
+  "2018-reading-74": {
+    "correct_option": "C"
+  },
+  "2018-reading-75": {
+    "correct_option": "A"
+  },
+  "2018-reading-76": {
+    "correct_option": "A"
+  },
+  "2018-reading-77": {
+    "correct_option": "B"
+  },
+  "2018-reading-78": {
+    "correct_option": "A"
+  },
+  "2018-reading-79": {
+    "correct_option": "A"
+  },
+  "2018-reading-80": {
+    "correct_option": "A"
+  },
+  "2018-reading-81": {
+    "correct_option": "D"
+  },
+  "2018-reading-82": {
+    "correct_option": "A"
+  },
+  "2018-reading-83": {
+    "correct_option": "B"
+  },
+  "2018-reading-84": {
+    "correct_option": "A"
+  },
+  "2018-reading-85": {
+    "correct_option": "F"
+  },
+  "2018-landeskunde-86": {
+    "correct_option": "A"
+  },
+  "2018-landeskunde-87": {
+    "correct_option": "A"
+  },
+  "2018-landeskunde-88": {
+    "correct_option": "A"
+  },
+  "2018-landeskunde-89": {
+    "correct_option": "A"
+  },
+  "2018-landeskunde-90": {
+    "correct_option": "R"
+  },
+  "2018-landeskunde-91": {
+    "correct_option": "B"
+  },
+  "2018-landeskunde-92": {
+    "correct_option": "A"
+  },
+  "2018-landeskunde-93": {
+    "correct_option": "C"
+  },
+  "2018-landeskunde-95": {
+    "correct_option": "B"
+  },
+  "2018-landeskunde-96": {
+    "correct_option": "A"
+  },
+  "2018-landeskunde-97": {
+    "correct_option": "B"
+  },
+  "2018-landeskunde-98": {
+    "correct_option": "A"
+  },
+  "2018-landeskunde-99": {
+    "correct_option": "A"
+  },
+  "2018-landeskunde-100": {
+    "correct_option": "B"
+  },
+  "2018-landeskunde-101": {
+    "correct_option": "C"
+  },
+  "2018-landeskunde-102": {
+    "correct_option": "F"
+  },
+  "2018-landeskunde-103": {
+    "correct_option": "A"
+  },
+  "2018-landeskunde-104": {
+    "correct_option": "A"
+  },
+  "2025-listening-11": {
+    "correct_option": "D"
+  },
+  "2025-listening-12": {
+    "correct_option": "B"
+  },
+  "2025-listening-13": {
+    "correct_option": "A"
+  },
+  "2025-listening-14": {
+    "correct_option": "A"
+  },
+  "2025-listening-15": {
+    "correct_option": "B"
+  },
+  "2025-listening-16": {
+    "correct_option": "C"
+  },
+  "2025-listening-17": {
+    "correct_option": "D"
+  },
+  "2025-listening-18": {
+    "correct_option": "A"
+  },
+  "2025-listening-19": {
+    "correct_option": "A"
+  },
+  "2025-listening-20": {
+    "correct_option": "C"
+  },
+  "2025-listening-24": {
+    "correct_option": "B"
+  },
+  "2025-listening-25": {
+    "correct_option": "B"
+  },
+  "2025-listening-26": {
+    "correct_option": "A"
+  },
+  "2025-listening-27": {
+    "correct_option": "C"
+  },
+  "2025-listening-28": {
+    "correct_option": "D"
+  },
+  "2025-listening-29": {
+    "correct_option": "D"
+  },
+  "2025-listening-30": {
+    "correct_option": "A"
+  },
+  "2025-reading-72": {
+    "correct_option": "A"
+  },
+  "2025-reading-73": {
+    "correct_option": "C"
+  },
+  "2025-reading-76": {
+    "correct_option": "D"
+  },
+  "2025-reading-78": {
+    "correct_option": "D"
+  },
+  "2025-reading-80": {
+    "correct_option": "B"
+  },
+  "2025-reading-81": {
+    "correct_option": "F"
+  },
+  "2025-landeskunde-86": {
+    "correct_option": "R"
+  },
+  "2025-landeskunde-87": {
+    "correct_option": "B"
+  },
+  "exercise-2023-paper-10": {
+    "correct_option": "A"
+  },
+  "exercise-2023-paper-70": {
+    "correct_option": "A"
+  },
+  "exercise-2023-paper-77": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-26": {
+    "correct_option": "C"
+  },
+  "exercise-country-1-2-30": {
+    "correct_option": "D"
+  },
+  "exercise-country-1-2-34": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-37": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-45": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-49": {
+    "correct_option": "C"
+  },
+  "exercise-country-1-2-51": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-56": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-57": {
+    "correct_option": "D"
+  },
+  "exercise-country-1-3-1": {
+    "correct_option": "F"
+  },
+  "exercise-country-1-3-2": {
+    "correct_option": "F"
+  },
+  "exercise-country-1-3-3": {
+    "correct_option": "R"
+  },
+  "exercise-country-1-3-7": {
+    "correct_option": "F"
+  },
+  "exercise-country-1-3-13": {
+    "correct_option": "F"
+  },
+  "exercise-country-1-3-16": {
+    "correct_option": "F"
+  },
+  "exercise-country-1-3-21": {
+    "correct_option": "R"
+  },
+  "exercise-country-1-3-29": {
+    "correct_option": "F"
+  },
+  "exercise-country-1-3-31": {
+    "correct_option": "F"
+  },
+  "exercise-country-1-3-4": {
+    "correct_option": "C"
+  },
+  "exercise-country-1-3-6": {
+    "correct_option": "C"
+  },
+  "exercise-country-1-3-11": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-1-16": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-1-18": {
+    "correct_option": "A"
+  },
+  "exercise-country-2-1-22": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-1-25": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-1-29": {
+    "correct_option": "A"
+  },
+  "exercise-country-2-1-35": {
+    "correct_option": "A"
+  },
+  "exercise-country-2-1-46": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-1-48": {
+    "correct_option": "A"
+  },
+  "exercise-country-2-1-61": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-2-66": {
+    "correct_option": "A"
+  },
+  "exercise-country-2-2-1": {
+    "correct_option": "A"
+  },
+  "exercise-country-2-2-2": {
+    "correct_option": "F"
+  },
+  "exercise-country-2-2-4": {
+    "correct_option": "F"
+  },
+  "exercise-country-2-2-8": {
+    "correct_option": "F"
+  },
+  "exercise-country-2-2-9": {
+    "correct_option": "F"
+  },
+  "exercise-country-2-2-13": {
+    "correct_option": "R"
+  },
+  "exercise-country-2-2-14": {
+    "correct_option": "F"
+  },
+  "exercise-country-2-2-15": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-1-22": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-1-26": {
+    "correct_option": "R"
+  },
+  "exercise-country-3-1-27": {
+    "correct_option": "R"
+  },
+  "exercise-country-3-1-7": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-1-9": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-1-15": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-1-19": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-1-20": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-1-21": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-1-30": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-37": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-2-39": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-2-40": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-2-45": {
+    "correct_option": "R"
+  },
+  "exercise-country-3-2-46": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-47": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-49": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-54": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-59": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-2-1": {
+    "correct_option": "R"
+  },
+  "exercise-country-3-2-3": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-5": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-2-8": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-2-13": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-16": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-3-27": {
+    "correct_option": "R"
+  },
+  "exercise-country-3-3-1": {
+    "correct_option": "B"
+  },
+  "exercise-country-3-3-2": {
+    "correct_option": "D"
+  },
+  "exercise-country-3-3-3": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-3-13": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-4-36": {
+    "correct_option": "B"
+  },
+  "exercise-country-3-4-41": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-4-65": {
+    "correct_option": "B"
+  },
+  "exercise-country-3-4-8": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-5-27": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-6-8": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-7-27": {
+    "correct_option": "R"
+  },
+  "exercise-country-5-1-21": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-1-24": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-1-30": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-1-31": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-1-33": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-1-34": {
+    "correct_option": "B"
+  },
+  "exercise-country-5-1-1": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-1-12": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-1-17": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-1-19": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-1-28": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-1-37": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-2-40": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-2-42": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-2-48": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-2-49": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-2-50": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-2-58": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-2-60": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-2-2": {
+    "correct_option": "R"
+  },
+  "exercise-country-5-2-3": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-2-6": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-2-9": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-2-10": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-2-13": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-2-15": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-2-18": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-3-31": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-3-3": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-3-5": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-3-10": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-3-13": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-3-19": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-3-25": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-4-40": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-4-64": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-4-6": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-4-15": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-5-34": {
+    "correct_option": "D"
+  },
+  "exercise-country-5-5-16": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-6-44": {
+    "correct_option": "B"
+  },
+  "exercise-country-5-6-53": {
+    "correct_option": "B"
+  },
+  "exercise-country-5-6-66": {
+    "correct_option": "D"
+  },
+  "exercise-country-6-1-14": {
+    "correct_option": "A"
+  },
+  "exercise-country-6-1-17": {
+    "correct_option": "A"
+  },
+  "exercise-country-6-1-30": {
+    "correct_option": "A"
+  },
+  "exercise-country-6-1-38": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-1-41": {
+    "correct_option": "A"
+  },
+  "exercise-country-6-1-48": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-2-57": {
+    "correct_option": "A"
+  },
+  "exercise-country-6-2-58": {
+    "correct_option": "A"
+  },
+  "exercise-country-6-2-59": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-2-60": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-2-1": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-2": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-7": {
+    "correct_option": "A"
+  },
+  "exercise-country-6-2-13": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-16": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-21": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-25": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-29": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-32": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-3-3": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-3-11": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-3-15": {
+    "correct_option": "B"
+  },
+  "exercise-country-6-3-17": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-3-23": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-3-30": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-4-65": {
+    "correct_option": "B"
+  },
+  "exercise-country-6-4-66": {
+    "correct_option": "D"
+  },
+  "exercise-country-8-1-2": {
+    "correct_option": "F"
+  },
+  "exercise-country-8-1-5": {
+    "correct_option": "F"
+  },
+  "exercise-country-8-1-7": {
+    "correct_option": "F"
+  },
+  "exercise-country-8-1-12": {
+    "correct_option": "F"
+  },
+  "exercise-country-8-1-17": {
+    "correct_option": "F"
+  },
+  "exercise-2023-paper-68": {
+    "correct_option": "A"
+  },
+  "exercise-2023-paper-75": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-10": {
+    "correct_option": "C"
+  },
+  "exercise-country-1-2-14": {
+    "correct_option": "D"
+  },
+  "exercise-country-1-2-18": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-21": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-29": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-33": {
+    "correct_option": "C"
+  },
+  "exercise-country-1-2-35": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-40": {
+    "correct_option": "A"
+  },
+  "exercise-country-1-2-41": {
+    "correct_option": "D"
+  },
+  "exercise-country-1-3-12": {
+    "correct_option": "F"
+  },
+  "exercise-country-1-3-15": {
+    "correct_option": "F"
+  },
+  "exercise-country-1-3-20": {
+    "correct_option": "R"
+  },
+  "exercise-country-1-3-27": {
+    "correct_option": "F"
+  },
+  "exercise-country-1-3-36": {
+    "correct_option": "C"
+  },
+  "exercise-country-1-3-37": {
+    "correct_option": "C"
+  },
+  "exercise-country-1-3-43": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-1-4": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-1-6": {
+    "correct_option": "A"
+  },
+  "exercise-country-2-1-10": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-1-13": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-1-17": {
+    "correct_option": "A"
+  },
+  "exercise-country-2-1-23": {
+    "correct_option": "C"
+  },
+  "exercise-country-2-1-33": {
+    "correct_option": "A"
+  },
+  "exercise-country-2-2-3": {
+    "correct_option": "F"
+  },
+  "exercise-country-2-2-5": {
+    "correct_option": "F"
+  },
+  "exercise-country-2-2-10": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-1-6": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-1-10": {
+    "correct_option": "R"
+  },
+  "exercise-country-3-1-11": {
+    "correct_option": "R"
+  },
+  "exercise-country-3-1-23": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-1-25": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-1-31": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-1-35": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-1-36": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-1-37": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-1-38": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-1-46": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-6": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-11": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-12": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-15": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-20": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-2-25": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-2-33": {
+    "correct_option": "R"
+  },
+  "exercise-country-3-2-35": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-2-48": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-3-9": {
+    "correct_option": "R"
+  },
+  "exercise-country-3-3-17": {
+    "correct_option": "B"
+  },
+  "exercise-country-3-3-18": {
+    "correct_option": "D"
+  },
+  "exercise-country-3-3-19": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-3-29": {
+    "correct_option": "A"
+  },
+  "exercise-country-3-4-1": {
+    "correct_option": "B"
+  },
+  "exercise-country-3-4-6": {
+    "correct_option": "C"
+  },
+  "exercise-country-3-4-29": {
+    "correct_option": "B"
+  },
+  "exercise-country-3-4-38": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-5-7": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-6-37": {
+    "correct_option": "F"
+  },
+  "exercise-country-3-7-6": {
+    "correct_option": "R"
+  },
+  "exercise-country-5-1-2": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-1-5": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-1-11": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-1-14": {
+    "correct_option": "R"
+  },
+  "exercise-country-5-1-15": {
+    "correct_option": "B"
+  },
+  "exercise-country-5-1-16": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-1-26": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-1-41": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-1-50": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-2-4": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-2-11": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-2-12": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-2-19": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-2-21": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-2-29": {
+    "correct_option": "R"
+  },
+  "exercise-country-5-2-30": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-2-33": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-2-36": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-2-37": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-2-45": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-3-8": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-3-14": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-3-16": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-3-21": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-3-24": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-3-30": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-3-36": {
+    "correct_option": "A"
+  },
+  "exercise-country-5-4-1": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-4-24": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-4-32": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-4-41": {
+    "correct_option": "F"
+  },
+  "exercise-country-5-5-10": {
+    "correct_option": "D"
+  },
+  "exercise-country-5-5-24": {
+    "correct_option": "C"
+  },
+  "exercise-country-5-6-2": {
+    "correct_option": "B"
+  },
+  "exercise-country-5-6-11": {
+    "correct_option": "B"
+  },
+  "exercise-country-5-6-24": {
+    "correct_option": "D"
+  },
+  "exercise-country-6-2-8": {
+    "correct_option": "A"
+  },
+  "exercise-country-6-2-9": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-2-10": {
+    "correct_option": "C"
+  },
+  "exercise-country-6-2-17": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-18": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-23": {
+    "correct_option": "R"
+  },
+  "exercise-country-6-2-37": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-41": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-45": {
+    "correct_option": "F"
+  },
+  "exercise-country-6-2-48": {
+    "correct_option": "R"
+  },
+  "exercise-country-6-4-15": {
+    "correct_option": "B"
+  },
+  "exercise-country-6-4-16": {
+    "correct_option": "D"
   }
 }

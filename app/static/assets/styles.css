@@ -574,6 +574,77 @@ body {
   margin-top: 4px;
 }
 
+.prompt-block,
+.subprompt-item,
+.text-response-shell,
+.audio-player-card {
+  border-radius: 18px;
+  border: 1px solid rgba(31, 47, 40, 0.1);
+  background: rgba(255, 250, 240, 0.9);
+}
+
+.prompt-block {
+  padding: 16px 18px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.subprompt-list {
+  display: grid;
+  gap: 10px;
+}
+
+.subprompt-item {
+  padding: 14px 16px;
+  line-height: 1.6;
+}
+
+.text-response-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+}
+
+.text-response-input {
+  width: 100%;
+  border: 1px solid rgba(31, 47, 40, 0.12);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: rgba(255, 252, 246, 0.96);
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.text-response-input:focus {
+  outline: none;
+  border-color: rgba(29, 107, 87, 0.42);
+  box-shadow: 0 0 0 4px rgba(29, 107, 87, 0.08);
+}
+
+.text-response-input.multiline {
+  min-height: 180px;
+}
+
+.audio-player-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+}
+
+.audio-player-card audio {
+  width: min(460px, 100%);
+}
+
+.bucket-tabs,
+.material-set-tabs {
+  align-items: center;
+}
+
 .option-button {
   width: 100%;
   text-align: left;
@@ -960,5 +1031,10 @@ body {
   .question-stage-card {
     height: auto;
     max-height: none;
+  }
+
+  .audio-player-card {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
