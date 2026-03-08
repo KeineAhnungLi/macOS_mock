@@ -18,16 +18,9 @@ on:
 
 jobs:
   build-macos:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - target_arch: arm64
-            runner: macos-14
-          - target_arch: x86_64
-            runner: macos-13
-
-    runs-on: ${{ matrix.runner }}
+    runs-on: macos-14
+    env:
+      TARGET_ARCH: universal2
 
     steps:
       - name: Check out repository
@@ -40,7 +33,7 @@ jobs:
 
       - name: Environment info
         run: |
-          echo "Target arch: ${{ matrix.target_arch }}"
+          echo "Target arch: $TARGET_ARCH"
           sw_vers
           uname -m
           python3 --version
@@ -51,8 +44,6 @@ jobs:
         run: chmod +x build_macos_app.sh build_macos_pkg.sh build_macos_all.sh packaging/macos/scripts/preinstall packaging/macos/scripts/postinstall
 
       - name: Build macOS app
-        env:
-          TARGET_ARCH: ${{ matrix.target_arch }}
         run: |
           mkdir -p release/macos
           set +e
@@ -80,20 +71,14 @@ jobs:
           fi
 
       - name: Run self-check
-        env:
-          TARGET_ARCH: ${{ matrix.target_arch }}
         run: ./release/macos/${TARGET_ARCH}/dist/TEM8Practice.app/Contents/MacOS/TEM8Practice --self-check-json | tee ./release/macos/self-check-${TARGET_ARCH}.json
 
       - name: Build macOS pkg
-        env:
-          TARGET_ARCH: ${{ matrix.target_arch }}
         run: |
           set -o pipefail
           ./build_macos_pkg.sh 2>&1 | tee release/macos/build-pkg.log
 
       - name: Pack artifacts
-        env:
-          TARGET_ARCH: ${{ matrix.target_arch }}
         run: |
           mkdir -p release/macos/${TARGET_ARCH}/artifacts
           ditto -c -k --sequesterRsrc --keepParent "release/macos/${TARGET_ARCH}/dist/TEM8Practice.app" "release/macos/${TARGET_ARCH}/artifacts/TEM8Practice-${TARGET_ARCH}.app.zip"
@@ -104,16 +89,16 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: TEM8Practice-macos-diagnostics-${{ matrix.target_arch }}
+          name: TEM8Practice-macos-diagnostics-${{ env.TARGET_ARCH }}
           path: |
             release/macos/build-app.log
             release/macos/build-pkg.log
-            release/macos/self-check-${{ matrix.target_arch }}.json
+            release/macos/self-check-${{ env.TARGET_ARCH }}.json
           if-no-files-found: warn
 
       - name: Upload macOS artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: TEM8Practice-macos-${{ matrix.target_arch }}
-          path: release/macos/${{ matrix.target_arch }}/artifacts/*
+          name: TEM8Practice-macos-${{ env.TARGET_ARCH }}
+          path: release/macos/${{ env.TARGET_ARCH }}/artifacts/*
           if-no-files-found: error

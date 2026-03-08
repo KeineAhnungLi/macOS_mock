@@ -13,17 +13,17 @@
 
 或者反过来下载错了架构。
 
-## 以后应该怎么选安装包
+## 现在怎么发最稳
 
-我们现在会分别发布两套包：
+我已经把发布流程改成优先生成 `universal2`：
 
-- `TEM8Practice-macOS-arm64.pkg`
-- `TEM8Practice-macOS-x86_64.pkg`
+- `TEM8Practice-macOS-universal2.pkg`
+- `TEM8Practice-universal2.app.zip`
 
-以及两套 app 压缩包：
+`universal2` 目标就是同时兼容：
 
-- `TEM8Practice-arm64.app.zip`
-- `TEM8Practice-x86_64.app.zip`
+- Apple Silicon
+- Intel Mac
 
 ## 你的 Mac 属于哪种
 
@@ -40,10 +40,10 @@ uname -m
 
 ## 临时解决办法
 
-如果你现在手头只有错误架构的包：
+如果你现在手头只有旧的单架构包：
 
-1. 不要继续装这个包
-2. 等新的双架构 release
+1. 不要继续装旧包
+2. 改用新的 `universal2` 安装包
 3. 或先改用浏览器版 / 云端静态页版本
 
 ## 备注
