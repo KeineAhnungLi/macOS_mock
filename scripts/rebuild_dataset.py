@@ -1016,34 +1016,153 @@ def normalize_exercise_answer(value: str | None) -> str | None:
     return None
 
 
+EXERCISE_OPTION_LABELS = ("A", "B", "C", "D", "R", "F", "T")
+EXERCISE_BLEED_MARKERS = [
+    r"\bTeil\s+[IVX]+\b",
+    r"Übersetzen Sie",
+    r"Ubersetzen Sie",
+    r"Schreiben Sie",
+    r"Ergänzen Sie",
+    r"Erganzen Sie",
+    r"Setzen Sie",
+    r"Füllen Sie",
+    r"Fiillen Sie",
+    r"Fiullen Sie",
+    r"Was ist richtig\?",
+    r"Lesen Sie den Text",
+    r"Welche Lösung",
+    r"Welche Losung",
+    r"Formen Sie",
+    r"Verbinden Sie",
+    r"Formulieren Sie",
+    r"Wählen Sie",
+    r"Wahlen Sie",
+    r"Direkte Rede",
+    r"Welcher Nebensatz",
+    r"Das Eingeständnis der Unwissenheit",
+    r"Das Eingestandnis der Unwissenheit",
+    r"Der Erwerb neuer Fähigkeiten",
+    r"Der Erwerb neuer Fahigkeiten",
+]
+
+
+def trim_exercise_fragment(text: str) -> str:
+    value = normalize_text(text)
+    score_match = re.search(r"\(\s*\d+\s*P(?:x\d+\s*=\s*\d+\s*P)?\s*\)", value, re.IGNORECASE)
+    if score_match and score_match.start() > 4:
+        value = value[: score_match.start()]
+    for pattern in EXERCISE_BLEED_MARKERS:
+        match = re.search(pattern, value, re.IGNORECASE)
+        if match and match.start() > 8:
+            value = value[: match.start()]
+            break
+    value = re.sub(r"\s+", " ", value)
+    return value.strip(" ,.;:|/-")
+
+
+def normalize_exercise_option_ocr(text: str) -> str:
+    value = normalize_text(text)
+    fixes = [
+        (r"\bDB\b", "B"),
+        (r"\bBb\b", "B"),
+        (r"\bCc\b", "C"),
+        (r"(?<!\w)[€Є]\s*[.,:：]\s*", "C. "),
+        (r"(?<!\w)[€Є](?=\s+\S)", "C"),
+        (r"(?<=\b\d)\s+([A-DRFT])\s+(?=\d)", r" \1. "),
+    ]
+    for pattern, replacement in fixes:
+        value = re.sub(pattern, replacement, value, flags=re.IGNORECASE)
+    return value
+
+
+def trim_exercise_stem(text: str, number: int, question_type: str) -> str:
+    value = clean_block(text or "")
+    score_match = re.search(r"\(\s*\d+\s*P(?:x\d+\s*=\s*\d+\s*P)?\s*\)", value, re.IGNORECASE)
+    if score_match and score_match.start() > 16:
+        value = value[: score_match.start()]
+    if question_type == "single-choice":
+        option_match = re.search(r"(?<!\w)A\s*[.,:：]\s*\S", value, re.IGNORECASE)
+        if option_match:
+            if option_match.start() <= 3:
+                value = ""
+            elif option_match.start() > 20:
+                value = value[: option_match.start()]
+    if question_type != "prompt" and number:
+        for offset in range(1, 7):
+            match = re.search(rf"(?<!\d){number + offset}[.,]", value)
+            if match and match.start() > 24:
+                value = value[: match.start()]
+                break
+    value = trim_exercise_fragment(value)
+    return clean_block(value)
+
+
+def split_exercise_options(text: str) -> dict[str, str]:
+    normalized_text = normalize_exercise_option_ocr(text)
+    matches = list(
+        re.finditer(
+            r"(?<!\w)([A-DRFT])(?:\s*[.,:：]\s*|\s+)(?=\S)",
+            normalized_text,
+            re.IGNORECASE,
+        )
+    )
+    if not matches:
+        return {}
+
+    options: dict[str, str] = {}
+    for index, match in enumerate(matches):
+        label = match.group(1).upper()
+        if label == "T":
+            label = "R"
+        if label in options:
+            continue
+        start = match.end()
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(normalized_text)
+        fragment = trim_exercise_fragment(normalized_text[start:end])
+        if fragment:
+            options[label] = fragment
+    return options
+
+
 def normalize_exercise_options(raw_options: dict | None) -> dict[str, str]:
     if not raw_options:
         return {}
 
-    options: dict[str, str] = {}
+    combined_parts: list[str] = []
+    fallback: dict[str, str] = {}
+
     for raw_key, raw_value in raw_options.items():
         key = clean_inline(str(raw_key)).upper()
-        value = str(raw_value or "")
-        if key in {"A", "B", "C", "D"} and value:
-            options[key] = clean_inline(value)
+        if key == "T":
+            key = "R"
+        value = normalize_exercise_option_ocr(str(raw_value or ""))
+        if not value:
             continue
 
-        combined = f"{raw_key} {raw_value}"
-        matches = list(re.finditer(r"([A-D])[.:]?\s*(.+?)(?=(?:\s+[A-D][.:]?\s)|$)", combined, re.IGNORECASE))
-        for match in matches:
-            options[match.group(1).upper()] = clean_inline(match.group(2))
+        if key in EXERCISE_OPTION_LABELS:
+            fallback[key] = trim_exercise_fragment(value)
+            if not re.match(rf"^\s*{re.escape(key)}\s*[.:：]", value):
+                value = f"{key}. {value}"
+            combined_parts.append(value)
+        else:
+            combined_parts.append(f"{key} {value}".strip())
 
-    return {key: value for key, value in options.items() if value}
+    split = split_exercise_options(" ".join(combined_parts))
+    if split:
+        return {key: value for key, value in split.items() if value}
+    return {key: value for key, value in fallback.items() if value}
 
 
 def infer_exercise_question_type(section: str, number: int, options: dict[str, str], normalized_answer: str | None) -> str:
     section_text = (section or "").casefold()
-    if "schreib" in section_text or "ubersetzung" in section_text or "übersetzung" in section_text:
-        return "prompt"
-    if options:
-        return "single-choice"
     if normalized_answer in {"R", "F"}:
         return "true-false"
+    if options and set(options).issubset({"R", "F", "T"}):
+        return "true-false"
+    if options and (len(options) >= 2 or normalized_answer in {"A", "B", "C", "D"}):
+        return "single-choice"
+    if "schreib" in section_text or "ubersetzung" in section_text or "übersetzung" in section_text:
+        return "prompt"
     if "landeskunde" in section_text:
         return "true-false"
     if "hoerverstehen" in section_text or "hörverstehen" in section_text:
@@ -1064,7 +1183,7 @@ def build_exercise_question(
     options = normalize_exercise_options(raw_question.get("options") or {})
     normalized_answer = normalize_exercise_answer(raw_question.get("answer"))
     question_type = infer_exercise_question_type(section, original_number, options, normalized_answer)
-    stem = clean_block(raw_question.get("stem") or "")
+    stem = trim_exercise_stem(raw_question.get("stem") or "", original_number or number, question_type)
     question_id = f"{set_id}-{number}"
 
     payload = {

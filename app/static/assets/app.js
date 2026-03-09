@@ -13,6 +13,9 @@ const state = {
   selectedYear: null,
   selectedGroupId: null,
   materialsBucket: "library",
+  materialFilterYear: "all",
+  materialFilterCategory: "all",
+  materialFilterQuery: "",
   selectedMaterialSetId: null,
   selectedMaterialGroupId: null,
   materialQuestionId: null,
@@ -273,7 +276,7 @@ function getResolvedOptions(question) {
     return [];
   }
 
-  const needsRepair = rawOptions.some(([, value]) => /\b[B-HRFT]\s*[.:：]/.test(String(value)));
+  const needsRepair = rawOptions.some(([, value]) => /\b[B-HRFT]\s*[.,:：]/.test(String(value)));
   if (!needsRepair) {
     return rawOptions;
   }
@@ -290,7 +293,7 @@ function getResolvedOptions(question) {
     .replace(/\s+/g, " ");
 
   const repaired = [];
-  const pattern = /([A-HRFT])\s*[.:：]\s*/g;
+  const pattern = /([A-HRFT])(?:\s*[.,:：]|\s+)(?=\S)/g;
   const matches = Array.from(mergedText.matchAll(pattern));
   if (matches.length < 2) {
     return rawOptions;
@@ -397,8 +400,85 @@ function getMaterialEntries(bucketName = state.materialsBucket) {
   return bucketName === "exercise_sets" ? getExerciseEntries() : getLibraryEntries();
 }
 
+function getMaterialEntryYear(entry) {
+  return entry?.year ?? "misc";
+}
+
+function getMaterialEntryCategory(entry, bucketName = state.materialsBucket) {
+  if (!entry) {
+    return "misc";
+  }
+  if (bucketName === "library") {
+    return entry.section || "misc";
+  }
+  if (entry.id === "exercise-2023-paper") {
+    return "past-paper";
+  }
+  if (String(entry.id).startsWith("exercise-country-")) {
+    return "country-bank";
+  }
+  return entry.section || "misc";
+}
+
+function getMaterialCategoryLabel(category, bucketName = state.materialsBucket) {
+  const labels = {
+    listening: "听力",
+    reading: "阅读",
+    landeskunde: "国情",
+    translation: "翻译",
+    writing: "写作",
+    "past-paper": "真题练习",
+    "country-bank": "国情1000",
+    exercise: "练习",
+    misc: "其他",
+  };
+  return labels[category] || (bucketName === "library" ? "资料" : "练习");
+}
+
+function getFilteredMaterialEntries(bucketName = state.materialsBucket) {
+  const query = String(state.materialFilterQuery || "").trim().toLowerCase();
+  return getMaterialEntries(bucketName).filter((entry) => {
+    const matchesYear =
+      state.materialFilterYear === "all" ||
+      String(getMaterialEntryYear(entry)) === String(state.materialFilterYear);
+    const matchesCategory =
+      state.materialFilterCategory === "all" ||
+      getMaterialEntryCategory(entry, bucketName) === state.materialFilterCategory;
+    const haystacks = [entry.title, entry.instruction, entry.source_pdf, entry.section]
+      .filter(Boolean)
+      .map((item) => String(item).toLowerCase());
+    const matchesQuery = !query || haystacks.some((item) => item.includes(query));
+    return matchesYear && matchesCategory && matchesQuery;
+  });
+}
+
+function ensureMaterialSelection() {
+  const entries = getFilteredMaterialEntries();
+  const available = entries.find((entry) => entry.id === state.selectedMaterialSetId) ? entries : entries;
+  if (!available.length) {
+    state.selectedMaterialSetId = null;
+    state.selectedMaterialGroupId = null;
+    state.materialQuestionId = null;
+    return;
+  }
+  if (!available.some((entry) => entry.id === state.selectedMaterialSetId)) {
+    state.selectedMaterialSetId = available[0].id;
+    state.selectedMaterialGroupId = null;
+    state.materialQuestionId = null;
+  }
+}
+
+function getMaterialFilterMeta(bucketName = state.materialsBucket) {
+  const entries = getMaterialEntries(bucketName);
+  const years = Array.from(new Set(entries.map((entry) => String(getMaterialEntryYear(entry))))).sort();
+  const categories = Array.from(new Set(entries.map((entry) => getMaterialEntryCategory(entry, bucketName)))).sort((left, right) =>
+    getMaterialCategoryLabel(left, bucketName).localeCompare(getMaterialCategoryLabel(right, bucketName), "zh-Hans-CN"),
+  );
+  return { years, categories };
+}
+
 function getMaterialEntry(entryId = state.selectedMaterialSetId, bucketName = state.materialsBucket) {
-  return getMaterialEntries(bucketName).find((entry) => entry.id === entryId) || null;
+  return getFilteredMaterialEntries(bucketName).find((entry) => entry.id === entryId) || null;
 }
 
 function getMaterialGroups(entry = getMaterialEntry()) {
@@ -652,6 +732,7 @@ function initializePracticeQuestion(force = false) {
 }
 
 function initializeMaterialQuestion(force = false) {
+  ensureMaterialSelection();
   const entry = getMaterialEntry();
   if (!entry) {
     state.selectedMaterialGroupId = null;
@@ -1506,14 +1587,17 @@ function renderMaterialQuestionCard(entry, question, group) {
 }
 
 function renderMaterialsView() {
-  const entries = getMaterialEntries();
+  const entries = getFilteredMaterialEntries();
+  const totalEntries = getMaterialEntries().length;
+  const filterMeta = getMaterialFilterMeta();
+  ensureMaterialSelection();
   const entry = getMaterialEntry();
   if (!entries.length || !entry) {
     return `
       <section class="empty-card">
         <div class="question-type">Materials</div>
         <h3>暂无资料</h3>
-        <p class="muted">当前 bucket 下还没有可显示的题集。</p>
+        <p class="muted">当前筛选条件下没有可显示的题集。可以切换 bucket、年份或类别。</p>
       </section>
     `;
   }
@@ -1537,7 +1621,44 @@ function renderMaterialsView() {
       </div>
       <div class="group-tabs bucket-tabs">
         <button class="group-pill ${state.materialsBucket === "library" ? "active" : ""}" onclick="appActions.selectMaterialsBucket('library')">真题资料</button>
-        <button class="group-pill ${state.materialsBucket === "exercise_sets" ? "active" : ""}" onclick="appActions.selectMaterialsBucket('exercise_sets')">Exercise</button>
+        <button class="group-pill ${state.materialsBucket === "exercise_sets" ? "active" : ""}" onclick="appActions.selectMaterialsBucket('exercise_sets')">练习库</button>
+      </div>
+      <div class="filter-toolbar">
+        <label class="filter-search">
+          <span class="question-type">搜索题集</span>
+          <input
+            class="filter-search-input"
+            type="search"
+            value="${escapeHtml(state.materialFilterQuery)}"
+            placeholder="按标题 / PDF 名称筛选"
+            oninput="appActions.updateMaterialFilterQuery(this.value, this.selectionStart || 0)"
+          />
+        </label>
+        <div class="material-results-summary muted">当前显示 ${entries.length} / ${totalEntries} 套题集</div>
+      </div>
+      <div class="group-tabs filter-tabs">
+        <button class="group-pill ${state.materialFilterYear === "all" ? "active" : ""}" onclick="appActions.selectMaterialYearFilter('all')">全部年份</button>
+        ${filterMeta.years
+          .map(
+            (year) => `
+              <button class="group-pill ${String(state.materialFilterYear) === String(year) ? "active" : ""}" onclick="appActions.selectMaterialYearFilter('${year}')">
+                ${year === "misc" ? "未标年" : year}
+              </button>
+            `,
+          )
+          .join("")}
+      </div>
+      <div class="group-tabs filter-tabs">
+        <button class="group-pill ${state.materialFilterCategory === "all" ? "active" : ""}" onclick="appActions.selectMaterialCategoryFilter('all')">全部类别</button>
+        ${filterMeta.categories
+          .map(
+            (category) => `
+              <button class="group-pill ${state.materialFilterCategory === category ? "active" : ""}" onclick="appActions.selectMaterialCategoryFilter('${category}')">
+                ${getMaterialCategoryLabel(category)}
+              </button>
+            `,
+          )
+          .join("")}
       </div>
       <div class="group-tabs material-set-tabs">
         ${entries
@@ -1549,6 +1670,12 @@ function renderMaterialsView() {
             `,
           )
           .join("")}
+      </div>
+      <div class="material-meta-strip">
+        <span class="source-badge">${entry.year || "未标年"}</span>
+        <span class="source-badge">${getMaterialCategoryLabel(getMaterialEntryCategory(entry))}</span>
+        <span class="source-badge">${entry.question_count} 题</span>
+        ${entry.source_pdf ? `<span class="source-badge">${escapeHtml(entry.source_pdf.split("/").slice(-1)[0])}</span>` : ""}
       </div>
       ${renderMaterialAudio(entry)}
       ${
@@ -1953,11 +2080,50 @@ async function removeFromWrongbook(questionId) {
 
 function selectMaterialsBucket(bucketName) {
   state.materialsBucket = bucketName;
-  state.selectedMaterialSetId = getMaterialEntries(bucketName)[0]?.id || null;
+  state.materialFilterYear = "all";
+  state.materialFilterCategory = "all";
+  state.materialFilterQuery = "";
+  state.selectedMaterialSetId = getFilteredMaterialEntries(bucketName)[0]?.id || null;
   state.selectedMaterialGroupId = null;
   state.materialQuestionId = null;
   initializeMaterialQuestion(true);
   renderApp();
+}
+
+function selectMaterialYearFilter(value) {
+  state.materialFilterYear = value;
+  state.selectedMaterialSetId = null;
+  state.selectedMaterialGroupId = null;
+  state.materialQuestionId = null;
+  initializeMaterialQuestion(true);
+  renderApp();
+}
+
+function selectMaterialCategoryFilter(value) {
+  state.materialFilterCategory = value;
+  state.selectedMaterialSetId = null;
+  state.selectedMaterialGroupId = null;
+  state.materialQuestionId = null;
+  initializeMaterialQuestion(true);
+  renderApp();
+}
+
+function updateMaterialFilterQuery(value, caretPosition = 0) {
+  state.materialFilterQuery = String(value || "");
+  state.selectedMaterialSetId = null;
+  state.selectedMaterialGroupId = null;
+  state.materialQuestionId = null;
+  initializeMaterialQuestion(true);
+  renderApp();
+  window.requestAnimationFrame(() => {
+    const input = document.querySelector(".filter-search-input");
+    if (!(input instanceof HTMLInputElement)) {
+      return;
+    }
+    input.focus();
+    const offset = Math.max(0, Math.min(caretPosition, input.value.length));
+    input.setSelectionRange(offset, offset);
+  });
 }
 
 function selectMaterialSet(setId) {
@@ -2140,7 +2306,7 @@ function switchView(view) {
   }
   if (view === "materials") {
     if (!state.selectedMaterialSetId) {
-      state.selectedMaterialSetId = getMaterialEntries()[0]?.id || null;
+      state.selectedMaterialSetId = getFilteredMaterialEntries()[0]?.id || null;
     }
     initializeMaterialQuestion();
   }
@@ -2173,7 +2339,7 @@ async function bootstrap() {
     state.progress = mergeProgress(localProgress, remoteProgress);
     state.selectedYear = dataset.meta.available_years[0];
     state.selectedGroupId = getGroupsForYear(state.selectedYear)[0]?.id || null;
-    state.selectedMaterialSetId = getMaterialEntries("library")[0]?.id || null;
+    state.selectedMaterialSetId = getFilteredMaterialEntries("library")[0]?.id || null;
     state.selectedMaterialGroupId = getMaterialGroups(getMaterialEntry(state.selectedMaterialSetId, "library"))[0]?.id || null;
     initializePracticeQuestion(true);
     initializeMaterialQuestion(true);
@@ -2213,6 +2379,9 @@ window.appActions = {
   goToNextWrongbookQuestion,
   removeFromWrongbook,
   selectMaterialsBucket,
+  selectMaterialYearFilter,
+  selectMaterialCategoryFilter,
+  updateMaterialFilterQuery,
   selectMaterialSet,
   selectMaterialGroup,
   selectMaterialOption,

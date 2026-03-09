@@ -262,6 +262,44 @@ body {
   padding-bottom: 0;
 }
 
+.filter-tabs {
+  gap: 8px;
+}
+
+.filter-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.filter-search {
+  display: grid;
+  gap: 8px;
+  min-width: min(360px, 100%);
+  flex: 1 1 320px;
+}
+
+.filter-search-input {
+  width: 100%;
+  border: 1px solid rgba(31, 47, 40, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 250, 240, 0.96);
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--ink);
+}
+
+.filter-search-input:focus {
+  outline: 2px solid rgba(29, 107, 87, 0.18);
+  border-color: rgba(29, 107, 87, 0.26);
+}
+
+.material-results-summary {
+  white-space: nowrap;
+}
+
 .mode-tab,
 .year-pill,
 .group-pill,
@@ -373,6 +411,12 @@ body {
 .source-badge {
   background: rgba(31, 47, 40, 0.06);
   color: var(--muted);
+}
+
+.material-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .status-stack,
