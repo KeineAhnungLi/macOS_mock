@@ -33,6 +33,7 @@ Source: "dist\{#AppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\data\questions.json"; DestDir: "{app}\data"; Flags: ignoreversion
 Source: "dist\data\answer_key.json"; DestDir: "{app}\data"; Flags: ignoreversion
 Source: "dist\data\answer_key.template.json"; DestDir: "{app}\data"; Flags: ignoreversion
+Source: "dist\data\ai_review.template.json"; DestDir: "{app}\data"; Flags: ignoreversion
 Source: "dist\data\user_progress.json"; DestDir: "{app}\data"; Flags: ignoreversion onlyifdoesntexist
 
 [Dirs]

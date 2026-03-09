@@ -28,6 +28,8 @@ LOG_DIR = RUNTIME_ROOT / "logs"
 QUESTIONS_PATH = DATA_DIR / "questions.json"
 ANSWER_KEY_PATH = DATA_DIR / "answer_key.json"
 ANSWER_TEMPLATE_PATH = DATA_DIR / "answer_key.template.json"
+AI_REVIEW_SETTINGS_PATH = DATA_DIR / "ai_review.json"
+AI_REVIEW_TEMPLATE_PATH = DATA_DIR / "ai_review.template.json"
 PROGRESS_PATH = DATA_DIR / "user_progress.json"
 EVENT_LOG_PATH = LOG_DIR / "events.jsonl"
 
@@ -35,6 +37,7 @@ SEED_DATA_FILES = (
     "questions.json",
     "answer_key.json",
     "answer_key.template.json",
+    "ai_review.template.json",
 )
 
 

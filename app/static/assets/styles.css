@@ -146,6 +146,14 @@ body {
   border-radius: 22px;
 }
 
+html.safari-browser .panel,
+html.safari-browser .brand-card,
+html.safari-browser .workspace-card,
+html.safari-browser .question-stage-card,
+html.safari-browser .empty-card {
+  backdrop-filter: none;
+}
+
 .panel,
 .brand-card,
 .workspace-card,
@@ -202,6 +210,26 @@ body {
   position: sticky;
   top: 0;
   z-index: 3;
+}
+
+.browser-notice {
+  display: none;
+}
+
+.browser-notice.visible {
+  display: block;
+}
+
+.browser-notice-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(29, 107, 87, 0.16);
+  border-radius: 18px;
+  background: linear-gradient(125deg, rgba(240, 249, 245, 0.98), rgba(255, 250, 240, 0.96));
+  box-shadow: 0 10px 24px rgba(29, 107, 87, 0.08);
 }
 
 .hero h2 {
@@ -510,6 +538,12 @@ body {
   align-items: start;
 }
 
+.workspace-card.focus-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
 .workspace-card.solo-layout,
 .wrongbook-layout,
 .mock-layout {
@@ -526,6 +560,8 @@ body {
 }
 
 .workspace-card.solo-layout .question-stage-card,
+.workspace-card.focus-layout .question-stage-card,
+.workspace-card.focus-layout .pane-card,
 .wrongbook-layout .question-stage-card,
 .mock-layout .question-stage-card {
   width: min(1180px, 100%);
@@ -543,14 +579,75 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
   padding: 18px 18px 0;
+}
+
+.pane-card-head-compact {
+  padding-bottom: 8px;
 }
 
 .pane-scroll {
   flex: 1;
   overflow: visible;
   padding: 6px 18px 18px;
+}
+
+.focus-pane-card {
+  padding-bottom: 16px;
+}
+
+.focus-passage-copy {
+  padding: 0 18px 2px;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.passage-mode-toggle {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.toggle-chip {
+  border: 1px solid rgba(31, 47, 40, 0.12);
+  background: rgba(255, 252, 246, 0.96);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font: inherit;
+  cursor: pointer;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), color var(--transition);
+}
+
+.toggle-chip.active {
+  color: var(--accent-strong);
+  border-color: rgba(29, 107, 87, 0.24);
+  box-shadow: 0 8px 18px rgba(29, 107, 87, 0.12);
+}
+
+.toggle-chip:hover {
+  transform: translateY(-1px);
+}
+
+.passage-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.2em;
+  padding: 0.08em 0.36em;
+  margin: 0 0.1em;
+  border-radius: 999px;
+  background: rgba(29, 107, 87, 0.08);
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.passage-marker.active {
+  background: rgba(29, 107, 87, 0.18);
+  box-shadow: 0 0 0 2px rgba(29, 107, 87, 0.08);
 }
 
 .question-stage-card {
@@ -621,7 +718,8 @@ body {
 .prompt-block,
 .subprompt-item,
 .text-response-shell,
-.audio-player-card {
+.audio-player-card,
+.ai-review-card {
   border-radius: 18px;
   border: 1px solid rgba(31, 47, 40, 0.1);
   background: rgba(255, 250, 240, 0.9);
@@ -682,6 +780,38 @@ body {
 
 .audio-player-card audio {
   width: min(460px, 100%);
+}
+
+.ai-review-card {
+  display: grid;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.ai-review-card.error {
+  border-color: rgba(141, 47, 47, 0.24);
+  background: rgba(246, 237, 237, 0.96);
+}
+
+.ai-review-body {
+  display: grid;
+  gap: 12px;
+}
+
+.ai-review-summary {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.ai-review-section {
+  display: grid;
+  gap: 6px;
+}
+
+.ai-review-section ul {
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.6;
 }
 
 .bucket-tabs,
@@ -1067,6 +1197,7 @@ body {
 
   .workspace-card,
   .workspace-card.solo-layout,
+  .workspace-card.focus-layout,
   .workspace-card.split-layout,
   .wrongbook-layout,
   .mock-layout,
@@ -1077,6 +1208,7 @@ body {
     max-height: none;
   }
 
+  .browser-notice-card,
   .audio-player-card {
     flex-direction: column;
     align-items: stretch;

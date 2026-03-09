@@ -19,6 +19,7 @@ python -m PyInstaller `
   --add-data "data\questions.json;data" `
   --add-data "data\answer_key.json;data" `
   --add-data "data\answer_key.template.json;data" `
+  --add-data "data\ai_review.template.json;data" `
   --add-data "data\user_progress.json;data" `
   gateway.py
 
@@ -26,6 +27,7 @@ New-Item -ItemType Directory -Force -Path $distDataDir | Out-Null
 Copy-Item ".\data\questions.json" $distDataDir -Force
 Copy-Item ".\data\answer_key.json" $distDataDir -Force
 Copy-Item ".\data\answer_key.template.json" $distDataDir -Force
+Copy-Item ".\data\ai_review.template.json" $distDataDir -Force
 Copy-Item ".\data\user_progress.json" $distDataDir -Force
 
 if (Test-Path $distLogsDir) {

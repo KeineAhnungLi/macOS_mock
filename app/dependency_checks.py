@@ -59,7 +59,11 @@ def _browser_status() -> dict:
         "preferred": "chrome" if chrome_path else "default",
         "chrome_found": bool(chrome_path),
         "chrome_path": str(chrome_path) if chrome_path else None,
-        "message": "Chrome found." if chrome_path else "Chrome not found; default browser fallback will be used.",
+        "message": (
+            "Chrome found; macOS launcher will prefer Chrome."
+            if chrome_path
+            else "Chrome not found; Safari/default browser fallback will be used."
+        ),
     }
 
 

@@ -11,7 +11,9 @@ from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
+from app.ai_review import load_ai_settings, public_ai_settings, request_ai_review
 from app.runtime_paths import (
+    AI_REVIEW_SETTINGS_PATH,
     ANSWER_KEY_PATH,
     DATA_DIR,
     EVENT_LOG_PATH,
@@ -52,6 +54,7 @@ def setup_logging() -> logging.Logger:
 
 
 LOGGER = setup_logging()
+QUESTION_BUCKETS = ("years", "library", "exercise_sets")
 
 
 def load_json(path, default=None):
@@ -90,10 +93,11 @@ def origin_allowed(origin: str | None) -> bool:
 def load_dataset() -> dict:
     dataset = load_json(QUESTIONS_PATH, default={"meta": {}, "years": []}) or {"meta": {}, "years": []}
     answer_key = load_json(ANSWER_KEY_PATH, default={}) or {}
+    ai_settings = load_ai_settings(AI_REVIEW_SETTINGS_PATH)
     merged = deepcopy(dataset)
     answer_count = 0
 
-    for bucket_name in ("years", "library", "exercise_sets"):
+    for bucket_name in QUESTION_BUCKETS:
         for entry in merged.get(bucket_name, []):
             for question in entry.get("questions", []):
                 answer_entry = answer_key.get(question["id"], {})
@@ -107,14 +111,32 @@ def load_dataset() -> dict:
     merged.setdefault("meta", {})
     merged["meta"]["answer_count"] = answer_count
     merged["meta"]["answer_key_loaded"] = ANSWER_KEY_PATH.exists()
+    merged["meta"]["ai_review"] = public_ai_settings(ai_settings)
     return merged
 
 
 def dataset_question_count(dataset: dict) -> int:
     total = 0
-    for bucket_name in ("years", "library", "exercise_sets"):
+    for bucket_name in QUESTION_BUCKETS:
         total += sum(len(entry.get("questions", [])) for entry in dataset.get(bucket_name, []))
     return total
+
+
+def find_question_context(dataset: dict, question_id: str):
+    for bucket_name in QUESTION_BUCKETS:
+        for entry in dataset.get(bucket_name, []):
+            category = entry.get("section") or entry.get("category") or entry.get("subsection")
+            for question in entry.get("questions", []):
+                if question.get("id") == question_id:
+                    return question, {
+                        "bucket": bucket_name,
+                        "entry_id": entry.get("id"),
+                        "title": entry.get("title") or entry.get("label") or entry.get("instruction"),
+                        "instruction": entry.get("instruction"),
+                        "category": category,
+                        "year": entry.get("year"),
+                    }
+    return None, None
 
 
 def default_progress() -> dict:
@@ -197,6 +219,7 @@ class PracticeHandler(SimpleHTTPRequestHandler):
                 "exercise_set_count": len(dataset.get("exercise_sets", [])),
                 "question_count": dataset_question_count(dataset),
                 "progress_updated_at": progress.get("updated_at"),
+                "ai_review": dataset["meta"].get("ai_review", {}),
             }
             self.respond_json(payload)
             return
@@ -236,6 +259,46 @@ class PracticeHandler(SimpleHTTPRequestHandler):
             with FILE_LOCK:
                 save_json(progress_path_for_client(client_id), payload)
             self.respond_json({"ok": True})
+            return
+
+        if parsed.path == "/api/ai/review":
+            question_id = str(payload.get("question_id") or "").strip()
+            response_text = str(payload.get("response_text") or "").strip()
+            if not question_id or not response_text:
+                self.respond_json({"error": "invalid_request", "message": "question_id and response_text are required."}, status=HTTPStatus.BAD_REQUEST)
+                return
+
+            dataset = load_dataset()
+            question, source_context = find_question_context(dataset, question_id)
+            if not question:
+                self.respond_json({"error": "question_not_found", "message": f"Question not found: {question_id}"}, status=HTTPStatus.NOT_FOUND)
+                return
+
+            settings = load_ai_settings(AI_REVIEW_SETTINGS_PATH)
+            if not settings.get("configured"):
+                self.respond_json(
+                    {
+                        "error": "ai_review_not_configured",
+                        "message": "AI review is not configured. Copy data/ai_review.template.json to data/ai_review.json and fill in your API key.",
+                    },
+                    status=HTTPStatus.SERVICE_UNAVAILABLE,
+                )
+                return
+
+            append_event(
+                "ai_review_requested",
+                {"question_id": question_id, "provider": settings.get("provider"), "model": settings.get("model")},
+                client_id=client_id,
+            )
+            try:
+                review = request_ai_review(settings, question, source_context, response_text)
+            except Exception as exc:
+                append_event("ai_review_failed", {"question_id": question_id, "message": str(exc)}, client_id=client_id)
+                self.respond_json({"error": "ai_review_failed", "message": str(exc)}, status=HTTPStatus.BAD_GATEWAY)
+                return
+
+            append_event("ai_review_completed", {"question_id": question_id, "score": review.get("score")}, client_id=client_id)
+            self.respond_json({"ok": True, "review": review})
             return
 
         self.respond_json({"error": "not_found"}, status=HTTPStatus.NOT_FOUND)

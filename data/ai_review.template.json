@@ -1,0 +1,9 @@
+{
+  "enabled": false,
+  "provider": "deepseek",
+  "endpoint": "https://api.deepseek.com/chat/completions",
+  "model": "deepseek-chat",
+  "api_key": "",
+  "timeout_seconds": 45,
+  "temperature": 0.3
+}

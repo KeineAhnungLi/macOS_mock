@@ -1,10 +1,13 @@
 const STORAGE_KEY = "tem8_practice_progress_v2";
 const CLIENT_ID_STORAGE_KEY = "tem8_practice_client_id";
+const BROWSER_NOTICE_STORAGE_KEY = "tem8_browser_notice_dismissed";
+const PASSAGE_MODE_STORAGE_KEY = "tem8_shared_passage_mode";
 const SEARCH_PARAMS = new URLSearchParams(window.location.search);
 const LOCAL_PROGRESS_ONLY = SEARCH_PARAMS.get("progress") === "local";
 const TEM8_CONFIG = window.TEM8_CONFIG || {};
 const API_BASE_URL = normalizeApiBase(SEARCH_PARAMS.get("api") || TEM8_CONFIG.apiBaseUrl || "");
 const CLIENT_ID = resolveClientId(SEARCH_PARAMS.get("client") || TEM8_CONFIG.clientId || "");
+const CHROME_DOWNLOAD_URL = String(TEM8_CONFIG.chromeDownloadUrl || "https://www.google.com/chrome/").trim();
 
 const state = {
   dataset: null,
@@ -21,6 +24,10 @@ const state = {
   materialQuestionId: null,
   view: "practice",
   focusMode: false,
+  browserInfo: detectBrowserInfo(),
+  browserNoticeDismissed: localStorage.getItem(BROWSER_NOTICE_STORAGE_KEY) === "1",
+  sharedPassageMode: resolveSharedPassageMode(),
+  aiReviewBusyQuestionId: null,
   practiceQuestionId: null,
   practiceAdvanceTimer: null,
   practiceAutoAdvanceQuestionId: null,
@@ -58,6 +65,75 @@ function resolveClientId(explicitValue) {
   const next = generateClientId();
   localStorage.setItem(CLIENT_ID_STORAGE_KEY, next);
   return next;
+}
+
+function resolveSharedPassageMode() {
+  const stored = String(localStorage.getItem(PASSAGE_MODE_STORAGE_KEY) || "").trim().toLowerCase();
+  return stored === "focus" ? "focus" : "split";
+}
+
+function detectBrowserInfo() {
+  const ua = navigator.userAgent || "";
+  const vendor = navigator.vendor || "";
+  const platform = navigator.platform || "";
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  const isMac = /Mac/i.test(platform) || /Mac OS X/i.test(ua) || isIOS;
+  const isEdge = /Edg\//i.test(ua);
+  const isFirefox = /Firefox|FxiOS/i.test(ua);
+  const isChrome = (/Chrome\//i.test(ua) && /Google/i.test(vendor)) || /CriOS/i.test(ua);
+  const isSafari = /Safari/i.test(ua) && !isChrome && !isEdge && !isFirefox;
+  return {
+    isMac,
+    isIOS,
+    isEdge,
+    isFirefox,
+    isChrome,
+    isSafari,
+    label: isChrome ? "Chrome" : isSafari ? "Safari" : isEdge ? "Edge" : isFirefox ? "Firefox" : "Browser",
+  };
+}
+
+function fullscreenElementCompat() {
+  return document.fullscreenElement || document.webkitFullscreenElement || null;
+}
+
+function browserSupportsFullscreen() {
+  const root = document.documentElement;
+  return Boolean(
+    (root && (root.requestFullscreen || root.webkitRequestFullscreen)) &&
+      (document.exitFullscreen || document.webkitExitFullscreen),
+  );
+}
+
+function requestFullscreenCompat(element) {
+  if (!element) {
+    return Promise.resolve();
+  }
+  try {
+    if (element.requestFullscreen) {
+      return Promise.resolve(element.requestFullscreen()).catch(() => {});
+    }
+    if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    }
+  } catch (error) {
+    console.warn("requestFullscreenCompat failed", error);
+  }
+  return Promise.resolve();
+}
+
+function exitFullscreenCompat() {
+  try {
+    if (document.exitFullscreen) {
+      return Promise.resolve(document.exitFullscreen()).catch(() => {});
+    }
+    if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  } catch (error) {
+    console.warn("exitFullscreenCompat failed", error);
+  }
+  return Promise.resolve();
 }
 
 function buildApiUrl(path) {
@@ -101,6 +177,9 @@ function normalizeAnswerRecord(record = {}) {
     is_correct: typeof record.is_correct === "boolean" ? record.is_correct : null,
     attempt_count: record.attempt_count ?? (record.checked_at ? 1 : 0),
     wrong_count: record.wrong_count ?? (record.is_correct === false ? 1 : 0),
+    ai_review: record.ai_review ?? null,
+    ai_review_updated_at: record.ai_review_updated_at ?? null,
+    ai_review_error: record.ai_review_error ?? "",
   };
 }
 
@@ -196,6 +275,63 @@ function formatText(value) {
 
 function formatInline(value) {
   return formatDisplayText(value, true);
+}
+
+function formatPassageText(value, activeNumber = null) {
+  const markers = [];
+  const blanks = [];
+  let text = cleanDisplayText(value, false)
+    .replace(/\((\d+)\)/g, (_, number) => {
+      const token = `@@MARKER_${markers.length}@@`;
+      markers.push(String(number));
+      return token;
+    })
+    .replace(/_{2,}/g, (match) => {
+      const token = `@@BLANK_${blanks.length}@@`;
+      blanks.push(match.length);
+      return token;
+    });
+
+  text = escapeHtml(text).replaceAll("\n", "<br />");
+  text = text.replace(/@@MARKER_(\d+)@@/g, (_, index) => {
+    const number = markers[Number(index)];
+    const active = String(number) === String(activeNumber);
+    return `<span class="passage-marker${active ? " active" : ""}">(${number})</span>`;
+  });
+  return text.replace(/@@BLANK_(\d+)@@/g, (_, index) => renderBlankSpan(blanks[Number(index)], false));
+}
+
+function locatePassageWindow(text, questionNumber) {
+  const cleaned = cleanDisplayText(text, false);
+  const marker = `(${questionNumber})`;
+  const markerIndex = cleaned.indexOf(marker);
+  if (markerIndex < 0) {
+    return { snippet: cleaned, leading: false, trailing: false };
+  }
+
+  const before = cleaned.slice(0, markerIndex);
+  const after = cleaned.slice(markerIndex + marker.length);
+  const boundaryPattern = /[\n.!?;。！？；]/g;
+
+  let start = Math.max(0, markerIndex - 180);
+  let end = Math.min(cleaned.length, markerIndex + marker.length + 180);
+
+  let match = null;
+  while ((match = boundaryPattern.exec(before))) {
+    start = match.index + 1;
+  }
+
+  boundaryPattern.lastIndex = 0;
+  match = boundaryPattern.exec(after);
+  if (match) {
+    end = markerIndex + marker.length + match.index + 1;
+  }
+
+  return {
+    snippet: cleaned.slice(start, end).trim(),
+    leading: start > 0,
+    trailing: end < cleaned.length,
+  };
 }
 
 function getQuestionType(question) {
@@ -352,6 +488,10 @@ function getExpectedAnswers(question) {
   return [];
 }
 
+function hasSpecificAnswer(question) {
+  return Boolean(question.correct_option || getExpectedAnswers(question).length);
+}
+
 function evaluateQuestionResponse(question, record) {
   if (isChoiceQuestion(question)) {
     if (!question.correct_option) {
@@ -394,6 +534,23 @@ function getCorrectAnswerMarkup(question) {
 
 function isYearMockCompatible(year) {
   return getQuestionsForYear(year).every((question) => isChoiceQuestion(question));
+}
+
+function clearAiReview(record) {
+  record.ai_review = null;
+  record.ai_review_updated_at = null;
+  record.ai_review_error = "";
+}
+
+function aiReviewMeta() {
+  return state.dataset?.meta?.ai_review || { enabled: false, configured: false, provider: "", model: "" };
+}
+
+function canRequestAiReview(question) {
+  if (!question || isChoiceQuestion(question) || hasSpecificAnswer(question)) {
+    return false;
+  }
+  return isPromptQuestion(question) || isTextInputQuestion(question);
 }
 
 function getMaterialEntries(bucketName = state.materialsBucket) {
@@ -545,7 +702,7 @@ async function apiGet(url) {
     headers: buildApiHeaders(),
   });
   if (!response.ok) {
-    throw new Error(`GET ${target} failed`);
+    throw await buildApiError("GET", target, response);
   }
   return response.json();
 }
@@ -558,9 +715,22 @@ async function apiPost(url, payload) {
     body: JSON.stringify(payload),
   });
   if (!response.ok) {
-    throw new Error(`POST ${target} failed`);
+    throw await buildApiError("POST", target, response);
   }
   return response.json();
+}
+
+async function buildApiError(method, target, response) {
+  try {
+    const payload = await response.clone().json();
+    const message = payload?.message || payload?.error;
+    if (message) {
+      return new Error(String(message));
+    }
+  } catch (error) {
+    console.warn("buildApiError fallback", error);
+  }
+  return new Error(`${method} ${target} failed (${response.status})`);
 }
 
 async function logEvent(type, payload = {}) {
@@ -828,6 +998,75 @@ function buildFeedback(question, record, checked, isCorrect, autoNext = false) {
   `;
 }
 
+function renderAiReviewBlock(question, record) {
+  if (!canRequestAiReview(question)) {
+    return "";
+  }
+
+  const meta = aiReviewMeta();
+  const busy = state.aiReviewBusyQuestionId === question.id;
+  const hasResponse = Boolean(String(record.response_text || "").trim());
+  const disabled = !hasResponse || busy || !meta.enabled || !meta.configured;
+  const review = record.ai_review;
+  const issues = Array.isArray(review?.issues) ? review.issues : [];
+  const suggestions = Array.isArray(review?.suggestions) ? review.suggestions : [];
+  const metaLine = review
+    ? `<div class="meta-line">AI ${escapeHtml(review.provider || meta.provider || "")} · ${escapeHtml(review.model || meta.model || "")} · ${escapeHtml(String(review.score))}/${escapeHtml(String(review.max_score || 100))}</div>`
+    : !meta.enabled
+    ? `<div class="meta-line">AI 点评已预留，待配置 API key 后启用。</div>`
+    : !meta.configured
+    ? `<div class="meta-line">AI 已开启但未配置完成，请在 data/ai_review.json 中填写接口信息。</div>`
+    : `<div class="meta-line">AI 会指出问题并给出简单修改建议，不会覆盖你的原答案。</div>`;
+
+  return `
+    <section class="ai-review-card${record.ai_review_error ? " error" : ""}">
+      <div class="pane-card-head pane-card-head-compact">
+        <div>
+          <div class="question-type">AI Review</div>
+          <strong>翻译 / 写作点评</strong>
+          ${metaLine}
+        </div>
+        <button
+          class="ghost-button"
+          ${disabled ? "disabled" : ""}
+          onclick="${disabled ? "" : `appActions.requestAiReview('${question.id}')`}"
+        >
+          ${busy ? "点评中..." : review ? "重新点评" : "AI 点评"}
+        </button>
+      </div>
+      ${record.ai_review_error ? `<div class="feedback wrong">${escapeHtml(record.ai_review_error)}</div>` : ""}
+      ${
+        review
+          ? `
+            <div class="ai-review-body">
+              <p class="ai-review-summary">${formatText(review.summary || "")}</p>
+              ${
+                issues.length
+                  ? `<div class="ai-review-section"><strong>问题</strong><ul>${issues
+                      .map((item) => `<li><strong>${escapeHtml(item.title || "Issue")}：</strong>${escapeHtml(item.detail || "")}</li>`)
+                      .join("")}</ul></div>`
+                  : ""
+              }
+              ${
+                suggestions.length
+                  ? `<div class="ai-review-section"><strong>修改建议</strong><ul>${suggestions
+                      .map((item) => `<li>${escapeHtml(item)}</li>`)
+                      .join("")}</ul></div>`
+                  : ""
+              }
+              ${
+                review.revised_answer
+                  ? `<div class="ai-review-section"><strong>可参考改写</strong><div class="prompt-block">${formatText(review.revised_answer)}</div></div>`
+                  : ""
+              }
+            </div>
+          `
+          : ""
+      }
+    </section>
+  `;
+}
+
 function renderOptionButton({ question, optionKey, optionText, selected, checked, isCorrect, revealCorrectness, onClick, disabled }) {
   const classes = ["option-button"];
   if (selected === optionKey) {
@@ -1033,9 +1272,42 @@ function renderUtilityActions() {
   `;
 }
 
+function shouldShowBrowserNotice() {
+  return state.browserInfo.isSafari && !state.browserNoticeDismissed;
+}
+
+function renderBrowserNotice() {
+  const container = document.getElementById("browser-notice");
+  if (!container) {
+    return;
+  }
+  if (!shouldShowBrowserNotice()) {
+    container.innerHTML = "";
+    container.className = "browser-notice";
+    return;
+  }
+
+  const fullscreenNote = browserSupportsFullscreen() ? "已启用 Safari 兼容全屏。" : "当前浏览器不支持原生全屏，仍可继续使用页面专注模式。";
+  container.className = "browser-notice visible";
+  container.innerHTML = `
+    <div class="browser-notice-card">
+      <div>
+        <div class="question-type">Browser Notice</div>
+        <strong>当前为 Safari 兼容模式</strong>
+        <p class="muted">音频和大部分交互现在可直接使用。${fullscreenNote} 如果你通过桌面版启动且本机装了 Chrome，程序会优先尝试用 Chrome 打开。</p>
+      </div>
+      <div class="summary-actions">
+        <button class="ghost-button" onclick="appActions.openChromeDownload()">下载 Chrome</button>
+        <button class="ghost-button" onclick="appActions.dismissBrowserNotice()">知道了</button>
+      </div>
+    </div>
+  `;
+}
+
 function renderShellLayout() {
   const shell = document.getElementById("page-shell");
   shell.className = `page-shell${state.focusMode ? " focus-mode" : ""}`;
+  document.documentElement.classList.toggle("safari-browser", state.browserInfo.isSafari);
 }
 
 function renderHero() {
@@ -1152,6 +1424,64 @@ function renderPassagePane(group) {
   `;
 }
 
+function renderPassageModeToggle() {
+  return `
+    <div class="passage-mode-toggle">
+      <button class="toggle-chip ${state.sharedPassageMode === "split" ? "active" : ""}" onclick="appActions.setSharedPassageMode('split')">
+        文章在左
+      </button>
+      <button class="toggle-chip ${state.sharedPassageMode === "focus" ? "active" : ""}" onclick="appActions.setSharedPassageMode('focus')">
+        句段在上
+      </button>
+    </div>
+  `;
+}
+
+function getSharedPassageLayoutClass(group) {
+  if (!group?.shared_context) {
+    return "solo-layout";
+  }
+  return state.sharedPassageMode === "focus" ? "focus-layout" : "split-layout";
+}
+
+function renderAdaptivePassagePane(group, question = null) {
+  if (!group?.shared_context) {
+    return "";
+  }
+  const title = [group.subsection, group.label].filter(Boolean).join(" ") || group.instruction || "共享材料";
+  if (state.sharedPassageMode === "focus" && question) {
+    const windowSlice = locatePassageWindow(group.shared_context, question.number);
+    const focusText = `${windowSlice.leading ? "... " : ""}${windowSlice.snippet}${windowSlice.trailing ? " ..." : ""}`;
+    return `
+      <article class="pane-card focus-pane-card">
+        <div class="pane-card-head pane-card-head-compact">
+          <div>
+            <div class="question-type">关联句段</div>
+            <strong>${title}</strong>
+          </div>
+          ${renderPassageModeToggle()}
+        </div>
+        <div class="focus-passage-copy">${formatPassageText(focusText, question.number)}</div>
+      </article>
+    `;
+  }
+
+  return `
+    <article class="pane-card">
+      <div class="pane-card-head">
+        <div>
+          <div class="question-type">共享材料</div>
+          <strong>${title}</strong>
+        </div>
+        ${renderPassageModeToggle()}
+      </div>
+      <div class="pane-scroll">
+        <div class="passage-copy">${formatPassageText(group.shared_context, question?.number)}</div>
+      </div>
+    </article>
+  `;
+}
+
 function renderPracticeQuestionCard(question, group) {
   const record = getRecord(question.id);
   const questions = getQuestionListForGroup(question.year, group.id);
@@ -1186,6 +1516,7 @@ function renderPracticeQuestionCard(question, group) {
         onInput: "appActions.updatePracticeResponse",
       })}
       ${buildFeedback(question, record, submitted, record.is_correct, autoNext)}
+      ${renderAiReviewBlock(question, record)}
       <div class="question-stage-foot">
         <div class="summary-actions">
           <button
@@ -1259,12 +1590,12 @@ function renderPracticeView() {
     `;
   }
 
-  const layoutClass = currentGroup.shared_context ? "split-layout" : "solo-layout";
+  const layoutClass = getSharedPassageLayoutClass(currentGroup);
   return `
     <div class="screen-layout">
       ${toolbar}
       <section class="workspace-card screen-workspace ${layoutClass}">
-        ${currentGroup.shared_context ? renderPassagePane(currentGroup) : ""}
+        ${currentGroup.shared_context ? renderAdaptivePassagePane(currentGroup, currentQuestion) : ""}
         ${renderPracticeQuestionCard(currentQuestion, currentGroup)}
       </section>
     </div>
@@ -1383,7 +1714,7 @@ function renderMockView() {
   const currentQuestion = questions.find((item) => item.id === state.mock.current_question_id) || questions[0];
   const currentGroup = getGroupById(state.mock.year, currentQuestion.group_id);
   const answeredCount = Object.values(state.mock.answers).filter(Boolean).length;
-  const layoutClass = currentGroup.shared_context ? "split-layout" : "solo-layout";
+  const layoutClass = getSharedPassageLayoutClass(currentGroup);
 
   return `
     <div class="screen-layout">
@@ -1418,7 +1749,7 @@ function renderMockView() {
       }
       </section>
       <section class="workspace-card screen-workspace ${layoutClass} mock-layout">
-        ${currentGroup.shared_context ? renderPassagePane(currentGroup) : ""}
+        ${currentGroup.shared_context ? renderAdaptivePassagePane(currentGroup, currentQuestion) : ""}
         ${renderMockQuestionCard(currentQuestion, currentGroup)}
       </section>
     </div>
@@ -1491,7 +1822,7 @@ function renderWrongbookView() {
 
   const currentQuestion = wrongQuestions.find((question) => question.id === state.wrongbookQuestionId) || wrongQuestions[0];
   const currentGroup = getGroupById(currentQuestion.year, currentQuestion.group_id);
-  const layoutClass = currentGroup.shared_context ? "split-layout" : "solo-layout";
+  const layoutClass = getSharedPassageLayoutClass(currentGroup);
 
   return `
     <div class="screen-layout">
@@ -1516,7 +1847,7 @@ function renderWrongbookView() {
       )}
       </section>
       <section class="workspace-card screen-workspace ${layoutClass} wrongbook-layout">
-        ${currentGroup.shared_context ? renderPassagePane(currentGroup) : ""}
+        ${currentGroup.shared_context ? renderAdaptivePassagePane(currentGroup, currentQuestion) : ""}
         ${renderWrongbookQuestionCard(currentQuestion)}
       </section>
     </div>
@@ -1533,7 +1864,7 @@ function renderMaterialAudio(entry) {
         <div class="question-type">Listening Audio</div>
         <strong>${entry.title}</strong>
       </div>
-      <audio controls preload="none" src="${buildStaticUrl(entry.audio_file)}"></audio>
+      <audio controls preload="metadata" playsinline src="${buildStaticUrl(entry.audio_file)}"></audio>
     </div>
   `;
 }
@@ -1570,6 +1901,7 @@ function renderMaterialQuestionCard(entry, question, group) {
         onInput: "appActions.updateMaterialResponse",
       })}
       ${buildFeedback(question, record, submitted, record.is_correct, false)}
+      ${renderAiReviewBlock(question, record)}
       <div class="question-stage-foot">
         <div class="summary-actions">
           <button
@@ -1607,7 +1939,7 @@ function renderMaterialsView() {
   const groupQuestions = getMaterialQuestionListForGroup(entry, currentGroup?.id);
   const currentQuestion = entry.questions.find((item) => item.id === state.materialQuestionId) || groupQuestions[0] || null;
   const progress = currentGroup ? materialGroupProgress(entry, currentGroup.id) : { checked: 0, total: 0, correct: 0 };
-  const layoutClass = currentGroup?.shared_context ? "split-layout" : "solo-layout";
+  const layoutClass = getSharedPassageLayoutClass(currentGroup);
 
   const toolbar = `
     <section class="panel screen-toolbar">
@@ -1725,7 +2057,7 @@ function renderMaterialsView() {
     <div class="screen-layout">
       ${toolbar}
       <section class="workspace-card screen-workspace ${layoutClass}">
-        ${currentGroup.shared_context ? renderPassagePane(currentGroup) : ""}
+        ${currentGroup.shared_context ? renderAdaptivePassagePane(currentGroup, currentQuestion) : ""}
         ${renderMaterialQuestionCard(entry, currentQuestion, currentGroup)}
       </section>
     </div>
@@ -1761,6 +2093,7 @@ function renderApp() {
   renderModeTabs();
   renderUtilityActions();
   renderHero();
+  renderBrowserNotice();
   renderContent();
   queueAdaptiveLayoutSync();
 }
@@ -1782,6 +2115,14 @@ function queueAdaptiveLayoutSync() {
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(syncAdaptiveLayout);
   });
+}
+
+function handleFullscreenStateChange() {
+  queueAdaptiveLayoutSync();
+  if (browserSupportsFullscreen() && !fullscreenElementCompat() && state.focusMode) {
+    state.focusMode = false;
+    renderApp();
+  }
 }
 
 function canScrollOnAxis(element, axis, delta) {
@@ -1885,7 +2226,8 @@ function setupAdaptiveLayout() {
     return;
   }
   window.addEventListener("resize", queueAdaptiveLayoutSync);
-  document.addEventListener("fullscreenchange", queueAdaptiveLayoutSync);
+  document.addEventListener("fullscreenchange", handleFullscreenStateChange);
+  document.addEventListener("webkitfullscreenchange", handleFullscreenStateChange);
   adaptiveLayoutBound = true;
 }
 
@@ -1894,6 +2236,7 @@ async function selectPracticeOption(questionId, optionKey) {
   const record = getRecord(questionId);
   record.selected = optionKey;
   record.response_text = "";
+  clearAiReview(record);
   await logEvent("practice_option_selected", { question_id: questionId, option: optionKey });
   await persistProgress();
   renderApp();
@@ -1904,6 +2247,7 @@ async function updatePracticeResponse(questionId, value) {
   const record = getRecord(questionId);
   record.response_text = value;
   record.selected = null;
+  clearAiReview(record);
   await persistProgress();
   renderApp();
 }
@@ -2004,6 +2348,7 @@ async function selectWrongbookOption(questionId, optionKey) {
   draft.response_text = "";
   draft.checked = false;
   draft.is_correct = null;
+  clearAiReview(draft);
   renderApp();
 }
 
@@ -2013,6 +2358,7 @@ async function updateWrongbookResponse(questionId, value) {
   draft.selected = null;
   draft.checked = false;
   draft.is_correct = null;
+  clearAiReview(draft);
   renderApp();
 }
 
@@ -2145,6 +2491,7 @@ async function selectMaterialOption(questionId, optionKey) {
   const record = getRecord(questionId);
   record.selected = optionKey;
   record.response_text = "";
+  clearAiReview(record);
   await persistProgress();
   renderApp();
 }
@@ -2153,6 +2500,7 @@ async function updateMaterialResponse(questionId, value) {
   const record = getRecord(questionId);
   record.response_text = value;
   record.selected = null;
+  clearAiReview(record);
   await persistProgress();
   renderApp();
 }
@@ -2316,12 +2664,58 @@ function switchView(view) {
   renderApp();
 }
 
+function setSharedPassageMode(mode) {
+  state.sharedPassageMode = mode === "focus" ? "focus" : "split";
+  localStorage.setItem(PASSAGE_MODE_STORAGE_KEY, state.sharedPassageMode);
+  renderApp();
+}
+
+function dismissBrowserNotice() {
+  state.browserNoticeDismissed = true;
+  localStorage.setItem(BROWSER_NOTICE_STORAGE_KEY, "1");
+  renderApp();
+}
+
+function openChromeDownload() {
+  window.open(CHROME_DOWNLOAD_URL, "_blank", "noopener,noreferrer");
+}
+
+async function requestAiReview(questionId) {
+  const question = getQuestionById(questionId);
+  const record = getRecord(questionId);
+  if (!canRequestAiReview(question) || !String(record.response_text || "").trim()) {
+    return;
+  }
+
+  state.aiReviewBusyQuestionId = questionId;
+  record.ai_review_error = "";
+  renderApp();
+
+  try {
+    const payload = await apiPost("/api/ai/review", {
+      question_id: questionId,
+      response_text: record.response_text,
+    });
+    record.ai_review = payload.review || null;
+    record.ai_review_updated_at = new Date().toISOString();
+    record.ai_review_error = "";
+    await logEvent("ai_review_saved", { question_id: questionId, score: record.ai_review?.score ?? null });
+    await persistProgress();
+  } catch (error) {
+    record.ai_review_error = error instanceof Error ? error.message : "AI review failed.";
+    await logEvent("ai_review_failed", { question_id: questionId, message: record.ai_review_error });
+  } finally {
+    state.aiReviewBusyQuestionId = null;
+    renderApp();
+  }
+}
+
 async function toggleFocusMode() {
   state.focusMode = !state.focusMode;
-  if (state.focusMode && document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen().catch(() => {});
-  } else if (!state.focusMode && document.fullscreenElement && document.exitFullscreen) {
-    document.exitFullscreen().catch(() => {});
+  if (state.focusMode && browserSupportsFullscreen()) {
+    await requestFullscreenCompat(document.documentElement);
+  } else if (!state.focusMode && fullscreenElementCompat()) {
+    await exitFullscreenCompat();
   }
   await logEvent("focus_mode_toggled", { enabled: state.focusMode });
   renderApp();
@@ -2364,8 +2758,12 @@ window.appActions = {
   selectYear,
   selectGroup,
   switchView,
+  setSharedPassageMode,
+  dismissBrowserNotice,
+  openChromeDownload,
   resetProgress,
   toggleFocusMode,
+  requestAiReview,
   selectPracticeOption,
   submitPracticeQuestion,
   jumpPracticeQuestion,
