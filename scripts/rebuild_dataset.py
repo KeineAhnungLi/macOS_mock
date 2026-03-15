@@ -18,6 +18,13 @@ BACKUP_DIR = DATA_DIR / "backups"
 GENERATED_MD_DIR = DATA_DIR / "generated_md"
 TESTPAPER_MD_DIR = GENERATED_MD_DIR / "testpaperandanswer"
 ROOT_PDF_MD_DIR = GENERATED_MD_DIR / "root_pdf"
+CLEANED_TESTPAPER_PATH = ROOT_DIR / "material" / "testpaperandanswer" / "cleaned.txt"
+CLEANED_TESTPAPER_OUTPUTS = {
+    2016: TESTPAPER_MD_DIR / "cleaned" / "2016-source.md",
+    2017: TESTPAPER_MD_DIR / "cleaned" / "2017-source.md",
+    2018: TESTPAPER_MD_DIR / "cleaned" / "2018-source.md",
+    2025: TESTPAPER_MD_DIR / "cleaned" / "2025-source.md",
+}
 
 EXERCISE_JSON_DIR = ROOT_DIR / "material" / "exercise" / "专八" / "cleaned" / "json"
 
@@ -102,6 +109,25 @@ OFFICIAL_WG_ANSWERS = {
     },
 }
 
+CLEANED_YEAR_HEADING_RE = re.compile(
+    r"(?m)^## \*\*(\d{4})年德语专业八级真题（含答案(?:与解析)?）\*\*"
+)
+ANNOTATION_MARKER_RE = re.compile(
+    r"(?m)^\s*\*\*(?:答案|解析|绛旀|瑙ｆ瀽|Answer|Lösung|Losung)\s*[:：]"
+)
+
+
+HARDENED_CLEANED_YEAR_HEADING_RE = re.compile(
+    r"(?m)^## \*\*(\d{4})\u5e74\u5fb7\u8bed\u4e13\u4e1a\u516b\u7ea7\u771f\u9898\uff08\u542b\u7b54\u6848(?:\u4e0e\u89e3\u6790)?\uff09\*\*"
+)
+HARDENED_ANNOTATION_MARKER_RE = re.compile(
+    r"(?m)^\s*\*\*(?:\u7b54\u6848|\u89e3\u6790|Answer|L\u00f6sung|Losung)\s*[:\uff1a]"
+)
+
+# Rebind the regexes here with ASCII-safe unicode escapes so rebuilds are stable
+# regardless of shell code page.
+CLEANED_YEAR_HEADING_RE = HARDENED_CLEANED_YEAR_HEADING_RE
+ANNOTATION_MARKER_RE = HARDENED_ANNOTATION_MARKER_RE
 
 @dataclass(frozen=True)
 class GroupConfig:
@@ -141,6 +167,44 @@ def find_md_file(key: str) -> Path:
 
 def read_md(key: str) -> str:
     return find_md_file(key).read_text(encoding="utf-8")
+
+
+def normalize_source_block(text: str) -> str:
+    return text.replace("\r\n", "\n").replace("\r", "\n").strip() + "\n"
+
+
+def split_cleaned_testpaper_sources(text: str) -> dict[int, str]:
+    matches = list(CLEANED_YEAR_HEADING_RE.finditer(text))
+    if not matches:
+        return {}
+
+    sources: dict[int, str] = {}
+    for index, match in enumerate(matches):
+        year = int(match.group(1))
+        if year not in CLEANED_TESTPAPER_OUTPUTS:
+            continue
+        start = match.start()
+        end = matches[index + 1].start() if index + 1 < len(matches) else len(text)
+        sources[year] = normalize_source_block(text[start:end])
+    return sources
+
+
+def ensure_cleaned_testpaper_sources() -> dict[int, str]:
+    if CLEANED_TESTPAPER_PATH.exists():
+        raw_text = CLEANED_TESTPAPER_PATH.read_text(encoding="utf-8")
+        split_sources = split_cleaned_testpaper_sources(raw_text)
+        for year, output_path in CLEANED_TESTPAPER_OUTPUTS.items():
+            text = split_sources.get(year)
+            if not text:
+                continue
+            output_path.parent.mkdir(parents=True, exist_ok=True)
+            output_path.write_text(text, encoding="utf-8")
+
+    sources: dict[int, str] = {}
+    for year, output_path in CLEANED_TESTPAPER_OUTPUTS.items():
+        if output_path.exists():
+            sources[year] = output_path.read_text(encoding="utf-8")
+    return sources
 
 
 def normalize_text(text: str) -> str:
@@ -195,6 +259,8 @@ def clean_inline(text: str) -> str:
         if index > 0:
             value = value[:index]
     value = value.replace("___—", "_____")
+    value = value.replace("\\_", "_")
+    value = re.sub(r"\s*\*{0,2}\s*_+\s*\*{0,2}\s*", " _____ ", value)
     value = re.sub(r"\s+", " ", value)
     value = re.sub(r"\s*[~*|]+\s*$", "", value)
     return value.strip(" ,.;:-")
@@ -207,6 +273,8 @@ def clean_block(text: str) -> str:
         if index > 0:
             value = value[:index]
     value = value.replace("___—", "_____")
+    value = value.replace("\\_", "_")
+    value = re.sub(r"\s*\*{0,2}\s*_+\s*\*{0,2}\s*", " _____ ", value)
     value = re.sub(r"[ \t]+", " ", value)
     value = re.sub(r" *\n *", "\n", value)
     value = re.sub(r"\n{3,}", "\n\n", value)
@@ -392,12 +460,49 @@ def question_block(text: str, start_no: int, end_no: int, number: int) -> str:
     return clean_block(text[start:end])
 
 
+def strip_annotation_tail(text: str) -> str:
+    match = ANNOTATION_MARKER_RE.search(text)
+    if match:
+        return text[: match.start()].rstrip()
+    return text
+
+
+def parse_explicit_answer(raw_line: str) -> str | None:
+    line = raw_line.strip()
+    if not line:
+        return None
+    line = re.sub(r"^\*{1,2}\s*", "", line)
+    line = re.sub(r"\s*\*{1,2}\s*$", "", line)
+    match = re.match(r"^(?:答案|绛旀|Answer|Lösung|Losung)\s*[:：]\s*(.+?)\s*$", line, re.IGNORECASE)
+    if not match:
+        return None
+    answer = clean_inline(match.group(1))
+    return answer or None
+
+
+def parse_explicit_answer(raw_line: str) -> str | None:
+    line = raw_line.strip()
+    if not line:
+        return None
+    line = re.sub(r"^\*{1,2}\s*", "", line)
+    line = re.sub(r"\s*\*{1,2}\s*$", "", line)
+    match = re.match(
+        r"^(?:\u7b54\u6848|Answer|L\u00f6sung|Losung)\s*[:\uff1a]\s*(.+?)\s*$",
+        line,
+        re.IGNORECASE,
+    )
+    if not match:
+        return None
+    answer = clean_inline(match.group(1))
+    return answer or None
+
+
 def parse_choice_block(block: str, number: int) -> tuple[str, dict[str, str]]:
     start_match = question_start_re(number).search(block)
     if not start_match:
         raise ValueError(f"Missing choice question {number}")
 
-    body = block[start_match.end() :].strip()
+    body = strip_annotation_tail(block[start_match.end() :].strip())
     matches = option_matches(body)
     if len(matches) < 2:
         raise ValueError(f"Not enough options for {number}")
@@ -415,7 +520,7 @@ def parse_tf_block(block: str, number: int) -> str:
     start_match = question_start_re(number).search(block)
     if not start_match:
         raise ValueError(f"Missing true/false question {number}")
-    return clean_block(block[start_match.end() :])
+    return clean_block(strip_annotation_tail(block[start_match.end() :]))
 
 
 def parse_answer_letter(line: str) -> str | None:
@@ -498,6 +603,166 @@ def parse_answer_pdf_style(md_text: str, start: int, end: int) -> dict[int, dict
     return answers
 
 
+def parse_2016_answers(md_text: str) -> dict[int, dict]:
+    answers: dict[int, dict] = {}
+    current = None
+    explicit_answered: set[int] = set()
+    for raw_line in md_text.splitlines():
+        line = clean_inline(raw_line)
+        q_match = re.match(r"^(\d{2})\.\s+", line)
+        if q_match:
+            current = int(q_match.group(1))
+            continue
+        if current is None or not 31 <= current <= 75:
+            continue
+
+        explicit_answer = parse_explicit_answer(raw_line)
+        if explicit_answer is not None:
+            explicit_answered.add(current)
+            if 31 <= current <= 60 or 74 <= current <= 75:
+                answers[current] = {
+                    "display_answer": explicit_answer,
+                    "accepted_answers": [normalize_answer_text(explicit_answer)],
+                }
+            else:
+                letter = parse_answer_letter(explicit_answer)
+                if letter in {"A", "B", "C", "D"}:
+                    answers[current] = {"correct_option": letter}
+            continue
+
+        if current in explicit_answered:
+            continue
+
+        if 31 <= current <= 60 or 74 <= current <= 75:
+            answer_match = re.match(r"^\(?\d+%?\]?\)?\s*([A-Za-z\u00c4\u00d6\u00dc\u00e4\u00f6\u00fc\u00df][^.]*)$", line)
+            if answer_match:
+                text = clean_inline(answer_match.group(1))
+                if text:
+                    answers[current] = {
+                        "display_answer": text,
+                        "accepted_answers": [normalize_answer_text(text)],
+                    }
+                continue
+
+        letter = parse_answer_letter(line)
+        if 61 <= current <= 73 and letter in {"A", "B", "C", "D"}:
+            answers[current] = {"correct_option": letter}
+
+    return answers
+
+
+def parse_2017_answers(md_text: str) -> dict[int, dict]:
+    answers: dict[int, dict] = {}
+    current = None
+    explicit_answered: set[int] = set()
+    for raw_line in md_text.splitlines():
+        line = clean_inline(raw_line)
+        q_match = re.match(r"^(\d{2})\.\s+", line)
+        if q_match:
+            current = int(q_match.group(1))
+            continue
+        if current is None or not 31 <= current <= 70:
+            continue
+
+        explicit_answer = parse_explicit_answer(raw_line)
+        if explicit_answer is not None:
+            explicit_answered.add(current)
+            letter = parse_answer_letter(explicit_answer)
+            if letter in {"A", "B", "C", "D"}:
+                answers[current] = {"correct_option": letter}
+            continue
+
+        if current in explicit_answered:
+            continue
+
+        letter = parse_answer_letter(line)
+        if letter in {"A", "B", "C", "D"}:
+            answers[current] = {"correct_option": letter}
+    return answers
+
+
+def parse_answer_pdf_style(md_text: str, start: int, end: int) -> dict[int, dict]:
+    answers: dict[int, dict] = {}
+    current = None
+    explicit_answered: set[int] = set()
+    for raw_line in md_text.splitlines():
+        line = clean_inline(raw_line)
+        q_match = re.match(r"^(\d{1,3})[.銆乚?\s*([A-DFR])(?:\b|[.])", line, re.IGNORECASE)
+        if q_match:
+            qno = int(q_match.group(1))
+            if start <= qno <= end:
+                current = qno
+                token = q_match.group(2).upper()
+                answers[qno] = {"correct_option": token}
+                explicit_answered.discard(qno)
+            continue
+
+        q_text_match = re.match(r"^(\d{1,3})\.\s+", line)
+        if q_text_match:
+            current = int(q_text_match.group(1))
+            continue
+
+        if current is None or not start <= current <= end:
+            continue
+
+        explicit_answer = parse_explicit_answer(raw_line)
+        if explicit_answer is not None:
+            explicit_answered.add(current)
+            letter = parse_answer_letter(explicit_answer)
+            if letter in {"A", "B", "C", "D", "R", "F"}:
+                answers[current] = {"correct_option": letter}
+            continue
+
+        if current in explicit_answered:
+            continue
+
+        letter = parse_answer_letter(line)
+        if letter in {"A", "B", "C", "D", "R", "F"}:
+            answers[current] = {"correct_option": letter}
+    return answers
+
+
+def parse_answer_pdf_style(md_text: str, start: int, end: int) -> dict[int, dict]:
+    answers: dict[str, dict] = {}
+    current = None
+    explicit_answered: set[int] = set()
+    for raw_line in md_text.splitlines():
+        line = clean_inline(raw_line)
+        q_match = re.match(r"^(\d{1,3})(?:[.、]\s*|\s+)([A-DFR])(?:\b|[.])", line, re.IGNORECASE)
+        if q_match:
+            qno = int(q_match.group(1))
+            if start <= qno <= end:
+                current = qno
+                token = q_match.group(2).upper()
+                answers[qno] = {"correct_option": token}
+                explicit_answered.discard(qno)
+            continue
+
+        q_text_match = re.match(r"^(\d{1,3})\.\s+", line)
+        if q_text_match:
+            current = int(q_text_match.group(1))
+            continue
+
+        if current is None or not start <= current <= end:
+            continue
+
+        explicit_answer = parse_explicit_answer(raw_line)
+        if explicit_answer is not None:
+            explicit_answered.add(current)
+            letter = parse_answer_letter(explicit_answer)
+            if letter in {"A", "B", "C", "D", "R", "F"}:
+                answers[current] = {"correct_option": letter}
+            continue
+
+        if current in explicit_answered:
+            continue
+
+        letter = parse_answer_letter(line)
+        if letter in {"A", "B", "C", "D", "R", "F"}:
+            answers[current] = {"correct_option": letter}
+    return answers
+
+
 def parse_year_entry_from_existing(current_dataset: dict, year: int) -> dict:
     year_entry = next(entry for entry in current_dataset["years"] if entry["year"] == year)
     return deepcopy(year_entry)
@@ -530,6 +795,9 @@ def build_question_payload(
     options: dict[str, str] | None = None,
     source_pdf: str,
 ) -> dict:
+    cleaned_stem = clean_block(stem)
+    if group.ui_type == "shared-passage" and not cleaned_stem:
+        cleaned_stem = f"Lücke ({number})"
     payload = {
         "id": f"{year}-{number}",
         "year": year,
@@ -540,7 +808,7 @@ def build_question_payload(
         "group_label": group.label,
         "ui_type": group.ui_type,
         "instruction": group.instruction,
-        "stem": clean_block(stem),
+        "stem": cleaned_stem,
         "question_type": group.question_type,
         "source_pdf": source_pdf,
     }
@@ -561,7 +829,7 @@ def parse_shared_context(section: str, group: GroupConfig) -> str | None:
     return clean_block(section[anchor:q_match.start()])
 
 
-def build_2018_or_2025_wg_year(year: int, exam_text: str, source_pdf: str) -> tuple[dict, dict]:
+def build_2018_or_2025_wg_year(year: int, exam_text: str, source_pdf: str, answer_source_text: str | None = None) -> tuple[dict, dict]:
     section = section_text(exam_text, "vocab_grammar")
     groups = WG_GROUPS[year]
     shared_contexts = {group.group_id: parse_shared_context(section, group) for group in groups}
@@ -584,8 +852,9 @@ def build_2018_or_2025_wg_year(year: int, exam_text: str, source_pdf: str) -> tu
                 )
             )
 
-    answer_source_key = "2018_with_answers" if year == 2018 else "2025_answers"
-    answer_source_text = read_md(answer_source_key)
+    if answer_source_text is None:
+        answer_source_key = "2018_with_answers" if year == 2018 else "2025_answers"
+        answer_source_text = read_md(answer_source_key)
     parsed_answers = parse_answer_pdf_style(answer_source_text, 31, 70)
     for number, payload in parsed_answers.items():
         answers[f"{year}-{number}"] = payload
@@ -1313,17 +1582,18 @@ def backup_current_files() -> Path:
     return target
 
 
-def build_library_answers() -> dict:
+def build_library_answers(cleaned_sources: dict[int, str] | None = None) -> dict:
     answers: dict[str, dict] = {}
+    cleaned_sources = cleaned_sources or {}
 
-    text_2018 = read_md("2018_with_answers")
+    text_2018 = cleaned_sources.get(2018) or read_md("2018_with_answers")
     for number, payload in parse_answer_pdf_style(text_2018, 71, 105).items():
         if 71 <= number <= 85:
             answers[f"2018-reading-{number}"] = payload
         elif 86 <= number <= 105:
             answers[f"2018-landeskunde-{number}"] = payload
 
-    text_2025 = read_md("2025_answers")
+    text_2025 = cleaned_sources.get(2025) or read_md("2025_answers")
     for number, payload in parse_answer_pdf_style(text_2025, 11, 105).items():
         if 11 <= number <= 30:
             answers[f"2025-listening-{number}"] = payload
@@ -1335,10 +1605,10 @@ def build_library_answers() -> dict:
     return answers
 
 
-def build_library_sets() -> tuple[list[dict], dict]:
+def build_library_sets(cleaned_sources: dict[int, str] | None = None) -> tuple[list[dict], dict]:
     full_root = read_md("full_exam_2019_2022")
     library_sets = []
-    answer_updates = build_library_answers()
+    answer_updates = build_library_answers(cleaned_sources)
 
     source_map = {
         2018: "material/testpaperandanswer/2018德语专八真题.pdf",
@@ -1372,9 +1642,10 @@ def build_library_sets() -> tuple[list[dict], dict]:
     return library_sets, answer_updates
 
 
-def build_wg_years_and_answers() -> tuple[list[dict], dict]:
+def build_wg_years_and_answers(cleaned_sources: dict[int, str] | None = None) -> tuple[list[dict], dict]:
     current_dataset = read_json(QUESTIONS_PATH, {"meta": {}, "years": []})
     current_answers = read_json(ANSWER_KEY_PATH, {})
+    cleaned_sources = cleaned_sources or {}
     years = []
     answer_updates = deepcopy(current_answers)
 
@@ -1385,22 +1656,22 @@ def build_wg_years_and_answers() -> tuple[list[dict], dict]:
             answer_updates.setdefault(f"{year}-{number}", {})
             answer_updates[f"{year}-{number}"]["correct_option"] = correct
 
-    md_2016 = read_md("2016_with_answers")
+    md_2016 = cleaned_sources.get(2016) or read_md("2016_with_answers")
     year_2016, answers_2016 = build_2016_wg_year(md_2016, "material/testpaperandanswer/2016德语专八真题及解析.pdf")
     years.append(year_2016)
     answer_updates.update(answers_2016)
 
-    md_2017 = read_md("2017_with_answers")
+    md_2017 = cleaned_sources.get(2017) or read_md("2017_with_answers")
     year_2017, answers_2017 = build_2017_wg_year(md_2017, "material/testpaperandanswer/2017德语专八真题及解析.pdf")
     years.append(year_2017)
     answer_updates.update(answers_2017)
 
-    md_2018_exam = read_md("2018_exam")
+    md_2018_exam = cleaned_sources.get(2018) or read_md("2018_exam")
     year_2018, answers_2018 = build_2018_or_2025_wg_year(2018, md_2018_exam, "material/testpaperandanswer/2018德语专八真题.pdf")
     years.append(year_2018)
     answer_updates.update(answers_2018)
 
-    md_2025_exam = read_md("2025_exam")
+    md_2025_exam = cleaned_sources.get(2025) or read_md("2025_exam")
     year_2025, answers_2025 = build_2018_or_2025_wg_year(2025, md_2025_exam, "material/testpaperandanswer/2025专八.pdf")
     years.append(year_2025)
     answer_updates.update(answers_2025)
@@ -1426,6 +1697,148 @@ def build_dataset() -> tuple[dict, dict]:
             "section": "Wortschatz und Grammatik",
             "available_years": [entry["year"] for entry in years],
             "notes": [
+                "已补入 2016、2017、2018、2025 年词汇语法题库。",
+                "已接入 2018、2019、2021、2022、2025 年听力、阅读、国情、翻译、写作材料。",
+                "已接入 exercise 材料中的 2023 真题和国情 1000 题练习集。",
+            ],
+            "year_question_count": question_total,
+            "library_question_count": library_total,
+            "exercise_question_count": exercise_total,
+        },
+        "years": years,
+        "library": library_sets,
+        "exercise_sets": exercise_sets,
+    }
+    return dataset, answer_key
+
+
+def build_library_answers(cleaned_sources: dict[int, str] | None = None) -> dict:
+    answers: dict[str, dict] = {}
+    cleaned_sources = cleaned_sources or {}
+
+    text_2018 = cleaned_sources.get(2018) or read_md("2018_with_answers")
+    for number, payload in parse_answer_pdf_style(text_2018, 71, 105).items():
+        if 71 <= number <= 85:
+            answers[f"2018-reading-{number}"] = payload
+        elif 86 <= number <= 105:
+            answers[f"2018-landeskunde-{number}"] = payload
+
+    text_2025 = cleaned_sources.get(2025) or read_md("2025_answers")
+    for number, payload in parse_answer_pdf_style(text_2025, 11, 105).items():
+        if 11 <= number <= 30:
+            answers[f"2025-listening-{number}"] = payload
+        elif 71 <= number <= 85:
+            answers[f"2025-reading-{number}"] = payload
+        elif 86 <= number <= 105:
+            answers[f"2025-landeskunde-{number}"] = payload
+
+    return answers
+
+
+def build_library_sets(cleaned_sources: dict[int, str] | None = None) -> tuple[list[dict], dict]:
+    full_root = read_md("full_exam_2019_2022")
+    library_sets = []
+    answer_updates = build_library_answers(cleaned_sources)
+
+    source_map = {
+        2018: "material/testpaperandanswer/2018德语专八真题.pdf",
+        2019: "德语专业八级真题2019-2022.pdf",
+        2021: "德语专业八级真题2019-2022.pdf",
+        2022: "德语专业八级真题2019-2022.pdf",
+        2025: "material/testpaperandanswer/2025专八.pdf",
+    }
+
+    for year in [2018, 2019, 2021, 2022, 2025]:
+        if year in {2019, 2021, 2022}:
+            exam_text = split_root_full_exam_by_year(full_root, year)
+        elif year == 2018:
+            exam_text = read_md("2018_exam")
+        else:
+            exam_text = read_md("2025_exam")
+
+        source_pdf = source_map[year]
+        if year != 2018:
+            try:
+                library_sets.append(parse_listening_set(year, exam_text, source_pdf))
+            except Exception as exc:
+                print(f"[WARN] listening skipped for {year}: {exc}")
+
+        for builder in [parse_reading_set, parse_landeskunde_set, parse_translation_set, parse_writing_set]:
+            try:
+                library_sets.append(builder(year, exam_text, source_pdf))
+            except Exception as exc:
+                print(f"[WARN] {builder.__name__} skipped for {year}: {exc}")
+
+    return library_sets, answer_updates
+
+
+def build_wg_years_and_answers(cleaned_sources: dict[int, str] | None = None) -> tuple[list[dict], dict]:
+    current_dataset = read_json(QUESTIONS_PATH, {"meta": {}, "years": []})
+    current_answers = read_json(ANSWER_KEY_PATH, {})
+    cleaned_sources = cleaned_sources or {}
+    years = []
+    answer_updates = deepcopy(current_answers)
+
+    for year in [2019, 2021, 2022]:
+        year_entry = parse_year_entry_from_existing(current_dataset, year)
+        years.append(year_entry)
+        for number, correct in OFFICIAL_WG_ANSWERS[year].items():
+            answer_updates.setdefault(f"{year}-{number}", {})
+            answer_updates[f"{year}-{number}"]["correct_option"] = correct
+
+    md_2016 = cleaned_sources.get(2016) or read_md("2016_with_answers")
+    year_2016, answers_2016 = build_2016_wg_year(md_2016, "material/testpaperandanswer/2016德语专八真题及解析.pdf")
+    years.append(year_2016)
+    answer_updates.update(answers_2016)
+
+    md_2017 = cleaned_sources.get(2017) or read_md("2017_with_answers")
+    year_2017, answers_2017 = build_2017_wg_year(md_2017, "material/testpaperandanswer/2017德语专八真题及解析.pdf")
+    years.append(year_2017)
+    answer_updates.update(answers_2017)
+
+    md_2018_exam = cleaned_sources.get(2018) or read_md("2018_exam")
+    year_2018, answers_2018 = build_2018_or_2025_wg_year(
+        2018,
+        md_2018_exam,
+        "material/testpaperandanswer/2018德语专八真题.pdf",
+        answer_source_text=cleaned_sources.get(2018),
+    )
+    years.append(year_2018)
+    answer_updates.update(answers_2018)
+
+    md_2025_exam = cleaned_sources.get(2025) or read_md("2025_exam")
+    year_2025, answers_2025 = build_2018_or_2025_wg_year(
+        2025,
+        md_2025_exam,
+        "material/testpaperandanswer/2025专八.pdf",
+        answer_source_text=cleaned_sources.get(2025),
+    )
+    years.append(year_2025)
+    answer_updates.update(answers_2025)
+
+    years.sort(key=lambda item: item["year"])
+    return years, answer_updates
+
+
+def build_dataset() -> tuple[dict, dict]:
+    cleaned_sources = ensure_cleaned_testpaper_sources()
+    years, answer_key = build_wg_years_and_answers(cleaned_sources)
+    library_sets, library_answers = build_library_sets(cleaned_sources)
+    exercise_sets, exercise_answers = build_exercise_sets()
+    answer_key.update(library_answers)
+    answer_key.update(exercise_answers)
+
+    question_total = sum(entry["question_count"] for entry in years)
+    library_total = sum(entry["question_count"] for entry in library_sets)
+    exercise_total = sum(entry["question_count"] for entry in exercise_sets)
+    dataset = {
+        "meta": {
+            "generated_at": now_iso(),
+            "source_pdf": "德语专业八级真题2019-2022.pdf",
+            "section": "Wortschatz und Grammatik",
+            "available_years": [entry["year"] for entry in years],
+            "notes": [
+                "已接入 material/testpaperandanswer/cleaned.txt 的清洗数据，并回写 2016、2017、2018、2025 年拆分源码。",
                 "已补入 2016、2017、2018、2025 年词汇语法题库。",
                 "已接入 2018、2019、2021、2022、2025 年听力、阅读、国情、翻译、写作材料。",
                 "已接入 exercise 材料中的 2023 真题和国情 1000 题练习集。",

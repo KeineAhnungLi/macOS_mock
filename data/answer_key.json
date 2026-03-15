@@ -498,9 +498,9 @@
     ]
   },
   "2016-34": {
-    "display_answer": "verschlieBen",
+    "display_answer": "verschließen",
     "accepted_answers": [
-      "verschlieben"
+      "verschliessen"
     ]
   },
   "2016-38": {
@@ -516,9 +516,9 @@
     ]
   },
   "2016-40": {
-    "display_answer": "bediichtig",
+    "display_answer": "bedächtig",
     "accepted_answers": [
-      "bediichtig"
+      "bedächtig"
     ]
   },
   "2016-42": {
@@ -528,10 +528,10 @@
     ]
   },
   "2016-61": {
-    "correct_option": "A"
+    "correct_option": "B"
   },
   "2016-62": {
-    "correct_option": "A"
+    "correct_option": "C"
   },
   "2016-63": {
     "correct_option": "A"
@@ -540,7 +540,7 @@
     "correct_option": "A"
   },
   "2016-65": {
-    "correct_option": "A"
+    "correct_option": "C"
   },
   "2016-66": {
     "correct_option": "B"
@@ -549,7 +549,7 @@
     "correct_option": "D"
   },
   "2016-68": {
-    "correct_option": "A"
+    "correct_option": "D"
   },
   "2016-69": {
     "correct_option": "A"
@@ -558,7 +558,7 @@
     "correct_option": "B"
   },
   "2016-71": {
-    "correct_option": "A"
+    "correct_option": "B"
   },
   "2016-72": {
     "correct_option": "A"
@@ -579,13 +579,13 @@
     "correct_option": "C"
   },
   "2017-35": {
-    "correct_option": "B"
+    "correct_option": "D"
   },
   "2017-36": {
     "correct_option": "B"
   },
   "2017-37": {
-    "correct_option": "A"
+    "correct_option": "C"
   },
   "2017-38": {
     "correct_option": "D"
@@ -594,13 +594,13 @@
     "correct_option": "A"
   },
   "2017-40": {
-    "correct_option": "C"
+    "correct_option": "A"
   },
   "2017-41": {
     "correct_option": "A"
   },
   "2017-42": {
-    "correct_option": "D"
+    "correct_option": "C"
   },
   "2017-43": {
     "correct_option": "D"
@@ -609,34 +609,34 @@
     "correct_option": "A"
   },
   "2017-45": {
-    "correct_option": "D"
+    "correct_option": "C"
   },
   "2017-46": {
-    "correct_option": "D"
+    "correct_option": "A"
   },
   "2017-47": {
-    "correct_option": "D"
+    "correct_option": "C"
   },
   "2017-48": {
-    "correct_option": "D"
+    "correct_option": "B"
   },
   "2017-49": {
     "correct_option": "D"
   },
   "2017-50": {
-    "correct_option": "D"
+    "correct_option": "B"
   },
   "2017-51": {
-    "correct_option": "D"
+    "correct_option": "A"
   },
   "2017-52": {
-    "correct_option": "D"
+    "correct_option": "C"
   },
   "2017-53": {
-    "correct_option": "D"
+    "correct_option": "B"
   },
   "2017-54": {
-    "correct_option": "D"
+    "correct_option": "A"
   },
   "2017-55": {
     "correct_option": "D"
@@ -645,7 +645,7 @@
     "correct_option": "A"
   },
   "2017-57": {
-    "correct_option": "A"
+    "correct_option": "B"
   },
   "2017-58": {
     "correct_option": "B"
@@ -657,7 +657,7 @@
     "correct_option": "D"
   },
   "2017-61": {
-    "correct_option": "A"
+    "correct_option": "C"
   },
   "2017-62": {
     "correct_option": "B"
@@ -690,7 +690,7 @@
     "correct_option": "B"
   },
   "2018-32": {
-    "correct_option": "A"
+    "correct_option": "D"
   },
   "2018-33": {
     "correct_option": "A"
@@ -699,7 +699,7 @@
     "correct_option": "B"
   },
   "2018-35": {
-    "correct_option": "B"
+    "correct_option": "C"
   },
   "2018-36": {
     "correct_option": "D"
@@ -726,7 +726,7 @@
     "correct_option": "D"
   },
   "2018-45": {
-    "correct_option": "D"
+    "correct_option": "A"
   },
   "2018-46": {
     "correct_option": "A"
@@ -741,13 +741,13 @@
     "correct_option": "C"
   },
   "2018-50": {
-    "correct_option": "D"
+    "correct_option": "B"
   },
   "2018-51": {
     "correct_option": "D"
   },
   "2018-52": {
-    "correct_option": "D"
+    "correct_option": "B"
   },
   "2018-53": {
     "correct_option": "A"
@@ -780,7 +780,7 @@
     "correct_option": "A"
   },
   "2018-63": {
-    "correct_option": "D"
+    "correct_option": "C"
   },
   "2018-64": {
     "correct_option": "A"
@@ -789,7 +789,7 @@
     "correct_option": "C"
   },
   "2018-66": {
-    "correct_option": "A"
+    "correct_option": "D"
   },
   "2018-67": {
     "correct_option": "A"
@@ -798,10 +798,10 @@
     "correct_option": "C"
   },
   "2018-69": {
-    "correct_option": "A"
+    "correct_option": "C"
   },
   "2018-70": {
-    "correct_option": "A"
+    "correct_option": "D"
   },
   "2025-31": {
     "correct_option": "D"
@@ -813,7 +813,7 @@
     "correct_option": "A"
   },
   "2025-34": {
-    "correct_option": "B"
+    "correct_option": "C"
   },
   "2025-35": {
     "correct_option": "C"
@@ -825,13 +825,13 @@
     "correct_option": "B"
   },
   "2025-38": {
-    "correct_option": "D"
+    "correct_option": "A"
   },
   "2025-40": {
     "correct_option": "C"
   },
   "2025-41": {
-    "correct_option": "C"
+    "correct_option": "D"
   },
   "2025-42": {
     "correct_option": "A"
@@ -912,7 +912,7 @@
     "correct_option": "C"
   },
   "2025-70": {
-    "correct_option": "B"
+    "correct_option": "D"
   },
   "2018-reading-71": {
     "correct_option": "B"
@@ -927,10 +927,10 @@
     "correct_option": "C"
   },
   "2018-reading-75": {
-    "correct_option": "A"
+    "correct_option": "D"
   },
   "2018-reading-76": {
-    "correct_option": "A"
+    "correct_option": "C"
   },
   "2018-reading-77": {
     "correct_option": "B"
@@ -942,13 +942,13 @@
     "correct_option": "A"
   },
   "2018-reading-80": {
-    "correct_option": "A"
+    "correct_option": "B"
   },
   "2018-reading-81": {
     "correct_option": "D"
   },
   "2018-reading-82": {
-    "correct_option": "A"
+    "correct_option": "C"
   },
   "2018-reading-83": {
     "correct_option": "B"
@@ -957,37 +957,37 @@
     "correct_option": "A"
   },
   "2018-reading-85": {
-    "correct_option": "F"
+    "correct_option": "C"
   },
   "2018-landeskunde-86": {
-    "correct_option": "A"
-  },
-  "2018-landeskunde-87": {
-    "correct_option": "A"
-  },
-  "2018-landeskunde-88": {
-    "correct_option": "A"
-  },
-  "2018-landeskunde-89": {
-    "correct_option": "A"
-  },
-  "2018-landeskunde-90": {
     "correct_option": "R"
   },
+  "2018-landeskunde-87": {
+    "correct_option": "F"
+  },
+  "2018-landeskunde-88": {
+    "correct_option": "R"
+  },
+  "2018-landeskunde-89": {
+    "correct_option": "R"
+  },
+  "2018-landeskunde-90": {
+    "correct_option": "F"
+  },
   "2018-landeskunde-91": {
-    "correct_option": "B"
+    "correct_option": "F"
   },
   "2018-landeskunde-92": {
-    "correct_option": "A"
+    "correct_option": "B"
   },
   "2018-landeskunde-93": {
-    "correct_option": "C"
+    "correct_option": "D"
   },
   "2018-landeskunde-95": {
     "correct_option": "B"
   },
   "2018-landeskunde-96": {
-    "correct_option": "A"
+    "correct_option": "C"
   },
   "2018-landeskunde-97": {
     "correct_option": "B"
@@ -1005,13 +1005,13 @@
     "correct_option": "C"
   },
   "2018-landeskunde-102": {
-    "correct_option": "F"
+    "correct_option": "C"
   },
   "2018-landeskunde-103": {
     "correct_option": "A"
   },
   "2018-landeskunde-104": {
-    "correct_option": "A"
+    "correct_option": "D"
   },
   "2025-listening-11": {
     "correct_option": "D"
@@ -1041,7 +1041,7 @@
     "correct_option": "A"
   },
   "2025-listening-20": {
-    "correct_option": "C"
+    "correct_option": "D"
   },
   "2025-listening-24": {
     "correct_option": "B"
@@ -1062,7 +1062,7 @@
     "correct_option": "D"
   },
   "2025-listening-30": {
-    "correct_option": "A"
+    "correct_option": "B"
   },
   "2025-reading-72": {
     "correct_option": "A"
@@ -1080,13 +1080,13 @@
     "correct_option": "B"
   },
   "2025-reading-81": {
-    "correct_option": "F"
+    "correct_option": "D"
   },
   "2025-landeskunde-86": {
     "correct_option": "R"
   },
   "2025-landeskunde-87": {
-    "correct_option": "B"
+    "correct_option": "F"
   },
   "exercise-2023-paper-10": {
     "correct_option": "A"
@@ -1873,5 +1873,227 @@
   },
   "exercise-country-6-4-16": {
     "correct_option": "D"
+  },
+  "2016-35": {
+    "display_answer": "traumhaft",
+    "accepted_answers": [
+      "traumhaft"
+    ]
+  },
+  "2016-36": {
+    "display_answer": "glaubhaft",
+    "accepted_answers": [
+      "glaubhaft"
+    ]
+  },
+  "2016-37": {
+    "display_answer": "argwöhnisch",
+    "accepted_answers": [
+      "argwöhnisch"
+    ]
+  },
+  "2016-41": {
+    "display_answer": "Gold",
+    "accepted_answers": [
+      "gold"
+    ]
+  },
+  "2016-43": {
+    "display_answer": "Schwung",
+    "accepted_answers": [
+      "schwung"
+    ]
+  },
+  "2016-44": {
+    "display_answer": "Schau",
+    "accepted_answers": [
+      "schau"
+    ]
+  },
+  "2016-45": {
+    "display_answer": "Mädchen",
+    "accepted_answers": [
+      "mädchen"
+    ]
+  },
+  "2016-46": {
+    "display_answer": "verhindert",
+    "accepted_answers": [
+      "verhindert"
+    ]
+  },
+  "2016-47": {
+    "display_answer": "hindert",
+    "accepted_answers": [
+      "hindert"
+    ]
+  },
+  "2016-48": {
+    "display_answer": "verhindert",
+    "accepted_answers": [
+      "verhindert"
+    ]
+  },
+  "2016-49": {
+    "display_answer": "behindert",
+    "accepted_answers": [
+      "behindert"
+    ]
+  },
+  "2016-50": {
+    "display_answer": "gehindert",
+    "accepted_answers": [
+      "gehindert"
+    ]
+  },
+  "2016-56": {
+    "display_answer": "c",
+    "accepted_answers": [
+      "c"
+    ]
+  },
+  "2016-57": {
+    "display_answer": "d",
+    "accepted_answers": [
+      "d"
+    ]
+  },
+  "2016-58": {
+    "display_answer": "b",
+    "accepted_answers": [
+      "b"
+    ]
+  },
+  "2016-59": {
+    "display_answer": "b",
+    "accepted_answers": [
+      "b"
+    ]
+  },
+  "2016-60": {
+    "display_answer": "b",
+    "accepted_answers": [
+      "b"
+    ]
+  },
+  "2016-74": {
+    "display_answer": "als dass",
+    "accepted_answers": [
+      "als dass"
+    ]
+  },
+  "2016-75": {
+    "display_answer": "worüber ; was",
+    "accepted_answers": [
+      "worüber ; was"
+    ]
+  },
+  "2018-41": {
+    "correct_option": "B"
+  },
+  "2025-39": {
+    "correct_option": "D"
+  },
+  "2025-56": {
+    "correct_option": "B"
+  },
+  "2025-66": {
+    "correct_option": "D"
+  },
+  "2018-landeskunde-94": {
+    "correct_option": "C"
+  },
+  "2018-landeskunde-105": {
+    "correct_option": "B"
+  },
+  "2025-listening-21": {
+    "correct_option": "C"
+  },
+  "2025-listening-22": {
+    "correct_option": "D"
+  },
+  "2025-listening-23": {
+    "correct_option": "C"
+  },
+  "2025-reading-71": {
+    "correct_option": "B"
+  },
+  "2025-reading-74": {
+    "correct_option": "B"
+  },
+  "2025-reading-75": {
+    "correct_option": "A"
+  },
+  "2025-reading-77": {
+    "correct_option": "C"
+  },
+  "2025-reading-79": {
+    "correct_option": "C"
+  },
+  "2025-reading-82": {
+    "correct_option": "B"
+  },
+  "2025-reading-83": {
+    "correct_option": "C"
+  },
+  "2025-reading-84": {
+    "correct_option": "B"
+  },
+  "2025-reading-85": {
+    "correct_option": "D"
+  },
+  "2025-landeskunde-88": {
+    "correct_option": "F"
+  },
+  "2025-landeskunde-89": {
+    "correct_option": "R"
+  },
+  "2025-landeskunde-90": {
+    "correct_option": "F"
+  },
+  "2025-landeskunde-91": {
+    "correct_option": "R"
+  },
+  "2025-landeskunde-92": {
+    "correct_option": "A"
+  },
+  "2025-landeskunde-93": {
+    "correct_option": "C"
+  },
+  "2025-landeskunde-94": {
+    "correct_option": "C"
+  },
+  "2025-landeskunde-95": {
+    "correct_option": "D"
+  },
+  "2025-landeskunde-96": {
+    "correct_option": "C"
+  },
+  "2025-landeskunde-97": {
+    "correct_option": "B"
+  },
+  "2025-landeskunde-98": {
+    "correct_option": "C"
+  },
+  "2025-landeskunde-99": {
+    "correct_option": "B"
+  },
+  "2025-landeskunde-100": {
+    "correct_option": "B"
+  },
+  "2025-landeskunde-101": {
+    "correct_option": "B"
+  },
+  "2025-landeskunde-102": {
+    "correct_option": "B"
+  },
+  "2025-landeskunde-103": {
+    "correct_option": "C"
+  },
+  "2025-landeskunde-104": {
+    "correct_option": "B"
+  },
+  "2025-landeskunde-105": {
+    "correct_option": "C"
   }
 }
