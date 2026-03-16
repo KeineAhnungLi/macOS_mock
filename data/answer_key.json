@@ -483,325 +483,425 @@
     "display_answer": "erstarkt",
     "accepted_answers": [
       "erstarkt"
-    ]
+    ],
+    "explanation": "erschöpft 精疲力尽的，疲惫的。erstarkt 强壮的，加强的。ermattet 疲劳的，疲乏的，虚弱的。kraftlos 无力的，疲惫的。erstarkt与其他三个词义相反。"
   },
   "2016-32": {
     "display_answer": "Makler",
     "accepted_answers": [
       "makler"
-    ]
+    ],
+    "explanation": "Erzeuger 生产者。Hersteller 制造者。Makler 经纪人，中间人。Fabrikant 工厂主。Makler与其他三个词义不同。"
   },
   "2016-33": {
     "display_answer": "tiefsinnig",
     "accepted_answers": [
       "tiefsinnig"
-    ]
+    ],
+    "explanation": "bedrückt 抑郁的，沮丧的。bekümmert 悲伤的，忧虑的。trübsinnig 忧郁的，沮丧的。tiefsinnig 思想深刻的，深奥的。tiefsinnig与其他三个词义不同。"
   },
   "2016-34": {
     "display_answer": "verschließen",
     "accepted_answers": [
       "verschliessen"
-    ]
+    ],
+    "explanation": "einstellen 停止，终止。verschließen 锁上，锁住。beenden 结束，停止。beilegen 调停，结束。verschließen与其他三个词义不同。"
   },
   "2016-38": {
     "display_answer": "Auflage",
     "accepted_answers": [
       "auflage"
-    ]
+    ],
+    "explanation": "Beitrag 费用，贡献。Abgabe 税费。Gebühr 费用，手续费。Auflage 版次，版本。Auflage与其他三个词义不同。"
   },
   "2016-39": {
     "display_answer": "gebieten",
     "accepted_answers": [
       "gebieten"
-    ]
+    ],
+    "explanation": "genehmigen 准许，批准。gebieten 命令，要求。gewähren 允许，给予。gestatten 允许，同意。gebieten与其他三个词义不同。"
   },
   "2016-40": {
     "display_answer": "bedächtig",
     "accepted_answers": [
       "bedächtig"
-    ]
+    ],
+    "explanation": "bedächtig 从容不迫的，悠闲的。gründlich 彻底的，周密的。gewissenhaft 认真负责的。aufmerksam 注意的，专心的。bedächtig侧重缓慢从容，其他三个侧重细致认真。"
   },
   "2016-42": {
     "display_answer": "Flinte",
     "accepted_answers": [
       "flinte"
-    ]
+    ],
+    "explanation": "句意：他一遇到困难就灰心丧气。die Flinte ins Korn werfen 字面意为\"把火枪扔进庄稼地里\"，引申意为\"灰心，气馁，放弃\"。"
   },
   "2016-61": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：这位驾校教练因事故在他在场时发生而受到驾校教练协会的批评。in seinem Beisein 强调当时教练在场这一状态，所以应使用während作为替换，表示\"在……时\"。题干要求用Nebensatz替换Präposition，但原句已经是weil从句，题目似乎有误。根据上下文，应该是要求替换\"in seinem Beisein\"。选项中b用während正确表达了同时性。故选b。"
   },
   "2016-62": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原句句意：医生从病历中获得信息，这些信息他可以在患者每次后续就诊时使用。bei表示\"在……时候\"，具有同时性和重复性，可用wenn引导的从句替换。故选c。"
   },
   "2016-63": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：在学期休假期间于上海举办的会议有来自世界各地的1000多名日耳曼学者参加。前置定语\"veranstalteten\"是第二分词，表示被动和已完成，改为关系从句应为被动语态过去时。故选a。"
   },
   "2016-64": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：学生们在紧接着报告之后的讨论中提了许多问题。anschließen为反身动词，sich an etw. (A) anschließen意为\"紧接着……\"。改为前置定语时，应保留反身代词，并使用第一分词表示主动和同时发生。故选a。"
   },
   "2016-65": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原句句意：患者未能获救，因为他没有得到及时手术。这是一个与过去事实相反的虚拟式，意为\"如果当时得到及时手术，他本可以获救的\"。c选项正确表达了这层含义。"
   },
   "2016-66": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：毒贩一定已经离开了这个国家。此处muss表示一种非常肯定的猜测，可能性极高。b选项的\"sehr wahrscheinlich\"最为接近。d的\"vielleicht möglich\"可能性较低。"
   },
   "2016-67": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "原句句意：他不顾所有警告，独自一人去了国外。ungeachtet意为\"尽管，不顾\"，表示让步，应用obwohl引导让步从句。逻辑上是\"尽管被警告，还是去了\"，故选d。"
   },
   "2016-68": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "原句句意：如果运气好的话，我们还能赶上火车。Mit etwas Glück表示条件，意为\"如果有点运气的话\"，可用wenn引导的条件从句替换。故选d。"
   },
   "2016-69": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：正如威斯巴登当局所通报的那样，在德国生活的人口比官方迄今给出的数据少130万。wie从句表示\"正如……\"，可用\"jm./etw. zufolge\" (根据某人/某物所说) 来替换。zufolge放在名词后，支配第三格。故选a。"
   },
   "2016-70": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：通过用新的眼光看世界，人们可以进行真正的发现之旅。indem引导方式状语从句，意为\"通过……方式\"，可用介词durch (通过) 来替换。故选b。"
   },
   "2016-71": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：环境问题必须得到有力解决。mussten ... angegangen werden是被动态，可用es gilt (es galt), etw. zu tun来表示\"必须做某事，关键是做某事\"。a的sich lassen表示可能性，不表示必须；c和d是主动态，且时态不一致。故选b。"
   },
   "2016-72": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：该男子书面记录道：\"我只是想过马路。\"直接引语为过去时(wollte)，间接引语应使用第一虚拟式的过去时。wollen的现在完成时第一虚拟式为habe ... wollen。故选a。"
   },
   "2016-73": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：总统说：\"人民遭受战争之苦已经够久了。\"直接引语为过去时(litten)，间接引语应使用第一虚拟式的过去完成时。leiden的过去完成时第一虚拟式为hätten ... gelitten。故选b。"
   },
   "2017-31": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "Demonstrrier这个词不存在。Demonstrant 示威游行者，参加游行者。Demonstrator 示范者，表演者。故选b。"
   },
   "2017-32": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "Dramatist戏剧家。Dramatiker剧作家。Lyriker抒情诗人。Dramaturg戏剧顾问，编剧。故选d。"
   },
   "2017-33": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "Prüfer检验者，检验员，主考官。Prüfling应考的人，考生，待试样品。Prüfungskommissar审核专员。Prüfungsabnehmer这个词一般不使用。故选b。"
   },
   "2017-34": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "der Ausgebildete这个词一般不使用。der Ausbilder教练，培训教师。der Auszubildende接受培训者，培训班或进修班学员。der Ausbildner<奥、瑞>教练，培训教师。故选c。"
   },
   "2017-35": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "Räuber这个词不存在。Räuberei<口>抢劫，掠夺。Beraubter这个词一般不使用。Räuber强盗，匪徒，盗贼，土匪。故选d。"
   },
   "2017-36": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "句意：人总是需要刺激，否则就会枯萎/停滞。verkümmern 枯萎，凋谢；萎缩，荒废，停滞。eingehen 死亡，枯死，收缩。故选b。"
   },
   "2017-37": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：海因里希·曼的长篇小说的题目是《在天国》。这部小说对人国，指代极为美好的地方或境界。Schlaraffenland 指想象中的极乐乡，懒人国。故选c。"
   },
   "2017-38": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：有自卑感的孩子会不太乐于交际。Minderwertigkeitsgefühl<心理学>自卑感。故选d。"
   },
   "2017-39": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：在这些人物身上，诗人描绘出了艺术家和商人之间的范式冲突。paradigmatisch 示例的，范例的，典型的。modellhaft 典范的，样板式的。beispiellos 无先例的，空前的，无与伦比的。einzigartig 独一无二的，独特的。rätselhaft 令人困惑不解的，捉摸不定的。故选a。"
   },
   "2017-40": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：为此人们需要敏锐的政治嗅觉。Fingerspitzengefühl 细致的感觉，敏锐的鉴别力，细致的理解能力。Feingefühl 细腻的感情，敏锐的感觉。Feinsinn 高尚，文雅。Feinheit 精致，小巧，精密。Mitgefühl 同情。故选a。"
   },
   "2017-41": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：Martina通过暗示让她的朋友明白，她的丈夫对她不忠。durch die Blume 意为\"委婉地，暗示地\"。故选a。"
   },
   "2017-42": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：人们应该趁热打铁。此句为德语俗语：Man muss das Eisen schmieden, solange es heiß ist. 故选c。"
   },
   "2017-43": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：坐飞机从法兰克福到斯图加特只有一步之遥（很近）。Katzensprung字面意为\"猫一跳那么远\"，引申意为\"距离很近\"。故选d。"
   },
   "2017-44": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：他丝毫没有让步。Fingerbreit 为表示身体器官的词作为度量单位的词汇，意为\"一个手指宽的距离\"，引申意为\"极小的距离，丝毫\"。keinen Fingerbreit nachgeben 丝毫不让步。故选a。"
   },
   "2017-45": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：我父亲经常烧断保险丝。die Sicherung durchbrennen意为\"保险丝烧断了\"。故选c。"
   },
   "2017-46": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：在古代世界将要结束时，一个庞大的贸易体系逐渐形成了。sich entwickeln 意为\"成长，发育，形成，发展成为…\"，其余三项均为及物动词，后接四格宾语，无需反身代词。故选a。"
   },
   "2017-47": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "blühen 意为\"繁荣昌盛，欣欣向荣；开花\"，Handel blühen 可理解为\"贸易十分繁荣\"。其余三项均与 Handel 不搭配。florieren 也可表示繁荣，但此处原文为blühte。故选c。"
   },
   "2017-48": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "句意：……但宋代时贸易就已经有所缩减。senken 意为\"使下沉，降低\"，后接四格宾语，不与反身代词搭配。erniedrigen 意为\"贬低，侮辱\"，不符合句意。schwächen 意为\"削弱\"，后接四格宾语，且不与反身代词搭配。sich vermindern 意为\"减少，降低\"，与句意相符，故选b。"
   },
   "2017-49": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：自8世纪以来农业改革、新技术和特殊灌溉技术使阿拉伯世界变得更加强大。bekräftigen 加强，强调。stärken 使身体强壮，恢复体力，使精力充沛。ermächtigen 授权。erstarken 变得强大，壮大。根据句意，答案选d。"
   },
   "2017-50": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "setzen 放置，安放，安装。bilden 制作，产生，形成，建立。stecken 插着，逗留，存在。legen 躺下，平放。eine wichtige Mittlerkultur bilden 意为\"形成了一个重要的中介文化\"。故选b。"
   },
   "2017-51": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：这一文化保障了货运和金融交易的安全。gewährleisten 保证，保障，担保。gebieten 命令，统治。gestehen 承认，供认。genießen 享受，享用。根据句意，答案选a。"
   },
   "2017-52": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：自12世纪以来，世界秩序产生了变化。zugeben 承认，招认。abgeben 交给，交出，分给，说出，发表。sich ergeben 产生，出现。begeben 去，前往，着手进行，开始做。根据句意，答案选c。"
   },
   "2017-53": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "句意：威尼斯在与拜占庭的竞争中持续扩张。由句尾 aus 可知，此处应填入可分动词的词干。ausziehen 脱掉，摘录，拉出，拉长。ausdehnen 使膨胀，扩展，舒展（四肢）。ausstrecken 伸出，伸展。ausschieben 推迟，推出。根据句意，答案选 b。"
   },
   "2017-54": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：葡萄牙的航海活动削弱了埃及。schwächen 使衰弱，使虚弱。schwächeln 为不及物动词，意为\"衰弱，疲软\"，不能用在被动句中。entmachten 剥夺某人的权力。erschöpfen 使筋疲力尽。根据句意和语法，应选 geschwächt。"
   },
   "2017-55": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：欧洲，一个起初落后的地区，从东方贸易路线的分裂、中国与蒙古的战争冲突以及使中国人口减少的瘟疫中获益。gewinnen 获得，赢得。verdienen 挣得，赚得，理应得到。danken 感谢。profitieren 获取利润，得到好处，常与 von 连用。根据句意，答案选 d。"
   },
   "2017-56": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：即使天气恶劣这座城市也值得游览。bei 引导的介词结构可以用来表示\"在……情况下\"，与之有同样含义的为 wenn 引导的时间/条件状语从句。故选 a。"
   },
   "2017-57": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：随着社会中财富的增加，人的寿命会进一步延长。原句为因果关系，但更强调一种同步的、比例的变化，所以比较从句（je...desto...）比原因从句更能表达出原句的意思。故选 b。"
   },
   "2017-58": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：第二个从监狱中逃脱的犯人仍然在逃。原句 entkommen 为第二分词（Partizip II），表示已完成的主动动作（entkommen 用 sein 构成完成时），选项 a、d 为被动态，故可排除。选项 c 中的关系从句缺少谓语（ist 后无表语或补足语），故可排除。故选 b。"
   },
   "2017-59": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：要弄清楚关于语言的基本观点，这些观点决定了语言学的兴趣所在。选项 c、d 将关系从句错误地关联到 Sprache 上，与原句意不符；bestimmen 为主语 Perspektiven 主动施加出的动作，变为前置定语时应用第一分词（Partizip I）形式 bestimmend。故选 a。"
   },
   "2017-60": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "原句句意：副驾驶员睡着了并且没有目睹事故的发生可能是真的。此处 dürfen 的第二虚拟式形式（dürfte）表达一种较大的可能性，相当于 wahrscheinlich。故选 d。"
   },
   "2017-61": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原句句意：这位政治家声称自己与腐败案件没有关系。动词 wollen 在此作情态动词使用，表示\"声称，自称\"，主语必须是行为的发出者，且通常用于第三者声称自己做过或没做过某事。故选 c。"
   },
   "2017-62": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：如果没有国家的财政支持，这个项目就无法实施。原句使用了第二虚拟式（hätte...können），表示与过去事实相反的假设。选项 b 保留了虚拟式，且时态一致。选项 c、d 时态或语气不符，选项 a 为直陈式过去时，与原意不符。故选 b。"
   },
   "2017-63": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "原句句意：成功来自专注于你真正喜欢的和你擅长的东西。durch 表示方式和手段，可以用 indem 或 dadurch, dass 来改写。选项 a 的 sobald 表示时间，选项 b 的 so dass 表示结果，选项 c 因果关系颠倒。故选 d。"
   },
   "2017-64": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "原句句意：根据您给出的答案，我们将采取相应的行动。je nachdem 意为\"视……情况而定，根据……情况\"。dank 支配第二格或第三格，意为\"多亏，由于\"。entgegen 支配第三格，意为\"与……相反，违背\"。hinsichtlich 支配第二格，意为\"关于，对于，在某方面\"。entsprechend 支配第三格，意为\"按照，根据\"。故选 d。"
   },
   "2017-65": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：即使你欺骗了税务局，只要自首你就不必去坐牢。此处 wenn 连接条件从句，意为\"如果，倘若\"。im Falle 就意为\"假如，如果发生\"，与原句句意相符。故选 b。"
   },
   "2017-66": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：令人担心的是接下来的几天内可能会发生袭击。stehen zu + Infinitiv 意为\"有待……；值得……\"，可用于表示被动含义。haben zu + Infinitiv 意为\"必须，应当\"，主语通常是人。pflegen zu + Infinitiv 意为\"习惯于\"。versprechen zu + Infinitiv 意为\"有望\"。故选 a。"
   },
   "2017-67": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "原句句意：新闻发布会上一名记者问道：\"这是一个一致的意见吗？\"原句主句为现在时，间接引语应使用第一虚拟式，且因为原问句是过去时（war），所以间接引语应使用现在完成时虚拟式（sei...gewesen）。另外，间接问句需用 ob 引导。故选 d。"
   },
   "2017-68": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：她说：\"我被绑起来打了。\"原句主句为现在时，间接引语应使用第一虚拟式，原句为被动语态（wurde ... geschlagen），是过去时，所以间接引语应为现在完成时被动语态的虚拟式（sei ... worden）。故选 b。"
   },
   "2017-69": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：我们还太缺乏经验，以至于无法解决这个问题。固定结构\"zu ... als dass\" 表示\"太……以至于不……\"，从句中通常用第二虚拟式。故选 c。"
   },
   "2017-70": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：很难相信考官没让他通过。lassen 作为情态动词使用时，其现在完成时形式为\"haben + 不定式 + lassen\"，即\"hat ... durchfallen lassen\"。故选 c。"
   },
   "2018-31": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "句意：这位毕业生申请一个空缺的岗位，但该公司拒绝了他。jm. eine Absage erteilen 意为\"拒绝，回绝\"。vergeben 原谅，宽恕，分配。erteilen 给予，授予。bescheiden 赐予，赋予。verteilen 分配，发放。故选b。"
   },
   "2018-32": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：教授怀疑这个学生的毕业论文是在别人的帮助下完成的。den Verdacht hegen 意为\"怀疑，猜测\"。wahren 保护，维护。pflegen 看护，照料，保养。führen 领导，带领。hegen 怀有，抱有，感到。故选d。"
   },
   "2018-33": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：立法者必须通过更严格的法律阻止互联网上的诈骗者。Einhalt gebieten 意为\"阻止，制止（坏事的发展）\"。gebieten 命令，要求，掌管。bieten 提供，给予。setzen 放置，规定。festsetzen 确定，设定。故选a。"
   },
   "2018-34": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "句意：这位司机想要对违规停车的罚款提出书面申诉。Einspruch einlegen 意为\"提出申诉/抗辩\"。anlegen 安放，摆，添置。einlegen 放入，插入，提出。ablegen 脱下，参加（考试等）。vorlegen 呈送，提交，出示。故选b。"
   },
   "2018-35": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：反对派一再对政府的经济方针进行批评。Kritik an jm./etw. üben 意为\"批评，批判\"。ausüben 从事，行使，执行。verüben 犯（罪、错误等）。üben 练习，训练，进行（批评等）。einüben 练熟，练会。故选c。"
   },
   "2018-36": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：他的朋友们都认为他是一个知足的人，因为尽管他很富有，但他生活所需不多。karg 贫乏的，微薄的。dürftig 可怜的，寒酸的。rentabel 有利可图的。genügsam 知足的，要求不高的。故选d。"
   },
   "2018-37": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：在古埃及，家畜死后通常会和主人葬在一起。gestatten 允许。erstatten 偿还，汇报。bestatten 埋葬，安葬。abstatten 拜访，致以。故选c。"
   },
   "2018-38": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：邮递员及时投递了生日包裹。zustellen 投递，寄送，递交。anliefern 大批量供货，送货。abstellen 存放，调派，关掉。ablegen 脱下，参加（考试）。故选a。"
   },
   "2018-39": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：警方知道那个被判刑的罪犯性格残暴。gewaltig 巨大的，强有力的。gewaltsam 暴力的，强制的（多形容手段、方式）。gewaltvoll 充满暴力的。gewalttätig 使用暴力的，残暴的（常用来形容人）。故选d。"
   },
   "2018-40": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "句意：冬天在刚下的雪里行走，每一步都会发出嘎吱嘎吱的声音。klirren 发出叮当声（如玻璃、金属）。knirschen 发出嘎吱声（如雪地、沙子、牙齿）。rascheln 发出沙沙声（如纸张、树叶）。knistern 发出噼啪声（如火、织物）。故选b。"
   },
   "2018-42": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "谚语。字面意思：刚从大雨中出来，又到了屋檐滴水处。引申义为：才脱困境，又遭新殃；每况愈下。故选c。"
   },
   "2018-43": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "谚语，源自圣经。字面意思：信仰能够移山。引申义为：信念创造奇迹。versetzen 移动，调换。故选a。"
   },
   "2018-44": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "谚语。字面意思：家中有把斧头，就不用请木匠了。引申义为：自己动手，丰衣足索；手巧不求人。Zimmermann 意为\"木匠\"。故选d。"
   },
   "2018-45": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "谚语。字面意思：哪里刨木头，哪里就会掉刨花。引申义为：有得必有失；做事总有痕迹/代价。Span 意为\"木屑，刨花\"。故选a。"
   },
   "2018-46": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：罗马的14个区中，只有四个未受损坏。unversehrt 未受损伤的，完好的。unbehelligt 未受打扰的。ungeschützt 无保护的。unbehindert 无障碍的。根据句意，答案选a。"
   },
   "2018-47": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：当时刮着强风。pusten (人)喘气，吹气。beherrschen 统治，掌握。blasen (风)吹。überwältigen 制服，压倒。表达\"风吹\"用 blasen，且 es blies ein Wind 是常见搭配。答案选c。"
   },
   "2018-48": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：……火在狭窄的街道和木屋中迅速蔓延。um sich greifen 为固定搭配，意为\"（火、疾病等）蔓延，传播\"。故选d。"
   },
   "2018-49": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：熊熊燃烧的大火起源于大竞技场旁的棚屋……schmökend (烟) 冒烟的。zündelnd 玩火的，点燃的。lodernd 火焰熊熊的，火舌高蹿的。schwelend 闷烧的，文火慢烧的。形容大火猛烈，用 lodernd。答案选c。"
   },
   "2018-50": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "句意：面对这场大火，消防队的灭火能力极为有限。angesichts + Gen. 意为\"面临；鉴于\"。vermittels 通过，借助。gemäß 按照，根据。anhand 根据，借助。根据句意，答案选b。"
   },
   "2018-51": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：此外，逃生的人群也阻碍了进一步的灭火措施……trotzdem 尽管如此。sonst 否则，另外。immerhin 至少，毕竟。überdies 此外，而且。根据上下文逻辑，此处表示递进关系。答案选d。"
   },
   "2018-52": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "句意：人们在街区中开辟防火隔离带……Brandschneise 意为\"（森林、城区中的）防火隔离带\"。Feuerpfad, Funkenkorridor, Flammengasse 都不是常用表达。答案选b。"
   },
   "2018-53": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "句意：在救援与抢劫的混乱中，谣言滋生。aufkeimen 萌芽，产生。aufblühen 繁荣。aufspringen 跳起，裂开。aufsprossen 发芽。Gerüchte keimen auf 意为\"谣言产生\"。答案选a。"
   },
   "2018-54": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：这座城市是因皇帝的命令而被蓄意摧毁的。willig 乐意的，顺从的。freiwillig 自愿的。mutwillig 故意的，蓄意的。gewillt 愿意的（只作表语）。根据上下文（疯皇帝需要写诗的灵感），是故意纵火。答案选c。"
   },
   "2018-55": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：直到第六天，经过长时间搏斗，大火才被扑灭。stillen 哺乳，平息（疼痛、饥渴）。wässern 浸泡，浇水。gießen 浇铸，倒（水）。löschen 扑灭（火）。Feuer löschen 是固定搭配。答案选d。"
   },
   "2018-56": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：航空运输的竞争加剧之后，价格下降了。nach 意为\"在……之后\"，应用 nachdem 引导时间状语从句。主句是过去时 (fielen)，从句动作发生在主句之前，应用过去完成时 (zugenommen hatte)。故选b。"
   },
   "2018-57": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原句句意：不经我同意，报纸可以刊登引用我的姓名和照片吗？ohne 意为\"没有，未经\"，改写成从句应用 ohne dass 引导。故选c。"
   },
   "2018-58": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：修复地震造成的损坏需要整整3.7亿美元。关系从句中的动词 entstehen 是已完成的状态，变为前置定语时应用第二分词 entstanden。entstehend 是第一分词，表示正在发生；zu entstehend 表示被动或必要性，均不符合。故选b。"
   },
   "2018-59": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：舒马赫先生建议他工作过度的同事们去度假。sich überarbeiten 意为\"工作过度劳累\"。überarbeitet 为第二分词，表示状态。主句为过去时 (riet)，从句动作发生在主句之前或同时，应用过去完成时 (sich überarbeitet hatten) 或过去时。这里表示建议时他们已经处于劳累状态，用过去完成时更强调状态的已完成。故选a。"
   },
   "2018-60": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原句句意：她可能性格不好，尽管如此，他和她相处得很好。情态动词 mögen 在此表示一种可能性较大的推测，意为\"可能，也许\"。只有 b 选项的 wahrscheinlich 表达了推测的含义。故选b。"
   },
   "2018-61": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原句句意：房客声称他没有收到电费单。wollen 在此作情态动词，表示\"声称，自称\"，且说话者通常不相信该声称。只有 c 选项的 behauptet 表达了\"声称\"的含义。故选c。"
   },
   "2018-62": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：由于与伦敦的脱欧谈判缺乏进展，在英国脱欧公投14个月后，欧盟内部的耐心正在消失。angesichts + G 意为\"由于，鉴于\"，表示原因。只有 weil 引导的原因从句符合逻辑。故选a。"
   },
   "2018-63": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原句句意：正如专家预期的那样，经济在年初强劲增长。gemäß 意为\"按照，根据\"，表示方式或依据。wie 引导的从句可以表示\"正如……的样子\"。从句动作 erwartet hatten 发生在主句之前，用过去完成时。故选c。"
   },
   "2018-64": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：党员们努力了。并非所有分歧都能消除。两句之间是转折关系。obgleich 意为\"尽管\"，引导让步状语从句，符合逻辑。故选a。"
   },
   "2018-65": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原句句意：人类发展。人类玩耍。两句之间的逻辑关系是\"通过……方式\"，即玩耍是人类发展的手段。indem 引导方式状语从句，表示\"通过……的方式\"。c 选项正确表达了\"人类通过玩耍来发展\"。故选c。"
   },
   "2018-66": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "原句句意：如今，必须在早期就对青少年进行艾滋病的宣传教育。sein + zu + Infinitiv 可以表示 müssen 或 können 的被动含义。这里 müssen ... aufgeklärt werden 的被动含义可以用 sind ... aufzuklären 来替换。故选d。"
   },
   "2018-67": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原句句意：党主席说：\"会上所有讨论点都被重新讨论了一遍。\"直接引语改为间接引语应用第一虚拟式。主句为现在时 (sagt)，从句时态应与原句一致。原句为被动语态过去时 (wurden ... besprochen)，间接引语应用现在完成时被动语态的第一虚拟式 (seien ... besprochen worden)。故选a。"
   },
   "2018-68": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：他一直努力满足要求。固定搭配：jm./etw. (D) gerecht werden 意为\"满足……的要求，胜任……\"。故选c。"
   },
   "2018-69": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "句意：作业太多了。许多学生因此感到完全不堪重负。überfordern 意为\"对……要求过高，使不堪重负\"。这里是表达学生的感受，用 sich + fühlen + 第二分词 (als Adjektiv) 的结构。sich überfordert fühlen 意为\"感到被苛求，感到不堪重负\"。故选c。"
   },
   "2018-70": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "句意：对于旅行团来说，长途旅行不是问题，因为既没有堵车也没有故障。根据逻辑，因为没问题，所以路上既没有堵车也没有故障。weder... noch... 意为\"既不……也不……\"，符合句意。故选d。"
   },
   "2025-31": {
     "correct_option": "D"
@@ -915,103 +1015,136 @@
     "correct_option": "D"
   },
   "2018-reading-71": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原文第二段末句提到\"Google bietet dieses Jahr allen für die Bundestagswahl zugelassenen Kandidaten die Chance, diese Boxen teilweise selbst zu betexten.\" 意为：今年谷歌向所有获得联邦议院选举资格的候选人提供自行编辑部分信息框的机会。故选b。"
   },
   "2018-reading-72": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "原文第三段第一句提到\"...Fakten zur Person wie etwa die Körpergröße oder die Parteienzugehörigkeit\" (关于个人的事实，如身高或党派归属)。随后提到\"...sollen die Kandidaten ihren politischen Grundsatz erklären dürfen und dann noch drei Prioritäten, ihre wichtigsten Themen im Wahlkampf.\" (候选人应能阐述其政治原则以及三个优先事项，即他们在竞选中最重要的主题)。所以选项a (个人事实)、b (政治立场)、c (候选人自我宣传) 都是Infobox包含的内容。d (对Infobox的评价) 未提及。故选d。"
   },
   "2018-reading-73": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原文第四段末句提到\"Beim Inhalt seien die Kandidaten frei, heißt es, solange ihre Botschaften nicht zum Beispiel volksverhetzend seien.\" 意为：据说候选人在内容上是自由的，只要他们的信息不是煽动民众之类的。因此，不能包含煽动民众的内容。故选b。"
   },
   "2018-reading-74": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原文倒数第三段第一句提到\"Googles Betexte-deine-Box-Service bietet den Politikern nun die Chance, ungefiltert für sich und ihre Positionen zu werben\" 意为：谷歌的\"编辑你的信息框\"服务为政客们提供了未经筛选地为自己及其立场进行宣传的机会。因此，是介绍自己的政治纲领。故选c。"
   },
   "2018-reading-75": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "原文倒数第二段第一句提到\"Für den Fall, dass sich die Prioritäten eines Kandidaten in den kommenden Wochen mal verschieben, lässt Google die Politiker ihre Sprüche zwischendurch auch überarbeiten\" 意为：以防候选人的优先事项在未来几周内发生变化，谷歌允许政治家们在期间对其表述进行修改。即候选人可以在竞选过程中调整其文本。故选d。"
   },
   "2018-reading-76": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原文倒数第二段末句提到\"Auch ein Verlinken der eigenen Social-Media-Accounts in der Box soll möglich sein, nicht aber das Einbauen von Fremdlinks...\" 意为：候选人可以在其信息框内设置他们自己的社交媒体账户的链接，但不能包含外部链接。故选c。"
   },
   "2018-reading-77": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原文最后一段提到\"Schon am Tag nach der Wahl, die am 24. September stattfindet, sollen die Boxen wieder offline gehen.\" 意为：在9月24日举行的大选后的第二天，这些信息框将再次下线。即9月25日。故选b。"
   },
   "2018-reading-78": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原文主要介绍了谷歌向选举候选人提供自行编辑信息框的服务，使他们能够更好地展示自己。a选项\"谷歌这样让政治家登台亮相\"最贴合主旨。b\"提供选举预测\"、c\"为知名政治家做竞选广告\"、d\"默克尔上网\"均不准确。故选a。"
   },
   "2018-reading-79": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原文第一段提到，蟑螂可以把自己压得很扁，穿过所有缝隙，这正是研究人员想要利用的特点。第二段开头说这个灵感的结果是CRAM，它拥有一些真蟑螂的特性。因此是蟑螂的解剖学特点（能压扁、腿能侧伸等）激发了灵感。故选a。"
   },
   "2018-reading-80": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原文第二段末句提到\"Doch CRAM, so die Idee, könnte bei der Suche Verschütteter bereits dann loslegen, wenn Suchhunden oder Menschen das noch längst nicht möglich ist.\" 意为：但根据设想，当搜救犬或人员还远不能进行搜索时，CRAM就可以开始搜寻被埋者了。故选b。"
   },
   "2018-reading-81": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "原文第三段第一句提到\"Im Fall von Erdbeben müssen die Helfer zuallererst wissen, ob ein Schuttberg stabil und einigermaßen sicher ist.\" 意为：在地震情况下，救援人员必须首先知道瓦砾堆是否稳定且相当安全。即是否可能坍塌。故选d。"
   },
   "2018-reading-82": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原文第三段中间提到\"Die Insekten können ihre Beinstellung bei Bedarf komplett zur Seite ausrichten und sogar auf den Schienbeinen weiter krabbeln...\" (如有需要，昆虫可以完全调整其腿部姿态，甚至用胫骨继续爬行) 以及\"Sie können das 900-fache ihres eigenen Gewichts auf ihrem Körper überstehen\" (它们能承受自身重量900倍的压力)。c选项完整概括了这两个原因。故选c。"
   },
   "2018-reading-83": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "原文第四段第一句提到\"...die künstliche Kakerlake kann ihre Beine zu den Seiten hin ausrichten und hält äußerst starken Quetschungen stand - dank eines sehr robusten Kunststoffpanzers.\" 意为：人造蟑螂可以将腿部侧向对齐，并且由于使用了非常坚固的塑料外壳，能够承受极其强烈的挤压。故选b。"
   },
   "2018-reading-84": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "原文倒数第二段末句提到\"Krabbeln kann CRAM richtig gut.\" 意为：CRAM爬行能力非常好。故选a。c选项，原文说从75mm压缩到35mm，压缩了超过一半，比例约为53%，不是35%。"
   },
   "2018-reading-85": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "原文最后一段提到\"Kollegen der North Carolina State University haben eine Fernsteuerung entwickelt, die echten Kakerlaken auf den Rücken geklebt wird.\" 意为：北卡罗来纳州立大学的研究人员开发了一种遥控装置，可以粘在真蟑螂的背上。因此是为真蟑螂开发的遥控技术。故选c。"
   },
   "2018-landeskunde-86": {
-    "correct_option": "R"
+    "correct_option": "R",
+    "explanation": "中德于1972年10月11日建交。2017年10月11日是建交45周年。故本题正确。"
   },
   "2018-landeskunde-87": {
-    "correct_option": "F"
+    "correct_option": "F",
+    "explanation": "柏林墙于1989年11月9日开放。1990年10月3日是两德正式统一的日子。故本题错误。"
   },
   "2018-landeskunde-88": {
-    "correct_option": "R"
+    "correct_option": "R",
+    "explanation": "新联邦州指的是原东德的五个州：勃兰登堡、梅克伦堡-前波莫恩、萨克森、萨克森-安哈尔特和图林根。1990年加入联邦德国。故本题正确。"
   },
   "2018-landeskunde-89": {
-    "correct_option": "R"
+    "correct_option": "R",
+    "explanation": "狂飙突进是18世纪德国启蒙运动晚期出现的一场文学运动，强调情感、个性和自然。它被视为启蒙运动的延续和反叛。故本题正确。"
   },
   "2018-landeskunde-90": {
-    "correct_option": "F"
+    "correct_option": "F",
+    "explanation": "瑞士有四种官方语言（Landessprachen）：德语、法语、意大利语和罗曼什语。故本题错误。"
   },
   "2018-landeskunde-91": {
-    "correct_option": "F"
+    "correct_option": "F",
+    "explanation": "奥地利于1995年加入欧盟，不是创始成员国。欧盟创始成员国为：德国、法国、意大利、荷兰、比利时、卢森堡。故本题错误。"
   },
   "2018-landeskunde-92": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "在魏玛长期生活过的两位伟大德国诗人是歌德和席勒。魏玛古典主义时期的核心人物。故选b。"
   },
   "2018-landeskunde-93": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "在2017年德国联邦议院选举中，德国选择党 (AfD) 以12.6%的得票率首次进入联邦议院。故选d。"
   },
   "2018-landeskunde-95": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "联合国安理会 (Sicherheitsrat der UNO) 有非常任理事国席位。德国曾多次申请成为非常任理事国。故选b。"
   },
   "2018-landeskunde-96": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "查理检查哨 (Checkpoint Charlie) 是冷战时期柏林墙边最著名的过境点之一，位于弗里德里希大街。故选c。"
   },
   "2018-landeskunde-97": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "莱比锡 (Leipzig) 是著名的展会城市，拥有超过850年的展会传统，是世界上最古老的展会举办地之一。故选b。"
   },
   "2018-landeskunde-98": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "德国的社会保险主要通过雇主和雇员缴纳的社会保险费 (Sozialabgaben) 来融资。故选a。"
   },
   "2018-landeskunde-99": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "赫尔穆特·科尔 (Helmut Kohl) 担任德国总理16年（1982-1998），其任内最重要的成就是推动了两德统一和欧洲一体化进程。故选a。"
   },
   "2018-landeskunde-100": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "德国汉莎航空公司的总部设在科隆 (Köln)。其航空枢纽主要在法兰克福和慕尼黑。故选b。"
   },
   "2018-landeskunde-101": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "奥托·冯·俾斯麦是普鲁士 (Preußen) 的首相，通过\"铁血政策\"领导的战争，最终实现了德国的统一，并使普鲁士/德国在欧洲大陆取得优势地位。故选c。"
   },
   "2018-landeskunde-102": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "德国的经济制度被称为\"社会市场经济\" (Soziale Marktwirtschaft)，强调市场自由与社会平衡相结合。故选c。"
   },
   "2018-landeskunde-103": {
-    "correct_option": "A"
+    "correct_option": "A",
+    "explanation": "2017年奥地利国民议会选举由保守派政党奥地利人民党 (ÖVP) 的候选人塞巴斯蒂安·库尔茨主导。故选a。"
   },
   "2018-landeskunde-104": {
-    "correct_option": "D"
+    "correct_option": "D",
+    "explanation": "巴伐利亚州 (Bayern) 是德国面积最大的联邦州，以其美丽的自然风光、文化和传统而闻名，是德国著名的度假天堂。故选d。"
   },
   "2025-listening-11": {
     "correct_option": "D"
@@ -1878,118 +2011,138 @@
     "display_answer": "traumhaft",
     "accepted_answers": [
       "traumhaft"
-    ]
+    ],
+    "explanation": "traumhaft 梦幻般的，极美的。verträumt 耽于幻想的，迷醉的。entrückt 出神的，入迷的。schwärmerisch 狂热的，入迷的。traumhaft侧重美好，其他三个侧重状态。"
   },
   "2016-36": {
     "display_answer": "glaubhaft",
     "accepted_answers": [
       "glaubhaft"
-    ]
+    ],
+    "explanation": "fromm 虔诚的。gläubig 信神的，虔诚的。glaubhaft 可信的，可靠的。religiös 宗教的，虔诚的。glaubhaft与其他三个词义不同。"
   },
   "2016-37": {
     "display_answer": "argwöhnisch",
     "accepted_answers": [
       "argwöhnisch"
-    ]
+    ],
+    "explanation": "argwöhnisch 怀疑的，多疑的。arglos 毫无猜疑的，轻信的。leichtgläubig 轻信的。vertrauensvoll 信任的，深信不疑的。argwöhnisch与其他三个词义相反。"
   },
   "2016-41": {
     "display_answer": "Gold",
     "accepted_answers": [
       "gold"
-    ]
+    ],
+    "explanation": "句意：如今一套湖边的房产价值千金。nicht mit Gold aufzuwiegen sein 意为\"极其贵重的，无价的\"。"
   },
   "2016-43": {
     "display_answer": "Schwung",
     "accepted_answers": [
       "schwung"
-    ]
+    ],
+    "explanation": "句意：他试图为陷入停滞的谈话重新注入活力。etw. in Schwung bringen 意为\"带动某物，使有活力，使顺利进行\"。"
   },
   "2016-44": {
     "display_answer": "Schau",
     "accepted_answers": [
       "schau"
-    ]
+    ],
+    "explanation": "句意：她总是故意显露出傲慢的本性。etw. zur Schau tragen / stellen 意为\"炫耀，故意显露\"。"
   },
   "2016-45": {
     "display_answer": "Mädchen",
     "accepted_answers": [
       "mädchen"
-    ]
+    ],
+    "explanation": "句意：施密特先生因为经验丰富成了公司里的\"万金油\"/打杂的。Mädchen für alles 意为\"打杂的人，什么都能干的人\"。"
   },
   "2016-46": {
     "display_answer": "verhindert",
     "accepted_answers": [
       "verhindert"
-    ]
+    ],
+    "explanation": "句意：相互间的不信任完全阻止了协议的达成。verhindern 表示\"阻止某事发生\"，结果是\"某事未能发生\"。"
   },
   "2016-47": {
     "display_answer": "hindert",
     "accepted_answers": [
       "hindert"
-    ]
+    ],
+    "explanation": "句意：没有什么能阻止我们将协议付诸实践。jn. (A) an etw. (D) hindern 为固定搭配，意为\"阻止某人做某事\"。"
   },
   "2016-48": {
     "display_answer": "verhindert",
     "accepted_answers": [
       "verhindert"
-    ]
+    ],
+    "explanation": "句意：不幸的是，她因病未能参加会议。verhindert 常用来表示某人\"因故未能出席/成行\"。"
   },
   "2016-49": {
     "display_answer": "behindert",
     "accepted_answers": [
       "behindert"
-    ]
+    ],
+    "explanation": "句意：大雨阻碍了视线。behindern 意为\"妨碍，阻碍\"，使某事变得困难，但不一定完全阻止。"
   },
   "2016-50": {
     "display_answer": "gehindert",
     "accepted_answers": [
       "gehindert"
-    ]
+    ],
+    "explanation": "句意：这个意外事件阻碍了我继续旅行。jn. (A) an etw. (D) hindern 为固定搭配。"
   },
   "2016-56": {
     "display_answer": "c",
     "accepted_answers": [
       "c"
-    ]
+    ],
+    "explanation": "原句句意：尽管付出了巨大努力，他们还是没能阻止事故的发生。主句是过去时，从句也应用过去时，表示同时发生。b选项是过去完成时，表示发生在主句之前，不符合。故选c。"
   },
   "2016-57": {
     "display_answer": "d",
     "accepted_answers": [
       "d"
-    ]
+    ],
+    "explanation": "原句句意：对可能发生战争的恐惧促使人们囤积食物。原句主语是名词短语\"Die Angst...\"，可用一个主语从句\"Dass...\"替换。主句时态为现在完成时，从句也应与之对应。故选d。"
   },
   "2016-58": {
     "display_answer": "b",
     "accepted_answers": [
       "b"
-    ]
+    ],
+    "explanation": "原句句意：修复地震造成的损坏需要整整3.7亿美元。entstanden 为第二分词作定语，表示已完成的动作，改为关系从句应用现在完成时，动词用sind entstanden。entstehen 是变化动词，用sein构成完成时。故选b。"
   },
   "2016-59": {
     "display_answer": "b",
     "accepted_answers": [
       "b"
-    ]
+    ],
+    "explanation": "原句句意：旨在为峰会做准备的欧盟财长会议无果而终。关系从句中的动词dienen是主动态，改为前置定语应用第一分词dienend。dienen常与zu搭配，即zu etw. dienen (用作/旨在)。故选b。"
   },
   "2016-60": {
     "display_answer": "b",
     "accepted_answers": [
       "b"
-    ]
+    ],
+    "explanation": "原句句意：从世界各地赶来参加博览会的参观者表示满意。angereist为第二分词，表示已完成的动作，主句是过去时，从句动作发生在主句之前，应用过去完成时。故选b。"
   },
   "2016-74": {
     "display_answer": "als dass",
     "accepted_answers": [
       "als dass"
-    ]
+    ],
+    "explanation": "句意：它太好了，不可能是真的。固定搭配zu...，als dass引导结果状语从句，表示\"太……以至于不……\"。"
   },
   "2016-75": {
     "display_answer": "worüber ; was",
     "accepted_answers": [
       "worüber ; was"
-    ]
+    ],
+    "explanation": "句意：他把我们私下谈的一切都告诉了别人，这让我很生气。第一空：über etwas sprechen，指代alles，应用关系代词was或wo(r)+介词。由于是介词+宾语，应用worüber。第二空：指代前面整个主句内容，应用was引导特殊关系从句。"
   },
   "2018-41": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "谚语。字面意思：厨师过多反而把粥做坏了。引申义为：人多误事。故选b。"
   },
   "2025-39": {
     "correct_option": "D"
@@ -2001,10 +2154,12 @@
     "correct_option": "D"
   },
   "2018-landeskunde-94": {
-    "correct_option": "C"
+    "correct_option": "C",
+    "explanation": "《尼伯龙根之歌》是德语区著名的英雄史诗，是日耳曼英雄史诗的杰出代表。Beowulf是古英语史诗。故选c。"
   },
   "2018-landeskunde-105": {
-    "correct_option": "B"
+    "correct_option": "B",
+    "explanation": "德意志联邦共和国的国家元首是联邦总统 (Bundespräsident)。联邦总理是政府首脑。故选b。"
   },
   "2025-listening-21": {
     "correct_option": "C"
@@ -2095,5 +2250,655 @@
   },
   "2025-landeskunde-105": {
     "correct_option": "C"
+  },
+  "2018-listening-1": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"Wir finden eine Häufung von Stressfolgeerkrankungen bei Stadtbewohnern, dazu gehören zum Beispiel die Depressionen, anderthalb mal so häufig in der Stadt im Vergleich zum Land.\" 意为：我们发现，城市居民患压力所致疾病，如抑郁症，是农村居民的1.5倍。故本题\"2倍\"错误。"
+  },
+  "2018-listening-2": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"...dass die stressverarbeitenden oder emotionsverarbeitenden Areale aktiver sind bei den Stadtbewohnern im Vergleich zu Landmenschen. Das bedeutet noch nicht, dass sie krank sind, sondern nur, dass das Gehirn empfindlicher auf Stress reagiert.\" 意为：与农村居民相比，城市居民大脑中压力感知和处理的区域更加活跃，这表明他们对压力的感知和反应更加敏感。故本题正确。"
+  },
+  "2018-listening-3": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"...dass für die meisten von uns die Stadt viel mehr Vorteile hat als Nachteile.\"，意为：对于我们当中的大多数人来说，城市生活利大于弊。故本题正确。"
+  },
+  "2018-listening-4": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"Die meisten Menschen, Bewohner der Stadt haben auch ausreichend Zugang dazu, aber es gibt Risikopopulationen. Es gibt Menschengruppen, die sind von diesem „Urban Advantage\" eher ausgeschlossen.\"，意为：大多数城市居民都可以充分利用城市生活的优点，但是也存在危机群体，他们享受不了城市生活的好处。由此可知并非所有人都能够从城市生活中受益。故本题错误。"
+  },
+  "2018-listening-5": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"ganz oft werden doch eher ruhige Orte genannt, Parks, Museen\"，意为：（被调查者们）最喜欢的地方是安静的地方，如公园、博物馆等；后文又提到\"...es heißt aber keineswegs, dass eine Grünfläche in der Stadt nun das Dörfliche in der Stadt darstellt...\" 意为：这并不是说，城市中的\"绿地\"就是城市中有乡土气息的地方。故本题错误。"
+  },
+  "2018-listening-6": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"Grünflächen sind gut für unsere Konzentration.\" 意为：绿地对我们集中注意力有帮助。故本题正确。"
+  },
+  "2018-listening-7": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"Immer mehr Menschen werden ja in Zukunft in Städten leben. Dieser Trend ist wahrscheinlich unumkehrbar.\" 意为：未来，越来越多的人会在城市生活，这一趋势将不会逆转。故本题正确。"
+  },
+  "2018-listening-8": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"dass die Gesundheitsfolgen der Urbanisierung vergleichbar sein werden wie die Folgen des Klimawandels auf unsere Gesundheit, ...\" 意为：城市化对人类健康的影响堪比气候变化对人类健康的影响。录音中只说到了可以相较，并没有交代哪一者的影响更大，故本题错误。"
+  },
+  "2018-listening-9": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"...dann ist es dringend an der Zeit herauszufinden, wo da genau der Zusammenhang besteht\" 意为：所以迫切需要弄清楚，城市生活与城市居民精神疾病之间到底有何种联系。由此可知教授并不清楚导致城市居民心理疾病的原因。故本题错误。"
+  },
+  "2018-listening-10": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"...dass eher extrovertierte Menschen in Städten, und dann auch gerne im Zentrum von Städten wohnen.\" 意为：城市中外向的人也因此更喜欢住在城市中心。此处\"外向的人\"的限定条件是\"城市中的\"，并不是所有的外向者，题干中的概念过于笼统。故本题错误。"
+  },
+  "2018-listening-11": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Nach dem in Berlin vorgestellten Verfassungsschutzbericht wurden im vergangenen Jahr deutschlandweit 1.600 rechts motivierte Gewalttaten gezählt.\" 意为：柏林发布的宪法保护报告提到，在过去一年中全德国共发生了1600起右翼动机的暴力事件。故选a。"
+  },
+  "2018-listening-12": {
+    "correct_option": "D",
+    "explanation": "录音中提到\"Er warnte vor Gewalt bei den Protesten gegen den G20-Gipfel in Hamburg am Wochenende.\" 意为：他（联邦内政部长）警告周末在汉堡举行的反对G20峰会的抗议活动中可能会发生暴力事件。故选d。"
+  },
+  "2018-listening-13": {
+    "correct_option": "C",
+    "explanation": "录音中提到\"Demnach gebe es mehr als 3.600 Antragsteller aus Syrien und dem Irak, über die lediglich in einem schriftlichen Verfahren entschieden worden sei.\" 意为：据称有超过3600名来自叙利亚和伊拉克的申请者仅通过书面程序就做出了决定。这意味着他们没有经过面谈，即没有亲自听证。故选c。"
+  },
+  "2018-listening-14": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"...zitieren die „Nürnberger Nachrichten\" und das ZDF aus einer internen Mail der Behörde.\" 意为：\"纽伦堡新闻\"和德国电视二台引用当局内部邮件进行了报道。故选b。"
+  },
+  "2018-listening-15": {
+    "correct_option": "D",
+    "explanation": "录音中提到\"Das hessische Justizministerium hatte der Deutsch-Marokkanerin verboten, während ihrer Ausbildung mit Kopftuch Gerichtsverhandlungen zu führen oder die Staatsanwaltschaft zu vertreten.\" 意为：黑森州司法部禁止这位德裔摩洛哥人在培训期间戴头巾参与法庭审判或代表检察院。因此该律师才会提出反对头巾禁令的紧急申请。故选d。"
+  },
+  "2018-listening-16": {
+    "correct_option": "D",
+    "explanation": "录音中没有提及她对于审理结果接受与否。a、b、c均在录音中提及。故选d。"
+  },
+  "2018-listening-17": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"In einer vorläufigen Abwägung gaben die Richter der staatlichen Neutralitätspflicht mehr Gewicht als der Religionsfreiheit der Rechtsreferendarin.\" 意为：在初步权衡中，法官们更重视国家的中立义务，胜于该实习法律工作者的宗教自由。由此可知，法官认为实习法律工作者（在履行职务时）要服从国家的中立义务。故选a。"
+  },
+  "2018-listening-18": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"...hate er gestern Abend auf Twitter geschrieben: 'Wenn Sie was Ordentliches gelernt haben, dann brauchen Sie keine drei Minijobs.'\" 意为：他昨晚在推特上说，如果您学到了一些正经东西，那您就不需要打三份零工。这暗示了做零工的人没有学到什么有用的东西，因此Tauber为此言论而道歉。故选a。"
+  },
+  "2018-listening-19": {
+    "correct_option": "C",
+    "explanation": "录音中提到\"SPD- Fraktionschef Oppermann warf Tauber vor, er habe keinen Anstand gelernt.\" 意为：社民党议会党团主席奥珀曼指责陶贝尔，说他（陶贝尔）才没有学到任何得体/正派的行为。故选c。"
+  },
+  "2018-listening-20": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"Die Grünen- Abgeordnete Lemke forderte die CDU- Vorsitzende Merkel zu einer Stellungnahme auf.\" 意为：绿党议员莱姆克要求基民盟主席默克尔对此事表明态度。故选b。"
+  },
+  "2018-listening-21": {
+    "correct_option": "D",
+    "explanation": "录音中提到\"Der Reisebus mit einer Seniorengruppe an Bord war gestern früh...an einem Stau- Ende auf einen Lkw aufgefahren...\" 意为：一辆载有老年旅游团的旅游大巴车在昨日早些时候在堵车队伍的末尾追尾了一辆卡车。故选d。"
+  },
+  "2018-listening-22": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Der Fahrer des Lastwagens überlebte, der Busfahrer starb.\" 意为：卡车司机幸存，大巴司机死亡。所以只有一名司机幸存（卡车司机），另一名司机死亡。故选a。"
+  },
+  "2018-listening-23": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"Die Ursache des Unglücks ist noch unklar.\" 意为：事故原因尚不清楚。故选b。"
+  },
+  "2018-listening-24": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Das Aktionsbündnis gegen Studiengebühren in Nordrhein-Westfalen...fordert die Abschaffung der Gebühren.\" 意为：北威州反对学费行动联盟要求废除学费。故选a。"
+  },
+  "2018-listening-25": {
+    "correct_option": "C",
+    "explanation": "录音中提到\"Der nordrhein-westfälische Verfassungsgerichtshof...hat noch keine Entscheidung gefällt.\" 意为：北威州宪法法院尚未做出裁决。故选c。"
+  },
+  "2018-listening-26": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Die Polizei schätzte die Teilnehmerzahl am Nachmittag auf rund 8.000...\" 意为：警方估计下午的参与者人数约为8000人。故选a。"
+  },
+  "2018-listening-27": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"Die Demonstranten forderten von den G20-Staaten einen gerechteren Welthandel, eine effektivere Klimaschutzpolitik und eine Stärkung der Demokratie.\" 意为：示威者要求G20国家实现更公平的全球贸易、更有效的气候保护政策和加强民主。故选b。"
+  },
+  "2018-listening-28": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Polens Präsident Duda nahm die Experten auf der Wawelburg in Empfang und sprach von einem besonderen Moment, weil das Komitee erstmals in Polen tage.\" 意为：波兰总统杜达在瓦维尔城堡接待了专家们，并称这是一个特殊的时刻，因为该委员会是第一次在波兰召开会议。故选a。"
+  },
+  "2018-listening-29": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Insgesamt sind nun 35 Stätten aus der ganzen Welt nominiert.\" 意为：现在共有来自全世界的35处遗产地被提名。故选a。"
+  },
+  "2018-listening-30": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"Das Komitee diskutiert in Krakau auch über gefährdetes Welterbe. Dazu zählen alle sechs gelisteten Stätten in Syrien, wie die vom Bürgerkrieg zerstörte Altstadt von Aleppo.\" 意为：该委员会在克拉科夫还讨论了濒危世界遗产，其中包括叙利亚境内全部被列入名单的六处遗产，例如被内战摧毁的阿勒颇老城区。由此可知阿勒颇老城区属于濒危的世界遗产。故选b。"
+  },
+  "2025-listening-1": {
+    "correct_option": "F"
+  },
+  "2025-listening-2": {
+    "correct_option": "F"
+  },
+  "2025-listening-3": {
+    "correct_option": "R"
+  },
+  "2025-listening-4": {
+    "correct_option": "R"
+  },
+  "2025-listening-5": {
+    "correct_option": "R"
+  },
+  "2025-listening-6": {
+    "correct_option": "R"
+  },
+  "2025-listening-7": {
+    "correct_option": "F"
+  },
+  "2025-listening-8": {
+    "correct_option": "R"
+  },
+  "2025-listening-9": {
+    "correct_option": "F"
+  },
+  "2025-listening-10": {
+    "correct_option": "R"
+  },
+  "2016-listening-1": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"Die Kanzlerin auf Konferenzen zur Vorbereitung von dem wichtigen Gipfel in Paris... und Appelle, alle müssen liefern, und wenn es dann um die eigene Lieferung geht...\" 意为：联邦总理在筹备意义重大的巴黎峰会的座谈会上……呼吁所有人出力……。alle 不仅仅指代欧盟国家；且未明确提出\"环境保护\"和\"二氧化碳排放\"。故本题错误。"
+  },
+  "2016-listening-2": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"...das ist ja nicht irgendein Ziel, sondern die Kanzlerin und der Bundeswirtschaftsminister haben eine Verpflichtung... dass man 40 Prozent bis 2020 an CO2 einsparen will.\" 意为：这不仅仅是一个目标，而是总理和联邦经济部长的一项义务……即到2020年减少40%的二氧化碳排放。故本题正确。"
+  },
+  "2016-listening-3": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"...im Stromerzeugungsbereich Überkapazitäten haben, die dann den hohen CO2-Ausstoß auch verursachen\" 意为：电力生产领域存在着过剩产能，这导致了高二氧化碳排放。故本题正确。"
+  },
+  "2016-listening-4": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"Deshalb ja das Konzept der Bundesregierung, im Dezember schon besprochen zusätzliche 22 Millionen Tonnen bis 2020 einzusparen\" 意为：联邦政府已于12月讨论并通过方案，到2020年再减少2200万吨二氧化碳排放，与题干中的数据不符。故本题错误。"
+  },
+  "2016-listening-5": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"Und das, was an zusätzlicher Kompensation noch mit ins Spiel gebracht worden ist, nämlich im Bereich der Kraftwärmekopplung etwas mehr zu tun\"，意为：作为额外补偿措施被纳入考虑的，是在热电联产领域多做努力。故本题正确。"
+  },
+  "2016-listening-6": {
+    "correct_option": "F",
+    "explanation": "录音中提到原目标是2200万吨，新讨论的数字是1600万吨，差距为600万吨。题干表述\"减少600万吨排放\"意思与原目标相比减少了600万，但原文是说新目标比原目标少减排600万（即允许多排600万），表述混淆。故本题错误。"
+  },
+  "2016-listening-7": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"Es ist nicht nur der Klimaschutz, der hier maßgeblich ist, sondern auch die Frage, wie zukünftig unser Energieerzeugungsmarkt strukturiert ist.\" 意为：在此重要的不仅是气候保护，还有我们未来的能源生产市场如何构建的问题。故本题正确。"
+  },
+  "2016-listening-8": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"...wollen wir hoch moderne effiziente Kraftwerke?\" 意为：我们想要建立高度现代化的高效电厂吗？后面又提到\"gibt es allerdings auch noch Tausende Arbeitsplätze, die da dranhängen\" 意为：然而还有数以千计的工作岗位与之相关。这说明放弃老电厂改建现代化电厂可能会对数千个工作岗位造成威胁。故本题正确。"
+  },
+  "2016-listening-9": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"Teile der alten Kraftwerke auch in eine Kapazitätsreserve für die Versorgungssicherheit zu führen, in Teilen ein Angebot zu machen für Umrüstungen in Richtung Hocheffizienz\" 意为：将部分老电厂作为保障供电安全的储备容量，部分提供向高效能方向改造的方案。故本题错误。"
+  },
+  "2016-listening-10": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"...dass Mindestwirkungsgrade einzuführen... Es geht darum, mit möglichst wenig Energieeinsatz möglichst hohe Effizienz zu erzielen und wenig CO2 auszustoßen\" 意为：引入最低效率标准……关键在于以尽可能少的能源投入实现尽可能高的效率并减少二氧化碳排放。故本题正确。"
+  },
+  "2016-listening-11": {
+    "explanation": "录音中提到\"Die ungarische Polizei ist mit Tränengas gegen Flüchtlinge vorgegangen\"意为：匈牙利警方使用催泪瓦斯对付难民。"
+  },
+  "2016-listening-12": {
+    "explanation": "录音中提到\"Nach Berichten ungarischer Medien hatten zuvor Hunderte Flüchtlinge nahe der Stadt Röszke Polizisten mit Steinen beworfen und versucht, das Grenztor zu durchbrechen.\"意为：据匈牙利媒体报道，此前罗斯克市附近有数百名难民向警察投掷石块并试图冲破边境大门。"
+  },
+  "2016-listening-13": {
+    "explanation": "录音中提到\"Die kroatischen Behörden schickten Minenräumer an die Grenze\"意为：克罗地亚当局向边境派遣了扫雷人员。"
+  },
+  "2016-listening-14": {
+    "explanation": "录音中提到\"Rund 700 Menschen kamen bereits über die Grenze.\"意为：已有约700人越过边境。"
+  },
+  "2016-listening-15": {
+    "explanation": "录音中提到\"Die Bundeswehr soll sich nach dem Willen der Bundesregierung am geplanten bewaffneten Einsatz gegen Schlepper im Mittelmeer beteiligen.\"意为：根据联邦政府的意愿，联邦国防军应参与计划中的在地中海针对蛇头的武装行动。"
+  },
+  "2016-listening-16": {
+    "explanation": "录音中提到\"Bis zu 950 deutsche Soldaten sollen sich dann daran beteiligen\"意为：届时将有最多950名德国士兵参与其中。"
+  },
+  "2016-listening-17": {
+    "explanation": "录音中提到\"Ziel sei es, Schleuser abzuschrecken und das Geschäftsmodell 'Menschenschmuggel' zu unterbinden.\"意为：目标是威慑蛇头并阻止\"人口走私\"这一商业模式。"
+  },
+  "2016-listening-18": {
+    "explanation": "录音中提到\"Das Bundeskabinett beschloss neue Regeln für drahtlose Internetzugänge im öffentlichen Raum.\"意为：联邦内阁通过了公共场所无线互联网接入的新规定。"
+  },
+  "2016-listening-19": {
+    "explanation": "录音中提到\"Die Bundesregierung will damit erreichen, dass mehr WLAN-Zugänge etwa in Cafés oder Hotels angeboten werden.\"意为：联邦政府希望借此实现在咖啡馆或酒店等地方提供更多无线网络接入点。"
+  },
+  "2016-listening-20": {
+    "explanation": "录音中提到\"In einem weiteren Beschluss bekräftigte die Bundesregierung ihr Vorhaben, die Entwicklung selbstfahrender Autos zu fördern.\"意为：在另一项决议中，联邦政府重申了其推动自动驾驶汽车发展的计划。"
+  },
+  "2016-listening-21": {
+    "explanation": "录音中提到\"...schlägt die EU-Kommission ein neues Schlichtungssystem zum Investorenschutz vor.\"意为：欧盟委员会提议建立一个保护投资者的新仲裁体系。"
+  },
+  "2016-listening-22": {
+    "explanation": "录音中提到\"Streitfälle zwischen Investoren und Staaten sollen danach künftig in öffentlichen Anhörungen vor einem neuen Handelsgerichtshof verhandelt und entschieden werden.\"意为：此后，投资者与国家之间的争端将在新的商事法庭上通过公开听证会进行谈判和裁决。"
+  },
+  "2016-listening-23": {
+    "explanation": "录音中提到\"Bisher sind dafür privatrechtliche Schiedsgerichte vorgesehen...\"意为：迄今为止为此拟定的是私法仲裁法庭。"
+  },
+  "2016-listening-24": {
+    "explanation": "录音中提到\"Die Bundesregierung bewertete den Vorschlag der EU als einen großen Fortschritt.\"意为：联邦政府评价欧盟的该项提案是一个巨大的进步。"
+  },
+  "2016-listening-25": {
+    "explanation": "录音中提到\"Der syrische Präsident Assad gibt dem Westen eine Mitschuld an der Flüchtlingskrise.\"意为：叙利亚总统阿萨德认为西方国家对难民危机负有共同责任。"
+  },
+  "2016-listening-26": {
+    "explanation": "录音中提到\"Die IS-Miliz...hätten nur mit Hilfe des Nato-Landes Türkei so stark werden können.\"意为：IS民兵组织……只能是在北约国家土耳其的帮助下才变得如此强大。"
+  },
+  "2016-listening-27": {
+    "explanation": "录音中提到\"Seit seinem Beginn vor mehr als vier Jahren...\"意为：自其（指内战）于四年多前开始以来……。"
+  },
+  "2016-listening-28": {
+    "explanation": "录音中提到\"Seit seinem Beginn vor mehr als vier Jahren wurden in Syrien mehr als 240.000 Menschen getötet.\"意为：内战开始四年多以来，叙利亚已有超过24万人遇害。"
+  },
+  "2016-listening-29": {
+    "explanation": "录音中提到\"Die UNESCO wirft der Terrormiliz \"Islamischer Staat\" vor, systematisch kulturelle Stätten in Syrien auszubeuten.\"意为：联合国教科文组织谴责恐怖组织\"伊斯兰国\"系统性地掠夺叙利亚的文化遗址。"
+  },
+  "2016-listening-30": {
+    "explanation": "录音中提到\"Der Verkauf von Kulturgütern an ausländische Interessenten gilt als eine Finanzierungsquelle der Islamisten.\"意为：向外国买家出售文化物品被认为是伊斯兰主义者的资金来源之一。"
+  },
+  "2017-listening-1": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"Kinder von Akademikern gehen viel selbstverständlicher auf Hochschulen und Universitäten als der Nachwuchs von Arbeitern und kleinen Angestellten.\" 意为：相比于工人和小员工家庭的子女，出身于学术家庭的孩子们毫无疑问更可能进入高等学校和大学学习。故本题正确。"
+  },
+  "2017-listening-2": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"Noch eine erschreckende Zahl...Fast zwei Millionen junge Erwachsene in Deutschland haben keine Berufsausbildung.\" 意为：还有一个可怕的数字——在德国有将近200万年轻人没有接受过职业培训。后文提到\"Da spiegelt sich noch in dieser Zahl die Finanz- und Wirtschaftskrise mit Höhepunkt 2007/2008.\" 意为：这反映了金融和经济危机在2007年到2008年达到了顶峰。但并未提及未经过职业培训的青年人的数量达到了最高点。故本题错误。"
+  },
+  "2017-listening-3": {
+    "correct_option": "F",
+    "explanation": "录音中提到\"Die OECD hat ja einen Bildungsbericht vorgelegt, der zeigt, dass wir im internationalen Vergleich sehr gut dastehen.\" 意为：经济合作与发展组织提交的一份教育报告显示，我们在国际竞争中状态良好。后文出现的\"Pisa-Schock\"（国际学生能力评估计划）是一项是由经合组织创办的教育评估项目，测试学生们能否掌握参与社会所需要的知识与技能。故本题错误。"
+  },
+  "2017-listening-4": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"Wir haben investiert in den frühkindlichen Bereich.\" 意为：我们在早教领域加大了投资力度。由此可推知对早教的重视程度提高了。故本题正确。"
+  },
+  "2017-listening-5": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"Aber was wir nicht gut geschafft haben ist genau das: die ganz Schwachen zu fördern, die aus Familien mit einer Zuwanderungsgeschichte kommen.\" 意为：我们做的不好的地方具体来说是促进那些来自于有移民历史的家庭的十分弱势的孩子们。故本题正确。"
+  },
+  "2017-listening-6": {
+    "correct_option": "R",
+    "explanation": "录音中提到\"Da haben sich die Qualifikationsanforderungen sehr erhöht...\" 意为：由于对资质的要求提高了很多……。故本题正确。"
+  },
+  "2017-listening-7": {
+    "correct_option": "R",
+    "explanation": "录音中提到 \"...dass man oben viel investiert, aber unten nicht investiert\" 意为: 人们在高等教育中投入很多, 在低等教育中却不投资。由此可知德国的教育体制内部投资不均匀。后文提到 \"Ist das der zentrale Fehler des deutschen Bildungssystems?\" 意即: 这是德国教育体制内部最核心的错误吗? 同时 Hurrelmann 先生也做出了肯定。故本题正确。"
+  },
+  "2017-listening-8": {
+    "correct_option": "F",
+    "explanation": "录音中提到 \"...weil wir im Unterschied zu den meisten Ländern der Welt das frühkindliche System in Kita, in Krippen mit den Elterngeldern finanzieren.\" 意为: 因为与世界上大多数国家相比, 我们通过向父母发放津贴的方式资助托儿所的早期教育体系。因此家长不必为托儿所支付费用。故本题错误。"
+  },
+  "2017-listening-9": {
+    "correct_option": "F",
+    "explanation": "录音中提到 \"...die soziale Herkunft sich direkt auswirkt auf den Schulerfolg.\" 意为: 社会背景对于在学校的成功有着直接的影响。故本题错误。"
+  },
+  "2017-listening-10": {
+    "correct_option": "F",
+    "explanation": "录音中提到 \"...mehr finanzielle Ressourcen gerade in die Schulen, wo sich diese Kinder mit einem ungünstigen Hintergrund aus ihrem Elternhaus aufhalten.\" 意为: 应该提供更多的财政资源给那些家庭背景不高的孩子们上的学校, 但并没有指明是出身于工人阶层家庭的孩子。同时 Schule 指代小学教育, 而 Studium 指代大学高等教育, 也不相符。故本题错误。"
+  },
+  "2017-listening-11": {
+    "correct_option": "C",
+    "explanation": "录音中提到\"Die CSU erhöht angesichts des Wahlergebnisses in Mecklenburg-Vorpommern den Druck auf Bundeskanzlerin Merkel, ihre Flüchtlingspolitik zu ändern.\"意为：鉴于梅克伦堡-前波莫瑞州的选举结果，基督教社会联盟加强了对联邦总理默克尔改变难民政策的施压。故选c。"
+  },
+  "2017-listening-12": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"Das Wahlergebnis in Mecklenburg-Vorpommern—die CDU war als drittstärkste Kraft hinter die AfD abgefallen...\"意为：在梅克伦堡-前波莫瑞州的选举结果——基督教民主联盟落后于德国另类选择党成为了第三强大的力量……。由此可知AfD成为了第二强大的政治力量。故选b。"
+  },
+  "2017-listening-13": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"Die Bundeswehr richtet sich...darauf ein, ihren Einsatz auf dem türkischen Stützpunkt Incirlik fortzusetzen.\" 意为：联邦国防军准备继续将其在土耳其的军事基地因吉尔利克投入使用。故选 b。"
+  },
+  "2017-listening-14": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"Ein Investitionsbudget von insgesamt 58 Millionen Euro für den deutschen Einsatz auf dem Stützpunkt sei freigegeben worden.\" 意为：德国在该基地的总投资预算为 5800 万欧元。故选 b。"
+  },
+  "2017-listening-15": {
+    "correct_option": "D",
+    "explanation": "录音中提到\"Mit dem Geld sollen...in Incirlik unter anderem ein Flugfeld und Unterkunftscontainer gebaut werden.\" 意为：这笔资金将被用于在因吉尔利克建造一个飞机场和住宿设施。故选 d。"
+  },
+  "2017-listening-16": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"Der Generalbundesanwalt wirft dem 35-jährigen Konvertiten Unterstützung einer ausländischen terroristischen Vereinigung vor.\" 意为：联邦总检察长指控这名 35 岁的皈依者支持一个外国的恐怖主义团伙。故选 b。"
+  },
+  "2017-listening-17": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Er soll Ansprechpartner für eine in Syrien aktive islamistische Gruppierung gewesen sein\" 意为：他可能是一个在叙利亚的伊斯兰组织的联络人。故选 a。"
+  },
+  "2017-listening-18": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Ihm droht eine Freiheitsstrafe von bis zu 15 Jahren.\" 意为：他被判处长达 15 年的有期徒刑。故选 a。"
+  },
+  "2017-listening-19": {
+    "correct_option": "C",
+    "explanation": "录音中提到\"Die Zahl der Hacker-Angriffe auf deutsche Behörden und Firmen steigt. Außerdem werden die Versuche, in Computernetze einzudringen, immer präziser.\" 意为：针对德国当局和公司的黑客攻击的数量正在增加，此外，对计算机网络进行渗透的尝试正在变得越来越精确。故选c。"
+  },
+  "2017-listening-20": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Allein Volkswagen gebe die Zahl der Angriffe auf sein IT-Netz mit 6.000 Fällen pro Tag an.\" 意为：光是大众汽车的数据就显示每天攻击其 IT 网络的数量为 6000 起。故选 a。"
+  },
+  "2017-listening-21": {
+    "correct_option": "C",
+    "explanation": "录音中提到\"Etwa 20 hochspezialisierte Angriffe würden jeden Tag auf das Regierungsnetz gezählt, für das BSI verantwortlich ist.\" 意为：每天在政府网络上大约会出现 20 起高度专业化的黑客攻击，BSI 就是负责这一块儿的。故选 c。"
+  },
+  "2017-listening-22": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"Der Hohe Kommissar der Vereinten Nationen für Menschenrechte, Al-Hussein, hat zum Widerspruch gegen Rechtspopulismus aufgerufen.\" 意为：联合国人权事务高级专员侯赛因呼吁反对右翼民粹主义。故选 b。"
+  },
+  "2017-listening-23": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Er warnte vor einer Bagatellisierung des Fanatismus.\" 意为：他警示对这种狂热的轻视。故选 a。"
+  },
+  "2017-listening-24": {
+    "correct_option": "C",
+    "explanation": "录音中提到\"Wilders, der in den Niederlanden dafür eintritt, alle Moscheen zu schließen...\" 意为：维尔德斯赴荷兰主张关闭所有的清真寺。故选 c。"
+  },
+  "2017-listening-25": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"US-Präsident Obama hat ein Treffen mit dem philippinischen Präsidenten Duterte abgesagt.\" 意为：美国总统奥巴马取消了与菲律宾总统杜特尔特的会晤。故选 b。"
+  },
+  "2017-listening-26": {
+    "correct_option": "A",
+    "explanation": "录音中提到\"Duterte hat offen dazu aufgerufen, Rauschgifthändler umzubringen.\" 意为：杜特尔特公开呼吁判处贩毒者死刑。故选 a。"
+  },
+  "2017-listening-27": {
+    "correct_option": "D",
+    "explanation": "录音中提到\"Es wird damit gerechnet, dass Obama neue Finanzhilfen für eine Beseitigung der Bomben ankündigt.\" 意为：预计奥巴马将会宣布针对清除炸弹的新的财政支持。故选 d。"
+  },
+  "2017-listening-28": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"Hauptthemen des ASEAN-Gipfels sind der Abbau von Handelsbarrieren und die Konjunkturaussichten.\" 意为：东盟峰会的主体是减少贸易壁垒和展望经济发展。故选b。"
+  },
+  "2017-listening-29": {
+    "correct_option": "D",
+    "explanation": "录音中提到\"Aus der irakischen Hauptstadt Bagdad wird ein Anschlag gemeldet. Dabei wurden...mindestens neun Menschen getötet.\" 意为：据报道，伊拉克首都巴格达发生了袭击事件……期间至少有9人遇难。故选d。"
+  },
+  "2017-listening-30": {
+    "correct_option": "B",
+    "explanation": "录音中提到\"In der afghanischen Hauptstadt Kabul sprengte sich gestern Abend ein Selbstmordattentäter.\" 意为：昨晚阿富汗首都喀布尔出现了一名自杀式炸弹袭击者。故选b。"
+  },
+  "2016-reading-76": {
+    "correct_option": "B",
+    "explanation": "原文第一段最后一句提到\"Obwohl die Kontakte in sozialen Medien zunehmen, bleibt die Anzahl enger Vertrauter erstaunlich gering\"。因此，尽管有社交媒体，亲密朋友的数量仍然很少。故选b。"
+  },
+  "2016-reading-77": {
+    "correct_option": "C",
+    "explanation": "原文第二段提到，研究人员向25185名随机挑选的新闻网站访客询问了关于他们朋友圈的具体问题，例如谁会来参加生日聚会、半夜可以打电话给谁等。c选项正确概括了这一点。"
+  },
+  "2016-reading-78": {
+    "correct_option": "A",
+    "explanation": "原文第三段第一句提到\"Die meisten Befragten rechneten damit, dass zwischen fünf und zehn Personen zur Geburtstagsparty erscheinen würden.\" 大多数受访者预计会有5到10人来参加生日派对。故选a。"
+  },
+  "2016-reading-79": {
+    "correct_option": "C",
+    "explanation": "原文第四段提到\"So bestand die Vermutung, dass schwule Männer und lesbische Frauen mehr Freundschaften pflegen als Heterosexuelle.\" 研究人员猜测男同和女同比异性恋者拥有更多的友谊。故选c。"
+  },
+  "2016-reading-80": {
+    "correct_option": "B",
+    "explanation": "原文第五段提到\"Unterschiede zwischen sexuell unterschiedlich orientierten Gruppen sind allgemein klein oder nicht vorhanden... die Anzahl enger Freunde hänge nicht von der sexuellen Orientierung ab.\" 不同性取向群体之间的差异很小或不存在，亲密朋友的数量不取决于性取向。故选b。"
+  },
+  "2016-reading-81": {
+    "correct_option": "C",
+    "explanation": "原文第五段最后提到\"Allerdings weisen die Forscher darauf hin, dass ihre Stichprobe nicht repräsentativ und die Aussage ihrer Arbeit daher begrenzt ist.\" 研究人员指出，他们的样本不具有代表性，因此研究结论有限。故选c。"
+  },
+  "2016-reading-82": {
+    "correct_option": "A",
+    "explanation": "原文倒数第二段提到\"25-Jährige die meisten Freundschaften pflegen - danach geht die Zahl stetig zurück.\" 25岁时友谊最多，之后稳步下降。因此朋友圈会随着年龄增长而缩小。故选a。"
+  },
+  "2016-reading-83": {
+    "correct_option": "B",
+    "explanation": "原文最后一段提到\"Für die Lebenszufriedenheit sei die Anzahl der Freunde ohnehin ohne Belang... Dafür ist allein die Qualität der Freundschaften entscheidend.\" 对于生活满意度来说，朋友数量无关紧要，真正关键的是友谊的质量。故选b。"
+  },
+  "2016-reading-84": {
+    "correct_option": "B",
+    "explanation": "原文第二段提到\"Gemessen an seiner Bevölkerungszahl müsste Deutschland eigentlich 15,8 Prozent der Flüchtlinge aufnehmen.\" 按照人口比例，德国本应接收15.8%的难民。b选项\"knapp 16 Prozent\"与此相符。a与全文内容（尤其是东欧反对）不符；c与文中\"Großbritannien, Dänemark und Irland gehören nicht zum europäischen Asylsystem\"不符。"
+  },
+  "2016-reading-85": {
+    "correct_option": "C",
+    "explanation": "原文第二段提到配额计算的四个标准：人口数量(40%)、经济实力(40%)、失业率、以及2010-2014年间每百万居民中已接收的难民人数。c选项完整列出了这四个因素。"
+  },
+  "2016-reading-86": {
+    "correct_option": "A",
+    "explanation": "原文第三段提到\"Denn in Osteuropa tönt es unisono: 'Quote? - Nein, danke.'\" 东欧国家一致反对配额。a选项\"stößt ... auf Widerstand\" (遇到抵制)正确。b与全文矛盾；c\"infolge ihrer Differenzen\" (由于分歧)与文中的\"trotz unterschiedlicher Parteizugehörigkeiten und vorheriger Differenzen\" (尽管党派不同和先前存在分歧)矛盾。"
+  },
+  "2016-reading-87": {
+    "correct_option": "C",
+    "explanation": "原文第四段Rainer Wend的话：\"Natürlich gibt es Grenzen. Ich sehe aber nicht, dass die derzeit in irgendeiner Weise erreicht sind.\" 当然有限度，但我目前还没看到以任何方式达到了这个限度。c选项与此一致。"
+  },
+  "2016-reading-88": {
+    "correct_option": "B",
+    "explanation": "原文第五段第一句\"Andere Länder bekennen sich in der Asylpolitik offener zu eigenen Interessen als Deutschland.\" 其他国家在难民政策上比德国更公开地承认自己的利益。b选项正确。"
+  },
+  "2016-reading-89": {
+    "correct_option": "A",
+    "explanation": "原文倒数第二段第一句\"In Brüssel ist der Wille zur gerechten Lastenverteilung vorhanden.\" 在布鲁塞尔，存在着公平分配负担的意愿。a选项与此一致。"
+  },
+  "2016-reading-90": {
+    "correct_option": "B",
+    "explanation": "原文最后一段最后一句\"Sie plädiert auch dafür, Staaten, die sich der europäischen Solidarität entziehen, nicht mehr mit Zahlungen aus dem EU-Strukturfonds zu bedenken.\" 她还主张，那些逃避欧洲团结义务的国家不应再获得欧盟结构基金的资助。这相当于通过财政惩罚措施来强制它们履行团结义务。b选项正确。"
+  },
+  "2016-landeskunde-91": {
+    "correct_option": "F",
+    "explanation": "德国统一的时间是1990年10月3日。1989年11月9日柏林墙倒塌。故本题错误。"
+  },
+  "2016-landeskunde-92": {
+    "correct_option": "R",
+    "explanation": "德国中小企业是德国经济充满活力的发展的推动力。Mittelstand在德国经济中扮演核心角色。故本题正确。"
+  },
+  "2016-landeskunde-93": {
+    "correct_option": "F",
+    "explanation": "这个文学团体被称为\"四七社\" (Gruppe 47)，而非\"Gruppe 74\"。由汉斯·维尔纳·里希特发起。故本题错误。"
+  },
+  "2016-landeskunde-94": {
+    "correct_option": "R",
+    "explanation": "\"格林兄弟\"是语言学家和民俗学家雅各布·格林和威廉·格林在他们联合出版（如《儿童与家庭童话集》）时使用的称谓。故本题正确。"
+  },
+  "2016-landeskunde-95": {
+    "correct_option": "F",
+    "explanation": "在尾气排放丑闻中，是大众汽车公司(VW)提出了整改柴油车的计划，而非宝马(BMW)。故本题错误。"
+  },
+  "2016-landeskunde-96": {
+    "correct_option": "F",
+    "explanation": "德国最古老的大学是1386年建立的海德堡大学。莱比锡大学成立于1409年，是德国第二古老的大学。故本题错误。"
+  },
+  "2016-landeskunde-97": {
+    "correct_option": "C",
+    "explanation": "歌德学院是德国联邦共和国在全球开展活动的文化机构，致力于促进海外德语知识和国际文化合作。故选c。"
+  },
+  "2016-landeskunde-98": {
+    "correct_option": "B",
+    "explanation": "奥地利-德国的指挥家和作曲家小约翰·施特劳斯被公认为\"华尔兹之王\"。故选b。"
+  },
+  "2016-landeskunde-99": {
+    "correct_option": "C",
+    "explanation": "在德国的政治体系中，传统上基民盟/基社盟和社民党是最大的议会党团，因此迄今为止的大联合政府都由这两党组成。故选c。"
+  },
+  "2016-landeskunde-100": {
+    "correct_option": "A",
+    "explanation": "埃贡·巴尔以其提出的指导性概念\"以接近求转变\"成为新东方政策的重要思想先驱和主要设计者之一。故选a。"
+  },
+  "2016-landeskunde-101": {
+    "correct_option": "B",
+    "explanation": "奥托·冯·俾斯麦被称为\"铁血宰相\"。\"Eiserner Kanzler\"也是指俾斯麦。故选b。"
+  },
+  "2016-landeskunde-102": {
+    "correct_option": "A",
+    "explanation": "瑞士的日内瓦是许多国际组织的所在地，包括联合国驻日内瓦办事处和世界贸易组织。故选a。"
+  },
+  "2016-landeskunde-103": {
+    "correct_option": "D",
+    "explanation": "随着欧洲经济和货币联盟的建立，德国马克于1999年1月1日被欧元取代（作为记账货币），2002年1月1日欧元现金开始流通。故选d。"
+  },
+  "2016-landeskunde-104": {
+    "correct_option": "C",
+    "explanation": "1918年至1933年的德国历史阶段被称为\"魏玛共和国\"，这是德国第一次实行议会民主制。故选c。"
+  },
+  "2016-landeskunde-105": {
+    "correct_option": "A",
+    "explanation": "联邦财政部的核心任务之一是每年制定下一年度联邦预算的政府草案。故选a。"
+  },
+  "2016-landeskunde-106": {
+    "correct_option": "D",
+    "explanation": "选帝侯大街以其商业和餐饮业为特色，是柏林西区（City-West）的旅游热点之一。故选d。"
+  },
+  "2016-landeskunde-107": {
+    "correct_option": "B",
+    "explanation": "莱茵河是德国境内最长、水量最丰富的河流。故选b。"
+  },
+  "2016-landeskunde-108": {
+    "correct_option": "B",
+    "explanation": "沃尔夫斯堡是因大众汽车而建立和发展的城市，没有大众汽车，沃尔夫斯堡将不可想象。故选b。"
+  },
+  "2016-landeskunde-109": {
+    "correct_option": "C",
+    "explanation": "北莱茵-威斯特法伦州人口超过1800万，是德国人口最多的联邦州。故选c。"
+  },
+  "2016-landeskunde-110": {
+    "correct_option": "A",
+    "explanation": "《南德意志报》是一份德国全国发行的订阅性日报。b《时代周报》是周报，c《明镜》是新闻杂志，d《柏林报》是地区性报纸。故选a。"
+  },
+  "2017-reading-71": {
+    "correct_option": "A",
+    "explanation": "原文第一段第二句提到\"Nun haben Unterhändler von Europaparlament und Ministerrat, dem Gremium der EU-Mitgliedstaaten, die Reform des Datenschutzes auf die Zielgerade gebracht.\" 意为：现在来自欧洲议会和欧盟成员国部长委员会的谈判代表们已经推动数据保护的改革进入了最后阶段。由此可知改革正在进行中，接近完成，但尚未完全结束。a选项\"正在进行中\"最符合。d选项\"尚未完成\"也正确，但a更贴近\"auf die Zielgerade bringen\"的含义。根据常见答案，此处选a。"
+  },
+  "2017-reading-72": {
+    "correct_option": "B",
+    "explanation": "原文第一段中间提到\"Die europäischen Verbraucher bekommen damit...mehr Kontrolle über ihre persönlichen Daten.\" 以及\"Internetkonzerne...müssen die Zustimmung der Nutzer ausdrücklich einholen...\" 意为：这使得欧洲的消费者能更好地控制其个人数据，互联网公司必须明确征得用户同意。因此b选项正确：消费者可以自己决定互联网公司是否可以使用其个人数据。"
+  },
+  "2017-reading-73": {
+    "correct_option": "C",
+    "explanation": "原文第二段最后两句提到\"Nun sollen die EU-Mitgliedstaaten das Mindestalter individuell festlegen können. Sie müssen aber die Spanne zwischen 13 und 16 Jahren einhalten.\" 意为：现在欧盟成员国能够自己设定最低年龄，但其范围必须保持在13到16岁之间。故选c。"
+  },
+  "2017-reading-74": {
+    "correct_option": "C",
+    "explanation": "原文第三段中间提到\"Zwar konnte sich das Europaparlament mit seiner Forderung nach Strafen von bis zu 5 Prozent des weltweiten Jahresumsatzes nicht durchsetzen. In dem Kompromiss ist aber immer noch von 4 Prozent die Rede.\" 意为：虽然欧洲议会未能实现其要求的最多5%的罚款，但在妥协方案中仍然提到了4%。因此目前的要求是4%，故选c。注意选项c说\"werden gefordert\"符合文意。"
+  },
+  "2017-reading-75": {
+    "correct_option": "D",
+    "explanation": "原文第三段中间提到\"Andererseits profitieren die Unternehmen davon, dass nun in der EU überall dasselbe Datenschutzniveau gilt.\" 以及后面提到之前由于各国法规不同导致成本上升，现在统一法规会节省成本（Einsparpotential）。故选d。"
+  },
+  "2017-reading-76": {
+    "correct_option": "B",
+    "explanation": "原文最后一段第一句提到\"...Vorbehaltlich des weiteren Verfahrens wird es künftig ein Regelwerk für den europäischen Datenschutz geben anstatt eines Flickenteppichs, der sich aus 28 Datenschutzbestimmungen zusammensetzt.\" 这是Axel Voss说的话，他认为将来会有一个统一的规则手册，而不是由28个拼凑而成的规定。因此b正确。后面他还批评该法规可能成为障碍，但主要观点是b。题目问的是他vertritt（主张）什么，b是他陈述的事实，d是他提出的批评。根据常见答案，此处选b。"
+  },
+  "2017-reading-77": {
+    "correct_option": "D",
+    "explanation": "原文最后一段最后一句提到\"Vor allem die Bundesregierung, die sich jahrelang eher für ein besonders hohes Datenschutzniveau eingesetzt hatte, drang am Ende auf Ausnahmeregeln, um das Potential von „Big Data\" ausschöpfen zu können.\" 意为：尤其是多年来一直支持高水平数据保护的联邦政府，最终督促制定例外规则，以便能够利用大数据的潜力。因此，联邦政府希望通过例外规则来允许大数据分析。故选d。"
+  },
+  "2017-reading-78": {
+    "correct_option": "C",
+    "explanation": "原文第一段中间提到\"Computer können zum Teil schon heute bessere Krebsbehandlungspläne und Diagnosen formulieren als hochspezialisierte Fachärzte, sie können Texte verstehen und Schlüsse ziehen und zunehmend gut in natürlicher Sprache kommunizieren.\" 意为：今天电脑已经能够制定部分比高级专业化的医学专家更好的癌症治疗计划和诊断，能够理解文本并得出结论，并且能够越来越自如地用自然语言进行沟通。选项c与原文一致。选项b说\"genauso gute\"与原文\"bessere\"不符；选项d说\"Fachtexte\"原文未提，且\"spezielle Schlüsse\"不准确。故选c。"
+  },
+  "2017-reading-79": {
+    "correct_option": "D",
+    "explanation": "原文第一段第一句提到\"In 20 Jahren wird etwa jeder zweite Arbeitsplatz der Digitalisierung zum Opfer gefallen sein.\" 即一半的工作岗位将消失，并非增加，a错。第一段中间提到\"Allerdings wäre es falsch, jetzt anzunehmen, es träfe nur die durchschnittlich qualifizierten und mäßig bezahlten Berufe.\" 意为认为只影响中等资质和中等收入的职业是错误的，后面举了医生为例，说明高资质职业也受影响。因此b表述不准确（它说\"Berufe mit durchschnittlicher Qualifikation gingen verloren\" 正是原句认为错误的观点），c与原文相反（这些职业会受影响），d正确。"
+  },
+  "2017-reading-80": {
+    "correct_option": "A",
+    "explanation": "原文第二段第二句提到\"...denn Kinder, die heute eingeschult werden, werden in etwa 20 Jahren in den Arbeitsmarkt eintreten. Wir müssen also über Bildung reden, und zwar schnell.\" 因此引入该科目的原因是现在入学的孩子20年后将进入就业市场，需要提前准备。故选a。"
+  },
+  "2017-reading-81": {
+    "correct_option": "D",
+    "explanation": "原文第二段最后一句提到\"Von einer flächendeckenden Vermittlung von Kenntnissen für die Welt in 20 Jahren ist hingegen weit und breit nichts zu sehen.\" 意为：然而，关于为20年后的世界所需知识的全面传授，还远远看不到。因此d正确。b选项说缺乏Office入门课程，但原文说现有的课程往往只是这些，因此并不缺乏，而是缺乏更高层次的知识。"
+  },
+  "2017-reading-82": {
+    "correct_option": "B",
+    "explanation": "原文第三段第一句提到\"Großbritannien hat dagegen im Eilverfahren ein verpflichtendes Informatik- Curriculum ab dem ersten Schuljahr eingeführt, und zwar landesweit.\" 意为：相比之下，英国迅速在全国范围内引入了从一年级开始的强制性计算机课程。因此b正确。c说其他国家也引入了，但原文说\"Andere Länder bereiten ähnliche Schritte vor.\" 正在准备，尚未引入。a说德国即将引入，但文中未说。d说经济界代表沉默，但文中说\"von den Vertretern der Wirtschaft mal ganz zu schweigen\" 是\"更不用说经济界代表（也会抗议）\"，意味着他们可能不会沉默。"
+  },
+  "2017-reading-83": {
+    "correct_option": "C",
+    "explanation": "原文第三段倒数第二句提到\"Denn die Digitalisierung bringt nicht nur neue Maschinen und andere Prozesse in den Arbeitsalltag, vielmehr wird sie unseren gesamten Alltag betreffen.\" 意为：因为数字化不仅将新机器和其他工序带进日常工作中，更多的是会影响到我们整个生活。因此c最全面。其他选项都只提到部分。"
+  },
+  "2017-reading-84": {
+    "correct_option": "B",
+    "explanation": "原文最后一段最后一句提到\"Wir brauchen Pädagogen, Material und Zeit, um Kinder auf diese neue Gesellschaft und die völlig neuen beruflichen Herausforderungen vorzubereiten.\" 意为：我们需要教育工作者、教材和时间来让孩子们为这个新社会和全新的职业挑战做好准备。故选b。"
+  },
+  "2017-reading-85": {
+    "correct_option": "C",
+    "explanation": "句意：我们不能继续指望孩子们自己 somehow 就能掌握这些知识。sich etwas draufschaffen 意为\"自己学会，自己掌握\"。因此c正确。"
+  },
+  "2017-landeskunde-86": {
+    "correct_option": "F",
+    "explanation": "德国与九个国家接壤，在自然空间上，南部是阿尔卑斯山山地，北部则临着北海和波罗的海。题目中的表述弄反了南北。故本题错误。"
+  },
+  "2017-landeskunde-87": {
+    "correct_option": "R",
+    "explanation": "德国居住着四个公认的少数民族：丹麦人、弗里斯兰人、德国辛提人和罗姆人以及索布人。故本题正确。"
+  },
+  "2017-landeskunde-88": {
+    "correct_option": "R",
+    "explanation": "联邦制度是德国的核心架构原则。故本题正确。"
+  },
+  "2017-landeskunde-89": {
+    "correct_option": "F",
+    "explanation": "德国是联合国的创始成员国，但并不是北约组织的创始成员国。联邦德国在1955年才加入北大西洋公约组织。故本题错误。"
+  },
+  "2017-landeskunde-90": {
+    "correct_option": "R",
+    "explanation": "德国和奥地利是亚洲基础设施投资银行的创始成员国之一。故本题正确。"
+  },
+  "2017-landeskunde-91": {
+    "correct_option": "R",
+    "explanation": "瑞士是一个共和制的联邦国家。故本题正确。"
+  },
+  "2017-landeskunde-92": {
+    "correct_option": "B",
+    "explanation": "1517年，马丁·路德（1483-1546）在维滕贝格的城堡教堂发表了他当时的革命纲领。新教教堂、联邦政府和几个联邦州都希望在2017年举办大量盛大的活动和展览来庆祝始于500年前的宗教改革。故选b。"
+  },
+  "2017-landeskunde-93": {
+    "correct_option": "C",
+    "explanation": "为应对欧元救助政策，德国另类选择党（AfD）于2013年2月6日在柏林成立。故选c。"
+  },
+  "2017-landeskunde-94": {
+    "correct_option": "D",
+    "explanation": "戈特弗里德·威廉·莱布尼茨擅长很多学科，如数学、物理、语言学等。此外，他还创立了微积分，开发了二进制代码并研究了词语的起源。故选d。"
+  },
+  "2017-landeskunde-95": {
+    "correct_option": "C",
+    "explanation": "德国主办的G20峰会于2017年7月7日和8日在汉堡举行。故选c。"
+  },
+  "2017-landeskunde-96": {
+    "correct_option": "A",
+    "explanation": "德国占地面积最大的内陆湖是博登湖，该湖也与奥地利和瑞士接壤。故选a。"
+  },
+  "2017-landeskunde-97": {
+    "correct_option": "D",
+    "explanation": "路德维希二世在巴伐利亚历史上是一个狂热的城堡建造者，他为许多城堡建立了纪念碑，尤其是新天鹅堡、海伦基姆宫和林德霍夫宫，这就是他被民间称为\"童话国王\"的原因。故选d。"
+  },
+  "2017-landeskunde-98": {
+    "correct_option": "C",
+    "explanation": "作为外交部长，瓦尔特·谢尔在20世纪60年代和70年代塑造了德国的东方政策，使文化工作成为德国外交政策的\"第三支柱\"。故选c。"
+  },
+  "2017-landeskunde-99": {
+    "correct_option": "B",
+    "explanation": "贝塔斯曼集团、施普林格出版集团和ProSiebenSat.1传媒股份公司是位于德国的最大的国际传媒公司。故选b。"
+  },
+  "2017-landeskunde-100": {
+    "correct_option": "B",
+    "explanation": "奥地利的大平原位于多瑙河以东，尤其是阿尔卑斯山麓、维也纳盆地和马希菲尔德，以及施蒂利亚州南部。故选b。"
+  },
+  "2017-landeskunde-101": {
+    "correct_option": "A",
+    "explanation": "瑞士总共有四种官方语言：德语、法语、意大利语和罗曼什语。故选a。"
+  },
+  "2017-landeskunde-102": {
+    "correct_option": "A",
+    "explanation": "圣诞节、复活节和圣灵降临节是教会年的三个主要节日。故选a。"
+  },
+  "2017-landeskunde-103": {
+    "correct_option": "B",
+    "explanation": "联邦政府希望将工业4.0的巨大潜力用作德国经济支撑点。在德国，约有1500万个就业岗位直接或间接地依赖于产业经济。特别是对于中小型企业而言，智能化的数字化生产流程提供了巨大的机遇。故选b。"
+  },
+  "2017-landeskunde-104": {
+    "correct_option": "D",
+    "explanation": "贝托尔特·布莱希特开创并发展了叙事戏剧（episches Theater），它也被称作\"辩证戏剧\"。故选d。"
+  },
+  "2017-landeskunde-105": {
+    "correct_option": "C",
+    "explanation": "吕根岛是德国最大的岛屿，位于波美拉尼亚地区的波罗的海沿岸，隶属于梅克伦堡-前波莫恩联邦州。故选c。"
   }
 }

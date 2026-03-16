@@ -83,6 +83,14 @@ BLEED_MARKERS = [
     "Grammatik (15 Punkte)",
     "Leseverstandnis",
     "Leseverständnis",
+    "Lesen Sie den Text und kreuzen Sie die richtige",
+    "Lesen Sie den Text und kreuzen Sie die zutreffende",
+    "Text 1",
+    "Text 2",
+    "Hortext 1",
+    "Hortext 2",
+    "Hörtext 1",
+    "Hörtext 2",
     "Landeskunde",
     "Übersetzung",
     "Ubersetzung",
@@ -252,8 +260,24 @@ def normalize_question_markers(text: str) -> str:
     return value
 
 
+def strip_ocr_noise(text: str) -> str:
+    value = text
+    value = re.sub(r"<!--\s*page:[^>]*-->", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"https?\s*:\s*/\s*/\s*[^\s)]+", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"https?://\S+", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\bshop\d+\S*", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\btaobao\s*\.\s*com(?:\s*/\S*)?", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\bJK\s*-\s*EHEHE\s*:?\s*b[dt](?:h)?(?:\s+\w+)?\b", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\bYa\)\s*=\s*G4:?", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\bYd\s*\d+\s*E\d+:?", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\b[5S]\s*EHEHE:?\s*b[dt](?:h)?\b", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\bEHEHE:?\s*b[dt](?:h)?(?:\s+\w+)?\b", " ", value, flags=re.IGNORECASE)
+    value = re.sub(r"\bpage:\s*\d+\s*source:\s*ocr\s*chars:\s*\d+\b", " ", value, flags=re.IGNORECASE)
+    return value
+
+
 def clean_inline(text: str) -> str:
-    value = normalize_text(text)
+    value = strip_ocr_noise(normalize_text(text))
     for marker in BLEED_MARKERS:
         index = value.find(marker)
         if index > 0:
@@ -267,7 +291,7 @@ def clean_inline(text: str) -> str:
 
 
 def clean_block(text: str) -> str:
-    value = normalize_text(text)
+    value = strip_ocr_noise(normalize_text(text))
     for marker in BLEED_MARKERS:
         index = value.find(marker)
         if index > 0:
@@ -480,6 +504,24 @@ def parse_explicit_answer(raw_line: str) -> str | None:
     return answer or None
 
 
+def parse_explicit_explanation(raw_line: str) -> str | None:
+    line = raw_line.strip()
+    if not line:
+        return None
+    line = re.sub(r"^\*{1,2}\s*", "", line)
+    line = re.sub(r"\s*\*{1,2}\s*$", "", line)
+    match = re.match(
+        r"^(?:\u89e3\u6790|Explanation|Erkl\u00e4rung)\s*[:\uff1a]\s*(.+?)\s*$",
+        line,
+        re.IGNORECASE,
+    )
+    if not match:
+        return None
+    explanation = re.sub(r"^\*{1,2}\s*", "", match.group(1))
+    explanation = clean_block(explanation)
+    return explanation or None
+
+
 def parse_explicit_answer(raw_line: str) -> str | None:
     line = raw_line.strip()
     if not line:
@@ -520,7 +562,8 @@ def parse_tf_block(block: str, number: int) -> str:
     start_match = question_start_re(number).search(block)
     if not start_match:
         raise ValueError(f"Missing true/false question {number}")
-    return clean_block(strip_annotation_tail(block[start_match.end() :]))
+    stem = clean_block(strip_annotation_tail(block[start_match.end() :]))
+    return re.sub(r"\s+[A-Za-z]\s*$", "", stem).strip()
 
 
 def parse_answer_letter(line: str) -> str | None:
@@ -630,6 +673,12 @@ def parse_2016_answers(md_text: str) -> dict[int, dict]:
                     answers[current] = {"correct_option": letter}
             continue
 
+        explicit_explanation = parse_explicit_explanation(raw_line)
+        if explicit_explanation is not None:
+            answers.setdefault(current, {})
+            answers[current]["explanation"] = explicit_explanation
+            continue
+
         if current in explicit_answered:
             continue
 
@@ -670,6 +719,12 @@ def parse_2017_answers(md_text: str) -> dict[int, dict]:
             letter = parse_answer_letter(explicit_answer)
             if letter in {"A", "B", "C", "D"}:
                 answers[current] = {"correct_option": letter}
+            continue
+
+        explicit_explanation = parse_explicit_explanation(raw_line)
+        if explicit_explanation is not None:
+            answers.setdefault(current, {})
+            answers[current]["explanation"] = explicit_explanation
             continue
 
         if current in explicit_answered:
@@ -713,6 +768,12 @@ def parse_answer_pdf_style(md_text: str, start: int, end: int) -> dict[int, dict
                 answers[current] = {"correct_option": letter}
             continue
 
+        explicit_explanation = parse_explicit_explanation(raw_line)
+        if explicit_explanation is not None:
+            answers.setdefault(current, {})
+            answers[current]["explanation"] = explicit_explanation
+            continue
+
         if current in explicit_answered:
             continue
 
@@ -752,6 +813,12 @@ def parse_answer_pdf_style(md_text: str, start: int, end: int) -> dict[int, dict
             letter = parse_answer_letter(explicit_answer)
             if letter in {"A", "B", "C", "D", "R", "F"}:
                 answers[current] = {"correct_option": letter}
+            continue
+
+        explicit_explanation = parse_explicit_explanation(raw_line)
+        if explicit_explanation is not None:
+            answers.setdefault(current, {})
+            answers[current]["explanation"] = explicit_explanation
             continue
 
         if current in explicit_answered:
@@ -1013,6 +1080,184 @@ def build_library_question(
     return payload
 
 
+def parse_cleaned_tf_table(table_text: str) -> tuple[list[dict], dict[int, dict]]:
+    questions: list[dict] = []
+    answers: dict[int, dict] = {}
+    for raw_line in table_text.splitlines():
+        line = raw_line.strip()
+        if not line.startswith("|"):
+            continue
+        parts = [part.strip() for part in line.strip("|").split("|")]
+        if len(parts) < 3:
+            continue
+        number_match = re.match(r"^(\d+)\.\s*$", parts[0])
+        if not number_match:
+            continue
+        token_match = re.search(r"\*\*([RF])\*\*", parts[2], re.IGNORECASE)
+        if not token_match:
+            continue
+        number = int(number_match.group(1))
+        stem = clean_block(parts[1])
+        token = token_match.group(1).upper()
+        explanation = clean_block(" | ".join(parts[3:])) if len(parts) > 3 else ""
+        questions.append({"number": number, "stem": stem})
+        payload = {"correct_option": token}
+        if explanation:
+            payload["explanation"] = explanation
+        answers[number] = payload
+    return questions, answers
+
+
+def parse_cleaned_choice_questions(section_text: str, start_no: int, end_no: int) -> tuple[list[dict], dict[int, dict]]:
+    questions: list[dict] = []
+    answers: dict[int, dict] = {}
+    current_number: int | None = None
+    stem_parts: list[str] = []
+    options: dict[str, str] = {}
+
+    def flush() -> None:
+        nonlocal current_number, stem_parts, options
+        if current_number is None:
+            return
+        stem = clean_block("\n".join(stem_parts))
+        questions.append({"number": current_number, "stem": stem, "options": dict(options)})
+        current_number = None
+        stem_parts = []
+        options = {}
+
+    for raw_line in section_text.splitlines():
+        line = raw_line.rstrip()
+        q_match = re.match(r"^\s*(\d{1,3})\.\s+(.+?)\s*$", line)
+        if q_match:
+            qno = int(q_match.group(1))
+            if start_no <= qno <= end_no:
+                flush()
+                current_number = qno
+                stem_parts = [q_match.group(2)]
+                options = {}
+                continue
+        if current_number is None:
+            continue
+
+        option_match = re.match(r"^\s*([A-Da-d])\.\s+(.+?)\s*$", line)
+        if option_match:
+            options[option_match.group(1).upper()] = clean_inline(option_match.group(2))
+            continue
+
+        explicit_answer = parse_explicit_answer(raw_line)
+        if explicit_answer is not None:
+            letter = parse_answer_letter(explicit_answer)
+            if letter in {"A", "B", "C", "D", "R", "F"}:
+                answers.setdefault(current_number, {})
+                answers[current_number]["correct_option"] = letter
+            continue
+
+        explicit_explanation = parse_explicit_explanation(raw_line)
+        if explicit_explanation is not None:
+            answers.setdefault(current_number, {})
+            answers[current_number]["explanation"] = explicit_explanation
+            continue
+
+        if options or not line.strip():
+            continue
+        stem_parts.append(line.strip())
+
+    flush()
+    return questions, answers
+
+
+def parse_cleaned_listening_set(year: int, cleaned_text: str, source_pdf: str) -> tuple[dict, dict[str, dict]]:
+    heading_match = re.search(r"^###\s+\*\*Teil I\s+H(?:ö|枚)rverstehen.*?$", cleaned_text, re.MULTILINE)
+    if not heading_match:
+        raise ValueError("Missing cleaned listening heading")
+    next_section_match = re.search(r"^###\s+\*\*Teil II\b.*?$", cleaned_text[heading_match.end() :], re.MULTILINE)
+    next_section = heading_match.end() + next_section_match.start() if next_section_match else len(cleaned_text)
+    hearing_text = cleaned_text[heading_match.start() : next_section]
+
+    marker_1_match = re.search(r"^####\s+\*\*(?:H(?:ö|枚)rtext 1|Teil 1)\*\*\s*$", hearing_text, re.MULTILINE)
+    marker_2_match = re.search(r"^####\s+\*\*(?:H(?:ö|枚)rtext 2|Teil 2)\*\*\s*$", hearing_text, re.MULTILINE)
+    if not marker_1_match or not marker_2_match:
+        raise ValueError("Missing cleaned listening sub-sections")
+
+    part1 = hearing_text[marker_1_match.start() : marker_2_match.start()]
+    part2 = hearing_text[marker_2_match.start() :]
+
+    instruction_1_lines = [
+        line.strip()
+        for line in part1.splitlines()[1:5]
+        if line.strip() and not line.lstrip().startswith("|")
+    ]
+    instruction_2_lines = [
+        line.strip()
+        for line in part2.splitlines()[1:5]
+        if line.strip() and not line.lstrip().startswith("|")
+    ]
+    instruction_1 = clean_block("\n".join(instruction_1_lines)) or "Hörtext 1"
+    instruction_2 = clean_block("\n".join(instruction_2_lines)) or "Hörtext 2"
+
+    tf_questions, tf_answers = parse_cleaned_tf_table(part1)
+    choice_questions, choice_answers = parse_cleaned_choice_questions(part2, 11, 30)
+
+    groups = [
+        build_set_group(f"{year}-listening-a", "Hörtext 1", instruction_1, 1, 10, "standard"),
+        build_set_group(f"{year}-listening-b", "Hörtext 2", instruction_2, 11, 30, "standard"),
+    ]
+    questions = []
+    answer_updates: dict[str, dict] = {}
+
+    for item in tf_questions:
+        qno = item["number"]
+        questions.append(
+            build_library_question(
+                set_id=f"{year}-listening",
+                year=year,
+                section="listening",
+                number=qno,
+                group_id=f"{year}-listening-a",
+                group_label="Hörtext 1",
+                instruction=instruction_1,
+                question_type="true-false",
+                stem=item["stem"],
+                options={"R": "Richtig", "F": "Falsch"},
+                source_pdf=source_pdf,
+            )
+        )
+        if qno in tf_answers:
+            answer_updates[f"{year}-listening-{qno}"] = tf_answers[qno]
+
+    for item in choice_questions:
+        qno = item["number"]
+        questions.append(
+            build_library_question(
+                set_id=f"{year}-listening",
+                year=year,
+                section="listening",
+                number=qno,
+                group_id=f"{year}-listening-b",
+                group_label="Hörtext 2",
+                instruction=instruction_2,
+                question_type="single-choice",
+                stem=item["stem"],
+                options=item["options"],
+                source_pdf=source_pdf,
+            )
+        )
+        if qno in choice_answers:
+            answer_updates[f"{year}-listening-{qno}"] = choice_answers[qno]
+
+    questions.sort(key=lambda item: item["number"])
+    return {
+        "id": f"{year}-listening",
+        "year": year,
+        "section": "listening",
+        "title": f"{year} 听力",
+        "question_count": len(questions),
+        "audio_file": LISTENING_AUDIO_MAP.get(year),
+        "groups": groups,
+        "questions": questions,
+    }, answer_updates
+
+
 def parse_listening_set(year: int, exam_text: str, source_pdf: str) -> dict:
     section = normalize_question_markers(normalize_listening_section(section_text(exam_text, "listening")))
     groups = []
@@ -1082,19 +1327,23 @@ def parse_reading_set(year: int, exam_text: str, source_pdf: str) -> dict:
     questions = []
     text1_start = section.find("Text 1")
     text2_start = section.find("Text 2", max(text1_start, 0) + 1)
-    q71 = question_start_re(71).search(section)
-    q79 = question_start_re(79).search(section)
-    shared1 = clean_block(section[text1_start:q71.start()]) if text1_start != -1 and q71 else None
-    shared2 = clean_block(section[text2_start:q79.start()]) if text2_start != -1 and q79 else None
+    if year == 2016:
+        start_no, split_no, end_no = 76, 84, 90
+    else:
+        start_no, split_no, end_no = 71, 79, 85
+    q_start = question_start_re(start_no).search(section)
+    q_split = question_start_re(split_no).search(section)
+    shared1 = clean_block(section[text1_start:q_start.start()]) if text1_start != -1 and q_start else None
+    shared2 = clean_block(section[text2_start:q_split.start()]) if text2_start != -1 and q_split else None
 
-    groups.append(build_set_group(f"{year}-reading-a", "Text 1", "Lesen Sie den Text und kreuzen Sie die richtige Lösung an!", 71, 78, "shared-passage", shared1))
-    groups.append(build_set_group(f"{year}-reading-b", "Text 2", "Lesen Sie den Text und kreuzen Sie die richtige Lösung an!", 79, 85, "shared-passage", shared2))
+    groups.append(build_set_group(f"{year}-reading-a", "Text 1", "Lesen Sie den Text und kreuzen Sie die richtige Lösung an!", start_no, split_no - 1, "shared-passage", shared1))
+    groups.append(build_set_group(f"{year}-reading-b", "Text 2", "Lesen Sie den Text und kreuzen Sie die richtige Lösung an!", split_no, end_no, "shared-passage", shared2))
 
-    for number in range(71, 86):
-        block = question_block(section, 71, 85, number)
+    for number in range(start_no, end_no + 1):
+        block = question_block(section, start_no, end_no, number)
         stem, options = parse_choice_block(block, number)
-        group_id = f"{year}-reading-a" if number <= 78 else f"{year}-reading-b"
-        group_label = "Text 1" if number <= 78 else "Text 2"
+        group_id = f"{year}-reading-a" if number < split_no else f"{year}-reading-b"
+        group_label = "Text 1" if number < split_no else "Text 2"
         questions.append(
             build_library_question(
                 set_id=f"{year}-reading",
@@ -1124,15 +1373,19 @@ def parse_reading_set(year: int, exam_text: str, source_pdf: str) -> dict:
 
 def parse_landeskunde_set(year: int, exam_text: str, source_pdf: str) -> dict:
     section = normalize_question_markers(section_text(exam_text, "landeskunde"))
+    if year == 2016:
+        tf_start, tf_end, choice_start, choice_end = 91, 96, 97, 110
+    else:
+        tf_start, tf_end, choice_start, choice_end = 86, 91, 92, 105
     groups = [
-        build_set_group(f"{year}-country-a", "A", "Welche der folgenden Aussagen sind richtig, welche falsch?", 86, 91, "standard"),
-        build_set_group(f"{year}-country-b", "B", "Kreuzen Sie die richtige Lösung an!", 92, 105, "standard"),
+        build_set_group(f"{year}-country-a", "A", "Welche der folgenden Aussagen sind richtig, welche falsch?", tf_start, tf_end, "standard"),
+        build_set_group(f"{year}-country-b", "B", "Kreuzen Sie die richtige Lösung an!", choice_start, choice_end, "standard"),
     ]
     questions = []
 
-    for number in range(86, 92):
+    for number in range(tf_start, tf_end + 1):
         try:
-            block = question_block(section, 86, 105, number)
+            block = question_block(section, tf_start, choice_end, number)
             stem = parse_tf_block(block, number)
             placeholder = False
         except ValueError:
@@ -1157,8 +1410,8 @@ def parse_landeskunde_set(year: int, exam_text: str, source_pdf: str) -> dict:
             questions[-1]["is_placeholder"] = True
             questions[-1]["placeholder_reason"] = "source-page-damage"
 
-    for number in range(92, 106):
-        block = question_block(section, 86, 105, number)
+    for number in range(choice_start, choice_end + 1):
+        block = question_block(section, tf_start, choice_end, number)
         stem, options = parse_choice_block(block, number)
         questions.append(
             build_library_question(
@@ -1189,8 +1442,8 @@ def parse_landeskunde_set(year: int, exam_text: str, source_pdf: str) -> dict:
 
 def parse_translation_set(year: int, exam_text: str, source_pdf: str) -> dict:
     section = section_text(exam_text, "translation")
-    part_a = re.search(r"A\.\s*Ubersetzen.*?(?=\nB\.)", section, re.IGNORECASE | re.DOTALL)
-    part_b = re.search(r"B\.\s*Ubersetzen.*", section, re.IGNORECASE | re.DOTALL)
+    part_a = re.search(r"A\.\s*(?:Ü|U)bersetzen.*?(?=\n####\s*\*\*B\.|\nB\.)", section, re.IGNORECASE | re.DOTALL)
+    part_b = re.search(r"B\.\s*(?:Ü|U)bersetzen.*", section, re.IGNORECASE | re.DOTALL)
 
     groups = [
         build_set_group(f"{year}-translation-a", "A", "Übersetzen Sie den folgenden Text ins Chinesische!", 1, 1, "prompt"),
@@ -1586,6 +1839,22 @@ def build_library_answers(cleaned_sources: dict[int, str] | None = None) -> dict
     answers: dict[str, dict] = {}
     cleaned_sources = cleaned_sources or {}
 
+    text_2016 = cleaned_sources.get(2016)
+    if text_2016:
+        for number, payload in parse_answer_pdf_style(text_2016, 76, 110).items():
+            if 76 <= number <= 90:
+                answers[f"2016-reading-{number}"] = payload
+            elif 91 <= number <= 110:
+                answers[f"2016-landeskunde-{number}"] = payload
+
+    text_2017 = cleaned_sources.get(2017)
+    if text_2017:
+        for number, payload in parse_answer_pdf_style(text_2017, 71, 105).items():
+            if 71 <= number <= 85:
+                answers[f"2017-reading-{number}"] = payload
+            elif 86 <= number <= 105:
+                answers[f"2017-landeskunde-{number}"] = payload
+
     text_2018 = cleaned_sources.get(2018) or read_md("2018_with_answers")
     for number, payload in parse_answer_pdf_style(text_2018, 71, 105).items():
         if 71 <= number <= 85:
@@ -1605,12 +1874,32 @@ def build_library_answers(cleaned_sources: dict[int, str] | None = None) -> dict
     return answers
 
 
+def select_library_exam_text(year: int, cleaned_sources: dict[int, str], full_root: str) -> str:
+    if year in {2019, 2021, 2022}:
+        return split_root_full_exam_by_year(full_root, year)
+    if year in {2016, 2017}:
+        cleaned = cleaned_sources.get(year)
+        if cleaned:
+            return cleaned
+    if year in {2018, 2025}:
+        cleaned = cleaned_sources.get(year)
+        if cleaned and "[原文略，见前]" not in cleaned:
+            return cleaned
+    if year == 2018:
+        return read_md("2018_exam")
+    return read_md("2025_exam")
+
+
 def build_library_sets(cleaned_sources: dict[int, str] | None = None) -> tuple[list[dict], dict]:
     full_root = read_md("full_exam_2019_2022")
     library_sets = []
     answer_updates = build_library_answers(cleaned_sources)
+    cleaned_sources = cleaned_sources or {}
+    cleaned_sources = cleaned_sources or {}
 
     source_map = {
+        2016: "material/testpaperandanswer/2016德语专八真题及解析.pdf",
+        2017: "material/testpaperandanswer/2017德语专八真题及解析.pdf",
         2018: "material/testpaperandanswer/2018德语专八真题.pdf",
         2019: "德语专业八级真题2019-2022.pdf",
         2021: "德语专业八级真题2019-2022.pdf",
@@ -1618,16 +1907,23 @@ def build_library_sets(cleaned_sources: dict[int, str] | None = None) -> tuple[l
         2025: "material/testpaperandanswer/2025专八.pdf",
     }
 
-    for year in [2018, 2019, 2021, 2022, 2025]:
-        if year in {2019, 2021, 2022}:
-            exam_text = split_root_full_exam_by_year(full_root, year)
-        elif year == 2018:
-            exam_text = read_md("2018_exam")
-        else:
-            exam_text = read_md("2025_exam")
+    for year in [2016, 2017, 2018, 2019, 2021, 2022, 2025]:
+        exam_text = select_library_exam_text(year, cleaned_sources, full_root)
 
         source_pdf = source_map[year]
-        if year != 2018:
+        if year in {2016, 2017, 2018, 2025} and cleaned_sources.get(year):
+            try:
+                listening_set, listening_answers = parse_cleaned_listening_set(year, cleaned_sources[year], source_pdf)
+                library_sets.append(listening_set)
+                answer_updates.update(listening_answers)
+            except Exception as exc:
+                print(f"[WARN] cleaned listening skipped for {year}: {exc}")
+                if year == 2025:
+                    try:
+                        library_sets.append(parse_listening_set(year, exam_text, source_pdf))
+                    except Exception as inner_exc:
+                        print(f"[WARN] listening skipped for {year}: {inner_exc}")
+        elif year != 2018:
             try:
                 library_sets.append(parse_listening_set(year, exam_text, source_pdf))
             except Exception as exc:
@@ -1716,6 +2012,22 @@ def build_library_answers(cleaned_sources: dict[int, str] | None = None) -> dict
     answers: dict[str, dict] = {}
     cleaned_sources = cleaned_sources or {}
 
+    text_2016 = cleaned_sources.get(2016)
+    if text_2016:
+        for number, payload in parse_answer_pdf_style(text_2016, 76, 110).items():
+            if 76 <= number <= 90:
+                answers[f"2016-reading-{number}"] = payload
+            elif 91 <= number <= 110:
+                answers[f"2016-landeskunde-{number}"] = payload
+
+    text_2017 = cleaned_sources.get(2017)
+    if text_2017:
+        for number, payload in parse_answer_pdf_style(text_2017, 71, 105).items():
+            if 71 <= number <= 85:
+                answers[f"2017-reading-{number}"] = payload
+            elif 86 <= number <= 105:
+                answers[f"2017-landeskunde-{number}"] = payload
+
     text_2018 = cleaned_sources.get(2018) or read_md("2018_with_answers")
     for number, payload in parse_answer_pdf_style(text_2018, 71, 105).items():
         if 71 <= number <= 85:
@@ -1739,8 +2051,11 @@ def build_library_sets(cleaned_sources: dict[int, str] | None = None) -> tuple[l
     full_root = read_md("full_exam_2019_2022")
     library_sets = []
     answer_updates = build_library_answers(cleaned_sources)
+    cleaned_sources = cleaned_sources or {}
 
     source_map = {
+        2016: "material/testpaperandanswer/2016德语专八真题及解析.pdf",
+        2017: "material/testpaperandanswer/2017德语专八真题及解析.pdf",
         2018: "material/testpaperandanswer/2018德语专八真题.pdf",
         2019: "德语专业八级真题2019-2022.pdf",
         2021: "德语专业八级真题2019-2022.pdf",
@@ -1748,16 +2063,23 @@ def build_library_sets(cleaned_sources: dict[int, str] | None = None) -> tuple[l
         2025: "material/testpaperandanswer/2025专八.pdf",
     }
 
-    for year in [2018, 2019, 2021, 2022, 2025]:
-        if year in {2019, 2021, 2022}:
-            exam_text = split_root_full_exam_by_year(full_root, year)
-        elif year == 2018:
-            exam_text = read_md("2018_exam")
-        else:
-            exam_text = read_md("2025_exam")
+    for year in [2016, 2017, 2018, 2019, 2021, 2022, 2025]:
+        exam_text = select_library_exam_text(year, cleaned_sources, full_root)
 
         source_pdf = source_map[year]
-        if year != 2018:
+        if year in {2016, 2017, 2018, 2025} and cleaned_sources.get(year):
+            try:
+                listening_set, listening_answers = parse_cleaned_listening_set(year, cleaned_sources[year], source_pdf)
+                library_sets.append(listening_set)
+                answer_updates.update(listening_answers)
+            except Exception as exc:
+                print(f"[WARN] cleaned listening skipped for {year}: {exc}")
+                if year == 2025:
+                    try:
+                        library_sets.append(parse_listening_set(year, exam_text, source_pdf))
+                    except Exception as inner_exc:
+                        print(f"[WARN] listening skipped for {year}: {inner_exc}")
+        elif year != 2018:
             try:
                 library_sets.append(parse_listening_set(year, exam_text, source_pdf))
             except Exception as exc:
