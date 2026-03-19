@@ -5,13 +5,17 @@ import os
 import re
 from copy import deepcopy
 from pathlib import Path
-from urllib import error, request
+
+from app.essay_review import request_essay_review
+from app.llm_json import request_chat_json
 
 DEFAULT_SETTINGS = {
     "enabled": False,
     "provider": "deepseek",
     "endpoint": "https://api.deepseek.com/chat/completions",
     "model": "deepseek-chat",
+    "essay_analysis_model": "",
+    "essay_scoring_model": "",
     "api_key": "",
     "timeout_seconds": 45,
     "temperature": 0.3,
@@ -22,6 +26,8 @@ ENV_MAPPING = {
     "provider": "TEM8_AI_PROVIDER",
     "endpoint": "TEM8_AI_ENDPOINT",
     "model": "TEM8_AI_MODEL",
+    "essay_analysis_model": "TEM8_AI_ESSAY_ANALYSIS_MODEL",
+    "essay_scoring_model": "TEM8_AI_ESSAY_SCORING_MODEL",
     "api_key": "TEM8_AI_API_KEY",
     "timeout_seconds": "TEM8_AI_TIMEOUT_SECONDS",
     "temperature": "TEM8_AI_TEMPERATURE",
@@ -69,6 +75,8 @@ def load_ai_settings(path: Path) -> dict:
     settings["provider"] = str(settings.get("provider") or DEFAULT_SETTINGS["provider"]).strip() or DEFAULT_SETTINGS["provider"]
     settings["endpoint"] = str(settings.get("endpoint") or DEFAULT_SETTINGS["endpoint"]).strip() or DEFAULT_SETTINGS["endpoint"]
     settings["model"] = str(settings.get("model") or DEFAULT_SETTINGS["model"]).strip() or DEFAULT_SETTINGS["model"]
+    settings["essay_analysis_model"] = str(settings.get("essay_analysis_model") or "").strip()
+    settings["essay_scoring_model"] = str(settings.get("essay_scoring_model") or "").strip()
     settings["api_key"] = str(settings.get("api_key") or "").strip()
     settings["configured"] = bool(settings["enabled"] and settings["endpoint"] and settings["model"] and settings["api_key"])
     return settings
@@ -111,27 +119,6 @@ def _max_score(question: dict, source_context: dict | None) -> int:
     return 100
 
 
-def _extract_json(text: str) -> dict:
-    cleaned = str(text or "").strip()
-    if cleaned.startswith("```"):
-        cleaned = re.sub(r"^```(?:json)?\s*|\s*```$", "", cleaned, flags=re.IGNORECASE | re.DOTALL).strip()
-
-    try:
-        payload = json.loads(cleaned)
-        if isinstance(payload, dict):
-            return payload
-    except json.JSONDecodeError:
-        pass
-
-    start = cleaned.find("{")
-    end = cleaned.rfind("}")
-    if start >= 0 and end > start:
-        payload = json.loads(cleaned[start : end + 1])
-        if isinstance(payload, dict):
-            return payload
-    raise ValueError("model_did_not_return_json")
-
-
 def _normalize_issues(raw_issues) -> list[dict]:
     issues = []
     for item in raw_issues or []:
@@ -163,21 +150,6 @@ def _normalize_suggestions(raw_suggestions) -> list[str]:
         if text:
             suggestions.append(text)
     return suggestions
-
-
-def _message_content(payload: dict) -> str:
-    choices = payload.get("choices") or []
-    if not choices:
-        raise ValueError("no_choices_returned")
-    message = choices[0].get("message") or {}
-    content = message.get("content")
-    if isinstance(content, list):
-        chunks = []
-        for item in content:
-            if isinstance(item, dict) and item.get("type") == "text":
-                chunks.append(str(item.get("text") or ""))
-        return "".join(chunks).strip()
-    return str(content or "").strip()
 
 
 def _review_messages(question: dict, source_context: dict | None, response_text: str, max_score: int) -> list[dict]:
@@ -226,35 +198,16 @@ def request_ai_review(settings: dict, question: dict, source_context: dict | Non
     if not settings.get("configured"):
         raise RuntimeError("AI review is not configured.")
 
+    task_label = _task_label(question, source_context)
+    if task_label == "writing":
+        return request_essay_review(settings, question, source_context, response_text)
+
     max_score = _max_score(question, source_context)
-    body = {
-        "model": settings["model"],
-        "messages": _review_messages(question, source_context, response_text, max_score),
-        "temperature": settings["temperature"],
-        "max_tokens": 1200,
-        "response_format": {"type": "json_object"},
-    }
-
-    req = request.Request(
-        settings["endpoint"],
-        data=json.dumps(body, ensure_ascii=False).encode("utf-8"),
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {settings['api_key']}",
-        },
-        method="POST",
+    raw_review = request_chat_json(
+        settings,
+        _review_messages(question, source_context, response_text, max_score),
+        max_tokens=1200,
     )
-
-    try:
-        with request.urlopen(req, timeout=settings["timeout_seconds"]) as response:
-            payload = json.loads(response.read().decode("utf-8"))
-    except error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"AI provider HTTP {exc.code}: {detail}") from exc
-    except error.URLError as exc:
-        raise RuntimeError(f"AI provider unavailable: {exc.reason}") from exc
-
-    raw_review = _extract_json(_message_content(payload))
     score = raw_review.get("score")
     try:
         score = int(round(float(score)))
@@ -263,10 +216,10 @@ def request_ai_review(settings: dict, question: dict, source_context: dict | Non
     score = max(0, min(max_score, score))
 
     return {
-        "task_type": _task_label(question, source_context),
+        "task_type": task_label,
         "score": score,
         "max_score": max_score,
-        "summary": str(raw_review.get("summary") or "AI 已完成点评。").strip(),
+        "summary": str(raw_review.get("summary") or "AI review completed.").strip(),
         "issues": _normalize_issues(raw_review.get("issues")),
         "suggestions": _normalize_suggestions(raw_review.get("suggestions")),
         "revised_answer": str(raw_review.get("revised_answer") or "").strip(),

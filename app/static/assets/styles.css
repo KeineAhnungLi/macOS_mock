@@ -604,6 +604,120 @@ html.safari-browser .empty-card {
   line-height: 1.8;
 }
 
+.rich-text {
+  display: grid;
+  gap: 12px;
+}
+
+.rich-text > * {
+  margin: 0;
+}
+
+.rich-heading {
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+.rich-heading.lead {
+  font-size: 24px;
+}
+
+.passage-kicker {
+  color: var(--accent-strong);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.passage-kicker.solo {
+  margin-bottom: 2px;
+}
+
+.passage-header-block {
+  display: grid;
+  gap: 4px;
+}
+
+.rich-paragraph {
+  color: var(--ink);
+  line-height: 1.82;
+  text-align: justify;
+}
+
+.prompt-block .rich-paragraph,
+.subprompt-item .rich-paragraph {
+  line-height: 1.72;
+  text-align: left;
+}
+
+.rich-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rich-list-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.rich-list-label {
+  color: var(--accent-strong);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.rich-list-copy {
+  color: var(--ink);
+  line-height: 1.68;
+}
+
+.rich-table-wrap {
+  overflow-x: auto;
+}
+
+.rich-table {
+  width: 100%;
+  min-width: 280px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: rgba(255, 252, 246, 0.82);
+  border: 1px solid rgba(31, 47, 40, 0.1);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.rich-table th,
+.rich-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(31, 47, 40, 0.08);
+  border-right: 1px solid rgba(31, 47, 40, 0.08);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.rich-table th:last-child,
+.rich-table td:last-child {
+  border-right: none;
+}
+
+.rich-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rich-table th {
+  background: rgba(29, 107, 87, 0.08);
+  font-weight: 700;
+}
+
 .passage-mode-toggle {
   display: inline-flex;
   flex-wrap: wrap;
@@ -728,7 +842,7 @@ html.safari-browser .empty-card {
 .prompt-block {
   padding: 16px 18px;
   line-height: 1.65;
-  white-space: pre-wrap;
+  white-space: normal;
 }
 
 .subprompt-list {
@@ -798,6 +912,52 @@ html.safari-browser .empty-card {
   gap: 12px;
 }
 
+.ai-score-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.ai-score-card {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 47, 40, 0.08);
+  background: rgba(255, 252, 246, 0.96);
+}
+
+.ai-score-card.total {
+  background: rgba(29, 107, 87, 0.12);
+  border-color: rgba(29, 107, 87, 0.24);
+}
+
+.ai-score-label {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ai-score-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ai-score-value span {
+  margin-left: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.ai-score-note {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
 .ai-review-summary {
   margin: 0;
   line-height: 1.65;
@@ -806,6 +966,32 @@ html.safari-browser .empty-card {
 .ai-review-section {
   display: grid;
   gap: 6px;
+}
+
+.ai-analysis-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.ai-analysis-item {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 252, 246, 0.96);
+  border: 1px solid rgba(31, 47, 40, 0.08);
+}
+
+.ai-analysis-label {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ai-analysis-value {
+  line-height: 1.6;
+  color: var(--ink);
 }
 
 .ai-review-section ul {

@@ -233,7 +233,10 @@ function stripBleedText(value) {
     }
   }
   text = text.replace(/\bQ[lI]\b/g, "");
-  text = text.replace(/[=|]+/g, " ");
+  text = text.replace(/[=]+/g, " ");
+  text = text.replace(/(^|\s)\|(?=\s|$)/g, "$1 ");
+  text = text.replace(/^\s*#{1,6}\s*/gm, "");
+  text = text.replace(/\*{2,}/g, "");
   text = text.replace(/\s+([,.;:!?])/g, "$1");
   text = text.replace(/[ ]{2,}/g, " ");
   text = text.replace(/\n{3,}/g, "\n\n");
@@ -299,6 +302,179 @@ function formatPassageText(value, activeNumber = null) {
     return `<span class="passage-marker${active ? " active" : ""}">(${number})</span>`;
   });
   return text.replace(/@@BLANK_(\d+)@@/g, (_, index) => renderBlankSpan(blanks[Number(index)], false));
+}
+
+const LIST_LINE_RE = /^([0-9]+[.)]|[a-z]\)|[-•])\s*(.+)$/i;
+
+function normalizeRichText(value) {
+  return cleanDisplayText(value, false)
+    .replace(/\r\n?/g, "\n")
+    .replace(/\n[ \t]+\n/g, "\n\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function splitRichBlocks(value) {
+  const text = normalizeRichText(value);
+  return text ? text.split(/\n{2,}/).map((block) => block.trim()).filter(Boolean) : [];
+}
+
+function splitBlockLines(block) {
+  return String(block || "")
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+}
+
+function isShortHeading(block) {
+  const lines = splitBlockLines(block);
+  if (lines.length !== 1) {
+    return false;
+  }
+  const line = lines[0];
+  if (!line || line.length > 90) {
+    return false;
+  }
+  if (/^(?:[AB]\.\s*)?Übersetzen Sie/i.test(line) || /^(?:[AB]\.\s*)?Ubersetzen Sie/i.test(line)) {
+    return false;
+  }
+  if (/^(?:Aufgabe|Tabelle):/i.test(line)) {
+    return false;
+  }
+  if (LIST_LINE_RE.test(line) || /^\|/.test(line)) {
+    return false;
+  }
+  return !/[.!?。！？]$/.test(line);
+}
+
+function parseTableBlock(block) {
+  const rows = splitBlockLines(block).filter((line) => line.includes("|"));
+  if (rows.length < 2 || !rows.every((line) => line.trim().startsWith("|"))) {
+    return null;
+  }
+  const parsedRows = rows.map((line) =>
+    line
+      .trim()
+      .replace(/^\|/, "")
+      .replace(/\|$/, "")
+      .split("|")
+      .map((cell) => cell.trim()),
+  );
+  if (parsedRows.length < 2) {
+    return null;
+  }
+  const header = parsedRows[0];
+  const body = parsedRows.slice(1).filter((row) => !row.every((cell) => /^:?-{3,}:?$/.test(cell)));
+  if (!body.length) {
+    return null;
+  }
+  return { header, body };
+}
+
+function renderRichInline(text, mode = "text", activeNumber = null) {
+  const compact = splitBlockLines(text).join(" ");
+  if (!compact) {
+    return "";
+  }
+  return mode === "passage" ? formatPassageText(compact, activeNumber) : formatInline(compact);
+}
+
+function renderRichTable(block, mode = "text", activeNumber = null) {
+  const table = parseTableBlock(block);
+  if (!table) {
+    return "";
+  }
+  return `
+    <div class="rich-table-wrap">
+      <table class="rich-table">
+        <thead>
+          <tr>${table.header.map((cell) => `<th>${renderRichInline(cell, mode, activeNumber)}</th>`).join("")}</tr>
+        </thead>
+        <tbody>
+          ${table.body
+            .map((row) => `<tr>${row.map((cell) => `<td>${renderRichInline(cell, mode, activeNumber)}</td>`).join("")}</tr>`)
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderRichList(block, mode = "text", activeNumber = null) {
+  const lines = splitBlockLines(block);
+  if (!lines.length || !lines.every((line) => LIST_LINE_RE.test(line))) {
+    return "";
+  }
+  return `
+    <ul class="rich-list">
+      ${lines
+        .map((line) => {
+          const [, label, content] = line.match(LIST_LINE_RE);
+          return `
+            <li class="rich-list-item">
+              <span class="rich-list-label">${escapeHtml(label)}</span>
+              <span class="rich-list-copy">${renderRichInline(content, mode, activeNumber)}</span>
+            </li>
+          `;
+        })
+        .join("")}
+    </ul>
+  `;
+}
+
+function renderPassageHeader(block) {
+  const line = splitBlockLines(block).join(" ");
+  const withTitle = line.match(/^(Text\s+\d+)\s*:\s*(.+)$/i);
+  if (withTitle) {
+    return `
+      <div class="passage-header-block">
+        <div class="passage-kicker">${escapeHtml(withTitle[1])}</div>
+        <h4 class="rich-heading">${formatInline(withTitle[2])}</h4>
+      </div>
+    `;
+  }
+  if (/^Text\s+\d+$/i.test(line)) {
+    return `<div class="passage-kicker solo">${escapeHtml(line)}</div>`;
+  }
+  return "";
+}
+
+function renderRichParagraph(block, mode = "text", activeNumber = null) {
+  const compact = splitBlockLines(block).join(" ");
+  if (!compact) {
+    return "";
+  }
+  const content = mode === "passage" ? formatPassageText(compact, activeNumber) : formatText(compact);
+  return `<p class="rich-paragraph">${content}</p>`;
+}
+
+function renderStructuredText(value, { mode = "text", activeNumber = null, stripListItems = false } = {}) {
+  const sourceBlocks = splitRichBlocks(value);
+  const blocks = stripListItems
+    ? sourceBlocks.filter((block) => !splitBlockLines(block).every((line) => LIST_LINE_RE.test(line)))
+    : sourceBlocks;
+  return blocks
+    .map((block, index) => {
+      if (mode === "passage") {
+        const passageHeader = renderPassageHeader(block);
+        if (passageHeader) {
+          return passageHeader;
+        }
+      }
+      const table = renderRichTable(block, mode, activeNumber);
+      if (table) {
+        return table;
+      }
+      const list = renderRichList(block, mode, activeNumber);
+      if (list) {
+        return list;
+      }
+      if (isShortHeading(block)) {
+        return `<h4 class="rich-heading${index === 0 ? " lead" : ""}">${renderRichInline(block, mode, activeNumber)}</h4>`;
+      }
+      return renderRichParagraph(block, mode, activeNumber);
+    })
+    .join("");
 }
 
 function locatePassageWindow(text, questionNumber) {
@@ -998,6 +1174,97 @@ function buildFeedback(question, record, checked, isCorrect, autoNext = false) {
   `;
 }
 
+function formatReviewScore(value) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) {
+    return escapeHtml(String(value ?? ""));
+  }
+  return escapeHtml(Number.isInteger(numeric) ? String(numeric) : numeric.toFixed(1).replace(/\.0$/, ""));
+}
+
+function renderAiScoreCards(review) {
+  const breakdown = review?.rubric_breakdown;
+  if (!breakdown) {
+    return "";
+  }
+
+  const cards = [
+    ["aeussere_form", "形式"],
+    ["sprachliche_form", "语言"],
+    ["inhalt", "内容"],
+    ["total", "总分"],
+  ]
+    .map(([key, label]) => {
+      const block = breakdown[key];
+      if (!block) {
+        return "";
+      }
+      return `
+        <div class="ai-score-card${key === "total" ? " total" : ""}">
+          <div class="ai-score-label">${label}</div>
+          <div class="ai-score-value">${formatReviewScore(block.score)}<span>/${formatReviewScore(block.max_score)}</span></div>
+          ${block.rationale ? `<div class="ai-score-note">${escapeHtml(String(block.rationale))}</div>` : ""}
+        </div>
+      `;
+    })
+    .join("");
+
+  return cards ? `<div class="ai-score-grid">${cards}</div>` : "";
+}
+
+function renderAiAnalysis(review) {
+  const analysis = review?.analysis;
+  if (!analysis) {
+    return "";
+  }
+
+  const taskCompletion = analysis.task_completion || {};
+  const strengths = Array.isArray(analysis.strengths) ? analysis.strengths : [];
+  const gaps = Array.isArray(analysis.gaps) ? analysis.gaps : [];
+  const covered = Array.isArray(taskCompletion.covered_points) ? taskCompletion.covered_points : [];
+  const partial = Array.isArray(taskCompletion.partially_covered_points) ? taskCompletion.partially_covered_points : [];
+  const missed = Array.isArray(taskCompletion.missed_points) ? taskCompletion.missed_points : [];
+  const languageLines = [
+    ["语法", analysis.grammar],
+    ["词汇", analysis.vocabulary],
+    ["衔接", analysis.cohesion],
+    ["句式", analysis.sentence_variety],
+    ["可理解度", analysis.comprehensibility],
+  ].filter(([, value]) => String(value || "").trim());
+
+  const listBlock = (title, items) =>
+    items.length
+      ? `<div class="ai-review-section"><strong>${title}</strong><ul>${items
+          .map((item) => `<li>${escapeHtml(String(item))}</li>`)
+          .join("")}</ul></div>`
+      : "";
+
+  const languageBlock = languageLines.length
+    ? `<div class="ai-review-section"><strong>语言分析</strong><div class="ai-analysis-grid">${languageLines
+        .map(
+          ([label, value]) => `
+            <div class="ai-analysis-item">
+              <span class="ai-analysis-label">${escapeHtml(String(label))}</span>
+              <span class="ai-analysis-value">${escapeHtml(String(value))}</span>
+            </div>
+          `,
+        )
+        .join("")}</div></div>`
+    : "";
+
+  return `
+    ${taskCompletion.comment ? `<div class="ai-review-section"><strong>任务完成情况</strong><p class="ai-review-summary">${formatText(taskCompletion.comment)}</p></div>` : ""}
+    ${listBlock("已覆盖要点", covered)}
+    ${listBlock("部分覆盖要点", partial)}
+    ${listBlock("遗漏要点", missed)}
+    ${listBlock("内容亮点", strengths)}
+    ${listBlock("内容问题", gaps)}
+    ${analysis.overall_content ? `<div class="ai-review-section"><strong>内容总评</strong><p class="ai-review-summary">${formatText(analysis.overall_content)}</p></div>` : ""}
+    ${languageBlock}
+    ${analysis.overall_language ? `<div class="ai-review-section"><strong>语言总评</strong><p class="ai-review-summary">${formatText(analysis.overall_language)}</p></div>` : ""}
+  `;
+}
+
 function renderAiReviewBlock(question, record) {
   if (!canRequestAiReview(question)) {
     return "";
@@ -1039,7 +1306,9 @@ function renderAiReviewBlock(question, record) {
         review
           ? `
             <div class="ai-review-body">
+              ${renderAiScoreCards(review)}
               <p class="ai-review-summary">${formatText(review.summary || "")}</p>
+              ${review?.band_summary ? `<div class="ai-review-section"><strong>分档判断</strong><p class="ai-review-summary">${formatText(review.band_summary)}</p></div>` : ""}
               ${
                 issues.length
                   ? `<div class="ai-review-section"><strong>问题</strong><ul>${issues
@@ -1054,6 +1323,7 @@ function renderAiReviewBlock(question, record) {
                       .join("")}</ul></div>`
                   : ""
               }
+              ${renderAiAnalysis(review)}
               ${
                 review.revised_answer
                   ? `<div class="ai-review-section"><strong>可参考改写</strong><div class="prompt-block">${formatText(review.revised_answer)}</div></div>`
@@ -1130,7 +1400,7 @@ function renderQuestionSubprompts(question) {
   }
   return `
     <div class="subprompt-list">
-      ${question.subprompts.map((item) => `<div class="subprompt-item">${formatText(item)}</div>`).join("")}
+      ${question.subprompts.map((item) => `<div class="subprompt-item rich-text">${renderStructuredText(item)}</div>`).join("")}
     </div>
   `;
 }
@@ -1159,7 +1429,7 @@ function renderQuestionAnswerArea({ question, record, checked, isCorrect, reveal
   }
 
   return `
-    ${question.prompt_text ? `<div class="prompt-block">${formatText(question.prompt_text)}</div>` : ""}
+    ${question.prompt_text ? `<div class="prompt-block rich-text">${renderStructuredText(question.prompt_text, { stripListItems: Array.isArray(question.subprompts) && question.subprompts.length > 0 })}</div>` : ""}
     ${renderQuestionSubprompts(question)}
     ${renderTextEntryControl({
       question,
@@ -1418,7 +1688,7 @@ function renderPassagePane(group) {
         <span class="source-badge">左右分栏</span>
       </div>
       <div class="pane-scroll">
-        <div class="passage-copy">${formatText(group.shared_context)}</div>
+        <div class="passage-copy rich-text">${renderStructuredText(group.shared_context, { mode: "passage" })}</div>
       </div>
     </article>
   `;
@@ -1461,7 +1731,7 @@ function renderAdaptivePassagePane(group, question = null) {
           </div>
           ${renderPassageModeToggle()}
         </div>
-        <div class="focus-passage-copy">${formatPassageText(focusText, question.number)}</div>
+        <div class="focus-passage-copy rich-text">${renderStructuredText(focusText, { mode: "passage", activeNumber: question.number })}</div>
       </article>
     `;
   }
@@ -1476,7 +1746,7 @@ function renderAdaptivePassagePane(group, question = null) {
         ${renderPassageModeToggle()}
       </div>
       <div class="pane-scroll">
-        <div class="passage-copy">${formatPassageText(group.shared_context, question?.number)}</div>
+        <div class="passage-copy rich-text">${renderStructuredText(group.shared_context, { mode: "passage", activeNumber: question?.number })}</div>
       </div>
     </article>
   `;
