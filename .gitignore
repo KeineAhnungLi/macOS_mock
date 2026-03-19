@@ -14,6 +14,8 @@ release/
 # Logs and runtime state
 logs/
 data/user_progress.json
+data/ai_review.json
+dist/data/ai_review.json
 data/ocr_debug/
 
 # Local packaging/handoff artifacts
@@ -25,6 +27,8 @@ _external/
 tmp_inspect/
 tmp-*.png
 tmp-*.js
+tmp-ui-check/
+tmp_gateway_*.log
 
 # Local environments
 .venv/
@@ -34,6 +38,10 @@ venv/
 # OS/editor noise
 .DS_Store
 Thumbs.db
+.vscode/
 
 # Large/local-only source material
 *.pdf
+TEM8Practice-*.pkg
+TEM8Practice-*.zip
+TEM8Practice*.app.zip

@@ -28,6 +28,7 @@ const state = {
   browserNoticeDismissed: localStorage.getItem(BROWSER_NOTICE_STORAGE_KEY) === "1",
   sharedPassageMode: resolveSharedPassageMode(),
   aiReviewBusyQuestionId: null,
+  openSubmissionHistoryQuestionId: null,
   practiceQuestionId: null,
   practiceAdvanceTimer: null,
   practiceAutoAdvanceQuestionId: null,
@@ -37,6 +38,7 @@ const state = {
 };
 
 let adaptiveLayoutBound = false;
+let draftUiSyncTimer = null;
 
 function normalizeApiBase(value) {
   const text = String(value || "").trim();
@@ -169,6 +171,18 @@ function defaultProgress() {
   };
 }
 
+function normalizeSubmissionHistoryEntry(entry = {}) {
+  return {
+    submitted_at: entry.submitted_at ?? null,
+    selected: entry.selected ?? null,
+    response_text: entry.response_text ?? "",
+    is_correct: typeof entry.is_correct === "boolean" ? entry.is_correct : null,
+    ai_review: entry.ai_review ?? null,
+    ai_review_updated_at: entry.ai_review_updated_at ?? null,
+    ai_review_error: entry.ai_review_error ?? "",
+  };
+}
+
 function normalizeAnswerRecord(record = {}) {
   return {
     selected: record.selected ?? null,
@@ -180,6 +194,9 @@ function normalizeAnswerRecord(record = {}) {
     ai_review: record.ai_review ?? null,
     ai_review_updated_at: record.ai_review_updated_at ?? null,
     ai_review_error: record.ai_review_error ?? "",
+    submission_history: Array.isArray(record.submission_history)
+      ? record.submission_history.map(normalizeSubmissionHistoryEntry)
+      : [],
   };
 }
 
@@ -722,11 +739,67 @@ function aiReviewMeta() {
   return state.dataset?.meta?.ai_review || { enabled: false, configured: false, provider: "", model: "" };
 }
 
+function getQuestionSection(question) {
+  return String(question?.section || "").trim().toLowerCase();
+}
+
+function isAiReviewTask(question) {
+  return ["translation", "writing"].includes(getQuestionSection(question));
+}
+
 function canRequestAiReview(question) {
-  if (!question || isChoiceQuestion(question) || hasSpecificAnswer(question)) {
+  if (!question || isChoiceQuestion(question)) {
     return false;
   }
-  return isPromptQuestion(question) || isTextInputQuestion(question);
+  if (isAiReviewTask(question)) {
+    return true;
+  }
+  return isPromptQuestion(question) || (isTextInputQuestion(question) && !hasSpecificAnswer(question));
+}
+
+function upsertSubmissionHistory(record) {
+  if (!record.checked_at) {
+    return;
+  }
+  const entry = normalizeSubmissionHistoryEntry({
+    submitted_at: record.checked_at,
+    selected: record.selected,
+    response_text: record.response_text,
+    is_correct: record.is_correct,
+    ai_review: record.ai_review,
+    ai_review_updated_at: record.ai_review_updated_at,
+    ai_review_error: record.ai_review_error,
+  });
+  const index = record.submission_history.findIndex((item) => item.submitted_at === record.checked_at);
+  if (index >= 0) {
+    record.submission_history[index] = entry;
+  } else {
+    record.submission_history.unshift(entry);
+  }
+}
+
+function toggleSubmissionHistory(questionId) {
+  state.openSubmissionHistoryQuestionId = state.openSubmissionHistoryQuestionId === questionId ? null : questionId;
+  renderApp();
+}
+
+function formatHistoryTimestamp(value) {
+  if (!value) {
+    return "未知时间";
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return escapeHtml(String(value));
+  }
+  return escapeHtml(date.toLocaleString("zh-CN", { hour12: false }));
+}
+
+function truncateText(value, limit = 220) {
+  const text = String(value || "").trim();
+  if (text.length <= limit) {
+    return text;
+  }
+  return `${text.slice(0, limit)}…`;
 }
 
 function getMaterialEntries(bucketName = state.materialsBucket) {
@@ -936,6 +1009,26 @@ async function persistProgress() {
   }
 }
 
+function flushDraftUiSync() {
+  draftUiSyncTimer = null;
+  state.progress.updated_at = new Date().toISOString();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
+  renderApp();
+}
+
+function cancelDraftUiSync() {
+  if (!draftUiSyncTimer) {
+    return;
+  }
+  window.clearTimeout(draftUiSyncTimer);
+  draftUiSyncTimer = null;
+}
+
+function scheduleDraftUiSync(delay = 220) {
+  cancelDraftUiSync();
+  draftUiSyncTimer = window.setTimeout(flushDraftUiSync, delay);
+}
+
 async function resetProgress() {
   const confirmed = window.confirm("将清空当前所有学习进度、错题记录和模考记录。确定继续吗？");
   if (!confirmed) {
@@ -1143,9 +1236,46 @@ function buildSubmittedAnswerText(question, record) {
   return submittedValue;
 }
 
+function isPlaceholderReferenceAnswer(value) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return true;
+  }
+  return /^(见参考译文|见参考范文|暂无官方范文|暂无官方参考答案|暂无参考答案)$/.test(text);
+}
+
+function getAiReferenceHint(question) {
+  const section = getQuestionSection(question);
+  const label = section === "translation" ? "参考译文" : section === "writing" ? "参考范文" : "参考答案";
+  const displayAnswer = String(question.display_answer || "").trim();
+  const explanation = String(question.explanation || "").trim();
+
+  if (displayAnswer && !isPlaceholderReferenceAnswer(displayAnswer)) {
+    return { label, text: displayAnswer };
+  }
+  if (explanation && !/^原题未附官方范文/.test(explanation)) {
+    return { label, text: explanation };
+  }
+  return null;
+}
+
 function buildFeedback(question, record, checked, isCorrect, autoNext = false) {
   if (!checked) {
     return "";
+  }
+
+  if (isAiReviewTask(question)) {
+    const referenceHint = getAiReferenceHint(question);
+    const answerHint = referenceHint ? `<br /><br /><strong>${referenceHint.label}：</strong>${formatText(referenceHint.text)}` : "";
+    const explanation =
+      question.explanation && (!referenceHint || referenceHint.text !== question.explanation)
+        ? `<br /><br /><strong>说明：</strong>${formatText(question.explanation)}`
+        : "";
+    return `
+      <div class="feedback pending">
+        本题已提交。系统会保留你的作答，并显示 AI 点评。${answerHint}${explanation}
+      </div>
+    `;
   }
 
   const hasSpecificAnswer = Boolean(question.correct_option || getExpectedAnswers(question).length);
@@ -1262,6 +1392,49 @@ function renderAiAnalysis(review) {
     ${analysis.overall_content ? `<div class="ai-review-section"><strong>内容总评</strong><p class="ai-review-summary">${formatText(analysis.overall_content)}</p></div>` : ""}
     ${languageBlock}
     ${analysis.overall_language ? `<div class="ai-review-section"><strong>语言总评</strong><p class="ai-review-summary">${formatText(analysis.overall_language)}</p></div>` : ""}
+  `;
+}
+
+function renderSubmissionHistoryPanel(question, record) {
+  const history = Array.isArray(record.submission_history) ? record.submission_history : [];
+  if (!history.length || state.openSubmissionHistoryQuestionId !== question.id) {
+    return "";
+  }
+
+  return `
+    <section class="submission-history-card">
+      <div class="pane-card-head pane-card-head-compact">
+        <div>
+          <div class="question-type">Submission History</div>
+          <strong>历史提交记录</strong>
+        </div>
+        <span class="badge badge-muted">${history.length} 次</span>
+      </div>
+      <div class="submission-history-list">
+        ${history
+          .map((entry, index) => {
+            const review = entry.ai_review || null;
+            const response = entry.response_text || (entry.selected ? `${entry.selected}` : "");
+            return `
+              <article class="submission-history-item">
+                <div class="submission-history-head">
+                  <strong>第 ${history.length - index} 次提交</strong>
+                  <span class="meta-line">${formatHistoryTimestamp(entry.submitted_at)}</span>
+                </div>
+                <div class="submission-history-meta">
+                  ${review ? `<span class="source-badge">AI ${formatReviewScore(review.score)}/${formatReviewScore(review.max_score)}</span>` : ""}
+                  ${entry.ai_review_error ? `<span class="source-badge danger">AI 失败</span>` : ""}
+                  ${typeof entry.is_correct === "boolean" ? `<span class="source-badge">${entry.is_correct ? "判定正确" : "判定错误"}</span>` : ""}
+                </div>
+                ${response ? `<div class="prompt-block history-response">${formatText(truncateText(response, 260))}</div>` : ""}
+                ${review?.summary ? `<p class="ai-review-summary">${formatText(review.summary)}</p>` : ""}
+                ${entry.ai_review_error ? `<div class="feedback wrong">${escapeHtml(entry.ai_review_error)}</div>` : ""}
+              </article>
+            `;
+          })
+          .join("")}
+      </div>
+    </section>
   `;
 }
 
@@ -2146,8 +2319,20 @@ function renderMaterialQuestionCard(entry, question, group) {
   const nextQuestion = questions[index + 1] || null;
   const submitted = Boolean(record.checked_at);
   const submitDisabled = !submitted && !canSubmitRecord(question, record);
+  const showAiTools = canRequestAiReview(question);
+  const hasHistory = Array.isArray(record.submission_history) && record.submission_history.length > 0;
+  const historyOpen = state.openSubmissionHistoryQuestionId === question.id;
   const progress = materialGroupProgress(entry, group.id);
   const classes = getQuestionCardClasses(submitted, record.is_correct);
+  const secondaryActions = [
+    submitted && showAiTools ? `<button class="ghost-button" onclick="appActions.prepareMaterialResubmit('${question.id}')">重新提交</button>` : "",
+    hasHistory
+      ? `<button class="ghost-button" onclick="appActions.toggleSubmissionHistory('${question.id}')">${historyOpen ? "收起历史" : "历史记录"}</button>`
+      : "",
+    submitted && showAiTools
+      ? `<button class="ghost-button" ${state.aiReviewBusyQuestionId === question.id ? "disabled" : ""} onclick="${state.aiReviewBusyQuestionId === question.id ? "" : `appActions.requestAiReview('${question.id}')`}">重新 AI 点评</button>`
+      : "",
+  ].join("");
 
   return `
     <article class="${classes}">
@@ -2172,6 +2357,7 @@ function renderMaterialQuestionCard(entry, question, group) {
       })}
       ${buildFeedback(question, record, submitted, record.is_correct, false)}
       ${renderAiReviewBlock(question, record)}
+      ${renderSubmissionHistoryPanel(question, record)}
       <div class="question-stage-foot">
         <div class="summary-actions">
           <button
@@ -2181,8 +2367,9 @@ function renderMaterialQuestionCard(entry, question, group) {
           >
             ${submitted ? (nextQuestion ? "下一题" : "完成本组") : "确定提交"}
           </button>
+          ${secondaryActions}
         </div>
-        <div class="meta-line">${submitted ? "已保存本题作答与结果。" : "支持选择题、判断题、填空题和开放题。先作答，再提交。"}</div>
+        <div class="meta-line">${submitted ? (showAiTools ? "已保存本题作答；提交后会自动触发 AI 点评。可重新提交，历史记录会保留。" : "已保存本题作答与结果。") : "支持选择题、判断题、填空题和开放题。先作答，再提交。"}</div>
       </div>
     </article>
   `;
@@ -2518,12 +2705,12 @@ async function updatePracticeResponse(questionId, value) {
   record.response_text = value;
   record.selected = null;
   clearAiReview(record);
-  await persistProgress();
-  renderApp();
+  scheduleDraftUiSync();
 }
 
 async function submitPracticeQuestion(questionId) {
   clearPracticeAdvanceTimer();
+  cancelDraftUiSync();
   const question = getQuestionById(questionId);
   const record = getRecord(questionId);
   if (!canSubmitRecord(question, record)) {
@@ -2629,10 +2816,11 @@ async function updateWrongbookResponse(questionId, value) {
   draft.checked = false;
   draft.is_correct = null;
   clearAiReview(draft);
-  renderApp();
+  scheduleDraftUiSync();
 }
 
 async function submitWrongbookQuestion(questionId) {
+  cancelDraftUiSync();
   const question = getQuestionById(questionId);
   const draft = getWrongbookDraft(questionId);
   if (!canSubmitRecord(question, draft)) {
@@ -2771,11 +2959,23 @@ async function updateMaterialResponse(questionId, value) {
   record.response_text = value;
   record.selected = null;
   clearAiReview(record);
+  scheduleDraftUiSync();
+}
+
+async function prepareMaterialResubmit(questionId) {
+  cancelDraftUiSync();
+  const record = getRecord(questionId);
+  record.checked_at = null;
+  record.is_correct = null;
+  clearAiReview(record);
+  state.openSubmissionHistoryQuestionId = null;
+  await logEvent("material_resubmit_started", { question_id: questionId, bucket: state.materialsBucket });
   await persistProgress();
   renderApp();
 }
 
 async function submitMaterialQuestion(questionId) {
+  cancelDraftUiSync();
   const question = getQuestionById(questionId);
   const record = getRecord(questionId);
   if (!question || !canSubmitRecord(question, record)) {
@@ -2785,6 +2985,10 @@ async function submitMaterialQuestion(questionId) {
   record.checked_at = new Date().toISOString();
   record.attempt_count += 1;
   record.is_correct = evaluateQuestionResponse(question, record);
+  if (canRequestAiReview(question)) {
+    record.is_correct = null;
+  }
+  upsertSubmissionHistory(record);
 
   await logEvent("material_submitted", {
     question_id: questionId,
@@ -2795,6 +2999,9 @@ async function submitMaterialQuestion(questionId) {
   });
   await persistProgress();
   renderApp();
+  if (canRequestAiReview(question) && aiReviewMeta().enabled && aiReviewMeta().configured) {
+    await requestAiReview(questionId, { auto: true });
+  }
 }
 
 function jumpMaterialQuestion(questionId) {
@@ -2950,32 +3157,44 @@ function openChromeDownload() {
   window.open(CHROME_DOWNLOAD_URL, "_blank", "noopener,noreferrer");
 }
 
-async function requestAiReview(questionId) {
+async function requestAiReview(questionId, { auto = false } = {}) {
+  cancelDraftUiSync();
   const question = getQuestionById(questionId);
-  const record = getRecord(questionId);
-  if (!canRequestAiReview(question) || !String(record.response_text || "").trim()) {
+  const initialRecord = getRecord(questionId);
+  const responseText = String(initialRecord.response_text || "").trim();
+  if (!canRequestAiReview(question) || !responseText) {
     return;
   }
 
   state.aiReviewBusyQuestionId = questionId;
-  record.ai_review_error = "";
+  initialRecord.ai_review_error = "";
   renderApp();
 
   try {
     const payload = await apiPost("/api/ai/review", {
       question_id: questionId,
-      response_text: record.response_text,
+      response_text: responseText,
     });
-    record.ai_review = payload.review || null;
-    record.ai_review_updated_at = new Date().toISOString();
-    record.ai_review_error = "";
-    await logEvent("ai_review_saved", { question_id: questionId, score: record.ai_review?.score ?? null });
+    const liveRecord = getRecord(questionId);
+    liveRecord.ai_review = payload.review || null;
+    liveRecord.ai_review_updated_at = new Date().toISOString();
+    liveRecord.ai_review_error = "";
+    upsertSubmissionHistory(liveRecord);
+    await logEvent("ai_review_saved", { question_id: questionId, score: liveRecord.ai_review?.score ?? null });
     await persistProgress();
   } catch (error) {
-    record.ai_review_error = error instanceof Error ? error.message : "AI review failed.";
-    await logEvent("ai_review_failed", { question_id: questionId, message: record.ai_review_error });
+    const liveRecord = getRecord(questionId);
+    liveRecord.ai_review = null;
+    liveRecord.ai_review_updated_at = null;
+    liveRecord.ai_review_error = error instanceof Error ? error.message : "AI review failed.";
+    upsertSubmissionHistory(liveRecord);
+    await logEvent("ai_review_failed", { question_id: questionId, message: liveRecord.ai_review_error });
+    await persistProgress();
   } finally {
     state.aiReviewBusyQuestionId = null;
+    if (!auto) {
+      state.openSubmissionHistoryQuestionId = null;
+    }
     renderApp();
   }
 }
@@ -3054,6 +3273,8 @@ window.appActions = {
   selectMaterialGroup,
   selectMaterialOption,
   updateMaterialResponse,
+  prepareMaterialResubmit,
+  toggleSubmissionHistory,
   submitMaterialQuestion,
   jumpMaterialQuestion,
   goToNextMaterialQuestion,

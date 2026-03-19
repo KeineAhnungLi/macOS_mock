@@ -8,6 +8,9 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
+from reading_manual_overrides import MANUAL_READING_PASSAGES
+from translation_writing_manual_overrides import MANUAL_TRANSLATION_WRITING_OVERRIDES
+
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT_DIR / "data"
@@ -23,10 +26,26 @@ CLEANED_TESTPAPER_OUTPUTS = {
     2016: TESTPAPER_MD_DIR / "cleaned" / "2016-source.md",
     2017: TESTPAPER_MD_DIR / "cleaned" / "2017-source.md",
     2018: TESTPAPER_MD_DIR / "cleaned" / "2018-source.md",
+    2023: TESTPAPER_MD_DIR / "cleaned" / "2023-source.md",
     2025: TESTPAPER_MD_DIR / "cleaned" / "2025-source.md",
 }
+CURATED_TRANSLATION_WRITING_PATH = DATA_DIR / "generated_json" / "translation_writing_curated.json"
+SOURCE_19_22_EXAMS_PATH = ROOT_DIR / "material" / "testpaperandanswer" / "19-22.json"
+SOURCE_19_22_ANSWERS_PATH = ROOT_DIR / "material" / "testpaperandanswer" / "19-22ans.json"
 
 EXERCISE_JSON_DIR = ROOT_DIR / "material" / "exercise" / "专八" / "cleaned" / "json"
+
+CURATED_2022_TRANSLATION_A_TEXT = """A. Übersetzen Sie den folgenden Text ins Chinesische! (25 P)
+
+Glaubten die Menschen früher, dass die Erde flach ist?
+
+So steht es in unseren Kinderbüchern. Man hat genau das Bild vor Augen, wie ein Schiff einfach über den Rand kippt. Tatsächlich wusste man seit der Antike, dass die Erde eine Kugel ist, und dieses Wissen wurde auch ins Mittelalter gerettet. Deswegen ist es auch ein Mythos, dass Kolumbus nur deshalb Amerika entdecken konnte, weil er an die Kugelgestalt der Erde glaubte. In Wirklichkeit hatten seine Kritiker recht. Im Unterschied zu Kolumbus wussten sie, wie groß die Erde ist, und dass Kolumbus' Plan, Indien auf dem Westweg zu erreichen, gar nicht funktionieren konnte. Die Legende von den dummen und unwissenden Menschen im Mittelalter lässt sich somit leicht widerlegen. Der Reichsapfel als eines der drei wichtigsten Herrschaftszeichen des Mittelalters ist in Wahrheit ein Symbol der Erde.
+"""
+
+CURATED_2022_TRANSLATION_B_TEXT = """B. Übersetzen Sie den folgenden Text ins Deutsche! (25 P)
+
+[题干原文待补。当前本地暂无高质量题干源，已保留参考译文《Übergang zu einer grünen und kohlenstoffarmen Entwicklung》供核对。]
+"""
 
 LISTENING_AUDIO_MAP = {
     2018: "media/2018-listening.mp3",
@@ -114,6 +133,12 @@ OFFICIAL_WG_ANSWERS = {
         41: "B", 42: "D", 43: "A", 44: "C", 45: "B", 46: "D", 47: "B", 48: "C", 49: "D", 50: "A",
         51: "C", 52: "B", 53: "A", 54: "B", 55: "D", 56: "B", 57: "C", 58: "D", 59: "C", 60: "A",
         61: "D", 62: "A", 63: "D", 64: "B", 65: "A", 66: "C", 67: "D", 68: "C", 69: "A", 70: "B",
+    },
+    2023: {
+        31: "C", 32: "B", 33: "A", 34: "D", 35: "A", 36: "B", 37: "D", 38: "B", 39: "D", 40: "C",
+        41: "A", 42: "B", 43: "A", 44: "D", 45: "C", 46: "A", 47: "C", 48: "A", 49: "B", 50: "C",
+        51: "B", 52: "D", 53: "C", 54: "A", 55: "D", 56: "C", 57: "C", 58: "B", 59: "B", 60: "B",
+        61: "C", 62: "C", 63: "D", 64: "D", 65: "B", 66: "A", 67: "A", 68: "D", 69: "B", 70: "C",
     },
 }
 
@@ -260,6 +285,18 @@ def normalize_question_markers(text: str) -> str:
     return value
 
 
+def find_bleed_index(text: str) -> int | None:
+    earliest: int | None = None
+    for marker in BLEED_MARKERS:
+        pattern = re.compile(rf"(?m)^(?P<indent>\s*){re.escape(marker)}\b")
+        match = pattern.search(text)
+        if match:
+            index = match.start()
+            if index > 0 and (earliest is None or index < earliest):
+                earliest = index
+    return earliest
+
+
 def strip_ocr_noise(text: str) -> str:
     value = text
     value = re.sub(r"<!--\s*page:[^>]*-->", " ", value, flags=re.IGNORECASE)
@@ -278,10 +315,9 @@ def strip_ocr_noise(text: str) -> str:
 
 def clean_inline(text: str) -> str:
     value = strip_ocr_noise(normalize_text(text))
-    for marker in BLEED_MARKERS:
-        index = value.find(marker)
-        if index > 0:
-            value = value[:index]
+    bleed_index = find_bleed_index(value)
+    if bleed_index is not None:
+        value = value[:bleed_index]
     value = value.replace("___—", "_____")
     value = value.replace("\\_", "_")
     value = re.sub(r"\s*\*{0,2}\s*_+\s*\*{0,2}\s*", " _____ ", value)
@@ -292,10 +328,9 @@ def clean_inline(text: str) -> str:
 
 def clean_block(text: str) -> str:
     value = strip_ocr_noise(normalize_text(text))
-    for marker in BLEED_MARKERS:
-        index = value.find(marker)
-        if index > 0:
-            value = value[:index]
+    bleed_index = find_bleed_index(value)
+    if bleed_index is not None:
+        value = value[:bleed_index]
     value = value.replace("___—", "_____")
     value = value.replace("\\_", "_")
     value = re.sub(r"\s*\*{0,2}\s*_+\s*\*{0,2}\s*", " _____ ", value)
@@ -417,6 +452,27 @@ WG_GROUPS = {
         GroupConfig("2018-g-f", "Grammatik", "F", "Welche Lösung enthält eine korrekte Passivumschreibung?", 66, 66),
         GroupConfig("2018-g-g", "Grammatik", "G", "Welche Lösung enthält eine korrekte Form für die indirekte Rede?", 67, 67),
         GroupConfig("2018-g-h", "Grammatik", "H", "Füllen Sie die Lücken!", 68, 70),
+    ],
+    2023: [
+        GroupConfig("2023-w-a", "Wortschatz", "A", "Was ist richtig?", 31, 35),
+        GroupConfig("2023-w-b", "Wortschatz", "B", "Ergänzen Sie das passende Wort!", 36, 45),
+        GroupConfig(
+            "2023-w-c",
+            "Wortschatz",
+            "C",
+            "Setzen Sie die angegebenen Wörter sinnvoll in den Text ein!",
+            46,
+            55,
+            ui_type="shared-passage",
+            context_anchor="Martin Luther und die Sünde",
+        ),
+        GroupConfig("2023-g-a", "Grammatik", "A", "Welche Lösung enthält die passende Ersatzform des unterstrichenen Satzteils?", 56, 57),
+        GroupConfig("2023-g-b", "Grammatik", "B", "Formen Sie bitte die markierten Linksattribute in Relativsätze um oder umgekehrt!", 58, 59),
+        GroupConfig("2023-g-c", "Grammatik", "C", "Welche Lösung entspricht dem Inhalt des Aufgabensatzes?", 60, 61),
+        GroupConfig("2023-g-d", "Grammatik", "D", "Formulieren Sie bitte die unterstrichene Präpositionalphrase durch einen Nebensatz um!", 62, 63),
+        GroupConfig("2023-g-e", "Grammatik", "E", "Welche Lösung enthält die passende Umformung des Satzes?", 64, 65),
+        GroupConfig("2023-g-f", "Grammatik", "F", "Welche Lösung enthält eine korrekte Form für die indirekte Rede?", 66, 68),
+        GroupConfig("2023-g-g", "Grammatik", "G", "Füllen Sie die Lücken!", 69, 70),
     ],
     2025: [
         GroupConfig("2025-w-a", "Wortschatz", "A", "Was ist richtig?", 31, 34),
@@ -1525,6 +1581,300 @@ def parse_writing_set(year: int, exam_text: str, source_pdf: str) -> dict:
     }
 
 
+def parse_complete_exam_objects(path: Path) -> list[dict]:
+    text = path.read_text(encoding="utf-8")
+    decoder = json.JSONDecoder()
+    idx = text.index("[") + 1
+    exams: list[dict] = []
+    while True:
+        match = re.search(r"\S", text[idx:])
+        if not match:
+            break
+        idx += match.start()
+        if text[idx] == "]":
+            break
+        try:
+            exam, end = decoder.raw_decode(text, idx)
+        except json.JSONDecodeError:
+            break
+        exams.append(exam)
+        idx = end
+        comma = re.match(r"\s*,", text[idx:])
+        if comma:
+            idx += comma.end()
+    return exams
+
+
+def collect_translation_references(answer_doc: dict, year: int) -> dict[int, str]:
+    content = answer_doc["content"].get(str(year), {})
+    refs = {1: "", 2: ""}
+    for page_value in content.values():
+        if not isinstance(page_value, dict):
+            continue
+        sections = page_value.get("sections", {})
+        for section_name, section_value in sections.items():
+            if "bersetzung" not in section_name and "脺bersetzung" not in section_name:
+                continue
+            if not isinstance(section_value, dict):
+                continue
+            zh_title = section_value.get("德译汉参考译文_title", "").strip()
+            zh_text = section_value.get("德译汉参考译文_text", "").strip()
+            zh_text_continued = section_value.get("德译汉参考译文_text_continued", "").strip()
+            de_title = section_value.get("汉译德参考译文_title", "").strip()
+            de_text = section_value.get("汉译德参考译文_text", "").strip()
+
+            if zh_title or zh_text or zh_text_continued:
+                pieces = [part for part in [zh_title, zh_text, zh_text_continued] if part]
+                refs[1] = "\n\n".join(pieces).strip()
+            if de_title or de_text:
+                pieces = [part for part in [de_title, de_text] if part]
+                refs[2] = "\n\n".join(pieces).strip()
+    return refs
+
+
+def first_nonempty_line(text: str) -> str:
+    for raw_line in normalize_text(text).splitlines():
+        line = raw_line.strip()
+        if line:
+            return line
+    return ""
+
+
+def first_meaningful_prompt_line(text: str) -> str:
+    for raw_line in normalize_text(text).splitlines():
+        line = raw_line.strip(" *")
+        if not line:
+            continue
+        if re.match(r"^(?:[AB]\.\s*)?Übersetzen Sie", line):
+            continue
+        if re.match(r"^(?:[AB]\.\s*)?Ubersetzen Sie", line):
+            continue
+        if re.match(r"^(?:©\s*)?VI\.?\s*Schriftlicher Ausdruck", line):
+            continue
+        if line.startswith("Aufgabe:"):
+            continue
+        return line
+    return first_nonempty_line(text)
+
+
+def choose_prompt_stem(text: str) -> str:
+    line = first_meaningful_prompt_line(text)
+    if line and len(line) <= 120:
+        return line
+    return ""
+
+
+def extract_subprompts_from_text(text: str) -> list[str]:
+    subprompts = re.findall(r"(?m)^(?:[0-9]+[.)]|[a-c]\)|[-•])\s*(.+)$", text)
+    return [clean_block(item) for item in subprompts if clean_block(item)]
+
+
+def normalize_prompt_markdown(text: str) -> str:
+    value = normalize_text(text)
+    value = re.sub(r"(?m)^\s*####\s*", "", value)
+    value = re.sub(r"(?m)^\s*###\s*", "", value)
+    value = re.sub(r"(?m)^\s*\*(.+?)\*\s*$", r"\1", value)
+    value = value.replace("**", "")
+    value = value.replace("*", "")
+    value = re.sub(r"\((\d+)\s*P\)", r"(\1 P)", value)
+    value = re.sub(r"\((\d+)\s*Punkte\)", r"(\1 Punkte)", value)
+    value = re.sub(r"(?m)^\s*©\s*", "", value)
+    value = re.sub(r"(?m)^Thema:\s*(\S.+)$", r"Thema:\n\n\1", value)
+    value = re.sub(r"(?<!\n)(Tabelle:)", r"\n\n\1", value)
+    value = re.sub(r"(?m)^(Tabelle:[^\n]+)\s*(?=\|)", r"\1\n", value)
+    value = re.sub(r"(?m)^(Aufgabe:[^\n]*?)\s*(?=(?:[0-9]+[.)]|[a-c]\)|[-•]))", r"\1\n\n", value)
+    value = re.sub(r"[ \t]+\n", "\n", value)
+    value = re.sub(r"\n{3,}", "\n\n", value)
+    return value.strip()
+
+
+def strip_writing_heading(text: str) -> str:
+    value = normalize_prompt_markdown(text)
+    value = re.sub(
+        r"(?mis)^(?:(?:VI|VL|V1)\.?\s*)?Schriftlicher Ausdruck\s*\(30\s*Punkte\)\s*\n*",
+        "",
+        value,
+    )
+    return value.strip()
+
+
+def make_translation_prompt(label: str, target_language: str, body_text: str) -> str:
+    return normalize_prompt_markdown(
+        f"{label}. Übersetzen Sie den folgenden Text ins {target_language}! (25 P)\n\n{body_text.strip()}"
+    )
+
+
+def override_question_payload(prompt_text: str) -> dict:
+    normalized = normalize_prompt_markdown(prompt_text)
+    return {
+        "prompt_text": normalized,
+        "stem": choose_prompt_stem(normalized),
+    }
+
+
+def override_writing_payload(prompt_text: str) -> dict:
+    normalized = strip_writing_heading(prompt_text)
+    stem = choose_prompt_stem(normalized)
+    if stem == "Thema:":
+        lines = [line.strip() for line in normalized.splitlines() if line.strip()]
+        for candidate in lines[1:]:
+            candidate = candidate.split("Tabelle:")[0].strip()
+            if not candidate:
+                continue
+            if len(candidate) <= 120:
+                stem = candidate
+                break
+            sentence = candidate.split(".")[0].strip()
+            if sentence and len(sentence) <= 120:
+                stem = sentence
+                break
+    return {
+        "prompt_text": normalized,
+        "stem": stem,
+        "subprompts": extract_subprompts_from_text(normalized),
+    }
+
+
+def build_translation_writing_curated(cleaned_sources: dict[int, str]) -> dict:
+    curated = {
+        "generated_at": now_iso(),
+        "questions": {},
+        "answers": {},
+        "notes": [
+            "翻译与写作题优先使用 cleaned/manual/19-22 清洗 JSON 源。",
+            "若本地缺少高质量题干，则使用明确占位说明，避免继续回退到脏 OCR 文本。",
+        ],
+    }
+    curated["notes"].extend(MANUAL_TRANSLATION_WRITING_OVERRIDES.get("notes", []))
+
+    for year in [2016, 2017, 2018, 2023, 2025]:
+        source_text = cleaned_sources.get(year)
+        if not source_text:
+            continue
+        translation_set = parse_translation_set(year, source_text, "curated")
+        for question in translation_set["questions"]:
+            curated["questions"][question["id"]] = {
+                **override_question_payload(question.get("prompt_text", "")),
+                "source": str(CLEANED_TESTPAPER_OUTPUTS[year].relative_to(ROOT_DIR)),
+            }
+
+        writing_section = section_text(source_text, "writing")
+        curated["questions"][f"{year}-writing-1"] = {
+            **override_writing_payload(writing_section),
+            "source": str(CLEANED_TESTPAPER_OUTPUTS[year].relative_to(ROOT_DIR)),
+        }
+
+    if SOURCE_19_22_EXAMS_PATH.exists():
+        complete_exams = {exam["year"]: exam for exam in parse_complete_exam_objects(SOURCE_19_22_EXAMS_PATH)}
+        for year in [2019, 2021]:
+            exam = complete_exams.get(year)
+            if not exam:
+                continue
+            for part in exam.get("parts", []):
+                part_name = part.get("name", "")
+                if "bersetzung" in part_name:
+                    sections = part.get("sections", [])
+                    for index, section in enumerate(sections, start=1):
+                        label = "A" if index == 1 else "B"
+                        target_language = "Chinesische" if index == 1 else "Deutsche"
+                        qid = f"{year}-translation-{index}"
+                        curated["questions"][qid] = {
+                            **override_question_payload(
+                                make_translation_prompt(label, target_language, section.get("text", ""))
+                            ),
+                            "source": str(SOURCE_19_22_EXAMS_PATH.relative_to(ROOT_DIR)),
+                        }
+                elif "Schriftlicher Ausdruck" in part_name:
+                    prompt_text = part.get("text", "")
+                    curated["questions"][f"{year}-writing-1"] = {
+                        **override_writing_payload(prompt_text),
+                        "source": str(SOURCE_19_22_EXAMS_PATH.relative_to(ROOT_DIR)),
+                    }
+
+    root_2022 = split_root_full_exam_by_year(read_md("full_exam_2019_2022"), 2022)
+    curated["questions"]["2022-translation-1"] = {
+        **override_question_payload(CURATED_2022_TRANSLATION_A_TEXT),
+        "source": "manual:2022-translation-a",
+    }
+    curated["questions"]["2022-translation-2"] = {
+        **override_question_payload(CURATED_2022_TRANSLATION_B_TEXT),
+        "stem": "Übergang zu einer grünen und kohlenstoffarmen Entwicklung",
+        "source": "manual:2022-translation-b-placeholder",
+    }
+    curated["questions"]["2022-writing-1"] = {
+        **override_writing_payload(section_text(root_2022, "writing")),
+        "source": "data/generated_md/root_pdf/德语专业八级真题2019-2022.md",
+    }
+
+    if SOURCE_19_22_ANSWERS_PATH.exists():
+        answer_doc = read_json(SOURCE_19_22_ANSWERS_PATH, {"content": {}})
+        for year in [2019, 2021, 2022]:
+            refs = collect_translation_references(answer_doc, year)
+            for idx in [1, 2]:
+                ref_text = refs.get(idx, "").strip()
+                if not ref_text:
+                    continue
+                curated["answers"][f"{year}-translation-{idx}"] = {
+                    "display_answer": "见参考译文",
+                    "explanation": clean_block(ref_text),
+                }
+
+    for qid, override in MANUAL_TRANSLATION_WRITING_OVERRIDES.get("questions", {}).items():
+        override_type = override.get("type") or ("writing" if "-writing-" in qid else "translation")
+        if override_type == "writing":
+            payload = override_writing_payload(override.get("prompt_text", ""))
+        else:
+            payload = override_question_payload(override.get("prompt_text", ""))
+        if override.get("stem"):
+            payload["stem"] = override["stem"]
+        payload["source"] = override.get("source", f"manual:{qid}")
+        curated["questions"][qid] = payload
+
+    for qid, override in MANUAL_TRANSLATION_WRITING_OVERRIDES.get("answers", {}).items():
+        answer_payload = {}
+        if override.get("display_answer"):
+            answer_payload["display_answer"] = override["display_answer"]
+        if override.get("explanation"):
+            answer_payload["explanation"] = normalize_prompt_markdown(override["explanation"])
+        if answer_payload:
+            curated["answers"][qid] = answer_payload
+
+    return curated
+
+
+def apply_translation_writing_overrides(library_sets: list[dict], overrides: dict[str, dict]) -> None:
+    for entry in library_sets:
+        if entry.get("section") not in {"translation", "writing"}:
+            continue
+        for question in entry.get("questions", []):
+            override = overrides.get(question.get("id"))
+            if not override:
+                continue
+            question["prompt_text"] = override["prompt_text"]
+            if override.get("stem"):
+                question["stem"] = override["stem"]
+            if override.get("source"):
+                question["source"] = override["source"]
+            if entry.get("section") == "writing":
+                question["subprompts"] = override.get("subprompts", [])
+
+
+def apply_reading_passage_overrides(library_sets: list[dict], overrides: dict[int, dict[str, str]]) -> None:
+    for entry in library_sets:
+        if entry.get("section") != "reading":
+            continue
+        year = entry.get("year")
+        year_overrides = overrides.get(year)
+        if not year_overrides:
+            continue
+        for group in entry.get("groups", []):
+            group_id = group.get("id", "")
+            if group_id.endswith("-a") and year_overrides.get("a"):
+                group["shared_context"] = normalize_prompt_markdown(year_overrides["a"])
+            elif group_id.endswith("-b") and year_overrides.get("b"):
+                group["shared_context"] = normalize_prompt_markdown(year_overrides["b"])
+
+
 def normalize_exercise_answer(value: str | None) -> str | None:
     token = clean_inline(value or "").upper()
     if not token:
@@ -1862,6 +2212,55 @@ def build_library_answers(cleaned_sources: dict[int, str] | None = None) -> dict
         elif 86 <= number <= 105:
             answers[f"2018-landeskunde-{number}"] = payload
 
+    text_2023 = cleaned_sources.get(2023)
+    if text_2023:
+        for number, payload in parse_answer_pdf_style(text_2023, 11, 105).items():
+            if 11 <= number <= 30:
+                answers[f"2023-listening-{number}"] = payload
+            elif 71 <= number <= 85:
+                answers[f"2023-reading-{number}"] = payload
+            elif 86 <= number <= 105:
+                answers[f"2023-landeskunde-{number}"] = payload
+
+        answers["2023-translation-1"] = {
+            "display_answer": "见参考译文",
+            "explanation": clean_block(
+                """
+变化中的媒体系统
+
+媒体系统不仅仅在德国经历了深刻的变革。有些人认为这是自15世纪印刷术发明以来最大的一次变革，而正是印刷术才开启了近代大众传媒的出现。事实上，由印刷媒体所主导的时代，即所谓的“古腾堡宇宙”，似乎正逐渐被新媒体所取代。
+
+然而，迄今尚不能说互联网已经取代了“旧”媒体，因为从总人口来看，它仍然没有特别重大的影响。它只是在20至29岁的年龄组中上升为主要的信息媒介。对于老年人来说，私人交谈暂时仍是社会交流的首要形式，而年轻人则更青睐新信息技术的混合形式。由此，被动的接收者和消费者变成了主动的生产者和参与者。
+
+翻译要点：
+tiefgreifend 深刻的，彻底的
+Massenmedien in der Neuzeit 近代大众传媒
+Gutenberg-Universum 古腾堡宇宙
+fällt ... ins Gewicht 有分量，重要，举足轻重
+Mischformen 混合形式
+                """
+            ),
+        }
+        answers["2023-translation-2"] = {
+            "display_answer": "见参考译文",
+            "explanation": clean_block(
+                """
+Die Seidenstraße in der Gegenwart
+
+Vor über 2000 Jahren unternahm Zhang Qian diplomatische Missionen in die „westlichen Regionen“ und erschloss eine Seidenstraße, die Asien mit Europa verband. Das war ein Weg des Friedens, der den politischen, wirtschaftlichen und kulturellen Austausch symbolisierte. Die Seidenstraße prosperierte über 1700 Jahre.
+
+Heutzutage hat China die neue Initiative „Ein Gürtel und eine Straße“ aufgestellt, die auf gegenseitigem Respekt und Vertrauen beruht. Sie verleiht der alten Seidenstraße neues Leben und trägt den großen Traum von Entwicklung und Prosperität aller Länder entlang der Straße. Deshalb entspricht diese Initiative der Entwicklungstendenz der globalen und regionalen Zusammenarbeit.
+
+翻译要点：
+“西域” = die westlichen Regionen
+“开辟丝绸之路” = eine Seidenstraße erschließen
+“一带一路” = Ein Gürtel und eine Straße / die Seidenstraßeninitiative
+“繁荣” = prosperieren
+“符合趋势” = der Tendenz entsprechen
+                """
+            ),
+        }
+
     text_2025 = cleaned_sources.get(2025) or read_md("2025_answers")
     for number, payload in parse_answer_pdf_style(text_2025, 11, 105).items():
         if 11 <= number <= 30:
@@ -1875,19 +2274,18 @@ def build_library_answers(cleaned_sources: dict[int, str] | None = None) -> dict
 
 
 def select_library_exam_text(year: int, cleaned_sources: dict[int, str], full_root: str) -> str:
+    cleaned = cleaned_sources.get(year)
+    # Prefer curated cleaned/manual sources whenever they exist.
+    # Silent fallback to OCR text makes translation/reading prompts regress.
+    if cleaned and year != 2018:
+        return cleaned
+    if year == 2018 and cleaned and "[原文略，见前]" not in cleaned:
+        return cleaned
     if year in {2019, 2021, 2022}:
         return split_root_full_exam_by_year(full_root, year)
-    if year in {2016, 2017}:
-        cleaned = cleaned_sources.get(year)
-        if cleaned:
-            return cleaned
-    if year in {2018, 2025}:
-        cleaned = cleaned_sources.get(year)
-        if cleaned and "[原文略，见前]" not in cleaned:
-            return cleaned
     if year == 2018:
         return read_md("2018_exam")
-    return read_md("2025_exam")
+    raise ValueError(f"Missing curated library source for year {year}")
 
 
 def build_library_sets(cleaned_sources: dict[int, str] | None = None) -> tuple[list[dict], dict]:
@@ -1904,14 +2302,15 @@ def build_library_sets(cleaned_sources: dict[int, str] | None = None) -> tuple[l
         2019: "德语专业八级真题2019-2022.pdf",
         2021: "德语专业八级真题2019-2022.pdf",
         2022: "德语专业八级真题2019-2022.pdf",
+        2023: "material/manual/2023-tem8-user-provided.md",
         2025: "material/testpaperandanswer/2025专八.pdf",
     }
 
-    for year in [2016, 2017, 2018, 2019, 2021, 2022, 2025]:
+    for year in [2016, 2017, 2018, 2019, 2021, 2022, 2023, 2025]:
         exam_text = select_library_exam_text(year, cleaned_sources, full_root)
 
         source_pdf = source_map[year]
-        if year in {2016, 2017, 2018, 2025} and cleaned_sources.get(year):
+        if year in {2016, 2017, 2018, 2023, 2025} and cleaned_sources.get(year):
             try:
                 listening_set, listening_answers = parse_cleaned_listening_set(year, cleaned_sources[year], source_pdf)
                 library_sets.append(listening_set)
@@ -1951,6 +2350,17 @@ def build_wg_years_and_answers(cleaned_sources: dict[int, str] | None = None) ->
         for number, correct in OFFICIAL_WG_ANSWERS[year].items():
             answer_updates.setdefault(f"{year}-{number}", {})
             answer_updates[f"{year}-{number}"]["correct_option"] = correct
+
+    md_2023_exam = cleaned_sources.get(2023)
+    if md_2023_exam:
+        year_2023, answers_2023 = build_2018_or_2025_wg_year(
+            2023,
+            md_2023_exam,
+            "material/manual/2023-tem8-user-provided.md",
+            answer_source_text=md_2023_exam,
+        )
+        years.append(year_2023)
+        answer_updates.update(answers_2023)
 
     md_2016 = cleaned_sources.get(2016) or read_md("2016_with_answers")
     year_2016, answers_2016 = build_2016_wg_year(md_2016, "material/testpaperandanswer/2016德语专八真题及解析.pdf")
@@ -2035,6 +2445,54 @@ def build_library_answers(cleaned_sources: dict[int, str] | None = None) -> dict
         elif 86 <= number <= 105:
             answers[f"2018-landeskunde-{number}"] = payload
 
+    text_2023 = cleaned_sources.get(2023)
+    if text_2023:
+        for number, payload in parse_answer_pdf_style(text_2023, 11, 105).items():
+            if 11 <= number <= 30:
+                answers[f"2023-listening-{number}"] = payload
+            elif 71 <= number <= 85:
+                answers[f"2023-reading-{number}"] = payload
+            elif 86 <= number <= 105:
+                answers[f"2023-landeskunde-{number}"] = payload
+        answers["2023-translation-1"] = {
+            "display_answer": "见参考译文",
+            "explanation": clean_block(
+                """
+变化中的媒体系统
+
+媒体系统不仅仅在德国经历了深刻的变革。有些人认为这是自15世纪印刷术发明以来最大的一次变革，而正是印刷术才开启了近代大众传媒的出现。事实上，由印刷媒体所主导的时代，即所谓的“古腾堡宇宙”，似乎正逐渐被新媒体所取代。
+
+然而，迄今尚不能说互联网已经取代了“旧”媒体，因为从总人口来看，它仍然没有特别重大的影响。它只是在20至29岁的年龄组中上升为主要的信息媒介。对于老年人来说，私人交谈暂时仍是社会交流的首要形式，而年轻人则更青睐新信息技术的混合形式。由此，被动的接收者和消费者变成了主动的生产者和参与者。
+
+翻译要点：
+tiefgreifend 深刻的，彻底的
+Massenmedien in der Neuzeit 近代大众传媒
+Gutenberg-Universum 古腾堡宇宙
+fällt ... ins Gewicht 有分量，重要，举足轻重
+Mischformen 混合形式
+                """
+            ),
+        }
+        answers["2023-translation-2"] = {
+            "display_answer": "见参考译文",
+            "explanation": clean_block(
+                """
+Die Seidenstraße in der Gegenwart
+
+Vor über 2000 Jahren unternahm Zhang Qian diplomatische Missionen in die „westlichen Regionen“ und erschloss eine Seidenstraße, die Asien mit Europa verband. Das war ein Weg des Friedens, der den politischen, wirtschaftlichen und kulturellen Austausch symbolisierte. Die Seidenstraße prosperierte über 1700 Jahre.
+
+Heutzutage hat China die neue Initiative „Ein Gürtel und eine Straße“ aufgestellt, die auf gegenseitigem Respekt und Vertrauen beruht. Sie verleiht der alten Seidenstraße neues Leben und trägt den großen Traum von Entwicklung und Prosperität aller Länder entlang der Straße. Deshalb entspricht diese Initiative der Entwicklungstendenz der globalen und regionalen Zusammenarbeit.
+
+翻译要点：
+“西域” = die westlichen Regionen
+“开辟丝绸之路” = eine Seidenstraße erschließen
+“一带一路” = Ein Gürtel und eine Straße / die Seidenstraßeninitiative
+“繁荣” = prosperieren
+“符合趋势” = der Tendenz entsprechen
+                """
+            ),
+        }
+
     text_2025 = cleaned_sources.get(2025) or read_md("2025_answers")
     for number, payload in parse_answer_pdf_style(text_2025, 11, 105).items():
         if 11 <= number <= 30:
@@ -2060,14 +2518,15 @@ def build_library_sets(cleaned_sources: dict[int, str] | None = None) -> tuple[l
         2019: "德语专业八级真题2019-2022.pdf",
         2021: "德语专业八级真题2019-2022.pdf",
         2022: "德语专业八级真题2019-2022.pdf",
+        2023: "material/manual/2023-tem8-user-provided.md",
         2025: "material/testpaperandanswer/2025专八.pdf",
     }
 
-    for year in [2016, 2017, 2018, 2019, 2021, 2022, 2025]:
+    for year in [2016, 2017, 2018, 2019, 2021, 2022, 2023, 2025]:
         exam_text = select_library_exam_text(year, cleaned_sources, full_root)
 
         source_pdf = source_map[year]
-        if year in {2016, 2017, 2018, 2025} and cleaned_sources.get(year):
+        if year in {2016, 2017, 2018, 2023, 2025} and cleaned_sources.get(year):
             try:
                 listening_set, listening_answers = parse_cleaned_listening_set(year, cleaned_sources[year], source_pdf)
                 library_sets.append(listening_set)
@@ -2108,6 +2567,17 @@ def build_wg_years_and_answers(cleaned_sources: dict[int, str] | None = None) ->
             answer_updates.setdefault(f"{year}-{number}", {})
             answer_updates[f"{year}-{number}"]["correct_option"] = correct
 
+    md_2023_exam = cleaned_sources.get(2023)
+    if md_2023_exam:
+        year_2023, answers_2023 = build_2018_or_2025_wg_year(
+            2023,
+            md_2023_exam,
+            "material/manual/2023-tem8-user-provided.md",
+            answer_source_text=md_2023_exam,
+        )
+        years.append(year_2023)
+        answer_updates.update(answers_2023)
+
     md_2016 = cleaned_sources.get(2016) or read_md("2016_with_answers")
     year_2016, answers_2016 = build_2016_wg_year(md_2016, "material/testpaperandanswer/2016德语专八真题及解析.pdf")
     years.append(year_2016)
@@ -2144,8 +2614,13 @@ def build_wg_years_and_answers(cleaned_sources: dict[int, str] | None = None) ->
 
 def build_dataset() -> tuple[dict, dict]:
     cleaned_sources = ensure_cleaned_testpaper_sources()
+    curated_translation_writing = build_translation_writing_curated(cleaned_sources)
+    write_json(CURATED_TRANSLATION_WRITING_PATH, curated_translation_writing)
     years, answer_key = build_wg_years_and_answers(cleaned_sources)
     library_sets, library_answers = build_library_sets(cleaned_sources)
+    apply_reading_passage_overrides(library_sets, MANUAL_READING_PASSAGES)
+    apply_translation_writing_overrides(library_sets, curated_translation_writing["questions"])
+    library_answers.update(curated_translation_writing["answers"])
     exercise_sets, exercise_answers = build_exercise_sets()
     answer_key.update(library_answers)
     answer_key.update(exercise_answers)
@@ -2164,6 +2639,8 @@ def build_dataset() -> tuple[dict, dict]:
                 "已补入 2016、2017、2018、2025 年词汇语法题库。",
                 "已接入 2018、2019、2021、2022、2025 年听力、阅读、国情、翻译、写作材料。",
                 "已接入 exercise 材料中的 2023 真题和国情 1000 题练习集。",
+                "2016、2017、2018、2023、2025 阅读原文已使用手工校准覆盖源。",
+                "翻译与写作题已统一写入 generated_json/translation_writing_curated.json，并以该干净源覆盖网站数据。",
             ],
             "year_question_count": question_total,
             "library_question_count": library_total,

@@ -1,0 +1,253 @@
+{
+  "generated_at": "2026-03-19T06:42:59.441155+00:00",
+  "questions": {
+    "2016-translation-1": {
+      "prompt_text": "A. Übersetzen Sie den folgenden Text ins Chinesische! (25 P)\n\nThomas Weimer arbeitet im Bundestag in der Pressestelle einer Bundestagsfraktion, zu seinen Aufgaben gehört die Vorbereitung der sogenannten „Morgenlage\": Jeden Tag stellt er die wichtigsten Schlagzeilen und Kommentare für die Besprechung im Fraktionsvorstand zusammen. Weimer liest dafür die großen Tageszeitungen, er liest die Nachrichtenseiten im Internet, schaut sich Blogs an, sogar der Fernseher läuft manchmal nebenher.\n\nDank seiner Arbeit hat Weimer einen exzellenten Überblick über die traditionellen Medien. Häufig sieht er jedoch Eintönigkeit statt Pluralität, Einfalt statt Tiefe. Weimer fällt auf, dass viele Journalisten sich ihrer Meinung oft sehr sicher sind, auch wenn die Fakten noch ungesichert sind, dass Meinungen wider den Mainstream selten oder gar nicht vorkommen, und dass es vielen Redaktionen außerordentlich schwerfällt, es sich und ihren Lesern einzugestehen, wenn sie falsch gelegen haben.",
+      "stem": "Thomas Weimer und die Medienkritik",
+      "source": "manual:2016-translation-1:20260319"
+    },
+    "2016-translation-2": {
+      "prompt_text": "B. Übersetzen Sie den folgenden Text ins Deutsche! (25 P)\n\n校服为什么\"丑\"？\n\n中国学生校服的确很\"丑\"。我国中小学校服基本上由校方选定款式，再要求学生统一购买。如果继续采用这种选购机制，校服不可能\"好看起来\"。笔者认为，把选择校服、甚至设计校服的权利交给学生（和家长），才能从根本上解决校服\"丑\"的问题。",
+      "stem": "校服为什么\"丑\"？",
+      "source": "manual:2016-translation-2:20260319"
+    },
+    "2016-writing-1": {
+      "prompt_text": "Leben und Arbeiten nach dem Studium\n\nTabelle: Anteil der Hochschulabsolventen, die in Beijing, Shanghai und Guangzhou eine Arbeitsstelle finden wollen.\n| Jahr | 2011 | 2012 | 2013 |\n| --- | --- | --- | --- |\n| Anteil | 53.8% | 42.1% | 38.7% |\n\na) Warum wollen immer weniger Studenten nach dem Studium in einer großen Stadt in China leben und arbeiten? Was meinen Sie?\nb) Welche Vorteile und Nachteile hat das Leben in einer kleineren Stadt in China gegenüber dem Leben in einer Großstadt?\nc) Wo möchten Sie in China nach dem Studium lieber leben und arbeiten, in einer großen oder in einer kleineren Stadt? Begründen Sie bitte Ihre Antwort!\n\nAufgabe: Schreiben Sie nun einen Aufsatz von 250 Wörtern, in dem Sie die obigen Fragen berücksichtigen!",
+      "stem": "Leben und Arbeiten nach dem Studium",
+      "subprompts": [
+        "Warum wollen immer weniger Studenten nach dem Studium in einer großen Stadt in China leben und arbeiten? Was meinen Sie?",
+        "Welche Vorteile und Nachteile hat das Leben in einer kleineren Stadt in China gegenüber dem Leben in einer Großstadt?",
+        "Wo möchten Sie in China nach dem Studium lieber leben und arbeiten, in einer großen oder in einer kleineren Stadt? Begründen Sie bitte Ihre Antwort!"
+      ],
+      "source": "manual:2016-writing-1:20260319"
+    },
+    "2017-translation-1": {
+      "prompt_text": "A. Übersetzen Sie den folgenden Text ins Chinesische! (25 P)\n\nGrünen-Politiker Beck attackiert AfD\n\nDer Grünen-Bundestagsabgeordnete Volker Beck hat die AfD scharf attackiert. Hintergrund sind Äußerungen des Berliner Neumitglieds Nicolaus Fest, der bei seiner Vorstellung gestern den Islam mit dem Nationalsozialismus verglichen und eine Schließung aller Moscheen in Deutschland gefordert hatte. Beck sagte dazu dem Handelsblatt: „Wer vorhat, alle Moscheen zu schließen, will die Religionsfreiheit und somit das Grundgesetz außer Kraft setzen. Wenn die AfD an ihrem Neumitglied Fest festhält, zeigt sie, dass sie eine andere Republik will: Sie will die Republik des Grundgesetzes überwinden. (...) In einer Zeit, in der Gotteshäuser beschmiert werden und Ziel von Brandanschlägen sind, sind solche Forderungen geistige Brandstifterei.\" Beck versicherte Juden und Muslimen in Deutschland, sie seien beim Kampf gegen den Antisemitismus und die Islamfeindlichkeit der AfD nicht allein. Und er sagte: „Wir werden ihre Grundrechte gegen die Feinde der Freiheit verteidigen.\"",
+      "stem": "Grünen-Politiker Beck attackiert AfD",
+      "source": "manual:2017-translation-1:20260319"
+    },
+    "2017-translation-2": {
+      "prompt_text": "B. Übersetzen Sie den folgenden Text ins Deutsche! (25 P)\n\n绿色快递业\n\n快递业的井喷式增长带来了诸多环境问题，如过度包装、材料不可降解等等。近年来，已有不少环保人士开始呼吁建立覆盖整个产业链条的责任制。在2016全球智慧物流峰会上公布了一个生态计划，承诺到2020年替换50%的非环保包装材料。",
+      "stem": "绿色快递业",
+      "source": "manual:2017-translation-2:20260319"
+    },
+    "2017-writing-1": {
+      "prompt_text": "China führte 1979 die Ein-Kind-Politik ein, um zu verhindern, dass die Bevölkerungszahl zu schnell ansteigt. Ohne diese strikte Familienpolitik würden heute in China vermutlich etwa 300 Millionen Menschen mehr leben. Ende 2015 verkündete China offiziell das Ende der Ein-Kind-Politik. Nun dürfen heutzutage alle Paare statt einem Kind zwei Kinder haben.\n\na) Welche Auswirkungen, positive wie negative, hat Ihrer Ansicht nach die Lockerung der Ein-Kind-Politik auf die chinesische Gesellschaft?\nb) Welche Vorteile hat es, wenn man einen Bruder oder eine Schwester hat? Gibt es auch Nachteile?\nc) Sie möchten später sicherlich eine Familie gründen, gleichzeitig aber wollen Sie im Beruf erfolgreich sein. Möchten Sie dann lieber ein Kind oder zwei Kinder haben? Begründen Sie bitte Ihre Antwort!\n\nAufgabe: Schreiben Sie nun einen Aufsatz von 250 Wörtern, in dem Sie auf folgende Fragen eingehen!",
+      "stem": "Die Lockerung der Ein-Kind-Politik",
+      "subprompts": [
+        "Welche Auswirkungen, positive wie negative, hat Ihrer Ansicht nach die Lockerung der Ein-Kind-Politik auf die chinesische Gesellschaft?",
+        "Welche Vorteile hat es, wenn man einen Bruder oder eine Schwester hat? Gibt es auch Nachteile?",
+        "Sie möchten später sicherlich eine Familie gründen, gleichzeitig aber wollen Sie im Beruf erfolgreich sein. Möchten Sie dann lieber ein Kind oder zwei Kinder haben? Begründen Sie bitte Ihre Antwort!"
+      ],
+      "source": "manual:2017-writing-1:20260319"
+    },
+    "2018-translation-1": {
+      "prompt_text": "A. Übersetzen Sie den folgenden Text ins Chinesische! (25 P)\n\nMediensystem im Wandel\n\nDas Mediensystem erfährt nicht nur in Deutschland einen tiefgreifenden Umbruch. Manche halten ihn für den größten seit der Erfindung der Drucktechnik im 15. Jahrhundert, welche die Entstehung von Massenmedien in der Neuzeit erst einleitete. Tatsächlich scheint das von den Printmedien beherrschte Zeitalter, das „Gutenberg-Universum\", zunehmend durch neue Medien abgelöst zu werden.\n\nVon einer Substitution der „alten\" Medien durch das Internet kann allerdings bislang nicht die Rede sein, denn dieses fällt angesichts der Gesamtbevölkerung nach wie vor nicht sonderlich ins Gewicht. Lediglich in der Altersgruppe der 20- bis 29-Jährigen ist es zum führenden Informationsmedium aufgestiegen. Während für Ältere das persönliche Gespräch vorerst die Primärform sozialen Austausches bleibt, bevorzugen die Jüngeren Mischformen der neuen Informationstechnologien. Aus passiven Rezipienten und Konsumenten werden dadurch aktive Produzenten und Akteure.",
+      "stem": "Mediensystem im Wandel",
+      "source": "manual:2018-translation-1:20260319"
+    },
+    "2018-translation-2": {
+      "prompt_text": "B. Übersetzen Sie den folgenden Text ins Deutsche! (25 P)\n\n当代丝绸之路\n\n两千多年前，张骞出使西域，开辟了一条连接欧亚的丝绸之路。这是一条象征着政治、经济和文化交流的和平之路，它繁荣了一千七百多年。如今，中国以互尊互信为基础，提出\"一带一路\"的新倡议，它赋予了古老的丝绸之路新的生命，承载着沿途各国发展繁荣的伟大梦想，因此它符合全球和区域的合作发展趋势。",
+      "stem": "当代丝绸之路",
+      "source": "manual:2018-translation-2:20260319"
+    },
+    "2018-writing-1": {
+      "prompt_text": "Wie verändern Smartphones unser Leben?\n\nJedes Jahr verlocken in China zahlreiche neue Handy-Modelle verschiedener Marken die Konsumenten. Laut einer von „China Youth Daily\" im Juli 2017 veröffentlichten Umfrage gaben insgesamt 82,4% von 2.004 Befragten an, dass ihr Smartphone ein unverzichtbarer Gebrauchsgegenstand im alltäglichen Leben sei. 59,9% der Befragten erklärten, dass Smartphones eine positive Rolle in ihrem Leben spielten. Im Gegensatz dazu waren 30,6% der Befragten der Meinung, dass sich Smartphones negativ auf ihr Leben auswirkten.\n\na) In welcher Hinsicht wirkt sich das Smartphone positiv auf das Leben der Menschen aus, inwieweit könnte es sich negativ auswirken? Nennen Sie jeweils mindestens zwei Gesichtspunkte.\nb) Benutzen Sie selbst ein Smartphone? Wenn ja, inwieweit hat das Smartphone Ihr eigenes Leben verändert? Wenn nein, warum nutzen Sie kein Smartphone?\nc) In welcher Hinsicht wird das Smartphone Ihrer Ansicht nach unser Leben in Zukunft am stärksten verändern? Begrüßen Sie diese Entwicklung?\n\nAufgabe: Schreiben Sie nun einen Aufsatz von 250 Wörtern, in dem Sie auf folgende Fragen eingehen!",
+      "stem": "Wie verändern Smartphones unser Leben?",
+      "subprompts": [
+        "In welcher Hinsicht wirkt sich das Smartphone positiv auf das Leben der Menschen aus, inwieweit könnte es sich negativ auswirken? Nennen Sie jeweils mindestens zwei Gesichtspunkte.",
+        "Benutzen Sie selbst ein Smartphone? Wenn ja, inwieweit hat das Smartphone Ihr eigenes Leben verändert? Wenn nein, warum nutzen Sie kein Smartphone?",
+        "In welcher Hinsicht wird das Smartphone Ihrer Ansicht nach unser Leben in Zukunft am stärksten verändern? Begrüßen Sie diese Entwicklung?"
+      ],
+      "source": "manual:2018-writing-1:20260319"
+    },
+    "2023-translation-1": {
+      "prompt_text": "A. Übersetzen Sie den folgenden Text ins Chinesische! (25 P)\n\nWir wissen, dass wir nichts wissen\n\nSpätestens seit der kognitiven Revolution verspüren die Menschen ein unwiderstehliches Bedürfnis, das Universum zu verstehen. Unsere Vorfahren verwendeten viel Zeit darauf, den Geheimnissen der Natur auf den Grund zu gehen. Doch die moderne wissenschaftliche Tradition unterscheidet sich durch eine Kombination von drei wesentlichen Eigenschaften von allen anderen Wissenstraditionen:\n\na) Das Eingeständnis der Unwissenheit. Die moderne Wissenschaft ist bereit zuzugeben, dass sie nicht alles weiß. Mehr noch, sie geht davon aus, dass alles, was wir zu wissen glauben, durch neue Erkenntnisse widerlegt werden kann. Es gibt keine Vorstellung und keine Theorie, die nicht hinterfragt werden kann.\n\nb) Die zentrale Bedeutung von Beobachtung und Mathematik. Nachdem sie ihre Unwissenheit zugegeben hat, versucht die moderne Wissenschaft, neues Wissen zu erwerben. Dazu sammelt sie Beobachtungen und verknüpft diese mit Hilfe mathematischer Instrumente zu allgemeingültigen Theorien.\n\nc) Der Erwerb neuer Fähigkeiten. Die moderne Wissenschaft gibt sich nicht damit zufrieden, Theorien aufzustellen. Sie nutzt diese Theorien, um neue Fähigkeiten zu erwerben und vor allem neue Technologien zu entwickeln.",
+      "stem": "Wir wissen, dass wir nichts wissen",
+      "source": "manual:2023-translation-1:20260319"
+    },
+    "2023-translation-2": {
+      "prompt_text": "B. Übersetzen Sie den folgenden Text ins Deutsche! (25 P)\n\n(原卷未提供汉译德题目，但答案文件中有示例译文。)",
+      "stem": "原卷未提供汉译德题目",
+      "source": "manual:2023-translation-2:20260319"
+    },
+    "2023-writing-1": {
+      "prompt_text": "Zahl der Eheschließungen in China sinkt ständig\n\nImmer mehr junge Chinesen verzichten auf das Heiraten. Nach Angaben des chinesischen Ministeriums für zivile Angelegenheiten sank die Zahl der Eheschließungen chinesischer Paare im Jahr 2021 auf ein Rekordtief: Nur 7,64 Millionen Paare ließen ihre Ehe registrieren. Dies ist der niedrigste Stand seit 1986, als das Ministerium mit der Aufzeichnung der Daten begann. Die Statistik zeigt, dass die Zahl der Eheschließungen das achte Jahr in Folge gesunken ist.\n\n1. Welche Gründe könnten Ihrer Meinung nach für die sinkende Zahl von Eheschließungen in China verantwortlich sein? Nennen Sie mindestens zwei Gründe!\n2. Halten Sie diese gesellschaftliche Entwicklung für gut oder für schlecht? Begründen Sie Ihre Meinung!\n3. Was halten Sie persönlich vom Heiraten?\n\nAufgabe: Schreiben Sie nun einen Aufsatz von 250 Wörtern, in dem Sie auf folgende Fragen eingehen!\n\n(Hinweis: Es liegt kein offizieller Musteraufsatz vor.)",
+      "stem": "Zahl der Eheschließungen in China sinkt ständig",
+      "subprompts": [
+        "Welche Gründe könnten Ihrer Meinung nach für die sinkende Zahl von Eheschließungen in China verantwortlich sein? Nennen Sie mindestens zwei Gründe!",
+        "Halten Sie diese gesellschaftliche Entwicklung für gut oder für schlecht? Begründen Sie Ihre Meinung!",
+        "Was halten Sie persönlich vom Heiraten?"
+      ],
+      "source": "manual:2023-writing-1:20260319"
+    },
+    "2025-translation-1": {
+      "prompt_text": "A. Übersetzen Sie den folgenden Text ins Chinesische! (25 P)\n\nWenn wir die Welt neu denken wollen, müssen wir bis zu den gedanklichen Fundamenten zurückgehen, auf denen die uns heute geläufige Welt aufgebaut ist. Dazu gehört neben dem Blick, den der Mensch auf die Natur hat, auch der Blick, den er auf sich selbst hat. Man möchte meinen, dass der Mensch in dieser Frage nicht so weit neben der Sache liegt wie bei der Natur. Wenn es um den Menschen geht, sollten sich Menschen doch auskennen? Leider ist oft das Gegenteil der Fall.\n\nDas Menschenbild, das hinter den meisten ökonomischen Theorien steckt, ist das eines Egoisten, der in jeder Situation darauf bedacht ist, kühl den eigenen Vorteil zu kalkulieren. Wenn der Mensch sich entscheiden muss, dann wird er als Konsument immer das wählen, was ihm den größten Nutzen bringt, und als Produzent für das entscheiden, was ihm den höchsten Gewinn verspricht. Gefühle spielen keine Rolle, weder die eigenen noch die der anderen, hier entscheidet nur die Vernunft. Und die ist auf die Kalkulation von Kosten und Nutzen beschränkt.",
+      "stem": "Wenn wir die Welt neu denken wollen",
+      "source": "manual:2025-translation-1:20260319"
+    },
+    "2025-translation-2": {
+      "prompt_text": "B. Übersetzen Sie den folgenden Text ins Deutsche! (25 P)\n\n自动驾驶的时代已经到来\n\n自动驾驶汽车将引发一系列深刻的社会变革。首先，它将大幅提升道路安全，减少交通事故的发生。其次，自动驾驶技术将极大地提高出行效率，缓解城市交通拥堵。此外，它还将改变人们的出行模式，让无人驾驶的出行变为现实。同时，自动驾驶汽车还将带来新的商业模式和就业机会，推动相关产业的蓬勃发展。总之，自动驾驶技术必将成为未来交通领域的重要变革力量。",
+      "stem": "自动驾驶的时代已经到来",
+      "source": "manual:2025-translation-2:20260319"
+    },
+    "2025-writing-1": {
+      "prompt_text": "Brauchen Studierende Hobbys?\n\nEin Hobby ist eine Beschäftigung, der man freiwillig in seiner Freizeit nachgeht. Viele Pädagogen halten Hobbys für die Entwicklung von Kindern und Jugendlichen für äußerst sinnvoll. Sind Hobbys jedoch für Hochschulstudenten und -studentinnen ebenso sinnvoll? Denn an der Universität soll man eigentlich lernen, viel Freizeit hat man da sowieso nicht. Sollte man dann in der wertvollen Freizeit tatsächlich seinen persönlichen Hobbys nachgehen?\n\na) Halten Sie ein Hobby - oder auch mehrere Hobbys - für Studierende an einer Hochschule für sinnvoll? Nennen Sie jeweils mindestens 2 Gründe dafür und dagegen!\nb) Welche Hobbys könnten denn für Studierende an einer Hochschule sinnvoll sein? Begründen Sie Ihre Auswahl!\nc) Gehen Sie als Student/-in an der Universität selbst einem oder mehreren Hobbys nach? Nennen Sie Ihre Gründe!\n\nAufgabe: Schreiben Sie nun einen Aufsatz von 250 Wörtern, in dem Sie auf folgende Fragen eingehen!\n\n(Hinweis: Es liegt kein offizieller Musteraufsatz vor.)",
+      "stem": "Brauchen Studierende Hobbys?",
+      "subprompts": [
+        "Halten Sie ein Hobby - oder auch mehrere Hobbys - für Studierende an einer Hochschule für sinnvoll? Nennen Sie jeweils mindestens 2 Gründe dafür und dagegen!",
+        "Welche Hobbys könnten denn für Studierende an einer Hochschule sinnvoll sein? Begründen Sie Ihre Auswahl!",
+        "Gehen Sie als Student/-in an der Universität selbst einem oder mehreren Hobbys nach? Nennen Sie Ihre Gründe!"
+      ],
+      "source": "manual:2025-writing-1:20260319"
+    },
+    "2019-translation-1": {
+      "prompt_text": "A. Übersetzen Sie den folgenden Text ins Chinesische! (25 P)\n\nIst Kapitalismus reformierbar?\n\nHeutzutage benutzen das Wort „Kapitalismus\" fast nur seine Kritiker. Vor allem bündelt der Begriff das Unbehagen am aktuellen Wirtschaftssystem, an der Tendenz zur Ungleichheit. In diesem Wirtschaftssystem ist allem einen Preis zu geben. Und immer mehr Menschen erheben das Anhäufen von Geld zum Selbstzweck und lassen für den wirtschaftlichen Vorteil jede Moral fahren.\n\nAußerdem scheint die Digitalisierung diese Entwicklungen zu potenzieren. Sie schafft noch schneller unglaubliche Vermögen, drängt den Einzelnen noch gezielter zum Konsum, verbraucht noch mehr Energie. Sie macht den Einzelnen, der seine Arbeitskraft anbietet, noch leichter ersetzbar. Und sie macht alles und jeden noch stärker berechenbar, manipulierbar, ausnutzbar. Dieses Unbehagen ist Grund genug, heutzutage noch einmal die Fragen zu stellen: Was könnte nach dem Kapitalismus kommen? Gibt es etwas Besseres?",
+      "stem": "Ist Kapitalismus reformierbar?",
+      "source": "material\\testpaperandanswer\\19-22.json"
+    },
+    "2019-translation-2": {
+      "prompt_text": "B. Übersetzen Sie den folgenden Text ins Deutsche! (25 P)\n\n红灯停,绿灯行\n\n近年来,为了治理行人闯红灯,各地交警部门奇招频出。有的地方要求闯红灯者穿上黄马甲协助交警维持交通秩序;有的将个人信息与考驾照等其它社会行为捆绑。其中人脸识别等技术的应用引起广泛热议。业内专家建议采取此项措施之前要向社会进行公告,要对不宜公开的隐私作适当技术处理。",
+      "stem": "红灯停,绿灯行",
+      "source": "material\\testpaperandanswer\\19-22.json"
+    },
+    "2019-writing-1": {
+      "prompt_text": "Immer jüngere chinesische Schüler lernen im Ausland\n\nLaut einer von chinesischen und ausländischen Bildungseinrichtungen gemeinsam in Auftrag gegebenen Umfrage äußerten sich nach einem Bericht der People's Daily im Juni 2018 die meisten chinesischen Eltern positiv der Idee gegenüber, ihre Kinder bereits vor Beendigung der Oberschule an eine Schule im Ausland zu schicken.\n\n27 Prozent der Eltern waren bereit, ihre Kinder in der Grundschulzeit ins Ausland zu schicken. Für den Wechsel ins Ausland während der Zeit an der Mittelschule waren 29 Prozent der Befragten, für einen Wechsel während der Oberschulzeit stimmten 24 Prozent.\n\nAufgabe: Schreiben Sie nun einen Aufsatz von 250 Wörtern, in dem Sie auf folgende Fragen eingehen:\n\n- Welche Gründe haben Ihrer Meinung nach chinesische Eltern, ihre Kinder bereits so früh ins Ausland an eine Schule zu schicken?\n- Halten Sie persönlich ein frühes Lernen im Ausland für eine gute oder schlechte Wahl? Begründen Sie bitte Ihre Ansicht!\n- Hätten Sie während Ihrer Schulzeit selbst gerne eine Schule im Ausland besucht? Begründen Sie bitte Ihre Antwort!",
+      "stem": "Immer jüngere chinesische Schüler lernen im Ausland",
+      "subprompts": [
+        "Welche Gründe haben Ihrer Meinung nach chinesische Eltern, ihre Kinder bereits so früh ins Ausland an eine Schule zu schicken?",
+        "Halten Sie persönlich ein frühes Lernen im Ausland für eine gute oder schlechte Wahl? Begründen Sie bitte Ihre Ansicht!",
+        "Hätten Sie während Ihrer Schulzeit selbst gerne eine Schule im Ausland besucht? Begründen Sie bitte Ihre Antwort!"
+      ],
+      "source": "material\\testpaperandanswer\\19-22.json"
+    },
+    "2021-translation-1": {
+      "prompt_text": "A. Übersetzen Sie den folgenden Text ins Chinesische! (25 P)\n\nWie Künstliche Intelligenz unsere Welt verändern wird\n\nDer britische Astrophysiker Stephen Hawking ist eine der wenigen Stimmen aus der Wissenschaft, die auch in einer breiten Offentlichkeit Gehör finden. Hawkings Reden kreisten in diesem Jahr immer um das Thema Künstliche Intelligenz (KI). „Wir stehen an einer Schwelle zu einer neuen, mutigen Welt\", sagte der 75- Jährige auf der größten Technologie- Konferenz Europas.\n\nDoch Hawking steht den kreativen Super- Computern sehr kritisch gegenüber. „Die Entwicklung Künstlicher Intelligenz könnte entweder das schlimmste oder das beste Ereignis in der Geschichte unserer Zivilisation sein\", sagte der Physiker. Nach seiner Ansicht könnten Computer der menschlichen Intelligenz nacheifern und sie sogar übertreffen. KI könnte einen eigenen Willen entwickeln. „Wir wissen nicht, ob wir von der KI unendlich unterstutzt oder vielleicht ignoriert oder möglicherweise sogar zerstört werden\", beschreibt Hawking die möglichen Szenarien.",
+      "stem": "Wie Künstliche Intelligenz unsere Welt verändern wird",
+      "source": "material\\testpaperandanswer\\19-22.json"
+    },
+    "2021-translation-2": {
+      "prompt_text": "B. Übersetzen Sie den folgenden Text ins Deutsche! (25 P)\n\n德国政坛\"铁娘子\"\n\n安格拉·默克尔是德国历史上的首位女总理，在德国政坛素有\"铁娘子\"之称。自她上任以来，德国成功地抵挡住了国际金融危机、欧债危机和难民危机，成为欧洲经济与政治的火车头，同时德国在国际事务中的影响力也大幅提升。在长达14年的执政生涯中，默克尔始终有着自己坚定的政治信念，展现出了非凡的领导力。",
+      "stem": "德国政坛\"铁娘子\"",
+      "source": "material\\testpaperandanswer\\19-22.json"
+    },
+    "2021-writing-1": {
+      "prompt_text": "Wohin mit den Eltern, wenn sie alt werden?\n\nIrgendwann kommt der Zeitpunkt, an dem sich einer der beiden Elternteile oder sogar beide wegen Alter und Krankheit nicht mehr gut alleine versorgen können. Die Kinder müssen dann entscheiden, ob sie ihre pflegebedürftigen Eltern zu Hause aufnehmen oder in einem Altenheim unterbringen. Die chinesische Regierung fördert infolge der raschen Alterung der Bevölkerung schon seit Jahren die Errichtung von Alten- sowie Pflegeheimen. Die Zahl der Senioren, die einen Platz in einem Heim suchen, steigt in China jährlich. Was in Deutschland weit verbreitet ist, wird auch in China bald üblich sein.\n\nAufgabe: Schreiben Sie nun einen Aufsatz von 250 Wörtern, in dem Sie auf folgende Fragen eingehen:\n\n1. Welche Vorteile und Nachteile hat es Ihrer Meinung nach, Eltern in einem Heim für Senioren unterzubringen?\n2. Was halten Sie von der Entwicklung, dass in China ständig mehr Heime für Senioren entstehen und dort zunehmend mehr alte Menschen untergebracht werden?\n3. Würden Sie persönlich Ihren Vater oder Ihre Mutter in ein Heim geben oder lieber bei sich zu Hause aufnehmen? Begründen Sie Ihre Antwort!",
+      "stem": "Wohin mit den Eltern, wenn sie alt werden?",
+      "subprompts": [
+        "Welche Vorteile und Nachteile hat es Ihrer Meinung nach, Eltern in einem Heim für Senioren unterzubringen?",
+        "Was halten Sie von der Entwicklung, dass in China ständig mehr Heime für Senioren entstehen und dort zunehmend mehr alte Menschen untergebracht werden?",
+        "Würden Sie persönlich Ihren Vater oder Ihre Mutter in ein Heim geben oder lieber bei sich zu Hause aufnehmen? Begründen Sie Ihre Antwort!"
+      ],
+      "source": "material\\testpaperandanswer\\19-22.json"
+    },
+    "2022-translation-1": {
+      "prompt_text": "A. Übersetzen Sie den folgenden Text ins Chinesische! (25 P)\n\nGlaubten die Menschen früher, dass die Erde flach ist?\n\nSo steht es in unseren Kinderbüchern. Man hat genau das Bild vor Augen, wie ein Schiff einfach über den Rand kippt. Tatsächlich wusste man seit der Antike, dass die Erde eine Kugel ist, und dieses Wissen wurde auch ins Mittelalter gerettet. Deswegen ist es auch ein Mythos, dass Kolumbus nur deshalb Amerika entdecken konnte, weil er an die Kugelgestalt der Erde glaubte. In Wirklichkeit hatten seine Kritiker recht. Im Unterschied zu Kolumbus wussten sie, wie groß die Erde ist, und dass Kolumbus' Plan, Indien auf dem Westweg zu erreichen, gar nicht funktionieren konnte. Die Legende von den dummen und unwissenden Menschen im Mittelalter lässt sich somit leicht widerlegen. Der Reichsapfel als eines der drei wichtigsten Herrschaftszeichen des Mittelalters ist in Wahrheit ein Symbol der Erde.",
+      "stem": "Glaubten die Menschen früher, dass die Erde flach ist?",
+      "source": "manual:2022-translation-a"
+    },
+    "2022-translation-2": {
+      "prompt_text": "B. Übersetzen Sie den folgenden Text ins Deutsche! (25 P)\n\n[题干原文待补。当前本地暂无高质量题干源，已保留参考译文《Übergang zu einer grünen und kohlenstoffarmen Entwicklung》供核对。]",
+      "stem": "Übergang zu einer grünen und kohlenstoffarmen Entwicklung",
+      "source": "manual:2022-translation-b-placeholder"
+    },
+    "2022-writing-1": {
+      "prompt_text": "Maschinelle Übersetzung\n\nSchon seit Jahrzehnten arbeiten weltweit Wissenschaftler an der Entwicklung von Übersetzungsprogrammen mit dem Ziel, die mühsame Arbeit von Übersetzern zu erleichtern oder sogar überflüssig zu machen. Mit dem rasanten Fortschritt auf dem Gebiet der Künstlichen Intelligenz sind solche Übersetzungsprogramme mittlerweile so gut geworden, dass sich mit ihrer Hilfe ausgezeichnete Übersetzungen herstellen lassen.\n\nAufgabe: Schreiben Sie nun einen Aufsatz von 250 Wörtern, in dem Sie auf folgende Fragen eingehen:\n\nKönnen solche Übersetzungsprogramme für Sie in Ihrem Studium sinnvoll sein? Begründen Sie Ihre Antwort!\n\nWelche Vorteile und welche Nachteile haben solche Übersetzungsprogramme Ihrer Meinung nach?\n\nGlauben Sie, dass solche Übersetzungsprogramme den Beruf des Übersetzers in der Zukunft völlig ersetzen können? Begründen Sie Ihre Antwort!",
+      "stem": "Maschinelle Übersetzung",
+      "subprompts": [],
+      "source": "data/generated_md/root_pdf/德语专业八级真题2019-2022.md"
+    }
+  },
+  "answers": {
+    "2019-translation-1": {
+      "display_answer": "见参考译文",
+      "explanation": "此外，数字化似乎在增强这一趋势：它以更快的速度创造惊人的财富，促使人们更有目的地消费并消耗更多的能源。它使提供劳动力者更容易被取代。同时，它使所有人和物更加可预计、可操纵、可利用。\n\n这种不满让人们现在有理由再次发问：资本主义之后会出现什么？有没有更好的？"
+    },
+    "2019-translation-2": {
+      "display_answer": "见参考译文",
+      "explanation": "Bei Rot halten, Bei Grün gehen\n\nIn den letzten Jahren haben sich die Verkehrspolizeibehörden in den jeweiligen/einzelnen Regionen einiges an Regulierungsmaßnahmen einfallen lassen, um dagegen vorzugehen, dass Fußgänger bei Rot über die Straße gehen. An manchen Orten müssen solche Verkehrssünder gelbe Westen tragen, um die Verkehrspolizei bei der Aufrechterhaltung der Verkehrsordnung zu unterstützen, an anderen Orten werden persönliche Informationen/Daten an andere öffentliche Handlungen wie die Führerscheinprüfung geknüpft. Dabei hat die Anwendung/der Einsatz von Technik wie Gesichtserkennung eine breite Debatte/Diskussion ausgelöst.\n\nBranchenexperten schlagen vor, die Öffentlichkeit vor Umsetzung der Maßnahmen zu informieren, und/sowie die nicht für die Offenlegung geeignete Privatsphäre technisch angemessen zu behandeln."
+    },
+    "2021-translation-1": {
+      "display_answer": "见参考译文",
+      "explanation": "人工智能将如何改变我们的世界\n\n英国天体物理学家霍金是极少数广受大众关注的少数来自科学界的人物之一。今年霍金的演讲始终围绕人工智能（AI）这个话题。这位75岁的天体物理学家在欧洲最大的技术会议上说：\"我们正站在通往一个新的、勇敢的世界的门槛之前。\"然而霍金对具创造力的超级计算机持非常批判的态度。他说：\"人工智能的发展可能是我们文明历史上最糟糕的或者是最好的事情。\"在他看来，计算机可以模仿甚至超越人类的智能。人工智能可以发展自己的意志。\"我们不知道我们是会受到人工智能的无限支持，或是可能被无视，甚至可能被摧毁。\"霍金如此描述可能发生的情景。"
+    },
+    "2021-translation-2": {
+      "display_answer": "见参考译文",
+      "explanation": "Die eiserne Lady in der deutschen Politik\n\nAngela Merkel ist die erste Kanzlerin in der deutschen Geschichte und wird in politischen Kreisen Deutschlands stets als „eiserne Lady\" bezeichnet. Seit ihrem Amtsantritt hat Deutschland der internationalen Finanzkrise, der europäischen Schuldenkrise sowie der Flüchtlingskrise widerstanden/getrotzt und ist zur wirtschaftlichen und politischen Lokomotive Europas geworden. Gleichzeitig ist der Einfluss Deutschlands in den internationalen Angelegenheiten stark angestiegen/gewachsen. In ihrer 14jährigen/14 Jahre langen Amtszeit hat sie immer/stets an ihrer politischen Überzeugung festgehalten und sich durch ihre außerordentliche Führungsfähigkeit/Führungskompetenz ausgezeichnet."
+    },
+    "2022-translation-1": {
+      "display_answer": "见参考译文",
+      "explanation": "古人真的相信地球是方的 / 平的吗？\n\n我们的儿童书籍中是这样写的。一副画面生动地映入眼帘：一艘船直接从天边掉了下去。其实早在古代，人们就已经知道地球是圆的了，而且这个知识也传入到了中世纪。因此，认为哥伦布之所以能够发现美洲，是因为他相信地球是圆的，这也不过是一种传说而已。而实际上他的批评者们是正确的。和哥伦布不同，他们知道地球有多大，清楚哥伦布从西边出发到达印度的计划根本无法实现。关于中世纪的人们既愚蠢又无知的传说是可以不攻自破的。作为中世纪三大最重要的权力象征物之一的宝球其实就是地球的象征。"
+    },
+    "2022-translation-2": {
+      "display_answer": "见参考译文",
+      "explanation": "Übergang zu einer grünen und kohlenstoffarmen Entwicklung\n\nChina ist ein aktiver Förderer und ein ernstzunehmender Akteur bei der Bewältigung des Klimawandels. In den letzten Jahren hat China mit vielen Ländern gemeinsame Erklärungen zum Klimawandel abgegeben und eine aktive und konstruktive Rolle bei der Förderung des multilateralen Prozesses der Klimaverhandlungen gespielt. Auf der fünften Plenartagung des 18. Zentralkomitees der Kommunistischen Partei Chinas (KPCh) wurde das Konzept der „grünen Entwicklung\" vorgestellt, und zum ersten Mal wurde die „grüne Entwicklung\" als eines der „fünf großen Entwicklungskonzepte\" genannt. Man kann sagen, dass China bei der Beschleunigung des Übergangs zu einer grünen und kohlenstoffarmen Entwicklung weltweit führend ist."
+    },
+    "2016-translation-1": {
+      "display_answer": "见参考译文",
+      "explanation": "新闻有多可靠（靠谱）？\n\n托马斯·魏麦在联邦议院的议会党团新闻办公室工作，其职责包括准备所谓的\"早间形势\"：他每天为议会党团委员会的会议收集最重要的头条新闻和评论。因此魏麦要阅读各大日报和互联网的新闻，还要浏览博客，有时还一边阅读一边开着电视。\n\n魏麦的工作使他对传统媒体了如指掌。然而他常看到的是单调而非多元，是肤浅而非具有深度。魏麦注意到，很多记者经常都是事实尚未确定就认定了自己的看法。（媒体上）很少看到甚至根本看不到反主流的观点。而对许多新闻编辑室而言，出错之后（向自己和读者）认错是件极其困难的事情。"
+    },
+    "2016-translation-2": {
+      "display_answer": "见参考译文",
+      "explanation": "Warum sind unsere Schuluniformen so „hässlich\"?\n\nDie Schuluniformen in China sind tatsächlich „hässlich\". (Denn) Bislang sind es im Wesentlichen die Schulleitungen hierzulande, die das Modell aussuchen und anschließend von allen Schülern verlangen, sich entsprechend einheitliche Schuluniformen zu kaufen. Hält man jedoch weiterhin an diesem Auswahl- und Kaufverfahren fest, dann wird es niemals „schönere\" Schuluniformen geben. Nach Ansicht des Verfassers kann das Problem der hässlichen Schuluniformen nur dann von Grund auf gelöst werden, wenn Schüler und Eltern das Recht erhalten, sich ihre Schuluniformen selbst auszusuchen, oder sogar selbständig zu entwerfen (designen)."
+    },
+    "2016-writing-1": {
+      "display_answer": "见参考范文",
+      "explanation": "Leben und Arbeiten nach dem Studium\n\nLaut der Tabelle oben verringert sich der Anteil der Hochschulabsolventen, die in großen Städten, nämlich Beijing, Shanghai und Guangzhou, einen Beruf ausüben wollen, im Zeitraum von 2011 bis 2013 um ungefähr 15% von 53,8% auf 38,7%. Metropolen scheinen den Jugendlichen nicht mehr so attraktiv wie früher zu sein.\n\nEin wesentlicher Grund dafür ist meiner Ansicht nach die Steigerung der Preise in der Großstadt. Nach dem Studium sind die Absolventen meistens nicht imstande, eine sehr gut bezahlte Arbeitsstelle in kurzer Zeit zu finden. Deshalb können sie die Wohnungspreise und den Lebensunterhalt keineswegs leisten. Außerdem laufen die Arbeiten in der Großstadt in einem beschleunigten Rhythmus und die Belastung drückt die Absolventen immer zu Boden.\n\nViele Menschen können sich nicht zwischen kleineren oder großen Städten entscheiden, denn was das eine an Vorteilen bietet, hat das andere als Nachteil. Gegenüber dem Leben in der Großstadt ist das Leben in einer kleineren Stadt ruhiger und sorgloser, was durch die niedrige Verkehrsdichte und Bevölkerungsdichte resultiert. Die Luftqualität ist dort auch viel besser. In einer kleinen Stadt fühlt man sich nie überlastet und hat genug Platz, Blumen zu pflanzen und draußen zu wandern. Andererseits besitzt eine kleine Stadt aber kein riesiges Verkehrsnetz. Deshalb kann man wichtige Orte wie Schule, Arbeitsplatz oder das Einkaufszentrum nicht schnell und bequem erreichen. Daneben kann man den Horizont nicht erweitern, weil man in einer kleinen Stadt wenige Kontakte mit hochqualifizierten Arbeitsplätzen, künstlerischen Ausstellungen und der Vielfalt der Menschen hat.\n\nIch möchte in China nach dem Studium lieber in einer Großstadt leben und arbeiten, weil sie spannend ist, sich jeden Tag verändert und mir immer neue Energie gibt. Dort bin ich fest davon überzeugt, dass ich es im Leben und in meinem Beruf weit bringen kann."
+    },
+    "2017-translation-1": {
+      "display_answer": "见参考译文",
+      "explanation": "绿党政治家抨击德国选择党\n\n绿党的联邦议会议员福尔克尔·贝克对德国选择党进行了猛烈抨击，起因是新加入该党的尼古劳斯·费斯特所发表的言论。费斯特在昨天的介绍中（讲话中）把伊斯兰和民族社会主义相提并论，并要求关闭德国境内的所有清真寺。\n\n贝克对《商报》记者说：\"谁想关闭所有的清真寺，谁就想废除宗教自由，并由此废除基本法。如果德国选择党坚持和其新成员费斯特站在一边，这就表明它想要另外一个共和国：它想要击垮这个立足于基本法的共和国。在一个教堂被玷污并成为纵火目标的时代，提出这类要求无异于精神纵火。\"\n\n贝克向德国的犹太人和穆斯林保证，他们在与反犹和敌视伊斯兰的德国选择党的斗争中不会孤立无援。他说：\"我们将捍卫他们的基本权利，反对自由之敌。\""
+    },
+    "2017-translation-2": {
+      "display_answer": "见参考译文",
+      "explanation": "Grüne Kurierdienste\n\nDer eruptive Wachstumsschub der (Express-)Kurierdienste(-Branche) verursacht viele Umweltprobleme wie übermäßige Verpackung und nicht zersetzbare Materialien usw. In den letzten Jahren haben viele Umweltschützer dazu aufgerufen, ein die gesamte Industriekette abdeckendes Verantwortungssystem einzurichten. Auf dem globalen Gipfeltreffen der Intelligenten Logistik 2016 wurde ein Öko-Plan mit der Verpflichtung verkündet, bis 2020 50% der umweltschädlichen Verpackungsmaterialien zu ersetzen."
+    },
+    "2017-writing-1": {
+      "display_answer": "见参考范文",
+      "explanation": "Die Lockerung der Ein-Kind-Politik\n\nEs könnte das endgültige Ende der Ein-Kind-Politik in China sein: Die Regierung erwägt weitere Reformschritte in der Familienpolitik. Nun sind alle Eltern erlaubt, ein zweites Kind zu bekommen. Der Schritt ist in der chinesischen Führung aber umstritten.\n\nMeiner Ansicht nach ermöglicht die Lockerung der Ein-Kind-Politik, die Bevölkerungsalterung hierzulande aufzulösen. Die Ein-Kind-Politik würde wie ein Schock auf Chinas Arbeitsmarkt wirken und nicht förderlich für die langfristige Wirtschaftsentwicklung sein. Zudem wird die Zahl der Neugeborenen weiterhin eine Wachstumstendenz zeigen. Dies dient der Verbesserung der familiären Struktur und wird auch bei der Geschlechterverteilung von Neugeborenen sowie der Milderung des demografischen Wandels eine positive Rolle spielen. Aber es gibt allerdings eine negative Seite: Mehr Kinder können zahlreiche Probleme wie den Druck der Kinderbetreuung, die Bildungskosten usw. mitbringen.\n\nGeschwister zu haben hat Vor- und Nachteile. Einerseits wäre es mir möglich, Kommunikationsfähigkeit durch seine Begleitung schon früh zu entfalten. Wenn ich auf Schwierigkeiten stoße, könnte ich mich an meinen Bruder oder meine Schwester um Hilfe wenden. Aber Nachteil und Vorteil halten sich die Waage. Wenn man einen Bruder oder eine Schwester hat, kann man nicht alle Aufmerksamkeit seiner Eltern gewinnen. Zwischen den Geschwistern gäbe es vielleicht ständige Konflikte.\n\nNachdem ich meine eigene Familie gegründet habe, möchte ich tatsächlich lieber ein Kind haben. Vor allem halte ich die Geburt für außerordentlich gefährlich und der Gesundheit schädlich. Deshalb möchte ich die Geburt bestimmt nicht zweimal erfahren. Außerdem möchte ich mich in erster Linie auf meine Karriere statt auf meine Familie konzentrieren. So hätte ich wahrscheinlich weniger Zeit, meine Kinder zu pflegen."
+    },
+    "2018-translation-1": {
+      "display_answer": "见参考译文",
+      "explanation": "变化中的媒体系统\n\n媒体系统不仅仅在德国经历了深刻的变革。有些人认为这是自十五世纪印刷术发明以来最大的一次变革，而正是印刷术才导致了当代大众传媒的出现。由印刷媒体所主导的时代，所谓的\"古腾堡的天下\"，似乎真的逐渐要被新媒体所取代了。\n\n但迄今为止，互联网尚未能取代\"旧\"媒体。因为从总人口中的占比来看，它始终还是没有特别的举足轻重。互联网只是成为了20-29岁年龄段人群的主要信息媒介。当面谈对老年人而言仍然是社会交流的首要形式时，年轻人则倾向于那些新信息技术的混合形式。被动的接受者和消费者因此成为主动的生产者和参与者。"
+    },
+    "2018-translation-2": {
+      "display_answer": "见参考译文",
+      "explanation": "Die Seidenstraße in der Gegenwart\n\nVor über 2000 Jahren unternahm Zhang Qian diplomatische Missionen in die „westlichen Regionen\" und erschloss eine Seidenstraße, die Asien mit Europa verband. Das war ein Weg des Friedens, der den politischen, wirtschaftlichen und kulturellen Austausch symbolisierte. Die Seidenstraße prosperierte über 1700 Jahre.\n\nHeutzutage hat China die neue Initiative „Ein Gürtel und eine Straße\" aufgestellt, die auf gegenseitigem Respekt und Vertrauen beruht. Sie verleiht der alten Seidenstraße neues Leben und trägt den großen Traum von Entwicklung und Prosperität aller Länder entlang der Straße. Deshalb entspricht diese Initiative der Entwicklungstendenz der globalen und regionalen Zusammenarbeit."
+    },
+    "2018-writing-1": {
+      "display_answer": "见参考范文",
+      "explanation": "Wie verändern Smartphones unser Leben?\n\nIn den letzten Jahrzehnten gab es in der Technologiewelt einen enormen Fortschritt. Viele neue Erfindungen sind uns vertrauter geworden und machen unser Leben immer einfacher als früher. Dazu dient das Smartphone als ein konkretes Beispiel.\n\nDas Smartphone hat sowohl Vorteile als auch Nachteile. Mit dem Smartphone kann man rund um die Uhr seine Bekannten anrufen. Man kann mit ihnen chatten, ihnen SMS senden, Bilder übermitteln und noch viele andere Funktionen nutzen. Mittlerweile verfügen die meisten Mobilfunkanbieter über ein GPRS- oder 3G-fähiges Netzwerk. Dann kann man während der Reise leicht die aktuellen genauen Standorte von Hotels, Sehenswürdigkeiten usw. durch das Smartphone erhalten. Aber andererseits versagt das Smartphone manchmal. Zum Beispiel, wenn man sich an einem Ort befindet, an dem kein Netzwerk vorhanden ist, wenn der Akku leer ist, wenn der Netzwerkanbieter möglicherweise überlastet ist, dann funktioniert das Smartphone gar nicht und verursacht Probleme. Außerdem ergeben sich viele Leute heute ihren Smartphones. Dadurch wird ihr Sehvermögen und ihre Gesundheit beeinträchtigt.\n\nIch bin ein Smartphone-Nutzer und erfahre eine wesentliche Veränderung meines Lebens beim Nutzen. Jeden Tag surfe ich mit meinem Smartphone im Internet, aktualisiere meine persönlichen Mikroblogs und Wechat-Momente. Zudem bevorzuge ich es, damit viele Musik und Texte herunterzuladen. Es kostet mich viel Freizeit, in der ich zuvor gelesen habe und draußen spazieren gegangen bin.\n\nManche Menschen können sich ein Leben ohne ihr Handy nicht mehr vorstellen. Die Tatsache, dass sie so beliebt sind, beweist, dass sie nützlich und praktisch sind. Mit Handys können Menschen einfach und schnell miteinander kommunizieren. Mobiltelefone beseitigen die Probleme, dass man sich nicht persönlich treffen kann - und steigern so die Effizienz. Meiner Meinung nach wird das Smartphone in der Zukunft die Globalisierung weiter vorantreiben und dem internationalen Handel mehr Erfolgsmöglichkeiten bieten. Ich begrüße herzlich die glänzende Aussicht des Smartphones."
+    },
+    "2023-translation-1": {
+      "display_answer": "见参考译文",
+      "explanation": "知己不知\n\n最晚是从认知革命开始，人类就迫切希望了解这个宇宙。我们的祖先投入了大量时间去探究自然界的秘密。但现代科学与其他所有传统的知识系统相比有三大不同之处：\n\n承认无知。现代科学愿意承认自己并非无所不知。而且它还认为所有我们以为自己已经了解的东西都可能被新的认识推翻。因此没有什么想法和理论是不能被拿来推敲一番的。\n\n观察和数学具有重要意义。承认无知之后，现代科学试图获取新知。为此要收集各种观察数据，然后借助数学工具推导出普适性的理论。\n\n获取新的能力。现代科学不甘心只创造理论。它通过理论的运用来获取新的能力，尤其是发展新技术。"
+    },
+    "2023-translation-2": {
+      "display_answer": "见参考译文",
+      "explanation": "Hochgeschwindigkeitseisenbahn durch das Qinling-Gebirge\n\nDas Qinling-Gebirge, die geografische Nord-Süd-Trennlinie Chinas, ist als Chinas „Zentralpark\" bekannt und gehört zu den weniger entwickelten Regionen des Landes. Um die lokale Wirtschaft anzukurbeln, baut China eine Hochgeschwindigkeitseisenbahn von Xi'an nach Ankang, die durch das Qinling-Gebirge führen wird. Diese Bahnstrecke befindet sich in der Provinz Shanxi und ist über 170 Kilometer lang. Dieses Bauprojekt zeichnet sich durch komplexe geologische Bedingungen, hohen Schwierigkeitsgrad der Bauarbeiten und hohe Risikostufen aus und soll Anfang 2025 abgeschlossen werden."
+    },
+    "2023-writing-1": {
+      "display_answer": "暂无官方范文",
+      "explanation": "原题未附官方范文，网站当前仅保留题面。"
+    },
+    "2025-translation-1": {
+      "display_answer": "见参考译文",
+      "explanation": "如果我们想要重新思考这个世界，就必须回到当今世界所建立的思想基础。这既包括人类对自然的看法，也包括人类对自身的看法。人们可能认为，人类在这个问题上不会像对自然那样偏离主题。当涉及人类自身时，人类应该很了解自己吧？可惜事实往往相反。\n\n大多数经济理论背后的人类形象是一个自私自利者，他们在任何情况下都冷静地计算个人利益。当人类必须做出选择时，作为消费者，他们总是选择能带来最大效用的东西；作为生产者，他们则选择能带来最高利润的东西。情感在这里毫无作用，无论是自己的还是他人的情感，唯一决定的是理性。而这种理性仅限于对成本和收益的计算。"
+    },
+    "2025-translation-2": {
+      "display_answer": "见参考译文",
+      "explanation": "Die Ära des autonomen Fahrens ist angekommen.\n\nAutonome Fahrzeuge werden eine Reihe tiefgreifender gesellschaftlicher Veränderungen auslösen. Zunächst werden sie die Verkehrssicherheit deutlich erhöhen und die Zahl der Verkehrsunfälle reduzieren. Zweitens wird die autonome Fahrtechnologie die Reiseeffizienz erheblich steigern und städtische Verkehrsstaus lindern. Darüber hinaus wird sie die Fortbewegungsgewohnheiten der Menschen verändern und fahrerloses Reisen zur Realität machen. Gleichzeitig werden autonome Fahrzeuge neue Geschäftsmodelle und Arbeitsplätze schaffen und die Entwicklung verwandter Branchen vorantreiben. Zusammenfassend wird die autonome Fahrtechnologie zweifellos eine wichtige Triebkraft für Veränderungen im zukünftigen Verkehrssektor sein."
+    },
+    "2025-writing-1": {
+      "display_answer": "暂无官方范文",
+      "explanation": "原题未附官方范文，网站当前仅保留题面。"
+    }
+  },
+  "notes": [
+    "翻译与写作题优先使用 cleaned/manual/19-22 清洗 JSON 源。",
+    "若本地缺少高质量题干，则使用明确占位说明，避免继续回退到脏 OCR 文本。",
+    "2016/2017/2018/2023/2025 的翻译与写作使用人工校准覆盖源，优先级高于 cleaned/OCR 提取结果。",
+    "写作题的参考范文与翻译题的参考译文单独写入答案库，避免题面混入答案或解析。"
+  ]
+}

@@ -907,6 +907,52 @@ html.safari-browser .empty-card {
   background: rgba(246, 237, 237, 0.96);
 }
 
+.submission-history-card {
+  display: grid;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 47, 40, 0.1);
+  background: rgba(255, 250, 240, 0.9);
+}
+
+.submission-history-list {
+  display: grid;
+  gap: 12px;
+}
+
+.submission-history-item {
+  display: grid;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(31, 47, 40, 0.08);
+  background: rgba(255, 252, 246, 0.96);
+}
+
+.submission-history-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.submission-history-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.history-response {
+  margin: 0;
+  background: rgba(29, 107, 87, 0.06);
+}
+
+.source-badge.danger {
+  background: rgba(141, 47, 47, 0.12);
+  color: var(--danger);
+}
+
 .ai-review-body {
   display: grid;
   gap: 12px;

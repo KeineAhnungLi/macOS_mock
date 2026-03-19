@@ -17,7 +17,7 @@ DEFAULT_SETTINGS = {
     "essay_analysis_model": "",
     "essay_scoring_model": "",
     "api_key": "",
-    "timeout_seconds": 45,
+    "timeout_seconds": 120,
     "temperature": 0.3,
 }
 

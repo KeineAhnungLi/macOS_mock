@@ -2900,5 +2900,989 @@
   "2017-landeskunde-105": {
     "correct_option": "C",
     "explanation": "吕根岛是德国最大的岛屿，位于波美拉尼亚地区的波罗的海沿岸，隶属于梅克伦堡-前波莫恩联邦州。故选c。"
+  },
+  "2023-31": {
+    "correct_option": "C"
+  },
+  "2023-32": {
+    "correct_option": "B"
+  },
+  "2023-33": {
+    "correct_option": "A"
+  },
+  "2023-34": {
+    "correct_option": "D"
+  },
+  "2023-35": {
+    "correct_option": "A"
+  },
+  "2023-36": {
+    "correct_option": "B"
+  },
+  "2023-37": {
+    "correct_option": "D"
+  },
+  "2023-38": {
+    "correct_option": "B"
+  },
+  "2023-39": {
+    "correct_option": "D"
+  },
+  "2023-40": {
+    "correct_option": "C"
+  },
+  "2023-41": {
+    "correct_option": "A"
+  },
+  "2023-42": {
+    "correct_option": "B"
+  },
+  "2023-43": {
+    "correct_option": "A"
+  },
+  "2023-44": {
+    "correct_option": "D"
+  },
+  "2023-45": {
+    "correct_option": "C"
+  },
+  "2023-46": {
+    "correct_option": "A"
+  },
+  "2023-47": {
+    "correct_option": "C"
+  },
+  "2023-48": {
+    "correct_option": "A"
+  },
+  "2023-49": {
+    "correct_option": "B"
+  },
+  "2023-50": {
+    "correct_option": "C"
+  },
+  "2023-51": {
+    "correct_option": "B"
+  },
+  "2023-52": {
+    "correct_option": "D"
+  },
+  "2023-53": {
+    "correct_option": "C"
+  },
+  "2023-54": {
+    "correct_option": "A"
+  },
+  "2023-55": {
+    "correct_option": "D"
+  },
+  "2023-56": {
+    "correct_option": "C"
+  },
+  "2023-57": {
+    "correct_option": "C"
+  },
+  "2023-58": {
+    "correct_option": "B"
+  },
+  "2023-59": {
+    "correct_option": "B"
+  },
+  "2023-60": {
+    "correct_option": "B"
+  },
+  "2023-61": {
+    "correct_option": "C"
+  },
+  "2023-62": {
+    "correct_option": "C"
+  },
+  "2023-63": {
+    "correct_option": "D"
+  },
+  "2023-64": {
+    "correct_option": "D"
+  },
+  "2023-65": {
+    "correct_option": "B"
+  },
+  "2023-66": {
+    "correct_option": "A"
+  },
+  "2023-67": {
+    "correct_option": "A"
+  },
+  "2023-68": {
+    "correct_option": "D"
+  },
+  "2023-69": {
+    "correct_option": "B"
+  },
+  "2023-70": {
+    "correct_option": "C"
+  },
+  "2023-listening-11": {
+    "correct_option": "D"
+  },
+  "2023-listening-12": {
+    "correct_option": "A"
+  },
+  "2023-listening-13": {
+    "correct_option": "B"
+  },
+  "2023-listening-14": {
+    "correct_option": "C"
+  },
+  "2023-listening-15": {
+    "correct_option": "D"
+  },
+  "2023-listening-16": {
+    "correct_option": "D"
+  },
+  "2023-listening-17": {
+    "correct_option": "B"
+  },
+  "2023-listening-18": {
+    "correct_option": "B"
+  },
+  "2023-listening-19": {
+    "correct_option": "D"
+  },
+  "2023-listening-20": {
+    "correct_option": "A"
+  },
+  "2023-listening-21": {
+    "correct_option": "D"
+  },
+  "2023-listening-22": {
+    "correct_option": "A"
+  },
+  "2023-listening-23": {
+    "correct_option": "C"
+  },
+  "2023-listening-24": {
+    "correct_option": "B"
+  },
+  "2023-listening-25": {
+    "correct_option": "D"
+  },
+  "2023-listening-26": {
+    "correct_option": "C"
+  },
+  "2023-listening-27": {
+    "correct_option": "B"
+  },
+  "2023-listening-28": {
+    "correct_option": "A"
+  },
+  "2023-listening-29": {
+    "correct_option": "C"
+  },
+  "2023-listening-30": {
+    "correct_option": "D"
+  },
+  "2023-reading-71": {
+    "correct_option": "C"
+  },
+  "2023-reading-72": {
+    "correct_option": "D"
+  },
+  "2023-reading-73": {
+    "correct_option": "D"
+  },
+  "2023-reading-74": {
+    "correct_option": "B"
+  },
+  "2023-reading-75": {
+    "correct_option": "A"
+  },
+  "2023-reading-76": {
+    "correct_option": "B"
+  },
+  "2023-reading-77": {
+    "correct_option": "A"
+  },
+  "2023-reading-78": {
+    "correct_option": "B"
+  },
+  "2023-reading-79": {
+    "correct_option": "C"
+  },
+  "2023-reading-80": {
+    "correct_option": "A"
+  },
+  "2023-reading-81": {
+    "correct_option": "D"
+  },
+  "2023-reading-82": {
+    "correct_option": "C"
+  },
+  "2023-reading-83": {
+    "correct_option": "A"
+  },
+  "2023-reading-84": {
+    "correct_option": "B"
+  },
+  "2023-reading-85": {
+    "correct_option": "D"
+  },
+  "2023-landeskunde-86": {
+    "correct_option": "F"
+  },
+  "2023-landeskunde-87": {
+    "correct_option": "R"
+  },
+  "2023-landeskunde-88": {
+    "correct_option": "R"
+  },
+  "2023-landeskunde-89": {
+    "correct_option": "F"
+  },
+  "2023-landeskunde-90": {
+    "correct_option": "F"
+  },
+  "2023-landeskunde-91": {
+    "correct_option": "F"
+  },
+  "2023-landeskunde-92": {
+    "correct_option": "B"
+  },
+  "2023-landeskunde-93": {
+    "correct_option": "C"
+  },
+  "2023-landeskunde-94": {
+    "correct_option": "A"
+  },
+  "2023-landeskunde-95": {
+    "correct_option": "D"
+  },
+  "2023-landeskunde-96": {
+    "correct_option": "D"
+  },
+  "2023-landeskunde-97": {
+    "correct_option": "B"
+  },
+  "2023-landeskunde-98": {
+    "correct_option": "D"
+  },
+  "2023-landeskunde-99": {
+    "correct_option": "A"
+  },
+  "2023-landeskunde-100": {
+    "correct_option": "C"
+  },
+  "2023-landeskunde-101": {
+    "correct_option": "B"
+  },
+  "2023-landeskunde-102": {
+    "correct_option": "D"
+  },
+  "2023-landeskunde-103": {
+    "correct_option": "B"
+  },
+  "2023-landeskunde-104": {
+    "correct_option": "A"
+  },
+  "2023-landeskunde-105": {
+    "correct_option": "C"
+  },
+  "2023-translation-1": {
+    "display_answer": "见参考译文",
+    "explanation": "知己不知\n\n最晚是从认知革命开始，人类就迫切希望了解这个宇宙。我们的祖先投入了大量时间去探究自然界的秘密。但现代科学与其他所有传统的知识系统相比有三大不同之处：\n\n承认无知。现代科学愿意承认自己并非无所不知。而且它还认为所有我们以为自己已经了解的东西都可能被新的认识推翻。因此没有什么想法和理论是不能被拿来推敲一番的。\n\n观察和数学具有重要意义。承认无知之后，现代科学试图获取新知。为此要收集各种观察数据，然后借助数学工具推导出普适性的理论。\n\n获取新的能力。现代科学不甘心只创造理论。它通过理论的运用来获取新的能力，尤其是发展新技术。"
+  },
+  "2023-translation-2": {
+    "display_answer": "见参考译文",
+    "explanation": "Hochgeschwindigkeitseisenbahn durch das Qinling-Gebirge\n\nDas Qinling-Gebirge, die geografische Nord-Süd-Trennlinie Chinas, ist als Chinas „Zentralpark\" bekannt und gehört zu den weniger entwickelten Regionen des Landes. Um die lokale Wirtschaft anzukurbeln, baut China eine Hochgeschwindigkeitseisenbahn von Xi'an nach Ankang, die durch das Qinling-Gebirge führen wird. Diese Bahnstrecke befindet sich in der Provinz Shanxi und ist über 170 Kilometer lang. Dieses Bauprojekt zeichnet sich durch komplexe geologische Bedingungen, hohen Schwierigkeitsgrad der Bauarbeiten und hohe Risikostufen aus und soll Anfang 2025 abgeschlossen werden."
+  },
+  "2023-listening-1": {
+    "correct_option": "R"
+  },
+  "2023-listening-2": {
+    "correct_option": "F"
+  },
+  "2023-listening-3": {
+    "correct_option": "R"
+  },
+  "2023-listening-4": {
+    "correct_option": "R"
+  },
+  "2023-listening-5": {
+    "correct_option": "F"
+  },
+  "2023-listening-6": {
+    "correct_option": "F"
+  },
+  "2023-listening-7": {
+    "correct_option": "R"
+  },
+  "2023-listening-8": {
+    "correct_option": "R"
+  },
+  "2023-listening-9": {
+    "correct_option": "F"
+  },
+  "2023-listening-10": {
+    "correct_option": "R"
+  },
+  "2019-listening-1": {
+    "correct_option": "F"
+  },
+  "2019-listening-2": {
+    "correct_option": "R"
+  },
+  "2019-listening-3": {
+    "correct_option": "R"
+  },
+  "2019-listening-4": {
+    "correct_option": "F"
+  },
+  "2019-listening-5": {
+    "correct_option": "R"
+  },
+  "2019-listening-6": {
+    "correct_option": "R"
+  },
+  "2019-listening-7": {
+    "correct_option": "F"
+  },
+  "2019-listening-8": {
+    "correct_option": "R"
+  },
+  "2019-listening-9": {
+    "correct_option": "R"
+  },
+  "2019-listening-10": {
+    "correct_option": "F"
+  },
+  "2019-listening-11": {
+    "correct_option": "C"
+  },
+  "2019-listening-12": {
+    "correct_option": "A"
+  },
+  "2019-listening-13": {
+    "correct_option": "B"
+  },
+  "2019-listening-14": {
+    "correct_option": "B"
+  },
+  "2019-listening-15": {
+    "correct_option": "B"
+  },
+  "2019-listening-16": {
+    "correct_option": "D"
+  },
+  "2019-listening-17": {
+    "correct_option": "D"
+  },
+  "2019-listening-18": {
+    "correct_option": "B"
+  },
+  "2019-listening-19": {
+    "correct_option": "C"
+  },
+  "2019-listening-20": {
+    "correct_option": "A"
+  },
+  "2019-listening-21": {
+    "correct_option": "A"
+  },
+  "2019-listening-22": {
+    "correct_option": "C"
+  },
+  "2019-listening-23": {
+    "correct_option": "D"
+  },
+  "2019-listening-24": {
+    "correct_option": "D"
+  },
+  "2019-listening-25": {
+    "correct_option": "C"
+  },
+  "2019-listening-26": {
+    "correct_option": "A"
+  },
+  "2019-listening-27": {
+    "correct_option": "A"
+  },
+  "2019-listening-28": {
+    "correct_option": "B"
+  },
+  "2019-listening-29": {
+    "correct_option": "B"
+  },
+  "2019-listening-30": {
+    "correct_option": "D"
+  },
+  "2019-reading-71": {
+    "correct_option": "A"
+  },
+  "2019-reading-72": {
+    "correct_option": "D"
+  },
+  "2019-reading-73": {
+    "correct_option": "B"
+  },
+  "2019-reading-74": {
+    "correct_option": "D"
+  },
+  "2019-reading-75": {
+    "correct_option": "C"
+  },
+  "2019-reading-76": {
+    "correct_option": "C"
+  },
+  "2019-reading-77": {
+    "correct_option": "A"
+  },
+  "2019-reading-78": {
+    "correct_option": "B"
+  },
+  "2019-reading-79": {
+    "correct_option": "C"
+  },
+  "2019-reading-80": {
+    "correct_option": "B"
+  },
+  "2019-reading-81": {
+    "correct_option": "C"
+  },
+  "2019-reading-82": {
+    "correct_option": "C"
+  },
+  "2019-reading-83": {
+    "correct_option": "A"
+  },
+  "2019-reading-84": {
+    "correct_option": "D"
+  },
+  "2019-reading-85": {
+    "correct_option": "B"
+  },
+  "2019-landeskunde-86": {
+    "correct_option": "R"
+  },
+  "2019-landeskunde-87": {
+    "correct_option": "R"
+  },
+  "2019-landeskunde-88": {
+    "correct_option": "F"
+  },
+  "2019-landeskunde-89": {
+    "correct_option": "F"
+  },
+  "2019-landeskunde-90": {
+    "correct_option": "F"
+  },
+  "2019-landeskunde-91": {
+    "correct_option": "R"
+  },
+  "2019-landeskunde-92": {
+    "correct_option": "C"
+  },
+  "2019-landeskunde-93": {
+    "correct_option": "A"
+  },
+  "2019-landeskunde-94": {
+    "correct_option": "A"
+  },
+  "2019-landeskunde-95": {
+    "correct_option": "D"
+  },
+  "2019-landeskunde-96": {
+    "correct_option": "B"
+  },
+  "2019-landeskunde-97": {
+    "correct_option": "C"
+  },
+  "2019-landeskunde-98": {
+    "correct_option": "C"
+  },
+  "2019-landeskunde-99": {
+    "correct_option": "D"
+  },
+  "2019-landeskunde-100": {
+    "correct_option": "C"
+  },
+  "2019-landeskunde-101": {
+    "correct_option": "C"
+  },
+  "2019-landeskunde-102": {
+    "correct_option": "B"
+  },
+  "2019-landeskunde-103": {
+    "correct_option": "A"
+  },
+  "2019-landeskunde-104": {
+    "correct_option": "A"
+  },
+  "2019-landeskunde-105": {
+    "correct_option": "C"
+  },
+  "2019-translation-1": {
+    "display_answer": "见参考译文",
+    "explanation": "此外，数字化似乎在增强这一趋势：它以更快的速度创造惊人的财富，促使人们更有目的地消费并消耗更多的能源。它使提供劳动力者更容易被取代。同时，它使所有人和物更加可预计、可操纵、可利用。\n\n这种不满让人们现在有理由再次发问：资本主义之后会出现什么？有没有更好的？"
+  },
+  "2019-translation-2": {
+    "display_answer": "见参考译文",
+    "explanation": "Bei Rot halten, Bei Grün gehen\n\nIn den letzten Jahren haben sich die Verkehrspolizeibehörden in den jeweiligen/einzelnen Regionen einiges an Regulierungsmaßnahmen einfallen lassen, um dagegen vorzugehen, dass Fußgänger bei Rot über die Straße gehen. An manchen Orten müssen solche Verkehrssünder gelbe Westen tragen, um die Verkehrspolizei bei der Aufrechterhaltung der Verkehrsordnung zu unterstützen, an anderen Orten werden persönliche Informationen/Daten an andere öffentliche Handlungen wie die Führerscheinprüfung geknüpft. Dabei hat die Anwendung/der Einsatz von Technik wie Gesichtserkennung eine breite Debatte/Diskussion ausgelöst.\n\nBranchenexperten schlagen vor, die Öffentlichkeit vor Umsetzung der Maßnahmen zu informieren, und/sowie die nicht für die Offenlegung geeignete Privatsphäre technisch angemessen zu behandeln."
+  },
+  "2021-listening-1": {
+    "correct_option": "F"
+  },
+  "2021-listening-2": {
+    "correct_option": "F"
+  },
+  "2021-listening-3": {
+    "correct_option": "R"
+  },
+  "2021-listening-4": {
+    "correct_option": "F"
+  },
+  "2021-listening-5": {
+    "correct_option": "F"
+  },
+  "2021-listening-6": {
+    "correct_option": "R"
+  },
+  "2021-listening-7": {
+    "correct_option": "F"
+  },
+  "2021-listening-8": {
+    "correct_option": "F"
+  },
+  "2021-listening-9": {
+    "correct_option": "R"
+  },
+  "2021-listening-10": {
+    "correct_option": "R"
+  },
+  "2021-listening-11": {
+    "correct_option": "D"
+  },
+  "2021-listening-12": {
+    "correct_option": "C"
+  },
+  "2021-listening-13": {
+    "correct_option": "B"
+  },
+  "2021-listening-14": {
+    "correct_option": "B"
+  },
+  "2021-listening-15": {
+    "correct_option": "C"
+  },
+  "2021-listening-16": {
+    "correct_option": "B"
+  },
+  "2021-listening-17": {
+    "correct_option": "D"
+  },
+  "2021-listening-18": {
+    "correct_option": "A"
+  },
+  "2021-listening-19": {
+    "correct_option": "B"
+  },
+  "2021-listening-20": {
+    "correct_option": "C"
+  },
+  "2021-listening-21": {
+    "correct_option": "B"
+  },
+  "2021-listening-22": {
+    "correct_option": "A"
+  },
+  "2021-listening-23": {
+    "correct_option": "C"
+  },
+  "2021-listening-24": {
+    "correct_option": "A"
+  },
+  "2021-listening-25": {
+    "correct_option": "B"
+  },
+  "2021-listening-26": {
+    "correct_option": "A"
+  },
+  "2021-listening-27": {
+    "correct_option": "C"
+  },
+  "2021-listening-28": {
+    "correct_option": "B"
+  },
+  "2021-listening-29": {
+    "correct_option": "C"
+  },
+  "2021-listening-30": {
+    "correct_option": "A"
+  },
+  "2021-reading-71": {
+    "correct_option": "C"
+  },
+  "2021-reading-72": {
+    "correct_option": "C"
+  },
+  "2021-reading-73": {
+    "correct_option": "D"
+  },
+  "2021-reading-74": {
+    "correct_option": "A"
+  },
+  "2021-reading-75": {
+    "correct_option": "D"
+  },
+  "2021-reading-76": {
+    "correct_option": "D"
+  },
+  "2021-reading-77": {
+    "correct_option": "B"
+  },
+  "2021-reading-78": {
+    "correct_option": "C"
+  },
+  "2021-reading-79": {
+    "correct_option": "C"
+  },
+  "2021-reading-80": {
+    "correct_option": "D"
+  },
+  "2021-reading-81": {
+    "correct_option": "C"
+  },
+  "2021-reading-82": {
+    "correct_option": "A"
+  },
+  "2021-reading-83": {
+    "correct_option": "B"
+  },
+  "2021-reading-84": {
+    "correct_option": "D"
+  },
+  "2021-reading-85": {
+    "correct_option": "B"
+  },
+  "2021-landeskunde-86": {
+    "correct_option": "F"
+  },
+  "2021-landeskunde-87": {
+    "correct_option": "R"
+  },
+  "2021-landeskunde-88": {
+    "correct_option": "R"
+  },
+  "2021-landeskunde-89": {
+    "correct_option": "F"
+  },
+  "2021-landeskunde-90": {
+    "correct_option": "F"
+  },
+  "2021-landeskunde-91": {
+    "correct_option": "F"
+  },
+  "2021-landeskunde-92": {
+    "correct_option": "B"
+  },
+  "2021-landeskunde-93": {
+    "correct_option": "A"
+  },
+  "2021-landeskunde-94": {
+    "correct_option": "C"
+  },
+  "2021-landeskunde-95": {
+    "correct_option": "A"
+  },
+  "2021-landeskunde-96": {
+    "correct_option": "B"
+  },
+  "2021-landeskunde-97": {
+    "correct_option": "A"
+  },
+  "2021-landeskunde-98": {
+    "correct_option": "D"
+  },
+  "2021-landeskunde-99": {
+    "correct_option": "A"
+  },
+  "2021-landeskunde-100": {
+    "correct_option": "D"
+  },
+  "2021-landeskunde-101": {
+    "correct_option": "D"
+  },
+  "2021-landeskunde-102": {
+    "correct_option": "B"
+  },
+  "2021-landeskunde-103": {
+    "correct_option": "D"
+  },
+  "2021-landeskunde-104": {
+    "correct_option": "C"
+  },
+  "2021-landeskunde-105": {
+    "correct_option": "B"
+  },
+  "2021-translation-1": {
+    "display_answer": "见参考译文",
+    "explanation": "人工智能将如何改变我们的世界\n\n英国天体物理学家霍金是极少数广受大众关注的少数来自科学界的人物之一。今年霍金的演讲始终围绕人工智能（AI）这个话题。这位75岁的天体物理学家在欧洲最大的技术会议上说：\"我们正站在通往一个新的、勇敢的世界的门槛之前。\"然而霍金对具创造力的超级计算机持非常批判的态度。他说：\"人工智能的发展可能是我们文明历史上最糟糕的或者是最好的事情。\"在他看来，计算机可以模仿甚至超越人类的智能。人工智能可以发展自己的意志。\"我们不知道我们是会受到人工智能的无限支持，或是可能被无视，甚至可能被摧毁。\"霍金如此描述可能发生的情景。"
+  },
+  "2021-translation-2": {
+    "display_answer": "见参考译文",
+    "explanation": "Die eiserne Lady in der deutschen Politik\n\nAngela Merkel ist die erste Kanzlerin in der deutschen Geschichte und wird in politischen Kreisen Deutschlands stets als „eiserne Lady\" bezeichnet. Seit ihrem Amtsantritt hat Deutschland der internationalen Finanzkrise, der europäischen Schuldenkrise sowie der Flüchtlingskrise widerstanden/getrotzt und ist zur wirtschaftlichen und politischen Lokomotive Europas geworden. Gleichzeitig ist der Einfluss Deutschlands in den internationalen Angelegenheiten stark angestiegen/gewachsen. In ihrer 14jährigen/14 Jahre langen Amtszeit hat sie immer/stets an ihrer politischen Überzeugung festgehalten und sich durch ihre außerordentliche Führungsfähigkeit/Führungskompetenz ausgezeichnet."
+  },
+  "2022-listening-1": {
+    "correct_option": "F"
+  },
+  "2022-listening-2": {
+    "correct_option": "R"
+  },
+  "2022-listening-3": {
+    "correct_option": "R"
+  },
+  "2022-listening-4": {
+    "correct_option": "F"
+  },
+  "2022-listening-5": {
+    "correct_option": "R"
+  },
+  "2022-listening-6": {
+    "correct_option": "F"
+  },
+  "2022-listening-7": {
+    "correct_option": "R"
+  },
+  "2022-listening-8": {
+    "correct_option": "F"
+  },
+  "2022-listening-9": {
+    "correct_option": "F"
+  },
+  "2022-listening-10": {
+    "correct_option": "R"
+  },
+  "2022-listening-11": {
+    "correct_option": "D"
+  },
+  "2022-listening-12": {
+    "correct_option": "B"
+  },
+  "2022-listening-13": {
+    "correct_option": "A"
+  },
+  "2022-listening-14": {
+    "correct_option": "C"
+  },
+  "2022-listening-15": {
+    "correct_option": "D"
+  },
+  "2022-listening-16": {
+    "correct_option": "C"
+  },
+  "2022-listening-17": {
+    "correct_option": "B"
+  },
+  "2022-listening-18": {
+    "correct_option": "B"
+  },
+  "2022-listening-19": {
+    "correct_option": "A"
+  },
+  "2022-listening-20": {
+    "correct_option": "C"
+  },
+  "2022-listening-21": {
+    "correct_option": "A"
+  },
+  "2022-listening-22": {
+    "correct_option": "D"
+  },
+  "2022-listening-23": {
+    "correct_option": "C"
+  },
+  "2022-listening-24": {
+    "correct_option": "A"
+  },
+  "2022-listening-25": {
+    "correct_option": "B"
+  },
+  "2022-listening-26": {
+    "correct_option": "B"
+  },
+  "2022-listening-27": {
+    "correct_option": "B"
+  },
+  "2022-listening-28": {
+    "correct_option": "D"
+  },
+  "2022-listening-29": {
+    "correct_option": "A"
+  },
+  "2022-listening-30": {
+    "correct_option": "C"
+  },
+  "2022-reading-71": {
+    "correct_option": "A"
+  },
+  "2022-reading-72": {
+    "correct_option": "D"
+  },
+  "2022-reading-73": {
+    "correct_option": "C"
+  },
+  "2022-reading-74": {
+    "correct_option": "D"
+  },
+  "2022-reading-75": {
+    "correct_option": "D"
+  },
+  "2022-reading-76": {
+    "correct_option": "C"
+  },
+  "2022-reading-77": {
+    "correct_option": "A"
+  },
+  "2022-reading-78": {
+    "correct_option": "B"
+  },
+  "2022-reading-79": {
+    "correct_option": "B"
+  },
+  "2022-reading-80": {
+    "correct_option": "D"
+  },
+  "2022-reading-81": {
+    "correct_option": "A"
+  },
+  "2022-reading-82": {
+    "correct_option": "C"
+  },
+  "2022-reading-83": {
+    "correct_option": "B"
+  },
+  "2022-reading-84": {
+    "correct_option": "D"
+  },
+  "2022-reading-85": {
+    "correct_option": "C"
+  },
+  "2022-landeskunde-86": {
+    "correct_option": "R"
+  },
+  "2022-landeskunde-87": {
+    "correct_option": "R"
+  },
+  "2022-landeskunde-88": {
+    "correct_option": "F"
+  },
+  "2022-landeskunde-89": {
+    "correct_option": "R"
+  },
+  "2022-landeskunde-90": {
+    "correct_option": "F"
+  },
+  "2022-landeskunde-91": {
+    "correct_option": "F"
+  },
+  "2022-landeskunde-92": {
+    "correct_option": "B"
+  },
+  "2022-landeskunde-93": {
+    "correct_option": "D"
+  },
+  "2022-landeskunde-94": {
+    "correct_option": "C"
+  },
+  "2022-landeskunde-95": {
+    "correct_option": "A"
+  },
+  "2022-landeskunde-96": {
+    "correct_option": "A"
+  },
+  "2022-landeskunde-97": {
+    "correct_option": "A"
+  },
+  "2022-landeskunde-98": {
+    "correct_option": "D"
+  },
+  "2022-landeskunde-99": {
+    "correct_option": "C"
+  },
+  "2022-landeskunde-100": {
+    "correct_option": "B"
+  },
+  "2022-landeskunde-101": {
+    "correct_option": "B"
+  },
+  "2022-landeskunde-102": {
+    "correct_option": "A"
+  },
+  "2022-landeskunde-103": {
+    "correct_option": "B"
+  },
+  "2022-landeskunde-104": {
+    "correct_option": "A"
+  },
+  "2022-landeskunde-105": {
+    "correct_option": "D"
+  },
+  "2022-translation-1": {
+    "display_answer": "见参考译文",
+    "explanation": "古人真的相信地球是方的 / 平的吗？\n\n我们的儿童书籍中是这样写的。一副画面生动地映入眼帘：一艘船直接从天边掉了下去。其实早在古代，人们就已经知道地球是圆的了，而且这个知识也传入到了中世纪。因此，认为哥伦布之所以能够发现美洲，是因为他相信地球是圆的，这也不过是一种传说而已。而实际上他的批评者们是正确的。和哥伦布不同，他们知道地球有多大，清楚哥伦布从西边出发到达印度的计划根本无法实现。关于中世纪的人们既愚蠢又无知的传说是可以不攻自破的。作为中世纪三大最重要的权力象征物之一的宝球其实就是地球的象征。"
+  },
+  "2022-translation-2": {
+    "display_answer": "见参考译文",
+    "explanation": "Übergang zu einer grünen und kohlenstoffarmen Entwicklung\n\nChina ist ein aktiver Förderer und ein ernstzunehmender Akteur bei der Bewältigung des Klimawandels. In den letzten Jahren hat China mit vielen Ländern gemeinsame Erklärungen zum Klimawandel abgegeben und eine aktive und konstruktive Rolle bei der Förderung des multilateralen Prozesses der Klimaverhandlungen gespielt. Auf der fünften Plenartagung des 18. Zentralkomitees der Kommunistischen Partei Chinas (KPCh) wurde das Konzept der „grünen Entwicklung\" vorgestellt, und zum ersten Mal wurde die „grüne Entwicklung\" als eines der „fünf großen Entwicklungskonzepte\" genannt. Man kann sagen, dass China bei der Beschleunigung des Übergangs zu einer grünen und kohlenstoffarmen Entwicklung weltweit führend ist."
+  },
+  "2016-translation-1": {
+    "display_answer": "见参考译文",
+    "explanation": "新闻有多可靠（靠谱）？\n\n托马斯·魏麦在联邦议院的议会党团新闻办公室工作，其职责包括准备所谓的\"早间形势\"：他每天为议会党团委员会的会议收集最重要的头条新闻和评论。因此魏麦要阅读各大日报和互联网的新闻，还要浏览博客，有时还一边阅读一边开着电视。\n\n魏麦的工作使他对传统媒体了如指掌。然而他常看到的是单调而非多元，是肤浅而非具有深度。魏麦注意到，很多记者经常都是事实尚未确定就认定了自己的看法。（媒体上）很少看到甚至根本看不到反主流的观点。而对许多新闻编辑室而言，出错之后（向自己和读者）认错是件极其困难的事情。"
+  },
+  "2016-translation-2": {
+    "display_answer": "见参考译文",
+    "explanation": "Warum sind unsere Schuluniformen so „hässlich\"?\n\nDie Schuluniformen in China sind tatsächlich „hässlich\". (Denn) Bislang sind es im Wesentlichen die Schulleitungen hierzulande, die das Modell aussuchen und anschließend von allen Schülern verlangen, sich entsprechend einheitliche Schuluniformen zu kaufen. Hält man jedoch weiterhin an diesem Auswahl- und Kaufverfahren fest, dann wird es niemals „schönere\" Schuluniformen geben. Nach Ansicht des Verfassers kann das Problem der hässlichen Schuluniformen nur dann von Grund auf gelöst werden, wenn Schüler und Eltern das Recht erhalten, sich ihre Schuluniformen selbst auszusuchen, oder sogar selbständig zu entwerfen (designen)."
+  },
+  "2016-writing-1": {
+    "display_answer": "见参考范文",
+    "explanation": "Leben und Arbeiten nach dem Studium\n\nLaut der Tabelle oben verringert sich der Anteil der Hochschulabsolventen, die in großen Städten, nämlich Beijing, Shanghai und Guangzhou, einen Beruf ausüben wollen, im Zeitraum von 2011 bis 2013 um ungefähr 15% von 53,8% auf 38,7%. Metropolen scheinen den Jugendlichen nicht mehr so attraktiv wie früher zu sein.\n\nEin wesentlicher Grund dafür ist meiner Ansicht nach die Steigerung der Preise in der Großstadt. Nach dem Studium sind die Absolventen meistens nicht imstande, eine sehr gut bezahlte Arbeitsstelle in kurzer Zeit zu finden. Deshalb können sie die Wohnungspreise und den Lebensunterhalt keineswegs leisten. Außerdem laufen die Arbeiten in der Großstadt in einem beschleunigten Rhythmus und die Belastung drückt die Absolventen immer zu Boden.\n\nViele Menschen können sich nicht zwischen kleineren oder großen Städten entscheiden, denn was das eine an Vorteilen bietet, hat das andere als Nachteil. Gegenüber dem Leben in der Großstadt ist das Leben in einer kleineren Stadt ruhiger und sorgloser, was durch die niedrige Verkehrsdichte und Bevölkerungsdichte resultiert. Die Luftqualität ist dort auch viel besser. In einer kleinen Stadt fühlt man sich nie überlastet und hat genug Platz, Blumen zu pflanzen und draußen zu wandern. Andererseits besitzt eine kleine Stadt aber kein riesiges Verkehrsnetz. Deshalb kann man wichtige Orte wie Schule, Arbeitsplatz oder das Einkaufszentrum nicht schnell und bequem erreichen. Daneben kann man den Horizont nicht erweitern, weil man in einer kleinen Stadt wenige Kontakte mit hochqualifizierten Arbeitsplätzen, künstlerischen Ausstellungen und der Vielfalt der Menschen hat.\n\nIch möchte in China nach dem Studium lieber in einer Großstadt leben und arbeiten, weil sie spannend ist, sich jeden Tag verändert und mir immer neue Energie gibt. Dort bin ich fest davon überzeugt, dass ich es im Leben und in meinem Beruf weit bringen kann."
+  },
+  "2017-translation-1": {
+    "display_answer": "见参考译文",
+    "explanation": "绿党政治家抨击德国选择党\n\n绿党的联邦议会议员福尔克尔·贝克对德国选择党进行了猛烈抨击，起因是新加入该党的尼古劳斯·费斯特所发表的言论。费斯特在昨天的介绍中（讲话中）把伊斯兰和民族社会主义相提并论，并要求关闭德国境内的所有清真寺。\n\n贝克对《商报》记者说：\"谁想关闭所有的清真寺，谁就想废除宗教自由，并由此废除基本法。如果德国选择党坚持和其新成员费斯特站在一边，这就表明它想要另外一个共和国：它想要击垮这个立足于基本法的共和国。在一个教堂被玷污并成为纵火目标的时代，提出这类要求无异于精神纵火。\"\n\n贝克向德国的犹太人和穆斯林保证，他们在与反犹和敌视伊斯兰的德国选择党的斗争中不会孤立无援。他说：\"我们将捍卫他们的基本权利，反对自由之敌。\""
+  },
+  "2017-translation-2": {
+    "display_answer": "见参考译文",
+    "explanation": "Grüne Kurierdienste\n\nDer eruptive Wachstumsschub der (Express-)Kurierdienste(-Branche) verursacht viele Umweltprobleme wie übermäßige Verpackung und nicht zersetzbare Materialien usw. In den letzten Jahren haben viele Umweltschützer dazu aufgerufen, ein die gesamte Industriekette abdeckendes Verantwortungssystem einzurichten. Auf dem globalen Gipfeltreffen der Intelligenten Logistik 2016 wurde ein Öko-Plan mit der Verpflichtung verkündet, bis 2020 50% der umweltschädlichen Verpackungsmaterialien zu ersetzen."
+  },
+  "2017-writing-1": {
+    "display_answer": "见参考范文",
+    "explanation": "Die Lockerung der Ein-Kind-Politik\n\nEs könnte das endgültige Ende der Ein-Kind-Politik in China sein: Die Regierung erwägt weitere Reformschritte in der Familienpolitik. Nun sind alle Eltern erlaubt, ein zweites Kind zu bekommen. Der Schritt ist in der chinesischen Führung aber umstritten.\n\nMeiner Ansicht nach ermöglicht die Lockerung der Ein-Kind-Politik, die Bevölkerungsalterung hierzulande aufzulösen. Die Ein-Kind-Politik würde wie ein Schock auf Chinas Arbeitsmarkt wirken und nicht förderlich für die langfristige Wirtschaftsentwicklung sein. Zudem wird die Zahl der Neugeborenen weiterhin eine Wachstumstendenz zeigen. Dies dient der Verbesserung der familiären Struktur und wird auch bei der Geschlechterverteilung von Neugeborenen sowie der Milderung des demografischen Wandels eine positive Rolle spielen. Aber es gibt allerdings eine negative Seite: Mehr Kinder können zahlreiche Probleme wie den Druck der Kinderbetreuung, die Bildungskosten usw. mitbringen.\n\nGeschwister zu haben hat Vor- und Nachteile. Einerseits wäre es mir möglich, Kommunikationsfähigkeit durch seine Begleitung schon früh zu entfalten. Wenn ich auf Schwierigkeiten stoße, könnte ich mich an meinen Bruder oder meine Schwester um Hilfe wenden. Aber Nachteil und Vorteil halten sich die Waage. Wenn man einen Bruder oder eine Schwester hat, kann man nicht alle Aufmerksamkeit seiner Eltern gewinnen. Zwischen den Geschwistern gäbe es vielleicht ständige Konflikte.\n\nNachdem ich meine eigene Familie gegründet habe, möchte ich tatsächlich lieber ein Kind haben. Vor allem halte ich die Geburt für außerordentlich gefährlich und der Gesundheit schädlich. Deshalb möchte ich die Geburt bestimmt nicht zweimal erfahren. Außerdem möchte ich mich in erster Linie auf meine Karriere statt auf meine Familie konzentrieren. So hätte ich wahrscheinlich weniger Zeit, meine Kinder zu pflegen."
+  },
+  "2018-translation-1": {
+    "display_answer": "见参考译文",
+    "explanation": "变化中的媒体系统\n\n媒体系统不仅仅在德国经历了深刻的变革。有些人认为这是自十五世纪印刷术发明以来最大的一次变革，而正是印刷术才导致了当代大众传媒的出现。由印刷媒体所主导的时代，所谓的\"古腾堡的天下\"，似乎真的逐渐要被新媒体所取代了。\n\n但迄今为止，互联网尚未能取代\"旧\"媒体。因为从总人口中的占比来看，它始终还是没有特别的举足轻重。互联网只是成为了20-29岁年龄段人群的主要信息媒介。当面谈对老年人而言仍然是社会交流的首要形式时，年轻人则倾向于那些新信息技术的混合形式。被动的接受者和消费者因此成为主动的生产者和参与者。"
+  },
+  "2018-translation-2": {
+    "display_answer": "见参考译文",
+    "explanation": "Die Seidenstraße in der Gegenwart\n\nVor über 2000 Jahren unternahm Zhang Qian diplomatische Missionen in die „westlichen Regionen\" und erschloss eine Seidenstraße, die Asien mit Europa verband. Das war ein Weg des Friedens, der den politischen, wirtschaftlichen und kulturellen Austausch symbolisierte. Die Seidenstraße prosperierte über 1700 Jahre.\n\nHeutzutage hat China die neue Initiative „Ein Gürtel und eine Straße\" aufgestellt, die auf gegenseitigem Respekt und Vertrauen beruht. Sie verleiht der alten Seidenstraße neues Leben und trägt den großen Traum von Entwicklung und Prosperität aller Länder entlang der Straße. Deshalb entspricht diese Initiative der Entwicklungstendenz der globalen und regionalen Zusammenarbeit."
+  },
+  "2018-writing-1": {
+    "display_answer": "见参考范文",
+    "explanation": "Wie verändern Smartphones unser Leben?\n\nIn den letzten Jahrzehnten gab es in der Technologiewelt einen enormen Fortschritt. Viele neue Erfindungen sind uns vertrauter geworden und machen unser Leben immer einfacher als früher. Dazu dient das Smartphone als ein konkretes Beispiel.\n\nDas Smartphone hat sowohl Vorteile als auch Nachteile. Mit dem Smartphone kann man rund um die Uhr seine Bekannten anrufen. Man kann mit ihnen chatten, ihnen SMS senden, Bilder übermitteln und noch viele andere Funktionen nutzen. Mittlerweile verfügen die meisten Mobilfunkanbieter über ein GPRS- oder 3G-fähiges Netzwerk. Dann kann man während der Reise leicht die aktuellen genauen Standorte von Hotels, Sehenswürdigkeiten usw. durch das Smartphone erhalten. Aber andererseits versagt das Smartphone manchmal. Zum Beispiel, wenn man sich an einem Ort befindet, an dem kein Netzwerk vorhanden ist, wenn der Akku leer ist, wenn der Netzwerkanbieter möglicherweise überlastet ist, dann funktioniert das Smartphone gar nicht und verursacht Probleme. Außerdem ergeben sich viele Leute heute ihren Smartphones. Dadurch wird ihr Sehvermögen und ihre Gesundheit beeinträchtigt.\n\nIch bin ein Smartphone-Nutzer und erfahre eine wesentliche Veränderung meines Lebens beim Nutzen. Jeden Tag surfe ich mit meinem Smartphone im Internet, aktualisiere meine persönlichen Mikroblogs und Wechat-Momente. Zudem bevorzuge ich es, damit viele Musik und Texte herunterzuladen. Es kostet mich viel Freizeit, in der ich zuvor gelesen habe und draußen spazieren gegangen bin.\n\nManche Menschen können sich ein Leben ohne ihr Handy nicht mehr vorstellen. Die Tatsache, dass sie so beliebt sind, beweist, dass sie nützlich und praktisch sind. Mit Handys können Menschen einfach und schnell miteinander kommunizieren. Mobiltelefone beseitigen die Probleme, dass man sich nicht persönlich treffen kann - und steigern so die Effizienz. Meiner Meinung nach wird das Smartphone in der Zukunft die Globalisierung weiter vorantreiben und dem internationalen Handel mehr Erfolgsmöglichkeiten bieten. Ich begrüße herzlich die glänzende Aussicht des Smartphones."
+  },
+  "2023-writing-1": {
+    "display_answer": "暂无官方范文",
+    "explanation": "原题未附官方范文，网站当前仅保留题面。"
+  },
+  "2025-translation-1": {
+    "display_answer": "见参考译文",
+    "explanation": "如果我们想要重新思考这个世界，就必须回到当今世界所建立的思想基础。这既包括人类对自然的看法，也包括人类对自身的看法。人们可能认为，人类在这个问题上不会像对自然那样偏离主题。当涉及人类自身时，人类应该很了解自己吧？可惜事实往往相反。\n\n大多数经济理论背后的人类形象是一个自私自利者，他们在任何情况下都冷静地计算个人利益。当人类必须做出选择时，作为消费者，他们总是选择能带来最大效用的东西；作为生产者，他们则选择能带来最高利润的东西。情感在这里毫无作用，无论是自己的还是他人的情感，唯一决定的是理性。而这种理性仅限于对成本和收益的计算。"
+  },
+  "2025-translation-2": {
+    "display_answer": "见参考译文",
+    "explanation": "Die Ära des autonomen Fahrens ist angekommen.\n\nAutonome Fahrzeuge werden eine Reihe tiefgreifender gesellschaftlicher Veränderungen auslösen. Zunächst werden sie die Verkehrssicherheit deutlich erhöhen und die Zahl der Verkehrsunfälle reduzieren. Zweitens wird die autonome Fahrtechnologie die Reiseeffizienz erheblich steigern und städtische Verkehrsstaus lindern. Darüber hinaus wird sie die Fortbewegungsgewohnheiten der Menschen verändern und fahrerloses Reisen zur Realität machen. Gleichzeitig werden autonome Fahrzeuge neue Geschäftsmodelle und Arbeitsplätze schaffen und die Entwicklung verwandter Branchen vorantreiben. Zusammenfassend wird die autonome Fahrtechnologie zweifellos eine wichtige Triebkraft für Veränderungen im zukünftigen Verkehrssektor sein."
+  },
+  "2025-writing-1": {
+    "display_answer": "暂无官方范文",
+    "explanation": "原题未附官方范文，网站当前仅保留题面。"
   }
 }

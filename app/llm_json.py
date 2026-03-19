@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+import socket
 from urllib import error, request
 
 
@@ -67,13 +68,39 @@ def request_chat_json(
         method="POST",
     )
 
-    try:
-        with request.urlopen(req, timeout=settings["timeout_seconds"]) as response:
-            payload = json.loads(response.read().decode("utf-8"))
-    except error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")
-        raise RuntimeError(f"AI provider HTTP {exc.code}: {detail}") from exc
-    except error.URLError as exc:
-        raise RuntimeError(f"AI provider unavailable: {exc.reason}") from exc
+    attempts = 2
+    last_error = None
+    for attempt in range(1, attempts + 1):
+        try:
+            with request.urlopen(req, timeout=settings["timeout_seconds"]) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            return extract_json(message_content(payload))
+        except error.HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")
+            raise RuntimeError(f"AI provider HTTP {exc.code}: {detail}") from exc
+        except error.URLError as exc:
+            reason = exc.reason
+            if isinstance(reason, TimeoutError | socket.timeout):
+                last_error = RuntimeError(
+                    f"AI provider timed out after {settings['timeout_seconds']}s (attempt {attempt}/{attempts})."
+                )
+                if attempt < attempts:
+                    continue
+                raise last_error from exc
+            raise RuntimeError(f"AI provider unavailable: {reason}") from exc
+        except TimeoutError as exc:
+            last_error = RuntimeError(
+                f"AI provider timed out after {settings['timeout_seconds']}s (attempt {attempt}/{attempts})."
+            )
+            if attempt < attempts:
+                continue
+            raise last_error from exc
+        except socket.timeout as exc:
+            last_error = RuntimeError(
+                f"AI provider timed out after {settings['timeout_seconds']}s (attempt {attempt}/{attempts})."
+            )
+            if attempt < attempts:
+                continue
+            raise last_error from exc
 
-    return extract_json(message_content(payload))
+    raise last_error or RuntimeError("AI provider request failed.")
