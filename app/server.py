@@ -11,7 +11,7 @@ from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
-from app.ai_review import load_ai_settings, public_ai_settings, request_ai_review
+from app.ai_review import load_ai_settings, public_ai_settings, request_ai_review, save_ai_settings
 from app.runtime_paths import (
     AI_REVIEW_SETTINGS_PATH,
     ANSWER_KEY_PATH,
@@ -88,6 +88,11 @@ def origin_allowed(origin: str | None) -> bool:
     if not origin:
         return True
     return ALLOW_ALL_ORIGINS or origin in ALLOWED_ORIGINS
+
+
+def is_loopback_address(value: str | None) -> bool:
+    text = str(value or "").strip()
+    return text in {"127.0.0.1", "::1", "localhost"} or text.startswith("::ffff:127.")
 
 
 def load_dataset() -> dict:
@@ -193,6 +198,9 @@ class PracticeHandler(SimpleHTTPRequestHandler):
         self.respond_json({"error": "origin_not_allowed"}, status=HTTPStatus.FORBIDDEN)
         return False
 
+    def is_local_admin_request(self) -> bool:
+        return is_loopback_address(self.client_address[0])
+
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
         client_id = self.request_client_id(parsed)
@@ -221,6 +229,14 @@ class PracticeHandler(SimpleHTTPRequestHandler):
                 "progress_updated_at": progress.get("updated_at"),
                 "ai_review": dataset["meta"].get("ai_review", {}),
             }
+            self.respond_json(payload)
+            return
+        if parsed.path == "/api/ai/settings":
+            if not self.enforce_api_origin():
+                return
+            settings = load_ai_settings(AI_REVIEW_SETTINGS_PATH)
+            payload = public_ai_settings(settings)
+            payload["local_admin_available"] = self.is_local_admin_request()
             self.respond_json(payload)
             return
         super().do_GET()
@@ -259,6 +275,22 @@ class PracticeHandler(SimpleHTTPRequestHandler):
             with FILE_LOCK:
                 save_json(progress_path_for_client(client_id), payload)
             self.respond_json({"ok": True})
+            return
+
+        if parsed.path == "/api/ai/settings":
+            if not self.is_local_admin_request():
+                self.respond_json(
+                    {"error": "forbidden", "message": "AI settings can only be changed from the local machine."},
+                    status=HTTPStatus.FORBIDDEN,
+                )
+                return
+
+            with FILE_LOCK:
+                settings = save_ai_settings(AI_REVIEW_SETTINGS_PATH, payload)
+            append_event("ai_settings_saved", {"provider": settings.get("provider"), "model": settings.get("model")}, client_id=client_id)
+            response = public_ai_settings(settings)
+            response["local_admin_available"] = True
+            self.respond_json({"ok": True, "ai_review": response})
             return
 
         if parsed.path == "/api/ai/review":

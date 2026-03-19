@@ -275,7 +275,8 @@ html.safari-browser .empty-card {
 .year-nav,
 .option-grid,
 .stats-grid,
-.summary-actions {
+.summary-actions,
+.compact-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

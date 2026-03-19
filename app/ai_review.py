@@ -21,6 +21,18 @@ DEFAULT_SETTINGS = {
     "temperature": 0.3,
 }
 
+SAVEABLE_KEYS = {
+    "enabled",
+    "provider",
+    "endpoint",
+    "model",
+    "essay_analysis_model",
+    "essay_scoring_model",
+    "api_key",
+    "timeout_seconds",
+    "temperature",
+}
+
 ENV_MAPPING = {
     "enabled": "TEM8_AI_ENABLED",
     "provider": "TEM8_AI_PROVIDER",
@@ -89,6 +101,33 @@ def public_ai_settings(settings: dict) -> dict:
         "provider": settings.get("provider") or DEFAULT_SETTINGS["provider"],
         "model": settings.get("model") or DEFAULT_SETTINGS["model"],
     }
+
+
+def save_ai_settings(path: Path, payload: dict) -> dict:
+    settings = deepcopy(DEFAULT_SETTINGS)
+    if path.exists():
+        existing = json.loads(path.read_text(encoding="utf-8"))
+        if isinstance(existing, dict):
+            settings.update(existing)
+
+    if isinstance(payload, dict):
+        for key in SAVEABLE_KEYS:
+            if key in payload:
+                settings[key] = payload[key]
+
+    settings["enabled"] = _coerce_bool(settings.get("enabled"))
+    settings["timeout_seconds"] = _coerce_int(settings.get("timeout_seconds"), DEFAULT_SETTINGS["timeout_seconds"])
+    settings["temperature"] = _coerce_float(settings.get("temperature"), DEFAULT_SETTINGS["temperature"])
+    settings["provider"] = str(settings.get("provider") or DEFAULT_SETTINGS["provider"]).strip() or DEFAULT_SETTINGS["provider"]
+    settings["endpoint"] = str(settings.get("endpoint") or DEFAULT_SETTINGS["endpoint"]).strip() or DEFAULT_SETTINGS["endpoint"]
+    settings["model"] = str(settings.get("model") or DEFAULT_SETTINGS["model"]).strip() or DEFAULT_SETTINGS["model"]
+    settings["essay_analysis_model"] = str(settings.get("essay_analysis_model") or "").strip()
+    settings["essay_scoring_model"] = str(settings.get("essay_scoring_model") or "").strip()
+    settings["api_key"] = str(settings.get("api_key") or "").strip()
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(settings, ensure_ascii=False, indent=2), encoding="utf-8")
+    return load_ai_settings(path)
 
 
 def _task_label(question: dict, source_context: dict | None) -> str:

@@ -739,6 +739,48 @@ function aiReviewMeta() {
   return state.dataset?.meta?.ai_review || { enabled: false, configured: false, provider: "", model: "" };
 }
 
+async function openAiSettings(questionId = null) {
+  const existing = aiReviewMeta();
+  const apiKey = window.prompt("请输入 DeepSeek API Key。保存后本机将自动启用 AI 点评。", "");
+  if (apiKey === null) {
+    return;
+  }
+
+  const trimmedKey = String(apiKey || "").trim();
+  if (!trimmedKey) {
+    window.alert("未保存：API key 不能为空。");
+    return;
+  }
+
+  try {
+    const payload = await apiPost("/api/ai/settings", {
+      enabled: true,
+      provider: existing.provider || "deepseek",
+      endpoint: "https://api.deepseek.com/chat/completions",
+      model: existing.model || "deepseek-chat",
+      essay_analysis_model: "",
+      essay_scoring_model: "",
+      api_key: trimmedKey,
+      timeout_seconds: 120,
+      temperature: 0.3,
+    });
+    if (state.dataset?.meta) {
+      state.dataset.meta.ai_review = payload.ai_review || aiReviewMeta();
+    }
+    await logEvent("ai_settings_saved_ui", { provider: state.dataset?.meta?.ai_review?.provider || "deepseek" });
+    renderApp();
+    if (questionId) {
+      const record = getRecord(questionId);
+      if (String(record.response_text || "").trim()) {
+        await requestAiReview(questionId);
+      }
+    }
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "AI settings save failed.";
+    window.alert(`AI 设置保存失败：${message}`);
+  }
+}
+
 function getQuestionSection(question) {
   return String(question?.section || "").trim().toLowerCase();
 }
@@ -1450,12 +1492,13 @@ function renderAiReviewBlock(question, record) {
   const review = record.ai_review;
   const issues = Array.isArray(review?.issues) ? review.issues : [];
   const suggestions = Array.isArray(review?.suggestions) ? review.suggestions : [];
+  const settingsButton = `<button class="ghost-button" onclick="appActions.openAiSettings('${question.id}')">AI 设置</button>`;
   const metaLine = review
     ? `<div class="meta-line">AI ${escapeHtml(review.provider || meta.provider || "")} · ${escapeHtml(review.model || meta.model || "")} · ${escapeHtml(String(review.score))}/${escapeHtml(String(review.max_score || 100))}</div>`
     : !meta.enabled
-    ? `<div class="meta-line">AI 点评已预留，待配置 API key 后启用。</div>`
+    ? `<div class="meta-line">AI 点评已预留。可直接点击“AI 设置”粘贴 key，无需手改配置文件。</div>`
     : !meta.configured
-    ? `<div class="meta-line">AI 已开启但未配置完成，请在 data/ai_review.json 中填写接口信息。</div>`
+    ? `<div class="meta-line">AI 已开启但未配置完成。可直接点击“AI 设置”粘贴 key。</div>`
     : `<div class="meta-line">AI 会指出问题并给出简单修改建议，不会覆盖你的原答案。</div>`;
 
   return `
@@ -1466,13 +1509,16 @@ function renderAiReviewBlock(question, record) {
           <strong>翻译 / 写作点评</strong>
           ${metaLine}
         </div>
-        <button
-          class="ghost-button"
-          ${disabled ? "disabled" : ""}
-          onclick="${disabled ? "" : `appActions.requestAiReview('${question.id}')`}"
-        >
-          ${busy ? "点评中..." : review ? "重新点评" : "AI 点评"}
-        </button>
+        <div class="compact-actions">
+          ${settingsButton}
+          <button
+            class="ghost-button"
+            ${disabled ? "disabled" : ""}
+            onclick="${disabled ? "" : `appActions.requestAiReview('${question.id}')`}"
+          >
+            ${busy ? "点评中..." : review ? "重新点评" : "AI 点评"}
+          </button>
+        </div>
       </div>
       ${record.ai_review_error ? `<div class="feedback wrong">${escapeHtml(record.ai_review_error)}</div>` : ""}
       ${
@@ -3250,6 +3296,7 @@ window.appActions = {
   setSharedPassageMode,
   dismissBrowserNotice,
   openChromeDownload,
+  openAiSettings,
   resetProgress,
   toggleFocusMode,
   requestAiReview,
