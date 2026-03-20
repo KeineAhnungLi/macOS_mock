@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import filecmp
 import shutil
 import sys
 from pathlib import Path
@@ -41,6 +42,25 @@ SEED_DATA_FILES = (
 )
 
 
+def _should_refresh_seed(source_path: Path, target_path: Path) -> bool:
+    if not source_path.exists():
+        return False
+    if source_path == target_path:
+        return False
+    if not target_path.exists():
+        return True
+    try:
+        source_stat = source_path.stat()
+        target_stat = target_path.stat()
+    except OSError:
+        return True
+    return (
+        source_stat.st_size != target_stat.st_size
+        or int(source_stat.st_mtime) != int(target_stat.st_mtime)
+        or not filecmp.cmp(source_path, target_path, shallow=False)
+    )
+
+
 def ensure_runtime_layout() -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     LOG_DIR.mkdir(parents=True, exist_ok=True)
@@ -48,5 +68,5 @@ def ensure_runtime_layout() -> None:
     for filename in SEED_DATA_FILES:
         source_path = BUNDLE_DATA_DIR / filename
         target_path = DATA_DIR / filename
-        if source_path.exists() and not target_path.exists():
+        if _should_refresh_seed(source_path, target_path):
             shutil.copy2(source_path, target_path)
